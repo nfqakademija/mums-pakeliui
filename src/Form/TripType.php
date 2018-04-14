@@ -18,13 +18,13 @@ class TripType extends AbstractType
         $builder
 
             ->add('type', ChoiceType::class,  array('choices' => array(
-                'Car' => '1',
-                'Human' => '2',
+                'Vairuotojas' => '1',
+                'Keleivis' => '2'
             ),
 
-                'multiple'=>false,'expanded'=>true))
+                'multiple'=>false,'expanded'=>true, 'label'=>false))
 
-            ->add('dateOfTrip', DateTimeType::class)
+            ->add('dateOfTrip', DateTimeType::class, array('label'=>'Data ir laikas'))
                 /*->add('dateOfTrip', DateTimeType::class, array(
                     'widget' => 'single_text',
                     'html5' => false
@@ -36,22 +36,22 @@ class TripType extends AbstractType
                     '_type'         => "number",
                     'min'           => 1,
                     'step'          => 1,
-                ),
+                ), 'label'=> 'Vietų skaičius',
 
             ))
             ->add('smoke', ChoiceType::class,  array('choices' => array(
-                'noSmoke' => '0',
-                'Smoke' => '1',
+                'negalima' => '0',
+                'galima' => '1',
             ),
 
-            'multiple'=>false,'expanded'=>true))
+            'multiple'=>false,'expanded'=>true, 'label' =>'Rūkyti'))
             ->add('pets', ChoiceType::class,  array('choices' => array(
-                'no Pets' => '0',
-                'Pets' => '1',
+                'negalima' => '0',
+                'galima' => '1',
             ),
 
-                'multiple'=>false,'expanded'=>true))
-            ->add('info', TextareaType::class)
+                'multiple'=>false,'expanded'=>true, 'label'=>'Gyvūnai'))
+            ->add('informacija', TextareaType::class)
 
         ;
 
