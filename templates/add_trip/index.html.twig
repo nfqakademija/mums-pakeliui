@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+
+{% block content %}
+    <div class="row">
+        <div class="col"></div>
+        <div class="col">
+            {{ form_start(our_form) }}
+            {{ form_row(our_form.type, {attr: {class: 'form-check form-check-inline'} }) }}
+            {{ form_row(our_form.dateOfTrip, {attr: {class: ''} }) }}
+            {{ form_row(our_form.smoke, {attr: {class: 'form-check form-check-inline'} }) }}
+            {{ form_row(our_form.pets, {attr: {class: 'form-check form-check-inline'} }) }}
+            {{ form_widget(our_form) }}
+
+            {{ form_end(our_form) }}
+        </div>
+        <div class="col"></div>
+    </div>
+{% endblock %}
