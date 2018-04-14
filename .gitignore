@@ -1,4 +1,3 @@
-
 ###> symfony/framework-bundle ###
 /.env
 /public/bundles/
@@ -35,11 +34,6 @@ yarn-error.log
 /node_modules
 .env
 npm-debug.log
-<<<<<<< HEAD
 /project.tar.gz
 /.deploy/*.retry
 ###< Old symfony and common infrastructure ###
-=======
-.idea/
-###< Old symfony and common infrastructure ###
->>>>>>> 849e895edaa0aa44bb175419cbb7e10ef84bde59
