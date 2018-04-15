@@ -68,171 +68,13 @@
         </div>
     </header>
 {% endblock %}
-{% block content %}
+
     <body>
     <div class="container-fluid">
         <div class="row">
             <div class="col-10">
-                <div class="row">
-                    <div class="col-4">
-                        <nav class="navbar navbar-light">
-                            <form class="form-inline">
-                                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Ieškoti</button>
-                                <input class="form-control mr-sm-2" type="search" placeholder="Parašykite, ko ieškoti" aria-label="Search">
-                            </form>
-                        </nav>
-                    </div>
-                    <div class="col-2">
-                        <input type="button" class="btn btn-outline-dark" style="margin: 10px" onclick="location.href = '{{ path('new_trip_type') }}';" value="Kurti skelbimą"></input>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-8">
-                        <h2>Skelbimai:</h2>
-                    </div>
-                    <div class="col-2">
-                        <h2>Filtruoti:</h2>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-8">
-                        <div class="list-scrollbar">
-
-                            <table class="table table-striped">
-                                <thead>
-                                <tr>
-                                    <th scope="col">Vardas</th>
-                                    <th scope="col"><span class="fa fa-car"></span> ar <img class=icons src="/images/passenger.png" alt="keleivis" width="35" height="21"></th>
-                                    <th scope="col">Iš</th>
-                                    <th scope="col">Į</th>
-                                    <th scope="col">Data</th>
-                                    <th scope="col">Laikas</th>
-                                    <th scope="col"></th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td scope="row">Jonas</td>
-                                    <td><span class="fa fa-car"></span></td>
-                                    <td>Vilnius</td>
-                                    <td>Kaunas</td>
-                                    <td>2018-05-01</td>
-                                    <td>12:00</td>
-                                    <td><button type="button" class="btn btn-outline-dark">Peržiūrėti</button></td>
-                                </tr>
-                                <tr>
-                                    <td scope="row">Petras</td>
-                                    <td><img class=icons src="/images/passenger.png" alt="keleivis" width="35" height="21"></td>
-                                    <td>Vilnius</td>
-                                    <td>Kaunas</td>
-                                    <td>2018-05-01</td>
-                                    <td>8:00</td>
-                                    <td><button type="button" class="btn btn-outline-dark">Peržiūrėti</button></td>
-                                </tr>
-                                <tr>
-                                    <td scope="row">Jeronimas</td>
-                                    <td><span class="fa fa-car"></span></td>
-                                    <td>Vilnius</td>
-                                    <td>Berlynas</td>
-                                    <td>2018-09-01</td>
-                                    <td>24:00</td>
-                                    <td><button type="button" class="btn btn-outline-dark">Peržiūrėti</button></td>
-                                </tr>
-                                <tr>
-                                    <td scope="row">Jeronimas</td>
-                                    <td><span class="fa fa-car"></span></td>
-                                    <td>Vilnius</td>
-                                    <td>Berlynas</td>
-                                    <td>2018-09-01</td>
-                                    <td>24:00</td>
-                                    <td><button type="button" class="btn btn-outline-dark">Peržiūrėti</button></td>
-                                </tr>
-                                <tr>
-                                    <td scope="row">Jeronimas</td>
-                                    <td><span class="fa fa-car"></span></td>
-                                    <td>Vilnius</td>
-                                    <td>Berlynas</td>
-                                    <td>2018-09-01</td>
-                                    <td>24:00</td>
-                                    <td><button type="button" class="btn btn-outline-dark">Peržiūrėti</button></td>
-                                </tr>
-                                <tr>
-                                    <td scope="row">Jeronimas</td>
-                                    <td><span class="fa fa-car"></span></td>
-                                    <td>Vilnius</td>
-                                    <td>Berlynas</td>
-                                    <td>2018-09-01</td>
-                                    <td>24:00</td>
-                                    <td><button type="button" class="btn btn-outline-dark">Peržiūrėti</button></td>
-                                </tr>
-                                <tr>
-                                    <td scope="row">Jeronimas</td>
-                                    <td><span class="fa fa-car"></span></td>
-                                    <td>Vilnius</td>
-                                    <td>Berlynas</td>
-                                    <td>2018-09-01</td>
-                                    <td>24:00</td>
-                                    <td><button type="button" class="btn btn-outline-dark">Peržiūrėti</button></td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="col-2">
-                        <div class="filter-scrollbar">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                <label class="form-check-label" for="defaultCheck1">
-                                    <span class="fa fa-car"></span>
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                <label class="form-check-label" for="defaultCheck1">
-                                    <img class=icons src="/images/passenger.png" alt="keleivis" width="35" height="21">
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                <label class="form-check-label" for="defaultCheck1">
-                                    Mieste
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                <label class="form-check-label" for="defaultCheck1">
-                                    Į kitus miestus
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                <label class="form-check-label" for="defaultCheck1">
-                                    Į kitas šalis
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                <label class="form-check-label" for="defaultCheck1">
-                                    <span class="fas fa-smoking"></span>
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                <label class="form-check-label" for="defaultCheck1">
-                                    <span class="fas fa-paw"></span>
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                <label class="form-check-label" for="defaultCheck1">
-                                    <span class="fas fa-suitcase"></span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
+                {% block content %}
+                {% endblock %}
             </div>
             <div class="col-2">
                 Vieta reklamai
@@ -240,7 +82,7 @@
         </div>
     </div>
     </body>
-{% endblock %}
+
 {% block footer %}
     <div class="footer">
         <footer class="page-footer font-small pt-1 mt-1">

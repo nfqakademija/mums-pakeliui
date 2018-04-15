@@ -11,9 +11,11 @@
         <div class="col"></div>
         <div class="col">
             {{ form_start(our_form) }}
-            {{ form_row(our_form.type, {attr: {class: 'form-check form-check-inline'} }) }}
-            {{ form_row(our_form.dateOfTrip, {attr: {class: ''} }) }}
+            {{ form_row(our_form.travelerType, {attr: {class: 'form-check form-check-inline'} }) }}
+            {{ form_row(our_form.departTime, {attr: {class: ''} }) }}
             {{ form_row(our_form.seats, {attr: {class: ''} }) }}
+            {{ form_row(our_form.departFrom, {attr: {class: ''} }) }}
+            {{ form_row(our_form.destination, {attr: {class: ''} }) }}
             {{ form_row(our_form.smoke, {attr: {class: 'form-check form-check-inline'} }) }}
             {{ form_row(our_form.pets, {attr: {class: 'form-check form-check-inline'} }) }}
             {{ form_widget(our_form) }}

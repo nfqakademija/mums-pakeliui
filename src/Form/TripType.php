@@ -21,26 +21,26 @@ class TripType extends AbstractType
     {
         $builder
 
-            ->add('type', ChoiceType::class,  array('choices' => array(
-                'Vairuotojas' => '1',
-                'Keleivis' => '2'),
-                'multiple'=>false,'expanded'=>true, 'label'=>false)
+            ->add('travelerType', ChoiceType::class,  array('choices' => array(
+                'Vairuotojas' => '0',
+                'Keleivis' => '1'),
+                'data'=>'1', 'multiple'=>false,'expanded'=>true, 'label'=>false)
             )
 
-            ->add('city', ChoiceType::class,  array('choices' => array(
+            /*->add('city', ChoiceType::class,  array('choices' => array(
                 'Vilnius' => '1',
                 'Kaunas' => '2',
                 'Klaipėda' => '3',
                 'Alytus' => '4',
                 'Palanga' => '5',
                 'Panevėžys' => '6'))
-            )
+            )*/
 
-            ->add('adresasIs', TextType::class)
+            ->add('departFrom', TextType::class, array('label'=> 'Išvykimo adresas'))
 
-            ->add('adresasI', TextType::class)
+            ->add('destination', TextType::class, array('label'=> 'Atvykimo adresas'))
 
-            ->add('dateOfTrip', DateTimeType::class, array('label'=>'Data ir laikas'))
+            ->add('departTime', DateTimeType::class, array('label'=>'Išvykimo data ir laikas'))
                 /*->add('dateOfTrip', DateTimeType::class, array(
                     'widget' => 'single_text',
                     'html5' => false
@@ -58,16 +58,16 @@ class TripType extends AbstractType
             ->add('smoke', ChoiceType::class,  array('choices' => array(
                 'negalima' => '0',
                 'galima' => '1'),
-                'multiple'=>false,'expanded'=>true, 'label' =>'Rūkyti')
+                'data'=>'0','multiple'=>false,'expanded'=>true, 'label' =>'Rūkyti')
             )
 
             ->add('pets', ChoiceType::class,  array('choices' => array(
                 'negalima' => '0',
                 'galima' => '1'),
-                'multiple'=>false,'expanded'=>true, 'label'=>'Gyvūnai')
+                'data'=>'0', 'multiple'=>false,'expanded'=>true, 'label'=>'Gyvūnai')
             )
 
-            ->add('informacija', TextareaType::class)
+            ->add('information', TextareaType::class, array('label'=>'Informacija'))
 
             ->add('save', SubmitType::class, array('label' => 'Išsaugoti'));
     }

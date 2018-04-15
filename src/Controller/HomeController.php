@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Trip;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -12,9 +13,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-
-        return $this->render('base.html.twig', [
-            'controller_name' => 'HomeController',
+        $entityManager = $this->getDoctrine()->getManager();
+        $trips = $entityManager->getRepository(Trip::class)->findAll();
+        return $this->render('home/index.html.twig', [
+            'trips' => $trips
         ]);
     }
 }
