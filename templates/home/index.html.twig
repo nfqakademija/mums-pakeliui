@@ -13,7 +13,7 @@
             </nav>
         </div>
         <div class="col-2">
-            <input type="button" class="btn btn-outline-dark" style="margin: 10px" onclick="location.href = '{{ path('new_trip_type') }}';" value="Kurti skelbimą"></input>
+            <button class="btn btn-outline-dark" style="margin: 10px" onclick="location.href = '{{ path('select_trip_type') }}';">Kurti skelbimą</button>
         </div>
     </div>
     <div class="row">
@@ -51,7 +51,7 @@
                         <td>{{ trip.departFrom }}</td>
                         <td>{{ trip.destination }}</td>
                         <td>{{ trip.departTime|date("Y-m-d H:i") }}</td>
-                        <td><button type="button" class="btn btn-outline-dark">Peržiūrėti</button></td>
+                        <td><button class="btn btn-outline-dark" style="margin: 10px" onclick="location.href = '{{ path('show_trip', {'id': trip.id}) }}';">Peržiūrėti</button></td>
                     </tr>
                     {% endfor %}
                     </tbody>

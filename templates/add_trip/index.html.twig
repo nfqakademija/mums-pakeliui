@@ -3,13 +3,13 @@
 
 {% block content %}
 <div class="row">
-    <div class="col"></div>
-    <div class="col"><h2>Užpildykite skelbimo laukelius</h2></div>
-    <div class="col"></div>
+    <div class="col-2"></div>
+    <div class="col-8"><h2>Užpildykite skelbimo laukelius</h2></div>
+    <div class="col-2"></div>
 </div>
     <div class="row">
-        <div class="col"></div>
-        <div class="col">
+        <div class="col-2"></div>
+        <div class="col-8">
             {{ form_start(our_form) }}
             {{ form_row(our_form.travelerType, {attr: {class: 'form-check form-check-inline'} }) }}
             {{ form_row(our_form.departTime, {attr: {class: ''} }) }}
@@ -21,6 +21,6 @@
             {{ form_widget(our_form) }}
             {{ form_end(our_form) }}
         </div>
-        <div class="col"></div>
+        <div class="col-2"></div>
     </div>
 {% endblock %}

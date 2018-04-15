@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 class AddTripController extends AbstractController
 {
     /**
-     * @Route("/add/trip", name="add_trip")
+     * @Route("/trip/add", name="add_trip")
      */
     public function index(Request $request)
     {
