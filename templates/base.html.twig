@@ -1,19 +1,276 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}{{ "My project" }}{% endblock %}</title>
-        {% block stylesheets %}
-            <link rel="stylesheet" href="{{ asset('build/css/app.css') }}">
-        {% endblock %}
-        <meta name="viewport" content="width=device-width,initial-scale=1.0">
-        <link rel="icon" type="image/x-icon" href="{{ asset('images/favicon.ico')}}">
-        {% block canonical_meta %}{% endblock %}
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{{ "Mums pakeliui!" }}{% endblock %}</title>
+    {% block stylesheets %}
+        <!--<link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>-->
+        <link rel="stylesheet" href="{{ asset('build/css/app.css') }}">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+
+        <style>
+
+            body {
+                background: #F5F5F5;
+                font: 18px/1.5 arial, sans-serif;
+            }
+
+            h1, h2 { line-height: 1.2; margin: 0 0 .5em; }
+            h1 { font-size: 36px; font-weight: 900}
+            h2 { font-size: 21px; margin-bottom: 1em; font-weight: 900}
+            a { color: #0000F0; }
+            a:hover { text-decoration: none; }
+            .icons {icon: auto}
+            .footer {
+                position: sticky;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                text-align: center;
+                background: lightgray;
+            }
+            .list-scrollbar {
+                border: 1px solid grey;
+                overflow: auto;
+            }
+            .filter-scrollbar {
+                border: 1px solid grey;
+                overflow: auto;
+            }
+
+        </style>
+    {% endblock %}
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="{{ asset('images/favicon.ico')}}">
+    {% block canonical_meta %}{% endblock %}
+</head>
+<body>
+{% block header %}
+    <header>
+        <div class="card bg-light text-black">
+            <img class="card-img" src="{{ asset('/images/road_header.jpg') }}" alt="Card image" width="2559" height="160">
+            <div class="card-img-overlay">
+                <div class="row">
+                    <div class="col-6">
+                        <h1 class="card-title">Mums pakeliui!</h1>
+                    </div>
+                    <div class="col-2">
+                        <button type="button" class="btn btn-outline-dark">Prisijunkite</button>
+                    </div>
+                    <div class="col-2">
+                        <p class="ml-4">arba</p>
+                    </div>
+                    <div class="col-2">
+                        <button type="button" class="btn btn-outline-dark">Registruokitės</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+{% endblock %}
+{% block content %}
     <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}
-            <script src="{{ asset('build/js/app.js') }}"></script>
-        {% endblock %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-10">
+                <div class="row">
+                    <div class="col-4">
+                        <nav class="navbar navbar-light">
+                            <form class="form-inline">
+                                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Ieškoti</button>
+                                <input class="form-control mr-sm-2" type="search" placeholder="Parašykite, ko ieškoti" aria-label="Search">
+                            </form>
+                        </nav>
+                    </div>
+                    <div class="col-2">
+                        <input type="button" class="btn btn-outline-dark" style="margin: 10px" onclick="location.href = '{{ path('new_trip_type') }}';" value="Kurti skelbimą"></input>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-8">
+                        <h2>Skelbimai:</h2>
+                    </div>
+                    <div class="col-2">
+                        <h2>Filtruoti:</h2>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-8">
+                        <div class="list-scrollbar">
+
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Vardas</th>
+                                    <th scope="col"><span class="fa fa-car"></span> ar <img class=icons src="/images/passenger.png" alt="keleivis" width="35" height="21"></th>
+                                    <th scope="col">Iš</th>
+                                    <th scope="col">Į</th>
+                                    <th scope="col">Data</th>
+                                    <th scope="col">Laikas</th>
+                                    <th scope="col"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td scope="row">Jonas</td>
+                                    <td><span class="fa fa-car"></span></td>
+                                    <td>Vilnius</td>
+                                    <td>Kaunas</td>
+                                    <td>2018-05-01</td>
+                                    <td>12:00</td>
+                                    <td><button type="button" class="btn btn-outline-dark">Peržiūrėti</button></td>
+                                </tr>
+                                <tr>
+                                    <td scope="row">Petras</td>
+                                    <td><img class=icons src="/images/passenger.png" alt="keleivis" width="35" height="21"></td>
+                                    <td>Vilnius</td>
+                                    <td>Kaunas</td>
+                                    <td>2018-05-01</td>
+                                    <td>8:00</td>
+                                    <td><button type="button" class="btn btn-outline-dark">Peržiūrėti</button></td>
+                                </tr>
+                                <tr>
+                                    <td scope="row">Jeronimas</td>
+                                    <td><span class="fa fa-car"></span></td>
+                                    <td>Vilnius</td>
+                                    <td>Berlynas</td>
+                                    <td>2018-09-01</td>
+                                    <td>24:00</td>
+                                    <td><button type="button" class="btn btn-outline-dark">Peržiūrėti</button></td>
+                                </tr>
+                                <tr>
+                                    <td scope="row">Jeronimas</td>
+                                    <td><span class="fa fa-car"></span></td>
+                                    <td>Vilnius</td>
+                                    <td>Berlynas</td>
+                                    <td>2018-09-01</td>
+                                    <td>24:00</td>
+                                    <td><button type="button" class="btn btn-outline-dark">Peržiūrėti</button></td>
+                                </tr>
+                                <tr>
+                                    <td scope="row">Jeronimas</td>
+                                    <td><span class="fa fa-car"></span></td>
+                                    <td>Vilnius</td>
+                                    <td>Berlynas</td>
+                                    <td>2018-09-01</td>
+                                    <td>24:00</td>
+                                    <td><button type="button" class="btn btn-outline-dark">Peržiūrėti</button></td>
+                                </tr>
+                                <tr>
+                                    <td scope="row">Jeronimas</td>
+                                    <td><span class="fa fa-car"></span></td>
+                                    <td>Vilnius</td>
+                                    <td>Berlynas</td>
+                                    <td>2018-09-01</td>
+                                    <td>24:00</td>
+                                    <td><button type="button" class="btn btn-outline-dark">Peržiūrėti</button></td>
+                                </tr>
+                                <tr>
+                                    <td scope="row">Jeronimas</td>
+                                    <td><span class="fa fa-car"></span></td>
+                                    <td>Vilnius</td>
+                                    <td>Berlynas</td>
+                                    <td>2018-09-01</td>
+                                    <td>24:00</td>
+                                    <td><button type="button" class="btn btn-outline-dark">Peržiūrėti</button></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="filter-scrollbar">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                <label class="form-check-label" for="defaultCheck1">
+                                    <span class="fa fa-car"></span>
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                <label class="form-check-label" for="defaultCheck1">
+                                    <img class=icons src="/images/passenger.png" alt="keleivis" width="35" height="21">
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                <label class="form-check-label" for="defaultCheck1">
+                                    Mieste
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                <label class="form-check-label" for="defaultCheck1">
+                                    Į kitus miestus
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                <label class="form-check-label" for="defaultCheck1">
+                                    Į kitas šalis
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                <label class="form-check-label" for="defaultCheck1">
+                                    <span class="fas fa-smoking"></span>
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                <label class="form-check-label" for="defaultCheck1">
+                                    <span class="fas fa-paw"></span>
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                <label class="form-check-label" for="defaultCheck1">
+                                    <span class="fas fa-suitcase"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-2">
+                Vieta reklamai
+            </div>
+        </div>
+    </div>
     </body>
+{% endblock %}
+{% block footer %}
+    <div class="footer">
+        <footer class="page-footer font-small pt-1 mt-1">
+            <div class="container-fluid text-center text-md-left">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5 class="text-uppercase">Mums pakeliui!</h5>
+                        <p>Su mumis keliauti smagiau. Padėsime vairuotojams ir keleiviams rasti vieniems kitus.</p>
+                    </div>
+                    <div class="col-md-6">
+                        <h5 class="text-uppercase">Nuorodos</h5>
+                        <ul class="list-unstyled">
+                            <li>
+                                <a href="#!">Kontaktinė informacija</a>
+                            </li>
+                            <li>
+                                <a href="#!">Pagalba</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-copyright py-1 text-center">
+                © 2018 Mums pakeliui!
+            </div>
+        </footer>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('build/js/app.js') }}"></script>
+{% endblock %}
+</body>
 </html>

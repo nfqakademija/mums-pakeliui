@@ -43,4 +43,4 @@ services:
     build: .docker/frontend/
     container_name: frontend.symfony
     volumes:
-      - .:/code # Mount your code, so javaScript tools could see it
+- .:/code # Mount your code, so javaScript tools could see it
