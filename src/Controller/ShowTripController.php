@@ -14,9 +14,7 @@ class ShowTripController extends Controller
      */
     public function index(Request $request)
     {
-        $request->getPathInfo();
         $id = $request->query->get('id');
-
 
         $trip = $this->getDoctrine()
             ->getRepository(Trip::class)

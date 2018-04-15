@@ -35,6 +35,6 @@
             <div>Papildoma informacija: {{ trip.information }}</div>
 
         </div>
-        <div class="col-2"></div>
+        <div class="col-2"><button class="btn btn-outline-dark" style="margin: 10px" onclick="location.href = '{{ path('add_trip', {'id': trip.id}) }}';">Redaguoti</button></div>
     </div>
 {% endblock %}

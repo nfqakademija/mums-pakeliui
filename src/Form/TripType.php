@@ -24,7 +24,7 @@ class TripType extends AbstractType
             ->add('travelerType', ChoiceType::class,  array('choices' => array(
                 'Vairuotojas' => '0',
                 'Keleivis' => '1'),
-                'data'=>'1', 'multiple'=>false,'expanded'=>true, 'label'=>false)
+                'empty_data'=>'1', 'multiple'=>false,'expanded'=>true, 'label'=>false)
             )
 
             /*->add('city', ChoiceType::class,  array('choices' => array(
@@ -58,13 +58,13 @@ class TripType extends AbstractType
             ->add('smoke', ChoiceType::class,  array('choices' => array(
                 'negalima' => '0',
                 'galima' => '1'),
-                'data'=>'0','multiple'=>false,'expanded'=>true, 'label' =>'Rūkyti')
+                'empty_data'=>'0','multiple'=>false,'expanded'=>true, 'label' =>'Rūkyti')
             )
 
             ->add('pets', ChoiceType::class,  array('choices' => array(
                 'negalima' => '0',
                 'galima' => '1'),
-                'data'=>'0', 'multiple'=>false,'expanded'=>true, 'label'=>'Gyvūnai')
+                'empty_data'=>'0', 'multiple'=>false,'expanded'=>true, 'label'=>'Gyvūnai')
             )
 
             ->add('information', TextareaType::class, array('label'=>'Informacija'))
