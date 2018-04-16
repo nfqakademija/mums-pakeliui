@@ -52,8 +52,7 @@ class AddTripController extends AbstractController
                 $oldTrip->setSmoke($trip->getSmoke());
                 $oldTrip->setSeats($trip->getSeats());
                 $oldTrip->setDestination($trip->getDestination());
-            }
-            else {
+            } else {
                 $entityManager->persist($trip);
             }
             $entityManager->flush();
