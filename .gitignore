@@ -38,3 +38,4 @@ npm-debug.log
 /.deploy/*.retry
 ###< Old symfony and common infrastructure ###
 /.idea
+.idea
