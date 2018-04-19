@@ -9,33 +9,34 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
 
         <style>
-
-            body {
-                background: #F5F5F5;
-                font: 18px/1.5 arial, sans-serif;
+            .page-look
+            {
+                background-image: url('/images/keliasbackground.png');
+                background-size: 100%;
+                background-repeat: no-repeat;
+                font-family: arial, sans-serif;
+                background-color: #eaedf4;
+                color: #232c46;
             }
 
-            h1, h2 { line-height: 1.2; margin: 0 0 .5em; }
-            h1 { font-size: 36px; font-weight: 900}
-            h2 { font-size: 21px; margin-bottom: 1em; font-weight: 900}
-            a { color: #0000F0; }
-            a:hover { text-decoration: none; }
+            .header-look
+            {
+                background-color: rgba(78, 110, 165, 0.5);
+            }
+
+            a { color: #eaedf4; }
+            a:hover {
+                text-decoration: none;
+                color: #9ba8cd;
+            }
             .icons {icon: auto}
-            .footer {
-                position: sticky;
-                left: 0;
-                bottom: 0;
+            .footer-look {
                 width: 100%;
+                background-color: #232c46;
+                color: #eaedf4;
+                height: 50px;
+                font-size: small;
                 text-align: center;
-                background: lightgray;
-            }
-            .list-scrollbar {
-                border: 1px solid grey;
-                overflow: auto;
-            }
-            .filter-scrollbar {
-                border: 1px solid grey;
-                overflow: auto;
             }
 
         </style>
@@ -44,24 +45,18 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('images/favicon.ico')}}">
     {% block canonical_meta %}{% endblock %}
 </head>
-<body>
+
+<body class="page-look">
 {% block header %}
     <header>
-        <div class="card bg-light text-black">
-            <img class="card-img" src="{{ asset('/images/road_header.jpg') }}" alt="Card image" width="2559" height="160">
-            <div class="card-img-overlay">
+        <div class="header-look">
+            <div class="container">
                 <div class="row">
-                    <div class="col-6">
-                        <h1 class="card-title">Mums pakeliui!</h1>
+                    <div class="col-10">
+                        <h1>Mums pakeliui!</h1>
                     </div>
-                    <div class="col-2">
-                        <button type="button" class="btn btn-outline-dark">Prisijunkite</button>
-                    </div>
-                    <div class="col-2">
-                        <p class="ml-4">arba</p>
-                    </div>
-                    <div class="col-2">
-                        <button type="button" class="btn btn-outline-dark">Registruokitės</button>
+                    <div class="col-2 text-right">
+                        <button type="button" class="btn btn-outline-dark mt-2">Prisijungti</button>
                     </div>
                 </div>
             </div>
@@ -69,50 +64,21 @@
     </header>
 {% endblock %}
 
-    <body>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-10">
-                {% block content %}
-                {% endblock %}
-            </div>
-            <div class="col-2">
-                Vieta reklamai
-            </div>
-        </div>
-    </div>
-    </body>
+{% block content %}{% endblock %}
 
 {% block footer %}
-    <div class="footer">
-        <footer class="page-footer font-small pt-1 mt-1">
-            <div class="container-fluid text-center text-md-left">
-                <div class="row">
-                    <div class="col-md-6">
-                        <h5 class="text-uppercase">Mums pakeliui!</h5>
-                        <p>Su mumis keliauti smagiau. Padėsime vairuotojams ir keleiviams rasti vieniems kitus.</p>
-                    </div>
-                    <div class="col-md-6">
-                        <h5 class="text-uppercase">Nuorodos</h5>
-                        <ul class="list-unstyled">
-                            <li>
-                                <a href="#!">Kontaktinė informacija</a>
-                            </li>
-                            <li>
-                                <a href="#!">Pagalba</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-copyright py-1 text-center">
-                © 2018 Mums pakeliui!
-            </div>
-        </footer>
+    <div class="footer-look">
+        <b>Su mumis keliauti smagiau. Padėsime vairuotojams ir keleiviams rasti vieniems kitus.</b> |
+        <a href="#!">Kontaktinė informacija</a> |
+        <a href="#!">Pagalba</a>
+        <div>
+            © 2018 Mums pakeliui!
+        </div>
     </div>
 {% endblock %}
 {% block javascripts %}
     <script src="{{ asset('build/js/app.js') }}"></script>
 {% endblock %}
 </body>
+
 </html>
