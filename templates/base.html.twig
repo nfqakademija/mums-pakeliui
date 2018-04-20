@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="html-changeHeight">
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}{{ "Mums pakeliui!" }}{% endblock %}</title>
@@ -9,6 +9,8 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
 
         <style>
+            .html-changeHeight
+            {height: 100%}
             .page-look
             {
                 background-image: url('/images/keliasbackground.png');
@@ -17,6 +19,9 @@
                 font-family: arial, sans-serif;
                 background-color: #eaedf4;
                 color: #232c46;
+                min-height: 100%;
+                position:relative;
+                padding-bottom: 50px;
             }
 
             .header-look
@@ -37,6 +42,8 @@
                 height: 50px;
                 font-size: small;
                 text-align: center;
+                position: absolute;
+                left: 0 ; right: 0; bottom: 0;
             }
 
         </style>
@@ -64,7 +71,38 @@
     </header>
 {% endblock %}
 
-{% block content %}{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-4">
+            <div align="justify">
+                <h5>Vykstate į kitą gatvę, kitą miestą ar kitą šalį?</h5>
+            <h5>Pakeleivių rasite užpildę šiuos laukus:</h5>
+        </div>
+            <form>
+                <div class="form-group">
+                    <label for="Departure">Išvykimo adresas</label>
+                    <input class="form-control" id="InputDeparture" placeholder="Įrašykite išvykimo adresą">
+                    <small class="form-text text-muted">Galite pildyti ir vieną lauką, tačiau tuomet paieškos rezultatai nebus tikslūs.</small>
+                </div>
+                <div class="form-group">
+                    <label for="Arrival">Atvykimo adresas</label>
+                    <input class="form-control" id="InputArrival" placeholder="Įrašykite atvykimo adresą">
+                </div>
+                <button type="button" class="btn btn-outline-dark mt-2" onclick="location.href = '{{ path('search') }}';">Ieškoti</button>
+            </form>
+        </div>
+        <div class="col-1"></div>
+        <div class="col-3">
+            <div align="justify">
+                <h5>Neradote pakeleivių?</h5>
+                    <h5>Sukurkite savo skelbimą!</h5>
+            </div>
+        <button type="button" class="btn btn-outline-dark" onclick="location.href = '{{ path('add_edit_trip') }}';">Kurti skelbimą</button>
+    </div>
+    <div class="col-3"></div>
+    </div>
+{% endblock %}
 
 {% block footer %}
     <div class="footer-look">

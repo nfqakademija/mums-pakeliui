@@ -1,0 +1,95 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-3">
+            <div align="justify">
+                <h6><b>Filtruoti:</b></h6>
+            </div>
+            <div class="filter-scrollbar">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                    <label class="form-check-label" for="defaultCheck1">
+                        <span class="fa fa-car"></span>
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                    <label class="form-check-label" for="defaultCheck1">
+                        <img class=icons src="/images/passenger.png" alt="keleivis" width="35" height="21">
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                    <label class="form-check-label" for="defaultCheck1">
+                        Data
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                    <label class="form-check-label" for="defaultCheck1">
+                        <span class="fas fa-smoking"></span>
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                    <label class="form-check-label" for="defaultCheck1">
+                        <span class="fas fa-paw"></span>
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                    <label class="form-check-label" for="defaultCheck1">
+                        <span class="fas fa-suitcase"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="col-3">
+            <div align="justify">
+                <h6><b>Neradote pakeleivių?</b></h6>
+                <h6><b>Sukurkite savo skelbimą!</b></h6>
+            </div>
+            <button type="button" class="btn btn-outline-dark" onclick="location.href = '{{ path('add_edit_trip') }}';">Kurti skelbimą</button>
+        </div>
+        <div class="col-2">
+            <button type="button" class="btn btn-outline-dark mt-4" onclick="location.href = '{{ path('home') }}';">Ieškoti iš naujo</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-10">
+            <div class="list-scrollbar">
+                <table class="table table-striped" style="background-color: #eaedf4">
+                    <thead>
+                    <tr>
+                        <th scope="col" width="120px"><span class="fa fa-car"></span> ar <img class=icons src="/images/passenger.png" alt="keleivis" width="35" height="21"></th>
+                        <th scope="col">Iš</th>
+                        <th scope="col">Į</th>
+                        <th scope="col">Data ir laikas</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for trip in trips %}
+                        <tr>
+                            {% if trip.travelerType == 0 %}
+                                <td scope="row"><span class="fa fa-car"></span></td>
+                            {% endif %}
+                            {% if trip.travelerType == 1 %}
+                                <td scope="row"><img class=icons src="/images/passenger.png" alt="keleivis" width="35" height="21"></td>
+                            {% endif %}
+                            <td>{{ trip.departFrom }}</td>
+                            <td>{{ trip.destination }}</td>
+                            <td>{{ trip.departTime|date("Y-m-d H:i") }}</td>
+                            <td><button class="btn btn-outline-dark" style="margin: 10px" onclick="location.href = '{{ path('show_trip', {'id': trip.id}) }}';">Peržiūrėti</button></td>
+                            <td><button class="btn btn-outline-dark" style="margin: 10px" onclick="location.href = '{{ path('add_edit_trip', {'id': trip.id}) }}';">Redaguoti</button></td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

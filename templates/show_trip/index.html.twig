@@ -4,8 +4,16 @@
 {% block content %}
     <div class="row">
         <div class="col-2"></div>
-        <div class="col-8"><h2>Skelbimas</h2></div>
-        <div class="col-2"></div>
+        <div class="col-2"><h2>Skelbimas</h2></div>
+        <div class="col-2">
+            <button class="btn btn-outline-dark" style="margin: 10px" onclick="location.href = '{{ path('add_edit_trip', {'id': trip.id}) }}';">Redaguoti</button>
+        </div>
+        <div class="col-2">
+            <button class="btn btn-outline-dark" style="margin: 10px" onclick="location.href = '{{ path('search') }}';">Į skelbimų sąrašą</button>
+        </div>
+        <div class="col-2">
+            <button class="btn btn-outline-dark" style="margin: 10px" onclick="location.href = '{{ path('home') }}';">Ieškoti iš naujo</button>
+        </div>
     </div>
     <div class="row">
         <div class="col-2"></div>
@@ -33,8 +41,6 @@
                 <div>Galima vežtis gyvūną</div>
             {% endif %}
             <div>Papildoma informacija: {{ trip.information }}</div>
-
         </div>
-        <div class="col-2"><button class="btn btn-outline-dark" style="margin: 10px" onclick="location.href = '{{ path('add_trip', {'id': trip.id}) }}';">Redaguoti</button></div>
     </div>
 {% endblock %}

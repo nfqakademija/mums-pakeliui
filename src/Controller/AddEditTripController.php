@@ -8,10 +8,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Trip;
 
-class AddTripController extends AbstractController
+class AddEditTripController extends AbstractController
 {
     /**
-     * @Route("/trip/add", name="add_trip")
+     * @Route("/trip/add", name="add_edit_trip")
      */
     public function index(Request $request)
     {
@@ -60,7 +60,7 @@ class AddTripController extends AbstractController
             return $this->redirectToRoute('home');
         }
 
-        return  $this->render('add_trip/index.html.twig',[
+        return  $this->render('add_edit_trip/index.html.twig',[
             'our_form' => $form->createView()
         ]);
 
