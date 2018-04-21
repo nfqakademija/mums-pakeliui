@@ -27,15 +27,6 @@ class TripType extends AbstractType
                 'empty_data'=>'1', 'multiple'=>false,'expanded'=>true, 'label'=>false)
             )
 
-            /*->add('city', ChoiceType::class,  array('choices' => array(
-                'Vilnius' => '1',
-                'Kaunas' => '2',
-                'Klaipėda' => '3',
-                'Alytus' => '4',
-                'Palanga' => '5',
-                'Panevėžys' => '6'))
-            )*/
-
             ->add('departFrom', TextType::class, array('label'=> 'Išvykimo adresas'))
 
             ->add('destination', TextType::class, array('label'=> 'Atvykimo adresas'))

@@ -13,11 +13,10 @@
             {height: 100%}
             .page-look
             {
-                background-image: url('/images/keliasbackground.png');
-                background-size: 100%;
-                background-repeat: no-repeat;
+                background: url('/images/keliasbackground.png') #eaedf4 no-repeat bottom right;
+                background-size: contain;
                 font-family: arial, sans-serif;
-                background-color: #eaedf4;
+                /*background-color: ;#eaedf4*/
                 color: #232c46;
                 min-height: 100%;
                 position:relative;
@@ -26,8 +25,9 @@
 
             .header-look
             {
-                background-color: rgba(78, 110, 165, 0.5);
+                background-color: rgba(88, 89, 91, 0.8); /*rgba(78, 110, 165, 0.5)*/
             }
+            h1{color:#f8ed32;}
 
             a { color: #eaedf4; }
             a:hover {
@@ -83,6 +83,7 @@
                 <div class="form-group">
                     <label for="Departure">Išvykimo adresas</label>
                     <input class="form-control" id="InputDeparture" placeholder="Įrašykite išvykimo adresą">
+
                     <small class="form-text text-muted">Galite pildyti ir vieną lauką, tačiau tuomet paieškos rezultatai nebus tikslūs.</small>
                 </div>
                 <div class="form-group">
@@ -91,6 +92,7 @@
                 </div>
                 <button type="button" class="btn btn-outline-dark mt-2" onclick="location.href = '{{ path('search') }}';">Ieškoti</button>
             </form>
+            
         </div>
         <div class="col-1"></div>
         <div class="col-3">
@@ -116,7 +118,17 @@
 {% endblock %}
 {% block javascripts %}
     <script src="{{ asset('build/js/app.js') }}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
+   <script type="text/javascript">
+    function init() {
+    var input = document.getElementById('InputDeparture');
+    var autocomplete = new google.maps.places.Autocomplete(input);
+    var input2 = document.getElementById('InputArrival');
+    var autocomplete2 = new google.maps.places.Autocomplete(input2);
+    }
+    google.maps.event.addDomListener(window, 'load', init);
+   </script>
+
 {% endblock %}
 </body>
-
 </html>
