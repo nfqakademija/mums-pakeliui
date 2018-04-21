@@ -32,10 +32,7 @@ class TripType extends AbstractType
             ->add('destination', TextType::class, array('label'=> 'Atvykimo adresas'))
 
             ->add('departTime', DateTimeType::class, array('label'=>'Išvykimo data ir laikas'))
-                /*->add('dateOfTrip', DateTimeType::class, array(
-                    'widget' => 'single_text',
-                    'html5' => false
-                ))*/
+
             ->add('seats', IntegerType::class, array(
                 'required' => false,
                 'empty_data' => '1',
