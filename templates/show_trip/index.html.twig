@@ -6,13 +6,13 @@
         <div class="col-2"></div>
         <div class="col-2"><h2>Skelbimas</h2></div>
         <div class="col-2">
-            <button class="btn btn-outline-dark" style="margin: 10px" onclick="location.href = '{{ path('add_edit_trip', {'id': trip.id}) }}';">Redaguoti</button>
+            <a class="btn btn-outline-dark" style="margin: 10px" href = "{{ path('add_edit_trip', {'id': trip.id}) }}">Redaguoti</a>
         </div>
         <div class="col-2">
-            <button class="btn btn-outline-dark" style="margin: 10px" onclick="location.href = '{{ path('search') }}';">Į skelbimų sąrašą</button>
+            <a class="btn btn-outline-dark" style="margin: 10px" href = "{{ path('search') }}">Į skelbimų sąrašą</a>
         </div>
         <div class="col-2">
-            <button class="btn btn-outline-dark" style="margin: 10px" onclick="location.href = '{{ path('home') }}';">Ieškoti iš naujo</button>
+            <a class="btn btn-outline-dark" style="margin: 10px" href = "{{ path('home') }}">Ieškoti iš naujo</a>
         </div>
     </div>
     <div class="row">

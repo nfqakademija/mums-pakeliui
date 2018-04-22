@@ -55,53 +55,23 @@
 {% block header %}
     <header>
         <div class="header-look">
-            <div class="row">
-                <div class="col-10">
-                    <h1>Mums pakeliui!</h1>
-                </div>
-                <div class="col-2 text-right">
-                    <button type="button" class="btn btn-outline-dark mt-2" onclick="location.href = '{{ path('admin') }}';">Prisijungti</button>
+            <div class="container">
+                <div class="row">
+                    <div class="col-10">
+                        <h1>Mums pakeliui!</h1>
+                    </div>
+                    <div class="col-2 text-right">
+                        <a class="btn btn-outline-dark mt-2" href = "{{ path('fos_user_security_login') }}">Prisijungti</a>
+                    </div>
                 </div>
             </div>
         </div>
     </header>
 {% endblock %}
 
-{% block content %}
-    <div class="container">
-        <div class="row">
-            <div class="col-1"></div>
-            <div class="col-4">
-                <div align="justify">
-                    <h5>Vykstate į kitą gatvę, kitą miestą ar kitą šalį?</h5>
-                    <h5>Pakeleivių rasite užpildę šiuos laukus:</h5>
-                </div>
-                <form method="GET" action="{{ path('search') }}">
-                    <div class="form-group">
-                        <label for="Departure">Išvykimo adresas</label>
-                        <input class="form-control" id="trip_departFrom" name="depart" placeholder="Įrašykite išvykimo adresą" value="{{ app.request.request.get("depart") }}">
-
-                        <small class="form-text text-muted">Galite pildyti ir vieną lauką, tačiau tuomet paieškos rezultatai nebus tikslūs.</small>
-                    </div>
-                    <div class="form-group">
-                        <label for="Arrival">Atvykimo adresas</label>
-                        <input class="form-control" id="trip_destination" name="destination" placeholder="Įrašykite atvykimo adresą" value="{{ app.request.request.get('destination') }}">
-                    </div>
-                    <button type="submit" class="btn btn-outline-dark mt-2">Ieškoti</button>
-                </form>
-            </div>
-            <div class="col-1"></div>
-            <div class="col-3">
-                <div align="justify">
-                    <h5>Neradote pakeleivių?</h5>
-                    <h5>Sukurkite savo skelbimą!</h5>
-                </div>
-                <button type="button" class="btn btn-outline-dark" onclick="location.href = '{{ path('add_edit_trip') }}';">Kurti skelbimą</button>
-            </div>
-            <div class="col-3"></div>
-        </div>
-    </div>
-{% endblock %}
+<div class="container">
+{% block content %}{% endblock %}
+</div>
 
 {% block footer %}
     <div class="footer-look">

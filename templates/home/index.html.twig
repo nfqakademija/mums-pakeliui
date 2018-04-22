@@ -2,115 +2,35 @@
 
 
 {% block content %}
-
     <div class="row">
+        <div class="col-1"></div>
         <div class="col-4">
-            <nav class="navbar navbar-light">
-                <form class="form-inline">
-                    <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Ieškoti</button>
-                    <input class="form-control mr-sm-2" type="search" placeholder="Ieškokite pakeleivių" aria-label="Search">
-                </form>
-            </nav>
-        </div>
-        <div class="col-2">
-            <button class="btn btn-outline-dark" style="margin: 10px" onclick="location.href = '{{ path('search') }}';">Kurti skelbimą</button>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-8">
-            <h2>Skelbimai:</h2>
-        </div>
-        <div class="col-2">
-            <h2>Filtruoti:</h2>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-10">
-            <div class="list-scrollbar">
-
-                <table class="table table-striped">
-                    <thead>
-                    <tr>
-                        <th scope="col" width="120px"><span class="fa fa-car"></span> ar <img class=icons src="/images/passenger.png" alt="keleivis" width="35" height="21"></th>
-                        <th scope="col">Iš</th>
-                        <th scope="col">Į</th>
-                        <th scope="col">Data ir laikas</th>
-                        <th scope="col"></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for trip in trips %}
-                    <tr>
-                        {% if trip.travelerType == 0 %}
-                            <td scope="row"><span class="fa fa-car"></span></td>
-                        {% endif %}
-                        {% if trip.travelerType == 1 %}
-                            <td scope="row"><img class=icons src="/images/passenger.png" alt="keleivis" width="35" height="21"></td>
-                        {% endif %}
-                        <td>{{ trip.departFrom }}</td>
-                        <td>{{ trip.destination }}</td>
-                        <td>{{ trip.departTime|date("Y-m-d H:i") }}</td>
-                        <td><button class="btn btn-outline-dark" style="margin: 10px" onclick="location.href = '{{ path('show_trip', {'id': trip.id}) }}';">Peržiūrėti</button></td>
-                    </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
+            <div align="justify">
+                <h5>Vykstate į kitą gatvę, kitą miestą ar kitą šalį?</h5>
+                <h5>Pakeleivių rasite užpildę šiuos laukus:</h5>
             </div>
+            <form method="GET" action="{{ path('search') }}">
+                <div class="form-group">
+                    <label for="Departure">Išvykimo adresas</label>
+                    <input class="form-control" id="trip_departFrom" name="depart" placeholder="Įrašykite išvykimo adresą" value="{{ app.request.request.get("depart") }}">
+
+                    <small class="form-text text-muted">Galite pildyti ir vieną lauką, tačiau tuomet paieškos rezultatai nebus tikslūs.</small>
+                </div>
+                <div class="form-group">
+                    <label for="Arrival">Atvykimo adresas</label>
+                    <input class="form-control" id="trip_destination" name="destination" placeholder="Įrašykite atvykimo adresą" value="{{ app.request.request.get('destination') }}">
+                </div>
+                <button type="submit" class="btn btn-outline-dark mt-2">Ieškoti</button>
+            </form>
         </div>
-        <div class="col-2">
-            <div class="filter-scrollbar">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                    <label class="form-check-label" for="defaultCheck1">
-                        <span class="fa fa-car"></span>
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                    <label class="form-check-label" for="defaultCheck1">
-                        <img class=icons src="/images/passenger.png" alt="keleivis" width="35" height="21">
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                    <label class="form-check-label" for="defaultCheck1">
-                        Mieste
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                    <label class="form-check-label" for="defaultCheck1">
-                        Į kitus miestus
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                    <label class="form-check-label" for="defaultCheck1">
-                        Į kitas šalis
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                    <label class="form-check-label" for="defaultCheck1">
-                        <span class="fas fa-smoking"></span>
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                    <label class="form-check-label" for="defaultCheck1">
-                        <span class="fas fa-paw"></span>
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                    <label class="form-check-label" for="defaultCheck1">
-                        <span class="fas fa-suitcase"></span>
-                    </label>
-                </div>
+        <div class="col-1"></div>
+        <div class="col-3">
+            <div align="justify">
+                <h5>Neradote pakeleivių?</h5>
+                <h5>Sukurkite savo skelbimą!</h5>
             </div>
+            <a class="btn btn-outline-dark" href = "{{ path('add_edit_trip') }}">Kurti skelbimą</a>
         </div>
-
+        <div class="col-3"></div>
     </div>
-
 {% endblock %}

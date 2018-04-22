@@ -29,7 +29,11 @@
     </div>
 
     {# Added custom code #}
-    <div class="jumbotron">
-        <a class="btn btn-info btn-lg" href="{{ path('home') }}">My home</a>
-    </div>
+        <a class="btn btn-outline-dark" href="{{ path('home') }}">Į pagrindinį puslapį</a>
+        <a class="btn btn-outline-dark" href="{{ path('fos_user_security_login') }}">Prisijungti</a>
+        <a class="btn btn-outline-dark" href="{{ path('fos_user_security_logout') }}">Atsijungti</a>
+        <a class="btn btn-outline-dark" href="{{ path('fos_user_registration_register') }}">Registruotis</a>
+        <a class="btn btn-outline-dark" href="{{ path('fos_user_profile_show') }}">Naudotojo profilis</a>
+        <a class="btn btn-outline-dark" href="{{ path('fos_user_profile_edit') }}">Redaguoti naudotojo profilį</a>
+        <a class="btn btn-outline-dark" href="{{ path('fos_user_change_password') }}">Keisti slaptažodį</a>
 {% endblock %}

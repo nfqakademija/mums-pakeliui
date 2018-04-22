@@ -4,13 +4,12 @@
 {% block content %}
 
 
-<div class="jumbotron">
-    +        <a class="btn btn-secondary btn-lg" href="{{ path('fos_user_security_login') }}">Login</a>
-    +        <a class="btn btn-secondary btn-lg" href="{{ path('fos_user_registration_register') }}">Register</a>
-    +        <a class="btn btn-secondary btn-lg" href="{{ path('fos_user_profile_show') }}">User profile</a>
-    +        <a class="btn btn-secondary btn-lg" href="{{ path('fos_user_profile_edit') }}">Edit user profile</a>
-    +        <a class="btn btn-secondary btn-lg" href="{{ path('fos_user_change_password') }}">Change password</a>
-    +    </div>
-+    <div class="jumbotron">
+    <div class="jumbotron">
+        <a class="btn btn-secondary btn-lg" href="{{ path('fos_user_security_login') }}">Login</a>
+        <a class="btn btn-secondary btn-lg" href="{{ path('fos_user_registration_register') }}">Register</a>
+        <a class="btn btn-secondary btn-lg" href="{{ path('fos_user_profile_show') }}">User profile</a>
+        <a class="btn btn-secondary btn-lg" href="{{ path('fos_user_profile_edit') }}">Edit user profile</a>
+        <a class="btn btn-secondary btn-lg" href="{{ path('fos_user_change_password') }}">Change password</a>
+    </div>
 
 {% endblock %}
