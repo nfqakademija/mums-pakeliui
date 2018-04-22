@@ -7,43 +7,35 @@
             <div align="justify">
                 <h6><b>Filtruoti:</b></h6>
             </div>
-            <div class="filter-scrollbar">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                    <label class="form-check-label" for="defaultCheck1">
-                        <span class="fa fa-car"></span>
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                    <label class="form-check-label" for="defaultCheck1">
-                        <img class=icons src="/images/passenger.png" alt="keleivis" width="35" height="21">
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                    <label class="form-check-label" for="defaultCheck1">
-                        Data
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                    <label class="form-check-label" for="defaultCheck1">
-                        <span class="fas fa-smoking"></span>
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                    <label class="form-check-label" for="defaultCheck1">
-                        <span class="fas fa-paw"></span>
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                    <label class="form-check-label" for="defaultCheck1">
-                        <span class="fas fa-suitcase"></span>
-                    </label>
-                </div>
+            <form method="GET" action="{{ path('search') }}">
+                {% for key, travelerTypeItem in form.travelerType %}
+                    {% if (app.request.get('travelerType') == 0) and (key == 0)%}
+                        {{ form_widget(travelerTypeItem, {attr: {class: 'form-check form-check-inline', 'checked': 'checked'}}) }}
+                    {% endif %}
+                    {% if (app.request.get('travelerType') == 1) and (key == 1)%}
+                        {{ form_widget(travelerTypeItem, {attr: {class: 'form-check form-check-inline', 'checked': 'checked'}}) }}
+                    {% else %}
+                        {{ form_widget(travelerTypeItem, {attr: {class: 'form-check form-check-inline'}}) }}
+                    {% endif %}
+
+                {% endfor %}
+                {{ form_row(form.departFrom, {attr: {class: '','placeholder': 'Įrašykite išvykimo adresą', 'value' :  app.request.get("departFrom") } }) }}
+
+                {{ form_row(form.destination, {attr: {class: '','placeholder': 'Įrašykite atvykimo adresą', 'value' :  app.request.get("destination")} }) }}
+
+                {% if app.request.get('smoke') == 1  %}
+                {{ form_row(form.smoke, {attr: {class: 'form-check form-check-inline', 'checked': 'checked'} }) }}
+                {% else %}
+                    {{ form_row(form.smoke, {attr: {class: 'form-check form-check-inline'} }) }}
+                {% endif %}
+                {% if app.request.get('pets') == 1  %}
+                {{ form_row(form.pets, {attr: {class: 'form-check form-check-inline', 'checked': 'checked'} }) }}
+                {% else %}
+                {{ form_row(form.pets, {attr: {class: 'form-check form-check-inline'} }) }}
+                {% endif %}
+                <button type="submit" class="btn btn-outline-dark mt-2">Filtruoti</button>
+            </form>
+
             </div>
         </div>
         <div class="col-3">

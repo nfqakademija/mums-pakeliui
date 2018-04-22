@@ -21,7 +21,6 @@
                 position:relative;
                 padding-bottom: 50px;
             }
-
             .header-look
             {
                 background-color: rgba(88, 89, 91, 0.8); /*rgba(78, 110, 165, 0.5)*/
@@ -43,7 +42,6 @@
                 position: absolute;
                 left: 0 ; right: 0; bottom: 0;
             }
-
         </style>
     {% endblock %}
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -70,8 +68,8 @@
 {% endblock %}
 
 <div class="container">
-{% block content %}{% endblock %}
-</div>
+    {% block content %}{% endblock %}
+
 
 {% block footer %}
     <div class="footer-look">
@@ -88,9 +86,9 @@
     <script src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
     <script type="text/javascript">
         function init() {
-            var input = document.getElementById('trip_departFrom');
+            var input = document.getElementById('departFrom');
             var autocomplete = new google.maps.places.Autocomplete(input);
-            var input2 = document.getElementById('trip_destination');
+            var input2 = document.getElementById('destination');
             var autocomplete2 = new google.maps.places.Autocomplete(input2);
         }
         google.maps.event.addDomListener(window, 'load', init);

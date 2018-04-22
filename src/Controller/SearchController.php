@@ -3,11 +3,14 @@
 namespace App\Controller;
 
 use App\Entity\Trip;
+use App\Form\TripSearch;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class SearchController extends Controller
+
+
+class SearchController extends AbstractController
 {
     /**
      * @Route("/search/results", name="search")
@@ -15,22 +18,15 @@ class SearchController extends Controller
 
     public function index(Request $request)
     {
-        $criteria = array();
+
         $entityManager = $this->getDoctrine()->getManager();
-        $depart = $_GET['depart'];
-        If($_GET['depart'] !=''){
-            $criteria['departFrom'] = $depart;
-        }
-        $destination = $_GET['destination'];
-        If($_GET['destination'] !=''){
-            $criteria['destination'] = $destination;
-        }
 
+        $criteria = array_filter($request->query->all(),"strlen");
         $trips = $entityManager->getRepository(Trip::class)->findBy($criteria);
-
-        return $this->render('search/index.html.twig', [
-
+        $form = $this->createForm(TripSearch::class);
+        return $this->render('search/index.html.twig', array(
+            'form' => $form->createView(),
             'trips' => $trips
-        ]);
+        ));
     }
 }
