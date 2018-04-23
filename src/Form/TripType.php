@@ -19,51 +19,86 @@ class TripType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+
         $builder
 
-            ->add('travelerType', ChoiceType::class,  array('choices' => array(
-                'Vairuotojas' => '0',
-                'Keleivis' => '1'),
-                'empty_data'=>'1', 'multiple'=>false,'expanded'=>true, 'label'=>false)
+            ->add(
+                'travelerType',
+                ChoiceType::class,
+                array('choices' => array(
+                    'Vairuotojas' => '0',
+                    'Keleivis' => '1'),
+                    'empty_data'=>'1', 'multiple'=>false,'expanded'=>true, 'label'=>false)
             )
 
-            ->add('departFrom', TextType::class, array('label'=> 'Išvykimo adresas'))
-
-            ->add('destination', TextType::class, array('label'=> 'Atvykimo adresas'))
-
-            ->add('departTime', DateTimeType::class, array('label'=>'Išvykimo data ir laikas'))
-
-            ->add('seats', IntegerType::class, array(
-                'required' => false,
-                'empty_data' => '1',
-                'attr'          => array(
-                    '_type'         => "number",
-                    'min'           => 1,
-                    'step'          => 1),
-                'label'=> 'Vietų skaičius')
+            ->add(
+                'departFrom',
+                TextType::class,
+                array('label'=> 'Išvykimo adresas')
             )
 
-            ->add('smoke', ChoiceType::class,  array('choices' => array(
-                'negalima' => '0',
-                'galima' => '1'),
-                'empty_data'=>'0','multiple'=>false,'expanded'=>true, 'label' =>'Rūkyti')
+            ->add(
+                'destination',
+                TextType::class,
+                array('label'=> 'Atvykimo adresas')
             )
 
-            ->add('pets', ChoiceType::class,  array('choices' => array(
-                'negalima' => '0',
-                'galima' => '1'),
-                'empty_data'=>'0', 'multiple'=>false,'expanded'=>true, 'label'=>'Gyvūnai')
+            ->add(
+                'departTime',
+                DateTimeType::class,
+                array('label'=>'Išvykimo data ir laikas')
             )
 
-            ->add('information', TextareaType::class, array('label'=>'Informacija'))
+            ->add(
+                'seats',
+                IntegerType::class,
+                array(
+                    'required' => false,
+                    'empty_data' => '1',
+                    'attr'          => array(
+                        '_type'         => "number",
+                        'min'           => 1,
+                        'step'          => 1),
+                    'label'=> 'Vietų skaičius')
+            )
 
-            ->add('save', SubmitType::class, array('label' => 'Išsaugoti'));
+            ->add(
+                'smoke',
+                ChoiceType::class,
+                array('choices' => array(
+                    'negalima' => '0',
+                    'galima' => '1'),
+                    'empty_data'=>'0','multiple'=>false,'expanded'=>true, 'label' =>'Rūkyti')
+            )
+
+            ->add(
+                'pets',
+                ChoiceType::class,
+                array('choices' => array(
+                    'negalima' => '0',
+                    'galima' => '1'),
+                    'empty_data'=>'0', 'multiple'=>false,'expanded'=>true, 'label'=>'Gyvūnai')
+            )
+
+            ->add(
+                'information',
+                TextareaType::class,
+                array('label'=>'Informacija')
+            )
+
+            ->add(
+                'save',
+                SubmitType::class,
+                array('label' => 'Išsaugoti')
+            );
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults([
-            'data_class' => Trip::class,
-        ]);
+        $resolver->setDefaults(
+            [
+                'data_class' => Trip::class,
+            ]
+        );
     }
 }
