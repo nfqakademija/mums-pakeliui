@@ -20,8 +20,7 @@ class AddEditTripController extends AbstractController
         $form = $this->createForm(TripType::class);
         $form->handleRequest($request);
 
-        if (!$form->isSubmitted() && $isFormUpdate)
-        {
+        if (!$form->isSubmitted() && $isFormUpdate) {
             $id = $request->query->get('id');
 
             $trip = $this->getDoctrine()
@@ -42,7 +41,7 @@ class AddEditTripController extends AbstractController
             $trip = $form->getData();
             $entityManager = $this->getDoctrine()->getManager();
 
-            if($isFormUpdate){
+          if($isFormUpdate){
                 $oldTrip = $entityManager->getRepository(Trip::class)->find($request->get('id'));
                 $oldTrip->setTravelerType($trip->getTravelerType());
                 $oldTrip->setDepartFrom($trip->getDepartFrom());
@@ -52,9 +51,9 @@ class AddEditTripController extends AbstractController
                 $oldTrip->setSmoke($trip->getSmoke());
                 $oldTrip->setSeats($trip->getSeats());
                 $oldTrip->setDestination($trip->getDestination());
-            } else {
+          } else {
                 $entityManager->persist($trip);
-            }
+        }
             $entityManager->flush();
 
             return $this->redirectToRoute('home');
