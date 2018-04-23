@@ -27,6 +27,5 @@ class ShowTripController extends Controller
         }
 
         return $this->render('show_trip/index.html.twig', ['trip' => $trip]);
-
     }
 }

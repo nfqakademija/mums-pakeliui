@@ -8,8 +8,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-
-
 class SearchController extends AbstractController
 {
     /**
@@ -21,14 +19,17 @@ class SearchController extends AbstractController
 
         $entityManager = $this->getDoctrine()->getManager();
 
-        $criteria = array_filter($request->query->all(),"strlen");
+        $criteria = array_filter($request->query->all(), "strlen");
         //$criteria = $request->query->all();
-       // var_dump($request->query->all());
+        // var_dump($request->query->all());
         $trips = $entityManager->getRepository(Trip::class)->findBy($criteria);
         $form = $this->createForm(TripSearchType::class);
-        return $this->render('search/index.html.twig', array(
+        return $this->render(
+            'search/index.html.twig',
+            array(
             'form' => $form->createView(),
             'trips' => $trips
-        ));
+            )
+        );
     }
 }
