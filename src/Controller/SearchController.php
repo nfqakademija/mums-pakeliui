@@ -26,12 +26,13 @@ class SearchController extends AbstractController
         if(($request->query->get('departDate')=='')&&($request->query->get('departTime')==''))  {
             $criteria = array_filter($request->query->all(), "strlen");
 
-        }
-        else {
+        } else {
+
             if($formData['departDate']==''){
                 $formData['departDate'] =  date('Y-m-d');
 
             }
+
             if($formData['departTime']==''){
                 $formData['departTime'] =  date('H:i');
 
@@ -45,6 +46,7 @@ class SearchController extends AbstractController
             $criteria['departTime'] = $date;
         }
         $trips = $entityManager->getRepository(Trip::class)->findBy($criteria);
+
         return $this->render('search/index.html.twig', array(
             'form' => $form->createView(),
             'trips' => $trips

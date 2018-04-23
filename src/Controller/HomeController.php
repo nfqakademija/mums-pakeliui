@@ -1,8 +1,11 @@
 <?php
+
 namespace App\Controller;
+
 use App\Form\TripSearchType;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+
 class HomeController extends Controller
 {
     /**

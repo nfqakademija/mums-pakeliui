@@ -1,5 +1,6 @@
 <?php
 namespace App\Form;
+
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -8,6 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+
 class TripSearchType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -59,6 +61,7 @@ class TripSearchType extends AbstractType
                 array('label' => 'Filtruoti')
             );
     }
+    
     public function getBlockPrefix()
     {
         return null;
