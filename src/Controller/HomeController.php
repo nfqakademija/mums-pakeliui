@@ -14,7 +14,7 @@ class HomeController extends Controller
     public function index()
     {
         $form = $this->createForm(TripSearchType::class);
-        return $this->render('base.html.twig',  array(
+        return $this->render('home/index.html.twig',  array(
             'form' => $form->createView()
         ));
     }
