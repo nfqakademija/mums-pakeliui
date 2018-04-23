@@ -22,7 +22,7 @@
                 {{ form_row(form.departFrom, {attr: {class: '','placeholder': 'Įrašykite išvykimo adresą', 'value' :  app.request.get("departFrom") } }) }}
 
                 {{ form_row(form.destination, {attr: {class: '','placeholder': 'Įrašykite atvykimo adresą', 'value' :  app.request.get("destination")} }) }}
-
+             
                 {% if app.request.get('smoke') == 1  %}
                 {{ form_row(form.smoke, {attr: {class: 'form-check form-check-inline', 'checked': 'checked'} }) }}
                 {% else %}

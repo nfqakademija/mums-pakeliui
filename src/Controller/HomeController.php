@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Form\TripSearch;
+use App\Form\TripSearchType;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -13,7 +13,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $form = $this->createForm(TripSearch::class);
+        $form = $this->createForm(TripSearchType::class);
         return $this->render('base.html.twig',  array(
             'form' => $form->createView()
         ));
