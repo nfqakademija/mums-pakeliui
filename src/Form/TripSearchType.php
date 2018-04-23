@@ -36,8 +36,7 @@ class TripSearchType extends AbstractType
                 'years' => range(date('Y'), date('Y') + 2),
                 'required' =>false
             ))
-            ->add('departTime', TimeType::class,  array(
-                    'input'  => 'datetime',
+            ->add('departTime', TimeType::class, array('input'  => 'datetime',
                     'required' => false,
                     'label' =>'Išvykimo laikas',
                     'widget' => 'single_text'
@@ -61,7 +60,7 @@ class TripSearchType extends AbstractType
                 array('label' => 'Filtruoti')
             );
     }
-    
+
     public function getBlockPrefix()
     {
         return null;

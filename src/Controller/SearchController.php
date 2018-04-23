@@ -23,19 +23,16 @@ class SearchController extends AbstractController
         $form->handleRequest($request);
         $formData = $request->query->all();
 
-        if(($request->query->get('departDate')=='')&&($request->query->get('departTime')==''))  {
+        if (($request->query->get('departDate')=='')&&($request->query->get('departTime')=='')) {
             $criteria = array_filter($request->query->all(), "strlen");
-
         } else {
 
-            if($formData['departDate']==''){
+            if ($formData['departDate']=='') {
                 $formData['departDate'] =  date('Y-m-d');
-
             }
 
-            if($formData['departTime']==''){
+            if ($formData['departTime']=='') {
                 $formData['departTime'] =  date('H:i');
-
             }
             $departDate = date('Y-m-d', strtotime($formData['departDate']));
             $departTime = date('H:i', strtotime($formData['departTime']));
