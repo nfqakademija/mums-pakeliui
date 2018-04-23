@@ -26,7 +26,6 @@ class SearchController extends AbstractController
         if (($request->query->get('departDate')=='')&&($request->query->get('departTime')=='')) {
             $criteria = array_filter($request->query->all(), "strlen");
         } else {
-
             if ($formData['departDate']=='') {
                 $formData['departDate'] =  date('Y-m-d');
             }

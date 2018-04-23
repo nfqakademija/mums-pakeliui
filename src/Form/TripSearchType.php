@@ -40,8 +40,7 @@ class TripSearchType extends AbstractType
                     'required' => false,
                     'label' =>'Išvykimo laikas',
                     'widget' => 'single_text'
-                )
-            )
+                ))
             ->add(
                 'smoke',
                 CheckboxType::class,
