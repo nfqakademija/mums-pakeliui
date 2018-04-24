@@ -28,39 +28,33 @@ class SearchController extends AbstractController
             ->setParameter('departFrom', $request->query->get('departFrom'));
         }
 
-        if ($request->query->get('destination') !='')
-        {
+        if ($request->query->get('destination') !='') {
             $trips->andWhere('t.destination = :destination')
                 ->setParameter('destination', $request->query->get('destination'));
         }
 
-        if ($request->query->get('travelerType') !='')
-        {
+        if ($request->query->get('travelerType') !='') {
             $trips->andWhere('t.travelerType = :travelerType')
                 ->setParameter('travelerType', $request->query->get('travelerType'));
         }
 
-        if ($request->query->get('smoke') !='')
-        {
+        if ($request->query->get('smoke') !='') {
             $trips->andWhere('t.smoke = :smoke')
                 ->setParameter('smoke', $request->query->get('smoke'));
         }
 
-        if ($request->query->get('pets') !='')
-        {
+        if ($request->query->get('pets') !='') {
             $trips->andWhere('t.pets = :pets')
                 ->setParameter('pets', $request->query->get('pets'));
         }
 
-        if (($request->query->get('departDate') !='')&&($request->query->get('departTime') ==''))
-        {
+        if (($request->query->get('departDate') !='')&&($request->query->get('departTime') =='')) {
             $departDate = date('Y-m-d', strtotime($request->query->get('departDate')));
             $trips->andWhere('t.departTime LIKE :departTime')
                 ->setParameter('departTime', $departDate.'%');
         }
 
-        if (($request->query->get('departDate') != '')&&($request->query->get('departTime') !=''))
-        {
+        if (($request->query->get('departDate') != '')&&($request->query->get('departTime') !='')) {
             $departDate = date('Y-m-d', strtotime($request->query->get('departDate')));
             $departTime = date('H:i', strtotime($request->query->get('departTime')));
             $date = new \DateTime(sprintf('%s %s', $departDate, $departTime));
