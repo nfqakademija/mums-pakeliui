@@ -27,7 +27,6 @@ class TripSearchType extends AbstractType
                     'choice_label' => function($val, $key, $index) {
                         return false;
                     },
-                    'empty_data'=>'1',
                     'multiple'=>false,
                     'expanded'=>true,
                     'label'=>false

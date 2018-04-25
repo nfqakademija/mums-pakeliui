@@ -35,19 +35,19 @@ class HomeController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()){
-                $cloner = new VarCloner();
-                $dumper = new VarDumper();
-                $dumper->dump($cloner->cloneVar($tripRepository));
+            $cloner = new VarCloner();
+            $dumper = new VarDumper();
+            $dumper->dump($cloner->cloneVar($tripRepository));
 
-                $trips = $tripRepository->findBySomeField($form->getData());
-                //die(1);
-                 return $this->render(
-                     'search/index.html.twig',
-                     [
-                         'form' => $form->createView(),
-                         'trips' => $trips
-                     ]);
-             }
+            $trips = $tripRepository->findBySomeField($form->getData());
+            //die(1);
+            return $this->render(
+                'search/index.html.twig',
+                [
+                    'form' => $form->createView(),
+                    'trips' => $trips
+                ]);
+        }
 
         return $this->render(
             'home/index.html.twig',

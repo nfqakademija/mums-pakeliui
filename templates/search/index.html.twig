@@ -9,38 +9,38 @@
             </div>
 
             {{ form_start(form) }}
-                {% for key, travelerTypeItem in form.travelerType %}
-                    {% if (app.request.get('travelerType') == 0) and (key == 0)%}
-                        {{ form_widget(travelerTypeItem, {attr: {class: 'form-check form-check-inline', 'checked': 'checked'}}) }}
-                    {% endif %}
-                    {% if (app.request.get('travelerType') == 1) and (key == 1)%}
-                        {{ form_widget(travelerTypeItem, {attr: {class: 'form-check form-check-inline', 'checked': 'checked'}}) }}
-                    {% else %}
-                        {{ form_widget(travelerTypeItem, {attr: {class: 'form-check form-check-inline'}}) }}
-                    {% endif %}
+            {% for key, travelerTypeItem in form.travelerType %}
+                {% if (app.request.get('travelerType') == 0) and (key == 0)%}
+                    {{ form_widget(travelerTypeItem, {attr: {class: 'form-check form-check-inline', 'checked': 'checked'}}) }}
+                {% endif %}
+                {% if (app.request.get('travelerType') == 1) and (key == 1)%}
+                    {{ form_widget(travelerTypeItem, {attr: {class: 'form-check form-check-inline', 'checked': 'checked'}}) }}
+                {% else %}
+                    {{ form_widget(travelerTypeItem, {attr: {class: 'form-check form-check-inline'}}) }}
+                {% endif %}
 
-                {% endfor %}
-                {{ form_row(form.departFrom, {attr: {class: '','placeholder': 'Įrašykite išvykimo adresą', 'value' :  app.request.get("departFrom") } }) }}
+            {% endfor %}
+            {{ form_row(form.departFrom, {attr: {class: '','placeholder': 'Įrašykite išvykimo adresą', 'value' :  app.request.get("departFrom") } }) }}
 
-                {{ form_row(form.destination, {attr: {class: '','placeholder': 'Įrašykite atvykimo adresą', 'value' :  app.request.get("destination")} }) }}
+            {{ form_row(form.destination, {attr: {class: '','placeholder': 'Įrašykite atvykimo adresą', 'value' :  app.request.get("destination")} }) }}
 
-                {{ form_row(form.departDate, {attr: {class: '', 'value' :  app.request.get("departDate")} }) }}
+            {{ form_row(form.departDate, {attr: {class: '', 'value' :  app.request.get("departDate")} }) }}
 
-                {{ form_row(form.departTime, {attr: {class: '', 'value' :  app.request.get("departTime")} }) }}
+            {{ form_row(form.departTime, {attr: {class: '', 'value' :  app.request.get("departTime")} }) }}
 
-                {% if app.request.get('smoke') == 1  %}
+            {% if app.request.get('smoke') == 1  %}
                 {{ form_row(form.smoke, {attr: {class: 'form-check form-check-inline', 'checked': 'checked'} }) }}
-                {% else %}
-                    {{ form_row(form.smoke, {attr: {class: 'form-check form-check-inline'} }) }}
-                {% endif %}
-                {% if app.request.get('pets') == 1  %}
+            {% else %}
+                {{ form_row(form.smoke, {attr: {class: 'form-check form-check-inline'} }) }}
+            {% endif %}
+            {% if app.request.get('pets') == 1  %}
                 {{ form_row(form.pets, {attr: {class: 'form-check form-check-inline', 'checked': 'checked'} }) }}
-                {% else %}
+            {% else %}
                 {{ form_row(form.pets, {attr: {class: 'form-check form-check-inline'} }) }}
-                {% endif %}
+            {% endif %}
             {{ form_end(form) }}
 
-            </div>
+        </div>
 
         <div class="col-3">
             <div class="mt-2">
@@ -60,7 +60,7 @@
                 <table class="table table-striped" style="background-color: #eaedf4">
                     <thead>
                     <tr>
-                        <th scope="col" width="120px"><span class="fa fa-car"></span> ar <span class="fa fa-child"></span></th>
+                        <th scope="col" width="120px"><span class="fa fa-car"></span> ar <img class=icons src="/images/passenger.png" alt="keleivis" width="35" height="21"></th>
                         <th scope="col">Iš</th>
                         <th scope="col">Į</th>
                         <th scope="col">Data ir laikas</th>
@@ -75,7 +75,7 @@
                                 <td scope="row"><span class="fa fa-car"></span></td>
                             {% endif %}
                             {% if trip.travelerType == 1 %}
-                                <td scope="row"><span class="fa fa-child"></span></td>
+                                <td scope="row"><img class=icons src="/images/passenger.png" alt="keleivis" width="35" height="21"></td>
                             {% endif %}
                             <td>{{ trip.departFrom }}</td>
                             <td>{{ trip.destination }}</td>
