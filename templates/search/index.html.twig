@@ -60,7 +60,7 @@
                 <table class="table table-striped" style="background-color: #eaedf4">
                     <thead>
                     <tr>
-                        <th scope="col" width="120px"><span class="fa fa-car"></span> ar <img class=icons src="/images/passenger.png" alt="keleivis" width="35" height="21"></th>
+                        <th scope="col" width="120px"><span class="fa fa-car"></span> ar <span class="fa fa-child"></span></th>
                         <th scope="col">Iš</th>
                         <th scope="col">Į</th>
                         <th scope="col">Data ir laikas</th>
@@ -75,7 +75,7 @@
                                 <td scope="row"><span class="fa fa-car"></span></td>
                             {% endif %}
                             {% if trip.travelerType == 1 %}
-                                <td scope="row"><img class=icons src="/images/passenger.png" alt="keleivis" width="35" height="21"></td>
+                                <td scope="row"><span class="fa fa-child"></span></td>
                             {% endif %}
                             <td>{{ trip.departFrom }}</td>
                             <td>{{ trip.destination }}</td>

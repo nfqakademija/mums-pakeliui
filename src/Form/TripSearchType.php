@@ -19,10 +19,19 @@ class TripSearchType extends AbstractType
             ->add(
                 'travelerType',
                 ChoiceType::class,
-                array('choices' => array(
-                    'Vairuotojas' => '0',
-                    'Keleivis' => '1'),
-                    'multiple' => false, 'expanded' => true, 'label' => false)
+                array(
+                    'choices' => array(
+                        'Vairuotojas' => 0,
+                        'Keleivis' => 1,
+                    ),
+                    'choice_label' => function($val, $key, $index) {
+                        return false;
+                    },
+                    'empty_data'=>'1',
+                    'multiple'=>false,
+                    'expanded'=>true,
+                    'label'=>false
+                )
             )
             ->add(
                 'departFrom',
@@ -44,25 +53,25 @@ class TripSearchType extends AbstractType
                 ))
             ->add(
                 'smoke',
-                CheckboxType::class,
+                IconCheckboxType::class,
                 array(
-                    'required' => false, 'label' => 'Rūkyti')
+                    'required' => false,
+                    'label'=> false,
+                    'label_class' => 'fas fa-smoking')
             )
+
             ->add(
                 'pets',
-                CheckboxType::class,
+                IconCheckboxType::class,
                 array(
-                    'required' => false, 'label' => 'Gyvūnai')
+                    'required' => false,
+                    'label'=> false,
+                    'label_class' => 'fas fa-paw')
             )
             ->add(
                 'filter',
                 SubmitType::class,
                 array('label' => 'Ieškoti')
             );
-    }
-
-    public function getBlockPrefix()
-    {
-        return null;
     }
 }
