@@ -71,30 +71,30 @@
     {% block content %}{% endblock %}
 
 
-{% block footer %}
-    <div class="footer-look">
-        <b>Su mumis keliauti smagiau. Padėsime vairuotojams ir keleiviams rasti vieniems kitus.</b> |
-        <a href="#!">Kontaktinė informacija</a> |
-        <a href="#!">Pagalba</a>
-        <div>
-            © 2018 Mums pakeliui!
+    {% block footer %}
+        <div class="footer-look">
+            <b>Su mumis keliauti smagiau. Padėsime vairuotojams ir keleiviams rasti vieniems kitus.</b> |
+            <a href="#!">Kontaktinė informacija</a> |
+            <a href="#!">Pagalba</a>
+            <div>
+                © 2018 Mums pakeliui!
+            </div>
         </div>
-    </div>
-{% endblock %}
-{% block javascripts %}
-    <script src="{{ asset('build/js/app.js') }}"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
-    <script type="text/javascript">
-        function init() {
-            var input = document.getElementById('departFrom');
-            var autocomplete = new google.maps.places.Autocomplete(input);
-            var input2 = document.getElementById('destination');
-            var autocomplete2 = new google.maps.places.Autocomplete(input2);
-        }
-        google.maps.event.addDomListener(window, 'load', init);
-    </script>
+    {% endblock %}
+    {% block javascripts %}
+        <script src="{{ asset('build/js/app.js') }}"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
+        <script type="text/javascript">
+            function init() {
+                var input = document.getElementById('departFrom');
+                var autocomplete = new google.maps.places.Autocomplete(input);
+                var input2 = document.getElementById('destination');
+                var autocomplete2 = new google.maps.places.Autocomplete(input2);
+            }
+            google.maps.event.addDomListener(window, 'load', init);
+        </script>
 
-{% endblock %}
+    {% endblock %}
 </body>
 
 </html>

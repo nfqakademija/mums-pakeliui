@@ -25,10 +25,19 @@ class TripType extends AbstractType
             ->add(
                 'travelerType',
                 ChoiceType::class,
-                array('choices' => array(
-                    'Vairuotojas' => '0',
-                    'Keleivis' => '1'),
-                    'empty_data'=>'1', 'multiple'=>false,'expanded'=>true, 'label'=>false)
+                array(
+                    'choices' => array(
+                        'Vairuotojas' => 0,
+                        'Keleivis' => 1,
+                    ),
+                    'choice_label' => function($val, $key, $index) {
+                        return false;
+                    },
+                    'empty_data'=>'1',
+                    'multiple'=>false,
+                    'expanded'=>true,
+                    'label'=>false
+                )
             )
 
             ->add(
@@ -64,20 +73,20 @@ class TripType extends AbstractType
 
             ->add(
                 'smoke',
-                ChoiceType::class,
-                array('choices' => array(
-                    'negalima' => '0',
-                    'galima' => '1'),
-                    'empty_data'=>'0','multiple'=>false,'expanded'=>true, 'label' =>'Rūkyti')
+                IconCheckboxType::class,
+                array(
+                    'required' => false,
+                    'label'=> false,
+                    'label_class' => 'fas fa-smoking')
             )
 
             ->add(
                 'pets',
-                ChoiceType::class,
-                array('choices' => array(
-                    'negalima' => '0',
-                    'galima' => '1'),
-                    'empty_data'=>'0', 'multiple'=>false,'expanded'=>true, 'label'=>'Gyvūnai')
+                IconCheckboxType::class,
+                array(
+                    'required' => false,
+                    'label'=> false,
+                    'label_class' => 'fas fa-paw')
             )
 
             ->add(
