@@ -29,8 +29,9 @@ class TripRepository extends ServiceEntityRepository
             ->orderBy('t.departTime', 'desc');
 
         foreach($value as $key=>$val) {
+            echo$key.' - '.$value[$key];
+            if ($value[$key] or $value[$key] === 0) {
 
-            if ($value[$key] != '') {
 
                 if($key === 'departDate' or $key === 'departTime'){
 

@@ -86,9 +86,9 @@
         <script src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
         <script type="text/javascript">
             function init() {
-                var input = document.getElementById('departFrom');
+                var input = document.getElementById('trip_search_departFrom');
                 var autocomplete = new google.maps.places.Autocomplete(input);
-                var input2 = document.getElementById('destination');
+                var input2 = document.getElementById('trip_search_destination');
                 var autocomplete2 = new google.maps.places.Autocomplete(input2);
             }
             google.maps.event.addDomListener(window, 'load', init);
