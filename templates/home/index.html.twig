@@ -2,19 +2,21 @@
 
 {% block content %}
     <div class="row">
+        <div class="col-12" align="center"><h2 style="color:#eaedf4">Vykstate į kitą gatvę, kitą miestą ar kitą šalį?</h2></div>
+    </div>
+    <div class="row">
         <div class="col-1"></div>
         <div class="col-4">
             <div align="justify">
-                <h5>Vykstate į kitą gatvę, kitą miestą ar kitą šalį?</h5>
                 <h5>Pakeleivių rasite užpildę šiuos laukus:</h5>
             </div>
 
 
                 {{ form_start(form) }}
-                {{ form_row(form._token) }}
                 {{ form_row(form.travelerType, {attr: {class: 'form-check form-check-inline'}}) }}
                 {{ form_row(form.departFrom, {attr: {class: '','placeholder': 'Įrašykite išvykimo adresą'}}) }}
                 {{ form_row(form.destination, {attr: {class: '','placeholder': 'Įrašykite atvykimo adresą'}}) }}
+            <i class="fas fa-plus"></i>
                 {{ form_row(form.departDate, {attr: {class: ''} }) }}
                 {{ form_row(form.departTime, {attr: {class: ''} }) }}
                 {{ form_row(form.smoke, {attr: {class: 'form-check form-check-inline'}}) }}
