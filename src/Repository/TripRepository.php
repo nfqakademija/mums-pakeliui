@@ -28,24 +28,20 @@ class TripRepository extends ServiceEntityRepository
         $trips = $this->createQueryBuilder('t')
             ->orderBy('t.departTime', 'desc');
 
-        foreach($value as $key=>$val) {
-            echo$key.' - '.$value[$key];
+        foreach ($value as $key=>$val) {
             if ($value[$key] or $value[$key] === 0) {
 
-
-                if($key === 'departDate' or $key === 'departTime'){
-
-                  if (($value['departDate'] && !$value['departTime'])) {
-                    $departDate = $value['departDate']->format('Y-m-d');
-                    $trips->andWhere('t.departTime LIKE :departTime')
+                if ($key === 'departDate' or $key === 'departTime') {
+                    if (($value['departDate'] && !$value['departTime'])) {
+                        $departDate = $value['departDate']->format('Y-m-d');
+                        $trips->andWhere('t.departTime LIKE :departTime')
                         ->setParameter('departTime', $departDate.'%');
-                  } else {
-
-                      if ($value['departDate']){
-                          $date = $value['departDate']->format('Y-m-d');
-                      } else {
-                          $date = date("Y-m-d");
-                      }
+                    } else {
+                        if ($value['departDate']) {
+                            $date = $value['departDate']->format('Y-m-d');
+                        } else {
+                            $date = date("Y-m-d");
+                        }
                           $startDate = new \DateTime(sprintf('%s %s', $date, $value['departTime']->format('H:i')));
                           $endDate = new \DateTime(sprintf('%s %s', $date, $value['departTime']->format('H:i')));
                           $endDate = $endDate->modify('+1 hour');
@@ -53,9 +49,8 @@ class TripRepository extends ServiceEntityRepository
                               ->setParameter('startDepartTime', $startDate)
                               ->setParameter('endDepartTime', $endDate)
                           ;
-                  }
+                    }
                 } else {
-
                     $trips->andWhere('t.' . $key . ' = :' . $key)
                         ->setParameter($key, $value[$key]);
                 }
@@ -81,6 +76,4 @@ class TripRepository extends ServiceEntityRepository
         ;
     }
     */
-
-
 }

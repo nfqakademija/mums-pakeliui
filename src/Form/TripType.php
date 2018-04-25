@@ -30,7 +30,7 @@ class TripType extends AbstractType
                         'Vairuotojas' => 0,
                         'Keleivis' => 1,
                     ),
-                    'choice_label' => function($val, $key, $index) {
+                    'choice_label' => function ($val, $key, $index) {
                         return false;
                     },
                     'empty_data'=>'1',

@@ -34,7 +34,7 @@ class HomeController extends Controller
         $form = $this->getSearchForm();
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()){
+        if ($form->isSubmitted() && $form->isValid()) {
             $cloner = new VarCloner();
             $dumper = new VarDumper();
             $dumper->dump($cloner->cloneVar($tripRepository));
@@ -46,14 +46,16 @@ class HomeController extends Controller
                 [
                     'form' => $form->createView(),
                     'trips' => $trips
-                ]);
+                ]
+            );
         }
 
         return $this->render(
             'home/index.html.twig',
             [
                 'form' => $form->createView(),
-            ]);
+            ]
+        );
     }
 
     protected function getSearchForm()
@@ -65,7 +67,6 @@ class HomeController extends Controller
                 'method' => 'GET',
                 'action' => $this->generateUrl('search')
             ]
-
         );
     }
 }
