@@ -7,7 +7,8 @@
             <div class="mt-2">
                 <h6><b>Filtruoti:</b></h6>
             </div>
-            <form method="GET" action="{{ path('search') }}">
+
+            {{ form_start(form) }}
                 {% for key, travelerTypeItem in form.travelerType %}
                     {% if (app.request.get('travelerType') == 0) and (key == 0)%}
                         {{ form_widget(travelerTypeItem, {attr: {class: 'form-check form-check-inline', 'checked': 'checked'}}) }}
@@ -37,8 +38,7 @@
                 {% else %}
                 {{ form_row(form.pets, {attr: {class: 'form-check form-check-inline'} }) }}
                 {% endif %}
-                <button type="submit" class="btn btn-outline-dark mt-2">Filtruoti</button>
-            </form>
+            {{ form_end(form) }}
 
             </div>
 

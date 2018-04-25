@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Trip
 {
+    public const NUM_ITEMS = 10;
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -55,6 +56,7 @@ class Trip
      * @ORM\Column(type="string")
      */
     private $information;
+
 
     /**
      * @return mixed
@@ -188,4 +190,5 @@ class Trip
     {
         return $this->id;
     }
+
 }

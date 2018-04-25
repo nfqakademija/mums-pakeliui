@@ -15,6 +15,7 @@ class TripSearchType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->setMethod('GET')
             ->add(
                 'travelerType',
                 ChoiceType::class,
@@ -54,9 +55,9 @@ class TripSearchType extends AbstractType
                     'required' => false, 'label' => 'Gyvūnai')
             )
             ->add(
-                'save',
+                'filter',
                 SubmitType::class,
-                array('label' => 'Filtruoti')
+                array('label' => 'Ieškoti')
             );
     }
 
