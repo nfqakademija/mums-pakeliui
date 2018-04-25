@@ -191,4 +191,3 @@ class Trip
         return $this->id;
     }
 }
-

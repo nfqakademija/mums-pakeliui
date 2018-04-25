@@ -28,9 +28,8 @@ class TripRepository extends ServiceEntityRepository
         $trips = $this->createQueryBuilder('t')
             ->orderBy('t.departTime', 'desc');
 
-        foreach ($value as $key=>$val) {
+        foreach ($value as $key => $val) {
             if ($value[$key] or $value[$key] === 0) {
-
                 if ($key === 'departDate' or $key === 'departTime') {
                     if (($value['departDate'] && !$value['departTime'])) {
                         $departDate = $value['departDate']->format('Y-m-d');
