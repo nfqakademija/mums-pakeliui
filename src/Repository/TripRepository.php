@@ -67,12 +67,12 @@ class TripRepository extends ServiceEntityRepository
             $trips->andWhere('t.departTime BETWEEN :startDepartTime AND :endDepartTime')
                 ->setParameter('startDepartTime', $startDate)
                 ->setParameter('endDepartTime', $endDate);
-
         }
 
         if (isset($value['departDate']) && isset($value['departTime'])) {
-            $startDate = new \DateTime(sprintf('%s %s', $value['departDate']->format('Y-m-d'), $value['departTime']->format('H:i')));
-            $endDate = new \DateTime(sprintf('%s %s', $value['departDate']->format('Y-m-d'), $value['departTime']->format('H:i')));
+            $date =  $value['departDate']->format('Y-m-d');
+            $startDate = new \DateTime(sprintf('%s %s', $date, $value['departTime']->format('H:i')));
+            $endDate = new \DateTime(sprintf('%s %s', $date, $value['departTime']->format('H:i')));
             $endDate = $endDate->modify('+1 hour');
             $trips->andWhere('t.departTime BETWEEN :startDepartTime AND :endDepartTime')
                 ->setParameter('startDepartTime', $startDate)
