@@ -2,36 +2,53 @@
 
 {% block content %}
     <div class="row">
-        <div class="col-12" align="center"><h2 style="color:#eaedf4">Vykstate į kitą gatvę, kitą miestą ar kitą šalį?</h2></div>
-    </div>
-    <div class="row">
-        <div class="col-1"></div>
-        <div class="col-4">
-            <div align="justify">
-                <h5>Pakeleivių rasite užpildę šiuos laukus:</h5>
+        <div class="col-12">
+            <div class="alignCenter"><h2>Vykstate į kitą gatvę, kitą miestą ar kitą šalį?</h2></div>
+        </div>
+        <div class="col-7">
+            <div class="header-search-title">
+               <h4>Pakeleivių rasite užpildę šiuos laukus:</h4>
             </div>
 
 
-                {{ form_start(form) }}
-                {{ form_row(form.travelerType, {attr: {class: 'form-check form-check-inline'}}) }}
-                {{ form_row(form.departFrom, {attr: {class: '','placeholder': 'Įrašykite išvykimo adresą'}}) }}
-                {{ form_row(form.destination, {attr: {class: '','placeholder': 'Įrašykite atvykimo adresą'}}) }}
-            <i class="fas fa-plus"></i>
-                {{ form_row(form.departDate, {attr: {class: ''} }) }}
-                {{ form_row(form.departTime, {attr: {class: ''} }) }}
+            {{ form_start(form) }}
+            {{ form_row(form.travelerType, {attr: {class: 'form-check form-check-inline'}}) }}
+            <div class="col-12">
+                <div class="col-6 col-inline-padding-right">
+                    {{ form_row(form.departFrom, {attr: {class: '','placeholder': 'Įrašykite išvykimo adresą'}}) }}
+                </div>
+                <div class="col-6 col-inline-padding-left">
+                    {{ form_row(form.destination, {attr: {class: '','placeholder': 'Įrašykite atvykimo adresą'}}) }}
+                </div>
+                <div class="clearBoth"></div>
+            </div>
+            <div class="spoiler-title3 closed"><i class="fas fa-chevron-down colorYellow"></i> Detalioji paieška</div>
+            <div class="spoiler-body3">
+              <div class="col-12">
+                <div class="col-6 col-inline-padding-right">
+                   {{ form_row(form.departDate, {attr: {class: ''} }) }}
+                </div>
+                <div class="col-6 col-inline-padding-right">
+                   {{ form_row(form.departTime, {attr: {class: ''} }) }}
+                </div>
+                <div class="clearBoth"></div>
+              </div>
                 {{ form_row(form.smoke, {attr: {class: 'form-check form-check-inline'}}) }}
                 {{ form_row(form.pets, {attr: {class: 'form-check form-check-inline'}}) }}
-                {{ form_end(form) }}
+            </div>
 
+            <div class="col-12 btn-row">
+                {{ form_widget(form.filter, {attr: {class: 'btn-yellow col-4'}}) }}
+            </div>
+                {{ form_end(form) }}
         </div>
         <div class="col-1"></div>
-        <div class="col-3">
-            <div align="justify">
-                <h5>Neradote pakeleivių?</h5>
-                <h5>Sukurkite savo skelbimą!</h5>
+        <div class="col-4">
+                <h4>Neradote pakeleivių?</h4>
+            <div style="margin-top:30px;">
+                <a  href = "{{ path('add_edit_trip') }}" class="add-trip btn btn-outline-dark"><i class="fas fa-plus colorYellow"></i> Kurti savo skelbimą</a>
             </div>
-            <a class="btn btn-outline-dark" href = "{{ path('add_edit_trip') }}">Kurti skelbimą</a>
         </div>
-        <div class="col-3"></div>
     </div>
+
 {% endblock %}

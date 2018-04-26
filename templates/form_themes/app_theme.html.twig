@@ -1,12 +1,13 @@
 {% block icon_checkbox_row %}
     <div class="form-group form-check-inline">
-        <i class="{{ label_class }}"></i>
         {{ form_widget(form) }}
+        <i class="{{ label_class }}"></i>
     </div>
 {% endblock %}
 
 {% block _trip_travelerType_entry_widget %}
 <div class="form-group form-check-inline">
+
     {% if value == 0 %}
         {%- set label_attr = label_attr|merge({class: 'fas fa-car'}) -%}
     {% else %}
@@ -27,11 +28,12 @@
     {% else %}
         {%- set label_attr = label_attr|merge({class: 'fas fa-child'}) -%}
     {% endif %}
-
     {{- form_widget(form, {
         label_attr: label_attr,
         valid: valid,
     }) -}}
 </div>
 {% endblock %}
+
+
 
