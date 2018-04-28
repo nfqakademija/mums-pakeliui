@@ -4,3 +4,21 @@
 
 fos_user:
     resource: '@FOSUserBundle/Resources/config/routing/all.xml'
+
+hwi_oauth_redirect:
+    resource: "@HWIOAuthBundle/Resources/config/routing/redirect.xml"
+    prefix:   /connect
+
+hwi_oauth_connect:
+    resource: "@HWIOAuthBundle/Resources/config/routing/connect.xml"
+    prefix:   /connect
+
+hwi_oauth_login:
+    resource: "@HWIOAuthBundle/Resources/config/routing/login.xml"
+    prefix:   /connect
+
+facebook_login:
+    path: /connect/login_facebook
+
+google_login:
+    path: /connect/login_google
