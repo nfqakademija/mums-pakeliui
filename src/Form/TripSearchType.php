@@ -39,7 +39,7 @@ class TripSearchType extends AbstractType
                     'required' => false)
             )
             ->add('destination', TextType::class, array('label' => 'Atvykimo adresas', 'required' => false))
-            ->add('departDate', DateType::class, array('label'=>'Išvykimo data ir laikas',
+            ->add('departDate', DateType::class, array('label'=>'Išvykimo data',
                 'input'  => 'datetime',
                 'widget' => 'single_text',
                 'years' => range(date('Y'), date('Y') + 2),

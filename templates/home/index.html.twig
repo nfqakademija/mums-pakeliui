@@ -5,7 +5,7 @@
         <div class="col-12">
             <div class="alignCenter"><h2>Vykstate į kitą gatvę, kitą miestą ar kitą šalį?</h2></div>
         </div>
-        <div class="col-7">
+        <div class="col-7 search">
             <div class="header-search-title">
                <h4>Pakeleivių rasite užpildę šiuos laukus:</h4>
             </div>
@@ -43,9 +43,9 @@
                 {{ form_end(form) }}
         </div>
         <div class="col-1"></div>
-        <div class="col-4">
+        <div class="col-4 search">
                 <h4>Neradote pakeleivių?</h4>
-            <div style="margin-top:30px;">
+            <div class="header-search-title">
                 <a  href = "{{ path('add_edit_trip') }}" class="add-trip btn btn-outline-dark"><i class="fas fa-plus colorYellow"></i> Kurti savo skelbimą</a>
             </div>
         </div>

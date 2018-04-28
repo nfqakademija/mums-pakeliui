@@ -80,13 +80,12 @@ class TripRepository extends ServiceEntityRepository
         }
 
         return $trips
-            ->setMaxResults(10)
             ->getQuery()
             ->getResult();
     }
 
 
-    /*
+    /* ->setMaxResults(10)
     public function findOneBySomeField($value): ?Trip
     {
         return $this->createQueryBuilder('t')

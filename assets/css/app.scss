@@ -1,3 +1,43 @@
 
 // the ~ allows you to reference things in node_modules
 @import "~bootstrap/scss/bootstrap";
+@import "main.css";
+* {
+  margin: 0;
+  padding: 0;
+}
+html,
+body {
+  background: url("/images/keliasbackground.png") #eaedf4 no-repeat bottom right fixed;
+  background-size: contain;
+  position:relative;
+}
+a { color: #9ba8cd; }
+a:hover {
+  text-decoration: none;
+  color: #5173a2;
+}
+.btn-yellow{
+  border:1px solid #f8ed32;
+  color: #eedc10;
+  border-radius: 10px 10px 10px 10px;
+  -webkit-border-radius: 10px 10px 10px 10px;
+  -moz-border-radius: 10px 10px 10px 10px;
+  font-size: 24px;
+  box-shadow: inset 0 1px 0 0 #FFF6CE,inset 0 -1px 0 0 #E3C852,inset 0 0 0 1px #FCE88D,0 2px 4px 0 #D4D4D4;
+  -moz-box-shadow: inset 0 1px 0 0 #FFF6CE,inset 0 -1px 0 0 #E3C852,inset 0 0 0 1px #FCE88D,0 2px 4px 0 #D4D4D4;
+  -webkit-box-shadow: inset 0 1px 0 0 #FFF6CE,inset 0 -1px 0 0 #E3C852,inset 0 0 0 1px #FCE88D,0 2px 4px 0 #D4D4D4;
+  text-shadow: 0 1px 0 #FFFFFF;
+  background-color: rgba(88, 89, 91, 0.9);
+}
+.btn-yellow:hover, .btn-yellow:active{
+  border:1px solid #967D09;
+  color: #705D07;
+  box-shadow: inset 0 1px 0 0 #FFF6CE,inset 0 -1px 0 0 #E3C852,inset 0 0 0 1px #FCE88D;
+  -moz-box-shadow: inset 0 1px 0 0 #FFF6CE,inset 0 -1px 0 0 #E3C852,inset 0 0 0 1px #FCE88D;
+  -webkit-box-shadow: inset 0 1px 0 0 #FFF6CE,inset 0 -1px 0 0 #E3C852,inset 0 0 0 1px #FCE88D;
+  background-color: rgba(88, 89, 91, 0.9);
+}
+.adw-list-row{
+  background-color:#eaebf4;
+}

@@ -2,12 +2,20 @@
 
 {% block content %}
     <div class="row">
-        <div class="col-1"></div>
-        <div class="col-3">
-            <div class="mt-2">
-                <h6><b>Filtruoti:</b></h6>
-            </div>
+    <div class="col-12" style="text-align: right;">
+        <div class="mt-3">
+            <h4><b>Neradote pakeleivių?</b></h4> <a class="btn btn-outline-dark" href = "{{ path('add_edit_trip') }}"><i class="fas fa-plus colorYellow"></i> Kurti savo skelbimą</a>
+        </div>
 
+    </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-3 filter">
+            <div class="mt-3" style="text-align: center;">
+
+                <div class="heading"><h4>Filtruoti</h4></div>
+            </div>
+            <div class="mt-4">
             {{ form_start(form) }}
             {% for key, travelerTypeItem in form.travelerType %}
                 {% if (app.request.get('travelerType') == 0) and (key == 0)%}
@@ -38,55 +46,47 @@
             {% else %}
                 {{ form_row(form.pets, {attr: {class: 'form-check form-check-inline'} }) }}
             {% endif %}
+                <div class="col-12 btn-row">
+                    {{ form_widget(form.filter, {attr: {class: 'btn-yellow'}}) }}
+                </div>
             {{ form_end(form) }}
-
-        </div>
-
-        <div class="col-3">
-            <div class="mt-2">
-                <h6><b>Neradote pakeleivių?</b></h6>
-                <h6><b>Sukurkite savo skelbimą!</b></h6>
             </div>
-            <a class="btn btn-outline-dark" href = "{{ path('add_edit_trip') }}">Kurti skelbimą</a>
         </div>
-        <div class="col-2">
-            <a class="btn btn-outline-dark mt-4" href = "{{ path('home') }}">Ieškoti iš naujo</a>
-        </div>
-    </div>
-    </div>
-    <div class="row">
-        <div class="col-10">
-            <div class="list-scrollbar">
-                <table class="table table-striped" style="background-color: #eaedf4">
-                    <thead>
-                    <tr>
-                        <th scope="col" width="120px"><span class="fa fa-car"></span> ar <img class=icons src="/images/passenger.png" alt="keleivis" width="35" height="21"></th>
-                        <th scope="col">Iš</th>
-                        <th scope="col">Į</th>
-                        <th scope="col">Data ir laikas</th>
-                        <th scope="col"></th>
-                        <th scope="col"></th>
-                    </tr>
-                    </thead>
-                    <tbody>
+
+        <div class="col-9 adw-list">
                     {% for trip in trips %}
-                        <tr>
+                        <div class="col-12 row adw-list-row">
+                            <div class="col-1 adw-col">
                             {% if trip.travelerType == 0 %}
-                                <td scope="row"><span class="fa fa-car"></span></td>
+                              <i class="fa fa-car"></i>
                             {% endif %}
                             {% if trip.travelerType == 1 %}
-                                <td scope="row"><img class=icons src="/images/passenger.png" alt="keleivis" width="35" height="21"></td>
+                                <img class="icons" src="/images/passenger.png" width="34px" alt="keleivis">
                             {% endif %}
-                            <td>{{ trip.departFrom }}</td>
-                            <td>{{ trip.destination }}</td>
-                            <td>{{ trip.departTime|date("Y-m-d H:i") }}</td>
-                            <td><button class="btn btn-outline-dark" style="margin: 10px" onclick="location.href = '{{ path('show_trip', {'id': trip.id}) }}';">Peržiūrėti</button></td>
-                            <td><button class="btn btn-outline-dark" style="margin: 10px" onclick="location.href = '{{ path('add_edit_trip', {'id': trip.id}) }}';">Redaguoti</button></td>
-                        </tr>
+                            </div>
+                            <div class="col-4 info"> email <br>
+
+                                {% if trip.smoke == 1 %}
+                                    <i class="fas fa-smoking yellowBorder"></i>
+                                {% endif %}
+                                {% if trip.pets == 1 %}
+                                   &nbsp;<i class="fas fa-paw yellowBorder"></i>
+                                {% endif %}
+                            </div>
+                            <div class="col-5 info">
+                                <div class="destination">{{ trip.departFrom }} <i class="fas fa-long-arrow-alt-right colorYellow"></i> {{ trip.destination }}</div>
+                                <div class="departTime">{{ trip.departTime|date("Y-m-d H:i") }}</div></div>
+                            <div class="col-2 adw-col">
+                                <button class="btn btn-outline-dark" onclick="location.href = '{{ path('show_trip', {'id': trip.id}) }}';">Peržiūrėti</button>
+                                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                    <div class="editAdw">
+                                        <a href="" class="btn btn-outline-dark" alt="Redaguoti"><i class="fas fa-edit"></i></a>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
                     {% endfor %}
-                    </tbody>
-                </table>
+
             </div>
-        </div>
     </div>
 {% endblock %}

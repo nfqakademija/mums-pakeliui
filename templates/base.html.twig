@@ -7,13 +7,6 @@
         <link href="https://fonts.googleapis.com/css?family=Lato:400,700&amp;subset=latin-ext" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
         <link rel="stylesheet" href="{{ asset('build/css/app.css') }}">
-        <link rel="stylesheet" href="{{ asset('build/css/main.css') }}">
-        <style>
-        body{
-                 background: url("../images/keliasbackground.png") #eaedf4 no-repeat bottom right;
-                 background-size: contain;
-             }
-        </style>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
     {% endblock %}
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -27,11 +20,26 @@
         <div class="header-look" id="top_nav">
             <div class="container">
                 <div class="row">
-                    <div class="col-10">
+                    <div class="col-8">
                         <a href=""><div class="logo"><img src="../images/logo-yellow.png" class="logo-img">Mums pakeliui!</div></a>
                     </div>
-                    <div class="col-2 text-right" style="padding-top:7px;">
+                    <div class="col-4 text-right">
+                        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                            <div>
+                                <ul class="menu">
+                                    <li><i class="fas fa-user"></i> {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}
+                                        <i class="fas fa-sort-down colorYellow"></i>
+                                          <ul class="sub-menu">
+                                           <li><a href="{{ path('fos_user_profile_show') }}">Naudotojo profilis</a></li>
+                                           <li><a href="{{ path('fos_user_profile_edit') }}">Redaguoti profilį</a></li>
+                                           <li><a href="{{ path('fos_user_security_logout') }}">Atsijungti</a></li>
+                                          </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        {% else %}
                         <a class="btn btn-outline-light mt-2"  href = "{{ path('fos_user_security_login') }}"><i class="fas fa-user"></i><span style="padding-left:10px">Prisijungti / Registruotis</span></a>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -59,16 +67,6 @@
         <script type="text/javascript"  src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
         <script src="{{ asset('build/js/app.js') }}"></script>
         <script src="{{ asset('build/js/main.js') }}" ></script>
-        <script>
-            function collapsElement(id) {
-                if ( document.getElementById(id).style.display != "none" ) {
-                    document.getElementById(id).style.display = 'none';
-                }
-                else {
-                    document.getElementById(id).style.display = '';
-                }
-            }
-        </script>
     {% endblock %}
 </body>
 

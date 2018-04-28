@@ -11,6 +11,16 @@ $(document).ready(function(){
     });
 });
 
+
+$(window).scroll(function() {
+    if ($(this).scrollTop() > 1){
+        $('header').addClass("sticky");
+    }
+    else{
+        $('header').removeClass("sticky");
+    }
+});
+
 function init() {
         var input = document.getElementById('trip_search_departFrom');
         var autocomplete = new google.maps.places.Autocomplete(input);

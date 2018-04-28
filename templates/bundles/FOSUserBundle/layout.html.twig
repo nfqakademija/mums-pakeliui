@@ -1,20 +1,5 @@
 {% extends 'base.html.twig' %}
-{% block header %}
-    <header>
-        <div class="header-look">
-            <div class="container">
-                <div class="row">
-                    <div class="col-9">
-                        <h1>Mums pakeliui!</h1>
-                    </div>
-                    <div class="col-2">
-                    <a class="btn btn-outline-dark mt-2" href="{{ path('home') }}">Į pagrindinį puslapį</a>
-                </div>
-                </div>
-            </div>
-        </div>
-    </header>
-{% endblock %}
+
 {% block content %}
     {# Copy-paste from vendor/friendsofsymfony/user-bundle/Resources/views/layout.html.twig #}
     <div>
@@ -26,9 +11,11 @@
             <a class="btn btn-outline-dark m-2" href="{{ path('fos_user_profile_show') }}">Naudotojo profilis</a>
             <a class="btn btn-outline-dark m-2" href="{{ path('fos_user_profile_edit') }}">Redaguoti naudotojo profilį</a>
             <a class="btn btn-outline-dark m-2" href="{{ path('fos_user_change_password') }}">Keisti slaptažodį</a>
+            <a class="btn btn-outline-dark mt-2" href="{{ path('home') }}">Į pagrindinį puslapį</a>
         {% else %}
             <a class="btn btn-outline-dark m-2" href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
             <a class="btn btn-outline-dark m-2" href="{{ path('fos_user_registration_register') }}">Registruotis</a>
+            <a class="btn btn-outline-dark mt-2" href="{{ path('home') }}">Į pagrindinį puslapį</a>
         {% endif %}
     </div>
 
