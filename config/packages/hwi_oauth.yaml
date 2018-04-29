@@ -1,0 +1,24 @@
+hwi_oauth:
+    connect:
+        account_connector: my.custom.user_provider
+    firewall_names: [main]
+    fosub:
+        username_iterations: 30
+        properties:
+            facebook: facebookId
+            google: googleId
+    resource_owners:
+        facebook:
+            type:                facebook
+            client_id:           382996165521198
+            client_secret:       30896fac12fc75201569182a566ee4b8
+            scope:               "email public_profile"
+            options:
+                display: popup
+                auth_type: rerequest
+                csrf: true
+        google:
+            type:                google
+            scope:               "email profile"
+            client_id:           233339461914-j87rc4a6k1280sd3pr21uop75kqk65er.apps.googleusercontent.com
+            client_secret:       BYR4wNAqTOVfexCPmF9LqnnQ

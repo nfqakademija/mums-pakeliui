@@ -25,9 +25,20 @@ services:
         tags: ['controller.service_arguments']
 
     my.registration.redirect.subscrubier:
-      class: App\EventSubscriber\RegistrationRedirectSubscriber
-      autowire: true
-      tags:
+        class: App\EventSubscriber\RegistrationRedirectSubscriber
+        autowire: true
+        tags:
         - { name: kernel.event_subscriber }
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    hwi_oauth.user.provider.fosub_bridge:
+        class: App\FOSUBUserProvider
+        arguments:
+          - '@fos_user.user_manager'
+          - { facebook: facebook_id, google: google_id }
+          - '@doctrine'
+
+    my.custom.user_provider:
+        class: App\FOSUBUserProvider
+        arguments: ['@fos_user.user_manager', { facebook: facebook_id, google: google_id }]
