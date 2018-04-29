@@ -2,18 +2,18 @@
 
 {% block content %}
     <div class="row">
-    <div class="col-12" style="text-align: right;">
-        <div class="mt-3">
-            <h4><b>Neradote pakeleivių?</b></h4>
-            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                <a  href = "{{ path('add_edit_trip') }}" class="add-trip btn btn-outline-dark"><i class="fas fa-plus colorYellow"></i> Kurti savo skelbimą</a>
-            {% else %}
-                <a  href = "{{ path('fos_user_security_login') }}" class="add-trip btn btn-outline-dark"><i class="fas fa-plus colorYellow"></i> Kurti savo skelbimą</a>
-            {% endif %}
+        <div class="col-12" style="text-align: right;">
+            <div class="mt-3">
+                <h4><b>Neradote pakeleivių?</b></h4>
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    <a  href = "{{ path('add_edit_trip') }}" class="add-trip btn btn-outline-dark"><i class="fas fa-plus colorYellow"></i> Kurti savo skelbimą</a>
+                {% else %}
+                    <a  href = "{{ path('fos_user_security_login') }}" class="add-trip btn btn-outline-dark"><i class="fas fa-plus colorYellow"></i> Kurti savo skelbimą</a>
+                {% endif %}
+
+            </div>
 
         </div>
-
-    </div>
     </div>
     <div class="row mt-3">
         <div class="col-3 filter">
@@ -22,78 +22,78 @@
                 <div class="heading"><h4>Filtruoti</h4></div>
             </div>
             <div class="mt-4">
-            {{ form_start(form) }}
-            {% for key, travelerTypeItem in form.travelerType %}
-                {% if (app.request.get('travelerType') == 0) and (key == 0)%}
-                    {{ form_widget(travelerTypeItem, {attr: {class: 'form-check form-check-inline', 'checked': 'checked'}}) }}
-                {% endif %}
-                {% if (app.request.get('travelerType') == 1) and (key == 1)%}
-                    {{ form_widget(travelerTypeItem, {attr: {class: 'form-check form-check-inline', 'checked': 'checked'}}) }}
+                {{ form_start(form) }}
+                {% for key, travelerTypeItem in form.travelerType %}
+                    {% if (app.request.get('travelerType') == 0) and (key == 0)%}
+                        {{ form_widget(travelerTypeItem, {attr: {class: 'form-check form-check-inline', 'checked': 'checked'}}) }}
+                    {% endif %}
+                    {% if (app.request.get('travelerType') == 1) and (key == 1)%}
+                        {{ form_widget(travelerTypeItem, {attr: {class: 'form-check form-check-inline', 'checked': 'checked'}}) }}
+                    {% else %}
+                        {{ form_widget(travelerTypeItem, {attr: {class: 'form-check form-check-inline'}}) }}
+                    {% endif %}
+
+                {% endfor %}
+                {{ form_row(form.departFrom, {attr: {class: '','placeholder': 'Įrašykite išvykimo adresą', 'value' :  app.request.get("departFrom") } }) }}
+
+                {{ form_row(form.destination, {attr: {class: '','placeholder': 'Įrašykite atvykimo adresą', 'value' :  app.request.get("destination")} }) }}
+
+                {{ form_row(form.departDate, {attr: {class: '', 'value' :  app.request.get("departDate")} }) }}
+
+                {{ form_row(form.departTime, {attr: {class: '', 'value' :  app.request.get("departTime")} }) }}
+
+                {% if app.request.get('smoke') == 1  %}
+                    {{ form_row(form.smoke, {attr: {class: 'form-check form-check-inline', 'checked': 'checked'} }) }}
                 {% else %}
-                    {{ form_widget(travelerTypeItem, {attr: {class: 'form-check form-check-inline'}}) }}
+                    {{ form_row(form.smoke, {attr: {class: 'form-check form-check-inline'} }) }}
                 {% endif %}
-
-            {% endfor %}
-            {{ form_row(form.departFrom, {attr: {class: '','placeholder': 'Įrašykite išvykimo adresą', 'value' :  app.request.get("departFrom") } }) }}
-
-            {{ form_row(form.destination, {attr: {class: '','placeholder': 'Įrašykite atvykimo adresą', 'value' :  app.request.get("destination")} }) }}
-
-            {{ form_row(form.departDate, {attr: {class: '', 'value' :  app.request.get("departDate")} }) }}
-
-            {{ form_row(form.departTime, {attr: {class: '', 'value' :  app.request.get("departTime")} }) }}
-
-            {% if app.request.get('smoke') == 1  %}
-                {{ form_row(form.smoke, {attr: {class: 'form-check form-check-inline', 'checked': 'checked'} }) }}
-            {% else %}
-                {{ form_row(form.smoke, {attr: {class: 'form-check form-check-inline'} }) }}
-            {% endif %}
-            {% if app.request.get('pets') == 1  %}
-                {{ form_row(form.pets, {attr: {class: 'form-check form-check-inline', 'checked': 'checked'} }) }}
-            {% else %}
-                {{ form_row(form.pets, {attr: {class: 'form-check form-check-inline'} }) }}
-            {% endif %}
+                {% if app.request.get('pets') == 1  %}
+                    {{ form_row(form.pets, {attr: {class: 'form-check form-check-inline', 'checked': 'checked'} }) }}
+                {% else %}
+                    {{ form_row(form.pets, {attr: {class: 'form-check form-check-inline'} }) }}
+                {% endif %}
                 <div class="col-12 btn-row">
                     {{ form_widget(form.filter, {attr: {class: 'btn-yellow'}}) }}
                 </div>
-            {{ form_end(form) }}
+                {{ form_end(form) }}
             </div>
         </div>
 
         <div class="col-9 adw-list">
-                    {% for trip in trips %}
-                        <div class="col-12 row adw-list-row">
-                            <div class="col-1 adw-col">
-                            {% if trip.travelerType == 0 %}
-                              <i class="fa fa-car"></i>
-                            {% endif %}
-                            {% if trip.travelerType == 1 %}
-                                <img class="icons" src="/images/passenger.png" width="34px" alt="keleivis">
-                            {% endif %}
-                            </div>
-                            <div class="col-4 info">
-                               <br>
+            {% for trip in trips %}
+                <div class="col-12 row adw-list-row">
+                    <div class="col-1 adw-col">
+                        {% if trip.travelerType == 0 %}
+                            <i class="fa fa-car"></i>
+                        {% endif %}
+                        {% if trip.travelerType == 1 %}
+                            <img class="icons" src="/images/passenger.png" width="34px" alt="keleivis">
+                        {% endif %}
+                    </div>
+                    <div class="col-4 info">
+                        <br>
 
-                                {% if trip.smoke == 1 %}
-                                    <i class="fas fa-smoking yellowBorder"></i>
-                                {% endif %}
-                                {% if trip.pets == 1 %}
-                                   &nbsp;<i class="fas fa-paw yellowBorder"></i>
-                                {% endif %}
+                        {% if trip.smoke == 1 %}
+                            <i class="fas fa-smoking yellowBorder"></i>
+                        {% endif %}
+                        {% if trip.pets == 1 %}
+                            &nbsp;<i class="fas fa-paw yellowBorder"></i>
+                        {% endif %}
+                    </div>
+                    <div class="col-5 info">
+                        <div class="destination">{{ trip.departFrom }} <i class="fas fa-long-arrow-alt-right colorYellow"></i> {{ trip.destination }}</div>
+                        <div class="departTime">{{ trip.departTime|date("Y-m-d H:i") }}</div></div>
+                    <div class="col-2 adw-col">
+                        <button class="btn btn-outline-dark" onclick="location.href = '{{ path('show_trip', {'id': trip.id}) }}';">Peržiūrėti</button>
+                        {% if (is_granted("IS_AUTHENTICATED_REMEMBERED") and (trip.uId==app.user.id)) %}
+                            <div class="editAdw">
+                                <a href="{{ path('edit', {'id': trip.id}) }}" class="btn btn-outline-dark" alt="Redaguoti"><i class="fas fa-edit"></i></a>
                             </div>
-                            <div class="col-5 info">
-                                <div class="destination">{{ trip.departFrom }} <i class="fas fa-long-arrow-alt-right colorYellow"></i> {{ trip.destination }}</div>
-                                <div class="departTime">{{ trip.departTime|date("Y-m-d H:i") }}</div></div>
-                            <div class="col-2 adw-col">
-                                <button class="btn btn-outline-dark" onclick="location.href = '{{ path('show_trip', {'id': trip.id}) }}';">Peržiūrėti</button>
-                                {% if (is_granted("IS_AUTHENTICATED_REMEMBERED") and (trip.uId==app.user.id)) %}
-                                    <div class="editAdw">
-                                        <a href="{{ path('edit', {'id': trip.id}) }}" class="btn btn-outline-dark" alt="Redaguoti"><i class="fas fa-edit"></i></a>
-                                    </div>
-                                {% endif %}
-                            </div>
-                        </div>
-                    {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
 
-            </div>
+        </div>
     </div>
 {% endblock %}

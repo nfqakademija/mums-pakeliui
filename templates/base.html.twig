@@ -29,16 +29,16 @@
                                 <ul class="menu">
                                     <li><i class="fas fa-user"></i> {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}
                                         <i class="fas fa-sort-down colorYellow"></i>
-                                          <ul class="sub-menu">
-                                           <li><a href="{{ path('fos_user_profile_show') }}">Naudotojo profilis</a></li>
-                                           <li><a href="{{ path('fos_user_profile_edit') }}">Redaguoti profilį</a></li>
-                                           <li><a href="{{ path('fos_user_security_logout') }}">Atsijungti</a></li>
-                                          </ul>
+                                        <ul class="sub-menu">
+                                            <li><a href="{{ path('fos_user_profile_show') }}">Naudotojo profilis</a></li>
+                                            <li><a href="{{ path('fos_user_profile_edit') }}">Redaguoti profilį</a></li>
+                                            <li><a href="{{ path('fos_user_security_logout') }}">Atsijungti</a></li>
+                                        </ul>
                                     </li>
                                 </ul>
                             </div>
                         {% else %}
-                        <a class="btn btn-outline-light mt-2"  href = "{{ path('fos_user_security_login') }}"><i class="fas fa-user"></i><span style="padding-left:10px">Prisijungti / Registruotis</span></a>
+                            <a class="btn btn-outline-light mt-2"  href = "{{ path('fos_user_security_login') }}"><i class="fas fa-user"></i><span style="padding-left:10px">Prisijungti / Registruotis</span></a>
                         {% endif %}
                     </div>
                 </div>
@@ -52,23 +52,22 @@
 
     {% block footer %}
         <div class="footer-look">
-           <div class="footer-text">
-               <b>Su mumis keliauti smagiau. Padėsime vairuotojams ir keleiviams rasti vieniems kitus.</b> |
-               <a href="#">Kontaktinė informacija</a> |
-               <a href="#">Pagalba</a>
-               <div>
-                  © 2018 Mums pakeliui!
-               </div>
-           </div>
+            <div class="footer-text">
+                <b>Su mumis keliauti smagiau. Padėsime vairuotojams ir keleiviams rasti vieniems kitus.</b> |
+                <a href="#">Kontaktinė informacija</a> |
+                <a href="#">Pagalba</a>
+                <div>
+                    © 2018 Mums pakeliui!
+                </div>
+            </div>
         </div>
     {% endblock %}
 </div>
-    {% block javascripts %}
-        <script type="text/javascript"  src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
-        <script type="text/javascript"  src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-        <script src="{{ asset('build/js/app.js') }}"></script>
-        <script src="{{ asset('build/js/main.js') }}" ></script>
-    {% endblock %}
+{% block javascripts %}
+    <script type="text/javascript"  src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
+    <script type="text/javascript"  src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <script src="{{ asset('build/js/app.js') }}"></script>
+    <script src="{{ asset('build/js/main.js') }}" ></script>
+{% endblock %}
 </body>
-
 </html>
