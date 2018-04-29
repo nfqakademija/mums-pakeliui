@@ -26,6 +26,8 @@ function init() {
         var autocomplete = new google.maps.places.Autocomplete(input);
         var input2 = document.getElementById('trip_search_destination');
         var autocomplete2 = new google.maps.places.Autocomplete(input2);
+        var autocomplete3 = new google.maps.places.Autocomplete(document.getElementById('trip_departFrom'));
+        var autocomplete4 = new google.maps.places.Autocomplete(document.getElementById('trip_destination'));
     }
 google.maps.event.addDomListener(window, 'load', init);
 

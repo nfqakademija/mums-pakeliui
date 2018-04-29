@@ -3,8 +3,11 @@
 namespace App\Repository;
 
 use App\Entity\Trip;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\ORM\Repository\UserRepository;
+
 
 /**
  * @method Trip|null find($id, $lockMode = null, $lockVersion = null)
@@ -26,6 +29,7 @@ class TripRepository extends ServiceEntityRepository
     public function findBySomeField($value)
     {
         $trips = $this->createQueryBuilder('t')
+            ->leftJoin("App\Entity\User", "u", "WITH", "u.id = t.uId")
             ->orderBy('t.departTime', 'desc');
 
         if (isset($value['departFrom'])) {

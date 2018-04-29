@@ -46,7 +46,11 @@
         <div class="col-4 search">
                 <h4>Neradote pakeleivių?</h4>
             <div class="header-search-title">
-                <a  href = "{{ path('add_edit_trip') }}" class="add-trip btn btn-outline-dark"><i class="fas fa-plus colorYellow"></i> Kurti savo skelbimą</a>
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                   <a  href = "{{ path('add_edit_trip') }}" class="add-trip btn btn-outline-dark"><i class="fas fa-plus colorYellow"></i> Kurti savo skelbimą</a>
+                {% else %}
+                    <a  href = "{{ path('fos_user_security_login') }}" class="add-trip btn btn-outline-dark"><i class="fas fa-plus colorYellow"></i> Kurti savo skelbimą</a>
+                {% endif %}
             </div>
         </div>
     </div>

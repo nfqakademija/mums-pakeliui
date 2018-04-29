@@ -56,7 +56,12 @@ class Trip
      * @ORM\Column(type="string")
      */
     private $information;
-
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\ManyToOne(targetEntity="Entity\User", inversedBy="id")
+     * @ORM\JoinColumn(name="u_id", referencedColumnName="id")
+     */
+    private $uId;
 
     /**
      * @return mixed
@@ -190,4 +195,21 @@ class Trip
     {
         return $this->id;
     }
+
+    public function getUId(): ?int
+    {
+        return $this->uId;
+    }
+
+    /**
+     * @param int $uId
+     * @return Trip
+     */
+    public function setUId(int $uId): self
+    {
+        $this->uId = $uId;
+
+        return $this;
+    }
+
 }

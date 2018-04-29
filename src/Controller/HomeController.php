@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Form\TripSearchType;
 use App\Repository\TripRepository;
+use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -29,7 +30,7 @@ class HomeController extends Controller
     /**
      * @Route("/search", name="search")
      */
-    public function searchAction(Request $request, TripRepository $tripRepository)
+    public function searchAction(Request $request, TripRepository $tripRepository, UserRepository $userRepository)
     {
         $form = $this->getSearchForm();
         $form->handleRequest($request);
@@ -38,7 +39,6 @@ class HomeController extends Controller
             $cloner = new VarCloner();
             $dumper = new VarDumper();
             $dumper->dump($cloner->cloneVar($tripRepository));
-
             $trips = $tripRepository->findBySomeField($form->getData());
             //die(1);
             return $this->render(

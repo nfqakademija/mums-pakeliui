@@ -13,6 +13,7 @@ class User extends BaseUser
 {
     /**
      * @ORM\Id()
+     * @ORM\OneToMany(targetEntity="Entity\Trip", mappedBy="uId")
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */

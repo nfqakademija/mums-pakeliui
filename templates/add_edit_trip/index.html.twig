@@ -1,26 +1,28 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-<div class="row">
-    <div class="col-2"></div>
-    <div class="col-3"><h2>Skelbimas</h2></div>
-    <div class="col-3"><a class="btn btn-outline-dark m-2" href = "{{ path('home') }}">Į pagrindinį puslapį</a></div>
-    <div class="col-3"><a class="btn btn-outline-dark m-2" href = "{{ path('search') }}">Į skelbimų sąrašą</a></div>
-</div>
-    <div class="row">
+
+      <div class="row">
+          <div class="col-2"></div>
+          <div class="col-3"><h2>Skelbimas</h2></div>
+          <div class="col-3"><a class="btn btn-outline-dark m-2" href = "{{ path('home') }}">Į pagrindinį puslapį</a></div>
+      </div>
+    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+      <div class="row">
         <div class="col-2"></div>
         <div class="col-8">
             {{ form_start(our_form) }}
             {{ form_row(our_form.travelerType, {attr: {class: 'form-check form-check-inline'} }) }}
             {{ form_row(our_form.departTime, {attr: {class: 'form-group'} }) }}
             {{ form_row(our_form.seats, {attr: {class: ''} }) }}
-            {{ form_row(our_form.departFrom, {attr: {class: ''} }) }}
-            {{ form_row(our_form.destination, {attr: {class: ''} }) }}
+            {{ form_row(our_form.departFrom, {attr: {class: '','placeholder': 'Įrašykite išvykimo adresą'} }) }}
+            {{ form_row(our_form.destination, {attr: {class: '','placeholder': 'Įrašykite atvykimo adresą'} }) }}
             {{ form_row(our_form.smoke, {attr: {class: 'form-check form-check-inline'} }) }}
             {{ form_row(our_form.pets, {attr: {class: 'form-check form-check-inline'} }) }}
             {{ form_widget(our_form) }}
             {{ form_end(our_form) }}
         </div>
         <div class="col-2"></div>
-    </div>
+       </div>
+    {% endif %}
 {% endblock %}

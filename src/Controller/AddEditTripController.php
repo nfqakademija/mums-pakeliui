@@ -13,47 +13,30 @@ class AddEditTripController extends AbstractController
     /**
      * @Route("/trip/add", name="add_edit_trip")
      */
-    public function index(Request $request)
+    public function addAction(Request $request)
     {
-        $isFormUpdate = $request->get('id') != null;
+        $user=$this->getUser()->getId();
+        return $this->processForm($request, $user);
+    }
+    /**
+     * @Route("/edit/{id}", name="edit")
+     */
+    public function editAction(Request $request, Trip $trip)
+    {
+        $user=$this->getUser()->getId();
+        return $this->processForm($request, $user, $trip);
+    }
 
-        $form = $this->createForm(TripType::class);
+    protected function processForm(Request $request, $user, Trip $trip = null)
+    {
+        $form = $this->createForm(TripType::class, $trip);
         $form->handleRequest($request);
 
-        if (!$form->isSubmitted() && $isFormUpdate) {
-            $id = $request->query->get('id');
-
-            $trip = $this->getDoctrine()
-                ->getRepository(Trip::class)
-                ->find($id);
-
-            if (!$trip) {
-                throw $this->createNotFoundException(
-                    'No trip found for id ' . $id
-                );
-            }
-            $form->setData($trip);
-        }
-
         if ($form->isSubmitted() && $form->isValid()) {
-            // $form->getData() holds the submitted values
-            // but, the original `$task` variable has also been updated
             $trip = $form->getData();
+            $trip->setUId($user);
             $entityManager = $this->getDoctrine()->getManager();
-
-            if ($isFormUpdate) {
-                $oldTrip = $entityManager->getRepository(Trip::class)->find($request->get('id'));
-                $oldTrip->setTravelerType($trip->getTravelerType());
-                $oldTrip->setDepartFrom($trip->getDepartFrom());
-                $oldTrip->setDepartTime($trip->getDepartTime());
-                $oldTrip->setInformation($trip->getInformation());
-                $oldTrip->setPets($trip->getPets());
-                $oldTrip->setSmoke($trip->getSmoke());
-                $oldTrip->setSeats($trip->getSeats());
-                $oldTrip->setDestination($trip->getDestination());
-            } else {
-                $entityManager->persist($trip);
-            }
+            $entityManager->persist($trip);
             $entityManager->flush();
 
             return $this->redirectToRoute('home');
