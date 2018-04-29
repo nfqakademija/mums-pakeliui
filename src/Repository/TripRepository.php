@@ -8,7 +8,6 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 use Doctrine\ORM\Repository\UserRepository;
 
-
 /**
  * @method Trip|null find($id, $lockMode = null, $lockVersion = null)
  * @method Trip|null findOneBy(array $criteria, array $orderBy = null)

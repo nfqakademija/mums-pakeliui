@@ -211,5 +211,4 @@ class Trip
 
         return $this;
     }
-
 }
