@@ -16,6 +16,7 @@
             <a class="btn btn-outline-dark m-2" href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
             <a class="btn btn-outline-dark m-2" href="{{ path('fos_user_registration_register') }}">Registruotis</a>
             <a class="btn btn-outline-dark m-2" href="{{ path('home') }}">Į pagrindinį puslapį</a>
+            <a class="btn btn-outline-dark m-2" href="" onclick="history.go(-1);return false;">Atgal</a>
             <a class="btn btn-outline-dark m-2" href="{{ path('hwi_oauth_service_redirect', {'service': 'facebook'}) }}">
                 Prisijungti su <i class="fab fa-facebook"></i>
             </a>

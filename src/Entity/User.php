@@ -13,7 +13,7 @@ class User extends BaseUser
 {
     /**
      * @ORM\Id()
-     * @ORM\OneToMany(targetEntity="Entity\Trip", mappedBy="uId")
+     * @ORM\OneToMany(targetEntity="Trip", mappedBy="uId")
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
@@ -25,54 +25,54 @@ class User extends BaseUser
     }
 
     /** @ORM\Column(name="facebook_id", type="string", length=255, nullable=true) */
-    protected $facebook_id;
+    protected $facebookId;
 
     /** @ORM\Column(name="facebook_access_token", type="string", length=255, nullable=true) */
-    protected $facebook_access_token;
+    protected $facebookAccessToken;
 
     /** @ORM\Column(name="google_id", type="string", length=255, nullable=true) */
-    protected $google_id;
+    protected $googleId;
 
     /** @ORM\Column(name="google_access_token", type="string", length=255, nullable=true) */
-    protected $google_access_token;
+    protected $googleAccessToken;
 
     public function setFacebookId($facebookID) {
-        $this->facebook_id = $facebookID;
+        $this->facebookId = $facebookID;
 
         return $this;
     }
 
     public function getFacebookId() {
-        return $this->facebook_id;
+        return $this->facebookId;
     }
 
     public function setFacebookAccessToken($facebookAccessToken) {
-        $this->facebook_access_token = $facebookAccessToken;
+        $this->facebookAccessToken = $facebookAccessToken;
 
         return $this;
     }
 
     public function getFacebookAccessToken() {
-        return $this->facebook_access_token;
+        return $this->facebookAccessToken;
     }
 
     public function setGoogleId($googleId) {
-        $this->google_id = $googleId;
+        $this->googleId = $googleId;
 
         return $this;
     }
 
     public function getGoogleId() {
-        return $this->google_id;
+        return $this->googleId;
     }
 
     public function setGoogleAccessToken($googleAccessToken) {
-        $this->google_access_token = $googleAccessToken;
+        $this->googleAccessToken = $googleAccessToken;
 
         return $this;
     }
 
     public function getGoogleAccessToken() {
-        return $this->google_access_token;
+        return $this->googleAccessToken;
     }
 }

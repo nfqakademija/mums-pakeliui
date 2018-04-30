@@ -15,6 +15,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class TripType extends AbstractType
 {
@@ -44,7 +45,12 @@ class TripType extends AbstractType
             ->add(
                 'departFrom',
                 TextType::class,
-                array('label'=> 'Išvykimo adresas')
+                array(
+                    'label'=> 'Išvykimo adresas',
+                    'constraints' => [
+                        new NotBlank(['message' => 'fooo'])
+                    ]
+                )
             )
 
             ->add(
@@ -110,6 +116,9 @@ class TripType extends AbstractType
         $resolver->setDefaults(
             [
                 'data_class' => Trip::class,
+                'attr' => [
+                    'novalidate' => true,
+                ]
             ]
         );
     }

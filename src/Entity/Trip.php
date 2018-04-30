@@ -9,7 +9,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Trip
 {
-    public const NUM_ITEMS = 10;
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -57,8 +56,7 @@ class Trip
      */
     private $information;
     /**
-     * @ORM\Column(type="integer")
-     * @ORM\ManyToOne(targetEntity="Entity\User", inversedBy="id")
+     * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumn(name="u_id", referencedColumnName="id")
      */
     private $uId;

@@ -64,10 +64,10 @@
     {% endblock %}
 </div>
 {% block javascripts %}
-    <script type="text/javascript"  src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
     <script type="text/javascript"  src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-    <script src="{{ asset('build/js/app.js') }}"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
     <script src="{{ asset('build/js/main.js') }}" ></script>
+    <script src="{{ asset('build/js/app.js') }}"></script>
 {% endblock %}
 </body>
 </html>

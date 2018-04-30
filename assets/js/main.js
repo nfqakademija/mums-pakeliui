@@ -22,12 +22,15 @@ $(window).scroll(function() {
 });
 
 function init() {
-        var input = document.getElementById('trip_search_departFrom');
+        var input = document.getElementById('trip_search_departFrom', {
+            componentRestrictions: { country: 'lt' }
+    });
         var autocomplete = new google.maps.places.Autocomplete(input);
-        var input2 = document.getElementById('trip_search_destination');
+        var input2 = document.getElementById('trip_search_destination', {
+        componentRestrictions: { country: 'lt' }
+    });
         var autocomplete2 = new google.maps.places.Autocomplete(input2);
-        var autocomplete3 = new google.maps.places.Autocomplete(document.getElementById('trip_departFrom'));
-        var autocomplete4 = new google.maps.places.Autocomplete(document.getElementById('trip_destination'));
+
     }
 google.maps.event.addDomListener(window, 'load', init);
 
