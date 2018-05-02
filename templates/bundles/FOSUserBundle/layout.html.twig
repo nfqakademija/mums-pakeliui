@@ -4,25 +4,18 @@
     {# Copy-paste from vendor/friendsofsymfony/user-bundle/Resources/views/layout.html.twig #}
     <div>
         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-            {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+            {#{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
             <a class="btn btn-outline-dark m-2" href="{{ path('fos_user_security_logout') }}">
                 {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
-            </a>
-            <a class="btn btn-outline-dark m-2" href="{{ path('fos_user_profile_show') }}">Naudotojo profilis</a>
+            </a>#}
+            {#<a class="btn btn-outline-dark m-2" href="{{ path('fos_user_profile_show') }}">Naudotojo profilis</a>
             <a class="btn btn-outline-dark m-2" href="{{ path('fos_user_profile_edit') }}">Redaguoti naudotojo profilį</a>
-            <a class="btn btn-outline-dark m-2" href="{{ path('fos_user_change_password') }}">Keisti slaptažodį</a>
-            <a class="btn btn-outline-dark m-2" href="{{ path('home') }}">Į pagrindinį puslapį</a>
-        {% else %}
-            <a class="btn btn-outline-dark m-2" href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
-            <a class="btn btn-outline-dark m-2" href="{{ path('fos_user_registration_register') }}">Registruotis</a>
-            <a class="btn btn-outline-dark m-2" href="{{ path('home') }}">Į pagrindinį puslapį</a>
+            <a class="btn btn-outline-dark m-2" href="{{ path('fos_user_change_password') }}">Keisti slaptažodį</a>#}
             <a class="btn btn-outline-dark m-2" href="" onclick="history.go(-1);return false;">Atgal</a>
-            <a class="btn btn-outline-dark m-2" href="{{ path('hwi_oauth_service_redirect', {'service': 'facebook'}) }}">
-                Prisijungti su <i class="fab fa-facebook"></i>
-            </a>
-            <a class="btn btn-outline-dark m-2" href="{{ path('hwi_oauth_service_redirect', {'service': 'google'}) }}" >
-                Prisijungti su <i class="fab fa-google"></i>
-            </a>
+        {% else %}
+            {#<a class="btn btn-outline-dark m-2" href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>#}
+            <a class="btn btn-outline-dark m-2" href="{{ path('fos_user_registration_register') }}">Registruotis</a>
+            <a class="btn btn-outline-dark m-2" href="" onclick="history.go(-1);return false;">Atgal</a>
         {% endif %}
     </div>
 

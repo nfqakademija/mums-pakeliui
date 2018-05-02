@@ -21,7 +21,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-8">
-                        <a href=""><div class="logo"><img src="../images/logo-yellow.png" class="logo-img">Mums pakeliui!</div></a>
+                        <a href="{{ path('home') }}"><div class="logo"><img src="../images/logo-yellow.png" class="logo-img">Mums pakeliui!</div></a>
                     </div>
                     <div class="col-4 text-right">
                         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
@@ -32,13 +32,20 @@
                                         <ul class="sub-menu">
                                             <li><a href="{{ path('fos_user_profile_show') }}">Naudotojo profilis</a></li>
                                             <li><a href="{{ path('fos_user_profile_edit') }}">Redaguoti profilį</a></li>
+                                            <li><a href="{{ path('fos_user_change_password') }}">Keisti slaptažodį</a></li>
                                             <li><a href="{{ path('fos_user_security_logout') }}">Atsijungti</a></li>
                                         </ul>
                                     </li>
                                 </ul>
                             </div>
                         {% else %}
-                            <a class="btn btn-outline-light mt-2"  href = "{{ path('fos_user_security_login') }}"><i class="fas fa-user"></i><span style="padding-left:10px">Prisijungti / Registruotis</span></a>
+                            <a class="btn btn-yellow" href="{{ path('hwi_oauth_service_redirect', {'service': 'facebook'}) }}">
+                                <i class="fab fa-facebook"></i>
+                            </a>
+                            <a class="btn btn-yellow" href="{{ path('hwi_oauth_service_redirect', {'service': 'google'}) }}" >
+                                <i class="fab fa-google"></i>
+                            </a>
+                            <a class="btn btn-yellow" href = "{{ path('fos_user_security_login') }}"><i class="fas fa-sign-in-alt"></i></a>
                         {% endif %}
                     </div>
                 </div>

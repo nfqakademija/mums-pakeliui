@@ -14,7 +14,7 @@ Encore
     .addEntry('js/app', './assets/js/app.js')
     .addEntry('js/main', './assets/js/main.js')
     .addStyleEntry('css/app', './assets/css/app.scss')
-    .addStyleEntry('css/main', './assets/css/main.css')
+    .addStyleEntry('css/main', './assets/css/_main.scss')
 
     // uncomment if you use Sass/SCSS files
     .enableSassLoader()
