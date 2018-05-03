@@ -2,15 +2,10 @@
 
 {% block content %}
     <div class="row">
-        <div class="col-12">
-            <div class="alignCenter"><h2>Vykstate į kitą gatvę, kitą miestą ar kitą šalį?</h2></div>
-        </div>
-        <div class="col-7 search">
+        <div class="col-7 search-form">
             <div class="header-search-title">
-               <h4>Pakeleivių rasite užpildę šiuos laukus:</h4>
+               <h4>Vykstate į kitą gatvę, kitą miestą ar kitą šalį?</h4>
             </div>
-
-
             {{ form_start(form) }}
             {{ form_row(form.travelerType, {attr: {class: 'form-check form-check-inline'}}) }}
             <div class="col-12">
@@ -41,17 +36,6 @@
                 {{ form_widget(form.filter, {attr: {class: 'btn-yellow col-4'}}) }}
             </div>
                 {{ form_end(form) }}
-        </div>
-        <div class="col-1"></div>
-        <div class="col-4 search">
-                <h4>Neradote pakeleivių?</h4>
-            <div class="header-search-title">
-                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                   <a  href = "{{ path('add_edit_trip') }}" class="add-trip btn btn-outline-dark"><i class="fas fa-plus colorYellow"></i> Kurti savo skelbimą</a>
-                {% else %}
-                    <a  href = "{{ path('fos_user_security_login') }}" class="add-trip btn btn-outline-dark"><i class="fas fa-plus colorYellow"></i> Kurti savo skelbimą</a>
-                {% endif %}
-            </div>
         </div>
     </div>
 

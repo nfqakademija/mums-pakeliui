@@ -23,8 +23,9 @@
                     <div class="col-8">
                         <a href="{{ path('home') }}"><div class="logo"><img src="../images/logo-yellow.png" class="logo-img">Mums pakeliui!</div></a>
                     </div>
-                    <div class="col-4 text-right">
-                        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                        <div class="col-1"><a href = "{{ path('add_edit_trip') }}" class="btn btn-yellow" title="Kurti skelbimą"><i class="fas fa-plus colorYellow"></i></a></div>
+                        <div class="col-3 text-right">
                             <div>
                                 <ul class="menu">
                                     <li><i class="fas fa-user"></i> {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}
@@ -38,16 +39,28 @@
                                     </li>
                                 </ul>
                             </div>
-                        {% else %}
+                        </div>
+                    {% else %}
+                        <div class="col-1">
                             <a class="btn btn-yellow" href="{{ path('hwi_oauth_service_redirect', {'service': 'facebook'}) }}">
                                 <i class="fab fa-facebook"></i>
-                            </a>
+                            </a></div>
+                        <div class="col-1">
                             <a class="btn btn-yellow" href="{{ path('hwi_oauth_service_redirect', {'service': 'google'}) }}" >
                                 <i class="fab fa-google"></i>
-                            </a>
-                            <a class="btn btn-yellow" href = "{{ path('fos_user_security_login') }}"><i class="fas fa-sign-in-alt"></i></a>
-                        {% endif %}
-                    </div>
+                            </a></div>
+                        <div class="col-2">
+                            <ul class="menu">
+                                <li><i class="fas fa-sign-in-alt colorYellow mt-3" style="font-size: 50px"></i>
+                                    <i class="fas fa-sort-down colorYellow"></i>
+                                    <ul class="sub-menu">
+                                        <li><a href="{{ path('fos_user_security_login') }}">Prisijungti</a></li>
+                                        <li><a href="{{ path('fos_user_registration_register') }}">Registruotis</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    {% endif %}
                 </div>
             </div>
         </div>
