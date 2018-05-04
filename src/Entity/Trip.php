@@ -60,7 +60,7 @@ class Trip
      * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumn(onDelete="CASCADE")
      */
-    private $uId;
+    private $user;
 
     /**
      * @return mixed
@@ -197,15 +197,15 @@ class Trip
     /**
      * @return User
      */
-    public function getUId()
+    public function getUser()
     {
-        return $this->uId;
+        return $this->user;
     }
     /**
-     * @param User $uId
+     * @param User $user
      */
-    public function setUId(User $uId)
+    public function setUser(User $user)
     {
-        $this->uId = $uId;
+        $this->user = $user;
     }
 }

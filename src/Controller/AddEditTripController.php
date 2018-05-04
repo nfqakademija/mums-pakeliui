@@ -33,7 +33,7 @@ class AddEditTripController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $trip = $form->getData();
             $user = $this->getUser();
-            $trip->setUId($user);
+            $trip->setUser($user);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($trip);
             $entityManager->flush();

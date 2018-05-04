@@ -28,7 +28,7 @@ class TripRepository extends ServiceEntityRepository
     public function findBySomeField($value)
     {
         $trips = $this->createQueryBuilder('t')
-            ->leftJoin("App\Entity\User", "u", "WITH", "u.id = t.uId")
+            ->leftJoin("App\Entity\User", "u", "WITH", "u.id = t.user")
             ->orderBy('t.departTime', 'desc');
 
         if (isset($value['departFrom'])) {

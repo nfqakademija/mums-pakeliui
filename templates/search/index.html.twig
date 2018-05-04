@@ -57,7 +57,7 @@
                         {% endif %}
                     </div>
                     <div class="col-4 info">
-                        <h5>  {{ trip.Uid }}</h5>
+                        <h5>  {{ trip.User }}</h5>
                         {% if trip.smoke == 1 %}
                             <i class="fas fa-smoking yellowBorder"></i>
                         {% endif %}
@@ -70,7 +70,7 @@
                         <div class="departTime">{{ trip.departTime|date("Y-m-d H:i") }}</div></div>
                     <div class="col-2 adw-col">
                         <a class="btn btn-outline-dark" href = "{{ path('show_trip', {'id': trip.id}) }}">Peržiūrėti</a>
-                        {% if (is_granted("IS_AUTHENTICATED_REMEMBERED") and (trip.Uid==app.user.username)) %}
+                        {% if (is_granted("IS_AUTHENTICATED_REMEMBERED") and (trip.User==app.user.username)) %}
                             <div class="editAdw">
                                 <a href="{{ path('edit', {'id': trip.id}) }}" class="btn btn-outline-dark" alt="Redaguoti"><i class="fas fa-edit"></i></a>
                             </div>
