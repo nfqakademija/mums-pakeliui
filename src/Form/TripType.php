@@ -7,7 +7,8 @@ use App\Entity\City;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -38,7 +39,7 @@ class TripType extends AbstractType
                     'empty_data'=>'1',
                     'multiple'=>false,
                     'expanded'=>true,
-                    'label'=>false
+                    'label'=>false,
                 )
             )
 
@@ -47,8 +48,9 @@ class TripType extends AbstractType
                 TextType::class,
                 array(
                     'label'=> 'Išvykimo adresas',
+                    'attr' => array('class' => 'trip_departFrom'),
                     'constraints' => [
-                        new NotBlank(['message' => 'fooo'])
+                        new NotBlank(['message' => 'Trūksta išvykimo adreso.'])
                     ]
                 )
             )
@@ -56,16 +58,25 @@ class TripType extends AbstractType
             ->add(
                 'destination',
                 TextType::class,
-                array('label'=> 'Atvykimo adresas')
+                array(
+                    'label'=> 'Atvykimo adresas',
+                'constraints' => [
+                new NotBlank(['message' => 'Trūksta atvykimo adreso.'])
+                ])
             )
 
-            ->add(
-                'departTime',
-                DateTimeType::class,
-                array('label'=>'Išvykimo data ir laikas',
-                    'years' => range(date('Y'), date('Y') + 2),
-                    )
-            )
+            ->add('departDate', DateType::class, array('label'=>'Išvykimo data',
+                'input'  => 'datetime',
+                'widget' => 'single_text',
+                'years' => range(date('Y'), date('Y') + 2),
+                'required' =>true
+            ))
+
+            ->add('departTime', TimeType::class, array('input'  => 'datetime',
+                'required' => true,
+                'label' =>'Išvykimo laikas',
+                'widget' => 'single_text'
+            ))
 
             ->add(
                 'seats',
@@ -101,7 +112,8 @@ class TripType extends AbstractType
             ->add(
                 'information',
                 TextareaType::class,
-                array('label'=>'Informacija')
+                array('label'=>'Informacija',
+                    'required' => false)
             )
 
             ->add(

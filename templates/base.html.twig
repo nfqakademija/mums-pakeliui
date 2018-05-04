@@ -8,6 +8,7 @@
         <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
         <link rel="stylesheet" href="{{ asset('build/css/app.css') }}">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     {% endblock %}
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="{{ asset('images/favicon.ico')}}">
@@ -41,6 +42,7 @@
                             </div>
                         </div>
                     {% else %}
+                        <div class="col-1"><a href = "{{ path('fos_user_security_login') }}" class="btn btn-yellow" title="Kurti skelbimą"><i class="fas fa-plus colorYellow"></i></a></div>
                         <div class="col-1">
                             <a class="btn btn-yellow" href="{{ path('hwi_oauth_service_redirect', {'service': 'facebook'}) }}">
                                 <i class="fab fa-facebook"></i>
@@ -49,7 +51,7 @@
                             <a class="btn btn-yellow" href="{{ path('hwi_oauth_service_redirect', {'service': 'google'}) }}" >
                                 <i class="fab fa-google"></i>
                             </a></div>
-                        <div class="col-2">
+                        <div class="col-1">
                             <ul class="menu">
                                 <li><i class="fas fa-sign-in-alt colorYellow mt-3" style="font-size: 50px"></i>
                                     <i class="fas fa-sort-down colorYellow"></i>

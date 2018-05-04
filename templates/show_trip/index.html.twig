@@ -1,46 +1,56 @@
 {% extends 'base.html.twig' %}
 
-
 {% block content %}
     <div class="row">
-        <div class="col-2"></div>
-        <div class="col-2"><h2>Skelbimas</h2></div>
-        <div class="col-2">
-            <a class="btn btn-outline-dark" style="margin: 10px" href = "{{ path('add_edit_trip', {'id': trip.id}) }}">Redaguoti</a>
-        </div>
-        <div class="col-2">
-            <a class="btn btn-outline-dark" style="margin: 10px" href = "{{ path('search') }}">Į skelbimų sąrašą</a>
-        </div>
-        <div class="col-2">
-            <a class="btn btn-outline-dark" style="margin: 10px" href = "{{ path('home') }}">Ieškoti iš naujo</a>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-2"></div>
-        <div class="col-8">
-            {% if trip.travelerType == 0 %}
-                <div>Vairuotojas <span class="fa fa-car"></span></div>
-            {% endif %}
-            {% if trip.travelerType == 1 %}
-                <div>Keleivis <img class=icons src="/images/passenger.png" alt="keleivis" width="35" height="21"></div>
-            {% endif %}
-            <div>Išvykimo data ir laikas: {{ trip.departTime|date("Y-m-d H:i") }}</div>
-            <div>Išvykimo adresas: {{ trip.departFrom }}</div>
-            <div>Atvykimo adresas: {{ trip.destination }}</div>
-            <div>Vietų skaičius: {{ trip.seats }}</div>
-            {% if trip.smoke==0 %}
-            <div>Nerūkoma</div>
-            {% endif %}
-            {% if trip.smoke==1 %}
-                <div>Galima rūkyti</div>
-            {% endif %}
-            {% if trip.pets==0 %}
-                <div>Gyvūnai nepageidaujami</div>
-            {% endif %}
-            {% if trip.pets==1 %}
-                <div>Galima vežtis gyvūną</div>
-            {% endif %}
-            <div>Papildoma informacija: {{ trip.information }}</div>
+        <div class="col-1"></div>
+        <div class="col-7 search-form">
+            <div class="header-search-title">
+                <h4>Skelbimas</h4>
+            </div>
+            <div class="col-12">
+                <div class="col-6">
+                    <a class="btn-yellow col-4" href = "{{ path('add_edit_trip', {'id': trip.id}) }}">Redaguoti</a>
+                </div>
+                <div class="col-6">
+                    <a class="btn-yellow col-4" href = "{{ path('search') }}">Į skelbimų sąrašą</a>
+                </div>
+            </div>
+            <div class="col-12">
+                {{ trip.travelerType }}
+            </div>
+            <div class="col-12">
+                <span class="h5">Išvykimo data ir laikas:</span>  {{ trip.departTime|date("Y-m-d H:i") }}
+            </div>
+            <div class="col-12">
+                <span class="h5">Išvykimo adresas:</span> {{ trip.departFrom }}
+            </div>
+            <div class="col-12">
+                <span class="h5">Atvykimo adresas:</span> {{ trip.destination }}
+            </div>
+            <div class="col-12">
+                <span class="h5">Vietų skaičius:</span> {{ trip.seats }}
+            </div>
+            <div class="col-12">
+                <div class="col-6 col-inline-padding-right">
+                    {% if trip.smoke==0 %}
+                        <div><i class="material-icons">smoke_free</i></div>
+                    {% endif %}
+                    {% if trip.smoke==1 %}
+                        <div><i class="material-icons">smoking_rooms</i></div>
+                    {% endif %}
+                </div>
+                <div class="col-6 col-inline-padding-left">
+                    {% if trip.pets==0 %}
+                        <div><img src="/images/no_pets.png"></div>
+                    {% endif %}
+                    {% if trip.pets==1 %}
+                        <div><i class="material-icons">pets</i></div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-12">
+                <span class="h5">Papildoma informacija:</span> {{ trip.information }}</span>
+            </div>
         </div>
     </div>
 {% endblock %}

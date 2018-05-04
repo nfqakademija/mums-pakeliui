@@ -200,13 +200,10 @@ class Trip
     }
 
     /**
-     * @param int $uId
-     * @return Trip
+     * @param mixed $uId
      */
-    public function setUId(int $uId): self
+    public function setUId(int $uId): void
     {
         $this->uId = $uId;
-
-        return $this;
     }
 }

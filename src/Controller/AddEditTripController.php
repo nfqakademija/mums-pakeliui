@@ -15,7 +15,8 @@ class AddEditTripController extends AbstractController
      */
     public function addAction(Request $request)
     {
-        $user=$this->getUser()->getId();
+        //$user=$this->getUser()->getId();
+        $user=$this->getUser();
         return $this->processForm($request, $user);
     }
     /**
@@ -23,7 +24,8 @@ class AddEditTripController extends AbstractController
      */
     public function editAction(Request $request, Trip $trip)
     {
-        $user=$this->getUser()->getId();
+        //$user=$this->getUser()->getId();
+        $user=$this->getUser();
         return $this->processForm($request, $user, $trip);
     }
 
@@ -34,7 +36,8 @@ class AddEditTripController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $trip = $form->getData();
-            $trip->setUId($user);
+            $id=$user->getId();
+            $trip->setUId($id);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($trip);
             $entityManager->flush();
