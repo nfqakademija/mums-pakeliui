@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\User;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\TripRepository")
@@ -57,7 +58,7 @@ class Trip
     private $information;
     /**
      * @ORM\ManyToOne(targetEntity="User")
-     * @ORM\JoinColumn(name="u_id", referencedColumnName="id")
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $uId;
 
@@ -189,20 +190,21 @@ class Trip
         $this->information = $information;
     }
 
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }
-
-    public function getUId(): ?int
+    /**
+     * @return User
+     */
+    public function getUId()
     {
         return $this->uId;
     }
-
     /**
-     * @param mixed $uId
+     * @param User $uId
      */
-    public function setUId(int $uId): void
+    public function setUId(User $uId)
     {
         $this->uId = $uId;
     }

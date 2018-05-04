@@ -71,7 +71,7 @@
                         <div class="departTime">{{ trip.departTime|date("Y-m-d H:i") }}</div></div>
                     <div class="col-2 adw-col">
                         <button class="btn btn-outline-dark" onclick="location.href = '{{ path('show_trip', {'id': trip.id}) }}';">Peržiūrėti</button>
-                        {% if (is_granted("IS_AUTHENTICATED_REMEMBERED") and (trip.uId==app.user.id)) %}
+                        {% if (is_granted("IS_AUTHENTICATED_REMEMBERED")) %}
                             <div class="editAdw">
                                 <a href="{{ path('edit', {'id': trip.id}) }}" class="btn btn-outline-dark" alt="Redaguoti"><i class="fas fa-edit"></i></a>
                             </div>

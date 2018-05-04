@@ -7,8 +7,7 @@ use App\Entity\City;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\TimeType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -65,18 +64,14 @@ class TripType extends AbstractType
                 ])
             )
 
-            ->add('departDate', DateType::class, array('label'=>'Išvykimo data',
-                'input'  => 'datetime',
-                'widget' => 'single_text',
-                'years' => range(date('Y'), date('Y') + 2),
-                'required' =>true
-            ))
+            ->add(
+                'departTime',
+                DateTimeType::class,
+                array('label'=>'Išvykimo data ir laikas',
+                    'years' => range(date('Y'), date('Y') + 2),
+                )
+            )
 
-            ->add('departTime', TimeType::class, array('input'  => 'datetime',
-                'required' => true,
-                'label' =>'Išvykimo laikas',
-                'widget' => 'single_text'
-            ))
 
             ->add(
                 'seats',
