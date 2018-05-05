@@ -26,10 +26,10 @@
                 <span class="h5">Išvykimo data ir laikas:</span>  {{ trip.departTime|date("Y-m-d H:i") }}
             </div>
             <div class="col-12">
-                <span class="h5">Išvykimo adresas:</span> {{ trip.departFrom }}
+                <span class="h5">Išvykimo adresas:</span> <span id="start">{{ trip.departFrom }}</span>
             </div>
             <div class="col-12">
-                <span class="h5">Atvykimo adresas:</span> {{ trip.destination }}
+                <span class="h5">Atvykimo adresas:</span> <span id="end">{{ trip.destination }}</span>
             </div>
             <div class="col-12">
                 <span class="h5">Vietų skaičius:</span> {{ trip.seats }}
@@ -57,4 +57,5 @@
             </div>
         </div>
     </div>
+
 {% endblock %}
