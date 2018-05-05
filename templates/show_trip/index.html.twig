@@ -3,59 +3,74 @@
 {% block content %}
     <div class="row">
         <div class="col-1"></div>
-        <div class="col-7 search-form">
-            <div class="header-search-title">
-                <h4>Skelbimas</h4>
-            </div>
-            <div class="col-12">
-                <div class="col-6">
-                    <a class="btn-yellow col-4" href = "{{ path('add_edit_trip', {'id': trip.id}) }}">Redaguoti</a>
-                </div>
-                <div class="col-6">
-                    <a class="btn-yellow col-4" href = "{{ path('search') }}">Į skelbimų sąrašą</a>
-                </div>
-            </div>
-            <div class="col-12">
-                <h4>  {{ trip.User }}</h4>
-                {{ trip.User.email }}
-            </div>
-            <div class="col-12">
-                {{ trip.travelerType }}
-            </div>
-            <div class="col-12">
-                <span class="h5">Išvykimo data ir laikas:</span>  {{ trip.departTime|date("Y-m-d H:i") }}
-            </div>
-            <div class="col-12">
-                <span class="h5">Išvykimo adresas:</span> <span id="start">{{ trip.departFrom }}</span>
-            </div>
-            <div class="col-12">
-                <span class="h5">Atvykimo adresas:</span> <span id="end">{{ trip.destination }}</span>
-            </div>
-            <div class="col-12">
-                <span class="h5">Vietų skaičius:</span> {{ trip.seats }}
-            </div>
-            <div class="col-12">
-                <div class="col-6 col-inline-padding-right">
+        <div class="col-6 search-form">
+            <table class="table table-striped" style="background: rgba(229, 230, 230, 0.6)">
+                <thead>
+                <tr>
+                    <th scope="col">Skelbimas</th>
+                    <th scope="col">
+                        <a class="btn btn-yellow" href = "{{ path('add_edit_trip', {'id': trip.id}) }}"><i class="fas fa-edit"></i></a>
+                        <a class="btn btn-yellow" href = "{{ path('search') }}"><i class="fas fa-step-backward"></i></a>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th scope="row">Skelbimą sukūrė</th>
+                    <td>{{ trip.User }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">El. paštas</th>
+                    <td>{{ trip.User.email }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Vairuotojas ar keleivis</th>
+                    {% if trip.travelerType == 1 %}
+                        <td><i class="fas fa-child" style="font-size: 25px"></i></td>
+                    {% else %}
+                        <td><i class="fas fa-car"></i></td>
+                    {% endif %}
+                </tr>
+                <tr>
+                    <th scope="row">Išvykimo data ir laikas:</th>
+                    <td>{{ trip.departTime|date("Y-m-d H:i") }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Išvykimo adresas:</th>
+                    <td>{{ trip.departFrom }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Atvykimo adresas:</th>
+                    <td>{{ trip.destination }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Vietų skaičius:</th>
+                    <td>{{ trip.seats }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Rūkymas:</th>
                     {% if trip.smoke==0 %}
-                        <div><i class="material-icons">smoke_free</i></div>
+                        <td><i class="material-icons">smoke_free</i></td>
                     {% endif %}
                     {% if trip.smoke==1 %}
-                        <div><i class="material-icons">smoking_rooms</i></div>
+                        <td><i class="material-icons">smoking_rooms</i></td>
                     {% endif %}
-                </div>
-                <div class="col-6 col-inline-padding-left">
+                </tr>
+                <tr>
+                    <th scope="row">Gyvūnai:</th>
                     {% if trip.pets==0 %}
-                        <div><img src="/images/no_pets.png"></div>
+                        <td><img src="{{ asset('images/no-pets.png') }}"/></td>
                     {% endif %}
                     {% if trip.pets==1 %}
-                        <div><i class="material-icons">pets</i></div>
+                        <td><i class="fas fa-paw"></i></td>
                     {% endif %}
-                </div>
-            </div>
-            <div class="col-12">
-                <span class="h5">Papildoma informacija:</span> {{ trip.information }}</span>
-            </div>
+                </tr>
+                <tr>
+                    <th scope="row">Papildoma informacija:</th>
+                    <td>{{ trip.information }}</td>
+                </tr>
+                </tbody>
+            </table>
         </div>
     </div>
-
 {% endblock %}
