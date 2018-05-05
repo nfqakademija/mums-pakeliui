@@ -149,10 +149,10 @@ ul.menu > li > a:hover {
 ul.sub-menu {
     display: none;
     position: absolute;
-    width: 210px;
+    width: auto;
     border:1px solid #67676b;
     top: 79px;
-    left: 0;
+    right: 0;
     z-index: 9999;
 }
 ul.sub-menu > li {
