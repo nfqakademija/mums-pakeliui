@@ -82,7 +82,9 @@ class TripType extends AbstractType
                     'label'=> 'Tel.nr.',
                     'constraints' => [
                         new NotBlank(['message' => 'Trūksta telefono numerio.']),
-                        new Regex([ 'pattern'   => '#^(\+?[0-9 .,()/-]{5,25})?$#', 'message' => 'Neteisingai surinktas telefono numeris.'])
+                        new Regex([ 'pattern'   => '#^(\+?[0-9 .,()/-]{5,25})?$#',
+                                    'message' => 'Neteisingai surinktas telefono numeris.'
+                        ])
                     ])
             )
 
