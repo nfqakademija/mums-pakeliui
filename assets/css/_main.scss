@@ -34,9 +34,7 @@ a:hover {
     -webkit-box-shadow: inset 0 1px 0 0 #FFF6CE,inset 0 -1px 0 0 #E3C852,inset 0 0 0 1px #FCE88D;
     background-color: rgba(88, 89, 91, 0.9);
 }
-.adw-list-row{
-    background-color:#eaebf4;
-}
+
 
 .html-changeHeight {height: 100%}
 .page-look
@@ -99,7 +97,6 @@ h4{
     margin-top:20px;
 }
 .search-form{
-    float: left;
     background: rgba(204, 205, 205, 0.5);
     border-radius: 15px 15px 15px 15px;
     -webkit-border-radius: 15px 15px 15px 15px;
@@ -228,16 +225,14 @@ ul.menu > li:hover > ul.sub-menu {
     font-size:30px;
 }
 .adw-list{
-    float: left;
-    left:50px;
+    padding: 15px;
 }
 .adw-col{
-    float:left;
     margin:auto;
 }
 .adw-list-row{
     border-bottom:1px solid #67676b;
-    background-color:#eaebf4;
+    background-color: rgba(190, 191, 192, 0.8);
     padding-top:15px;
     padding-bottom:15px;
 }
@@ -246,7 +241,6 @@ ul.menu > li:hover > ul.sub-menu {
     font-size:40px;
 }
 .info{
-    float: left;
     border-right:1px solid #9a968d;
     text-align: center;
 }
