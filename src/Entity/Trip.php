@@ -57,6 +57,10 @@ class Trip
      */
     private $information;
     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $phone;
+    /**
      * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumn(onDelete="CASCADE")
      */
@@ -188,6 +192,21 @@ class Trip
     public function setInformation($information): void
     {
         $this->information = $information;
+    }
+    /**
+     * @return mixed
+     */
+    public function getPhone()
+    {
+        return $this->phone;
+    }
+
+    /**
+     * @param mixed $phone
+     */
+    public function setPhone($phone): void
+    {
+        $this->phone = $phone;
     }
 
     public function getId(): ?int

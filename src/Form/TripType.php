@@ -11,11 +11,13 @@ use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Regex;
 
 class TripType extends AbstractType
 {
@@ -69,9 +71,20 @@ class TripType extends AbstractType
                 DateTimeType::class,
                 array('label'=>'Išvykimo data ir laikas',
                     'years' => range(date('Y'), date('Y') + 2),
+                    'months' => range(date('m'), date('m') + 11)
                 )
             )
 
+            ->add(
+                'phone',
+                TelType::class,
+                array(
+                    'label'=> 'Tel.nr.',
+                    'constraints' => [
+                        new NotBlank(['message' => 'Trūksta telefono numerio.']),
+                        new Regex([ 'pattern'   => '#^(\+?[0-9 .,()/-]{5,25})?$#', 'message' => 'Neteisingai surinktas telefono numeris.'])
+                    ])
+            )
 
             ->add(
                 'seats',

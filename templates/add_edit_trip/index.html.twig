@@ -10,6 +10,9 @@
             </div>
             {{ form_start(our_form) }}
             {{ form_row(our_form.travelerType, {attr: {class: 'form-check form-check-inline'}}) }}
+            <div class="col-12">
+                {{ form_row(our_form.phone, {attr: {class: ''}}) }}
+            </div>
         <div class="col-12">
             <div class="col-3 col-inline-padding-right">
             {{ form_row(our_form.seats, {attr: {class: ''} }) }}
