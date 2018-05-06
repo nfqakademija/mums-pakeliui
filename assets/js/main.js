@@ -21,19 +21,6 @@ $(window).scroll(function() {
     }
 });
 
-function init() {
-        var input = document.getElementById('trip_search_departFrom', {
-            componentRestrictions: { country: 'lt' }
-    });
-        var autocomplete = new google.maps.places.Autocomplete(input);
-        var input2 = document.getElementById('trip_search_destination', {
-        componentRestrictions: { country: 'lt' }
-    });
-        var autocomplete2 = new google.maps.places.Autocomplete(input2);
-
-    }
-google.maps.event.addDomListener(window, 'load', init);
-
 var h_hght = 81;
 var h_mrg = 0;
 
