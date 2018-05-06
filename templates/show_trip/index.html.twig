@@ -1,76 +1,55 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-    <div class="row">
-        <div class="col-1"></div>
-        <div class="col-6 search-form">
-            <table class="table table-striped" style="background: rgba(229, 230, 230, 0.6)">
-                <thead>
-                <tr>
-                    <th scope="col">Skelbimas</th>
-                    <th scope="col">
-                        <a class="btn btn-yellow" href = "{{ path('add_edit_trip', {'id': trip.id}) }}"><i class="fas fa-edit"></i></a>
-                        <a class="btn btn-yellow" href = "{{ path('search') }}"><i class="fas fa-step-backward"></i></a>
-                    </th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <th scope="row">Skelbimą sukūrė</th>
-                    <td>{{ trip.User }}</td>
-                </tr>
-                <tr>
-                    <th scope="row">El. paštas</th>
-                    <td>{{ trip.User.email }}</td>
-                </tr>
-                <tr>
-                    <th scope="row">Vairuotojas ar keleivis</th>
-                    {% if trip.travelerType == 1 %}
-                        <td><i class="fas fa-child" style="font-size: 25px"></i></td>
-                    {% else %}
-                        <td><i class="fas fa-car"></i></td>
-                    {% endif %}
-                </tr>
-                <tr>
-                    <th scope="row">Išvykimo data ir laikas:</th>
-                    <td>{{ trip.departTime|date("Y-m-d H:i") }}</td>
-                </tr>
-                <tr>
-                    <th scope="row">Išvykimo adresas:</th>
-                    <td>{{ trip.departFrom }}</td>
-                </tr>
-                <tr>
-                    <th scope="row">Atvykimo adresas:</th>
-                    <td>{{ trip.destination }}</td>
-                </tr>
-                <tr>
-                    <th scope="row">Vietų skaičius:</th>
-                    <td>{{ trip.seats }}</td>
-                </tr>
-                <tr>
-                    <th scope="row">Rūkymas:</th>
-                    {% if trip.smoke==0 %}
-                        <td><i class="material-icons">smoke_free</i></td>
-                    {% endif %}
-                    {% if trip.smoke==1 %}
-                        <td><i class="material-icons">smoking_rooms</i></td>
-                    {% endif %}
-                </tr>
-                <tr>
-                    <th scope="row">Gyvūnai:</th>
-                    {% if trip.pets==0 %}
-                        <td><img src="{{ asset('images/no-pets.png') }}"/></td>
-                    {% endif %}
-                    {% if trip.pets==1 %}
-                        <td><i class="fas fa-paw"></i></td>
-                    {% endif %}
-                </tr>
-                <tr>
-                    <th scope="row">Papildoma informacija:</th>
-                    <td>{{ trip.information }}</td>
-                </tr>
-                </tbody>
-            </table>
+    <a  href="javascript:history.back()" style="color:#000; font-size:20px;"><i class="fas fa-long-arrow-alt-left"></i> Grižti atgal</a>
+    <div class="col-12  search-form" style="margin:10px 0 0 0; padding:0px;">
+        <div class="col-3" style=" float:left; padding-top: 25px;margin:auto; text-align:center; border-right:1px solid #eaedf4;">
+            <h4> {{ trip.User }}</h4>
+            <div class="col-10" style="font-size: 60px;  border-radius: 100%; -webkit-border-radius: 100%; -moz-border-radius: 100%; background: #ffffff; padding:50px; margin: auto; text-align: center;">
+            {% if trip.travelerType == 1 %}
+               <i class="fas fa-child"></i>
+            {% else %}
+                <i class="fas fa-car"></i>
+            {% endif %}
+            </div>
+
+            <div style="text-align: left; margin-top: 25px;"><i class="far fa-envelope"></i>  {{ trip.User.email }}<br>
+                <i class="fas fa-phone"></i>  {{ trip.User.email }}
+            </div>
+
+            <button type="submit" id="trip_search_filter" name="rezervuoti" class="btn-yellow btn" style="margin:25px 0">Rezervuoti</button>
         </div>
+        <div class="col-9" style="float:left; text-align:left;  padding-top: 25px;">
+            <div class="heading" style="padding-left: 0; margin-bottom: 25px; border:none">
+                <h4 style="color:#000000; border:none"><span id="start">{{ trip.departFrom }}</span> <i class="fas fa-long-arrow-alt-right colorYellow"></i> <span id="end">{{ trip.destination }}</span></h4>
+            </div>
+            <div class="departTime">Išvykimo data: <span class="font-weight:none;">{{ trip.departTime|date("Y-m-d") }}</span></div>
+            <div class="departTime">Išvykimo laikas: <span class="font-weight:none;">{{ trip.departTime|date("H:i") }}</span></div>
+            <div style="margin: 25px 0; padding:0;" class="col-12">
+
+                <div class="col-4 departTime" style="float:left; padding:0">Vietų skaičius: {{ trip.seats }}</div>
+                <div class="col-4 departTime" style="float:left">
+                Rūkymas:   {% if trip.smoke==0 %}
+                    <i class="material-icons">smoke_free</i>
+                {% endif %}
+                {% if trip.smoke==1 %}
+                    <i class="material-icons">smoking_rooms</i>
+                    <i class="fas fa-smoking"></i>
+                {% endif %}
+                </div>
+                <div class="col-4 departTime" style="float:left">
+                Gyvūnai:  {% if trip.pets==0 %}
+                    <img src="{{ asset('images/no-pets.png') }}"/>
+                {% endif %}
+                {% if trip.pets==1 %}
+                    <i class="fas fa-paw"></i>
+                {% endif %}
+                </div>
+                <div class="clearBoth"></div>
+                <div style="text-align: justify; margin-top:25px"> {{ trip.information }}</div>
+            </div>
+        </div><div class="clearBoth"></div>
+        <div id="map"></div>
+        <div id="warnings-panel"></div>
     </div>
 {% endblock %}
