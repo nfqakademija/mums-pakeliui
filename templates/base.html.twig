@@ -88,17 +88,17 @@
 
 {% block javascripts %}
     <script type="text/javascript"  src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
     <script src="{{ asset('build/js/main.js') }}" ></script>
     <script src="{{ asset('build/js/app.js') }}"></script>
     <script>
+
         function initMap() {
             var directionsService = new google.maps.DirectionsService;
 
             // Create a map and center it on Manhattan.
             var map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 13,
-                center: {lat: 40.771, lng: -73.974}
+                center: {lat: 54.7000898, lng: 25.1125084}
             });
 
             // Create a renderer for directions and bind it to the map.
@@ -109,7 +109,7 @@
         function calculateAndDisplayRoute(directionsDisplay, directionsService) {
 
             // Retrieve the start and end locations and create a DirectionsRequest using
-            // WALKING directions.
+            // Driving directions.
             directionsService.route({
                 origin: document.getElementById('start').textContent,
                 destination: document.getElementById('end').textContent,
@@ -127,11 +127,38 @@
             });
         }
 
+        function initLib(){
+            var input = document.getElementById('trip_search_departFrom', {
+                componentRestrictions: { country: 'lt' }
+            });
+            var autocomplete = new google.maps.places.Autocomplete(input);
+            var input2 = document.getElementById('trip_search_destination', {
+                componentRestrictions: { country: 'lt' }
+            });
+            var autocomplete2 = new google.maps.places.Autocomplete(input2);
+
+            var input3 = document.getElementById('trip_departFrom', {
+                componentRestrictions: { country: 'lt' }
+            });
+            var autocomplete3 = new google.maps.places.Autocomplete(input3);
+            var input4 = document.getElementById('trip_destination', {
+                componentRestrictions: { country: 'lt' }
+            });
+            var autocomplete4 = new google.maps.places.Autocomplete(input4);
+
+        }
+        google.maps.event.addDomListener(window, 'load', init);
+
+
 
     </script>
 
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8bciunVlIgmtF5BLbil6zPsfXJHO1WFY&callback=initMap">
+    </script>
+
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyB8bciunVlIgmtF5BLbil6zPsfXJHO1WFY&callback=initLib">
     </script>
 {% endblock %}
 </body>
