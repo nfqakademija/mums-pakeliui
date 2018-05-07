@@ -79,11 +79,11 @@ class TripType extends AbstractType
                 'phone',
                 TelType::class,
                 array(
-                    'label'=> 'Tel.nr.',
+                    'label'=> 'Tel. nr.',
                     'constraints' => [
                         new NotBlank(['message' => 'Trūksta telefono numerio.']),
                         new Regex([ 'pattern'   => '#^(\+?[0-9 .,()/-]{5,25})?$#',
-                                    'message' => 'Neteisingai surinktas telefono numeris.'
+                                    'message' => 'Neteisingai įvestas telefono numeris.'
                         ])
                     ])
             )

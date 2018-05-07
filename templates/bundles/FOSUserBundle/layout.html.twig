@@ -1,23 +1,6 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-    {# Copy-paste from vendor/friendsofsymfony/user-bundle/Resources/views/layout.html.twig #}
-    {#<div>
-        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-            #}{#{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
-            <a class="btn btn-outline-dark m-2" href="{{ path('fos_user_security_logout') }}">
-                {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
-            </a>#}{#
-            #}{#<a class="btn btn-outline-dark m-2" href="{{ path('fos_user_profile_show') }}">Naudotojo profilis</a>
-            <a class="btn btn-outline-dark m-2" href="{{ path('fos_user_profile_edit') }}">Redaguoti naudotojo profilį</a>
-            <a class="btn btn-outline-dark m-2" href="{{ path('fos_user_change_password') }}">Keisti slaptažodį</a>#}{#
-            <a class="btn btn-outline-dark m-2" href="" onclick="history.go(-1);return false;">Atgal</a>
-        {% else %}
-            #}{#<a class="btn btn-outline-dark m-2" href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>#}{#
-            <a class="btn btn-outline-dark m-2" href="{{ path('fos_user_registration_register') }}">Registruotis</a>
-            <a class="btn btn-outline-dark m-2" href="" onclick="history.go(-1);return false;">Atgal</a>
-        {% endif %}
-    </div>#}
 
     {% if app.request.hasPreviousSession %}
         {% for type, messages in app.session.flashbag.all() %}
@@ -29,7 +12,7 @@
         {% endfor %}
     {% endif %}
 
-    <div class="w-25">
+    <div class="registration-form">
         {% block fos_user_content %}
         {% endblock fos_user_content %}
     </div>
