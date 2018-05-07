@@ -85,7 +85,7 @@ class TripController extends Controller
         $user = $this->getUser()->getId();
         $owner = $entityManager->find(Trip::class, $id)->getUser()->getId();
 
-        if ($user == $owner ) {
+        if ($user == $owner) {
             $entityManager->remove($entityManager->find(Trip::class, $id));
             $entityManager->flush();
         }
