@@ -86,7 +86,22 @@ class TripRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+    /**
+     * @return Trip[]
+     */
+    public function findByUser($value)
+    {
+        $trips = $this->createQueryBuilder('t')
+            ->orderBy('t.id', 'ASC');
+        $trips->Where('t.departTime >= :today')
+            ->setParameter('today', new \DateTime());
+        $trips->andWhere('t.user = :user')
+              ->setParameter('user', $value);
 
+        return $trips
+            ->getQuery()
+            ->getResult();
+    }
 
     /* ->setMaxResults(10)
     public function findOneBySomeField($value): ?Trip
