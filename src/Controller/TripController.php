@@ -44,9 +44,9 @@ class TripController extends Controller
     public function editAction(Request $request, Trip $trip, TripRepository $tripRepository)
     {
         $user = $this->getUser()->getId();
-        if($user == $trip->getUser()->getId()) {
+        if ($user == $trip->getUser()->getId()) {
             return $this->processForm($request, $trip);
-        } else{
+        } else {
             return $this->redirectToRoute('my_trips');
         }
     }
@@ -78,17 +78,17 @@ class TripController extends Controller
     /**
      * @Route("/trip/delete/{id}", name="delete_trip")
      */
-    public function deleteAction($id){
+    public function deleteAction($id)
+    {
 
         $entityManager = $this->getDoctrine()->getManager();
         $user = $this->getUser()->getId();
         $owner = $entityManager->find(Trip::class, $id)->getUser()->getId();
 
-        if($user == $owner ) {
-           $entityManager->remove($entityManager->find(Trip::class, $id));
-           $entityManager->flush();
+        if ($user == $owner ) {
+            $entityManager->remove($entityManager->find(Trip::class, $id));
+            $entityManager->flush();
         }
-
 
         return $this->redirect($this->generateUrl('my_trips'));
     }
