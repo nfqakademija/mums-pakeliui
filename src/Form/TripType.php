@@ -67,12 +67,14 @@ class TripType extends AbstractType
                 'departTime',
                 DateTimeType::class,
                 array('label'=>'Išvykimo data ir laikas',
-                    'years' => range(date('Y'), date('Y') + 2),
-                    'months' => range(date('m'), date('m') + 11)
+                    'widget' => 'single_text',
+                    'html5' => false
+                    /*'years' => range(date('Y'), date('Y') + 2),
+                    'months' => range(date('m'), date('m') + 11)*/
                 )
             )
 
-            ->add(
+        ->add(
                 'phone',
                 TelType::class,
                 array(

@@ -3,53 +3,71 @@
 {% block content %}
     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
         <div class="row">
-        <div class="col-1"></div>
-        <div class="col-7 search-form">
-            <div class="header-search-title">
-                <h4>Skelbimas</h4>
-            </div>
-            <div class="col-12">
+            <div class="col-1"></div>
+            <div class="col-7 search-form">
+                <div class="col-12 col-inline-padding-left">
+                    <div class="header-search-title">
+                        <h4>Skelbimas</h4>
+                    </div>
+                </div>
                 {{ form_start(our_form) }}
-                <div class="col-6 col-inline-padding-right">
-                    {{ form_row(our_form.travelerType, {attr: {class: 'form-check form-check-inline'}}) }}
+                <div class="col-12">
+                    <div class="col-6 col-inline-padding-right">
+                        {{ form_row(our_form.travelerType, {attr: {class: 'form-check form-check-inline'}}) }}
+                    </div>
+                    <div class="col-6 col-inline-padding-left">
+                        {{ form_row(our_form.phone, {attr: {class: ''}}) }}
+                    </div>
+                    <div class="clearBoth"></div>
                 </div>
-                <div class="col-6 col-inline-padding-left">
-                    {{ form_row(our_form.phone, {attr: {class: ''}}) }}
+                <div class="col-12">
+                    <div class="col-3 col-inline-padding-right">
+                        {{ form_row(our_form.seats, {attr: {class: ''} }) }}
+                    </div>
+                    <div class="col-3 col-inline-padding-right"></div>
+                    <div class="col-6 col-inline-padding-left mt-3">
+                        {{ form_row(our_form.smoke, {attr: {class: 'form-check form-check-inline'}}) }}
+                        {{ form_row(our_form.pets, {attr: {class: 'form-check form-check-inline'}}) }}
+                    </div>
+                    <div class="clearBoth"></div>
                 </div>
-                <div class="clearBoth"></div>
-            </div>
-            <div class="col-12">
-                <div class="col-3 col-inline-padding-right">
-                    {{ form_row(our_form.seats, {attr: {class: ''} }) }}
+                <div class="col-12">
+                    <div class="col-6 col-inline-padding-right">
+                        {{ form_row(our_form.departFrom, {attr: {class: '','placeholder': 'Įrašykite išvykimo adresą'}}) }}
+                    </div>
+                    <div class="col-6 col-inline-padding-left">
+                        {{ form_row(our_form.destination, {attr: {class: '','placeholder': 'Įrašykite atvykimo adresą'}}) }}
+                    </div>
+                    <div class="clearBoth"></div>
                 </div>
-                <div class="col-3 col-inline-padding-right"></div>
-                <div class="col-6 col-inline-padding-left mt-3">
-                    {{ form_row(our_form.smoke, {attr: {class: 'form-check form-check-inline'}}) }}
-                    {{ form_row(our_form.pets, {attr: {class: 'form-check form-check-inline'}}) }}
-                </div>
-                <div class="clearBoth"></div>
-            </div>
-            <div class="col-12">
-                <div class="col-6 col-inline-padding-right">
-                    {{ form_row(our_form.departFrom, {attr: {class: '','placeholder': 'Įrašykite išvykimo adresą'}}) }}
-                </div>
-                <div class="col-6 col-inline-padding-left">
-                    {{ form_row(our_form.destination, {attr: {class: '','placeholder': 'Įrašykite atvykimo adresą'}}) }}
-                </div>
-                <div class="clearBoth"></div>
-            </div>
-            <div class="col-12">
-                {{ form_row(our_form.departTime, {attr: {class: 'form-group'} }) }}
-            </div>
+                <div class="col-12">
 
-            <div class="col-12">
-                {{ form_row(our_form.information, {attr: {class: ''}}) }}
+
+                    {{ form_row(our_form.departTime, {attr: {class: 'form-group'} }) }}
+                </div>
+
+                <div class="col-12">
+                    {{ form_row(our_form.information, {attr: {class: ''}}) }}
+                </div>
+                <div class="col-12 btn-row">
+                    {{ form_widget(our_form.save, {attr: {class: 'btn-yellow col-4'}}) }}
+                </div>
+                {{ form_end(our_form) }}
             </div>
-            <div class="col-12 btn-row">
-                {{ form_widget(our_form.save, {attr: {class: 'btn-yellow col-4'}}) }}
-            </div>
-            {{ form_end(our_form) }}
-        </div>
         </div>
     {% endif %}
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(document).ready(function () {
+            kendo.culture("lt-LT");
+            // create DateTimePicker from input HTML element
+            $("#trip_departTime").kendoDateTimePicker({
+                value: new Date(),
+                //dateInput: true,
+                format: "yyyy-MM-dd HH:mm"
+            });
+        });
+    </script>
 {% endblock %}
