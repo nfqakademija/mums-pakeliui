@@ -77,7 +77,7 @@ header{
 }
 .form-title{
     margin-bottom:30px;
-    padding-top: 10px;
+    //padding-top: 10px;
     padding-left: 10px;
     color:#1b1e21;
     font-family: 'Kaushan Script', cursive;
@@ -88,6 +88,7 @@ header{
     border-radius: 15px 15px 15px 15px;
     -webkit-border-radius: 15px 15px 15px 15px;
     -moz-border-radius: 15px 15px 15px 15px;
+    padding: 10px 20px 10px 20px;
 }
 .registration-form{
     background: rgba(204, 205, 205, 0.5);
@@ -201,11 +202,11 @@ header{
 }
 
 .filter{
-    float: left;
     background: rgba(88, 89, 91, 0.8);
     border-radius: 15px 15px 15px 15px;
     -webkit-border-radius: 15px 15px 15px 15px;
     -moz-border-radius: 15px 15px 15px 15px;
+    height: 645px;
 }
 
 .adw-list{
@@ -221,7 +222,7 @@ header{
     padding-bottom:15px;
 }
 
-.adw-list-row i.fa-car{
+.adw-icon{
     font-size:40px;
 }
 .info{
