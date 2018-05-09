@@ -4,11 +4,17 @@
     <div class="row">
         <div class="col-1"></div>
         <div class="col-7 search-form">
-            <div class="header-search-title">
-               <h4>Vykstate į kitą gatvę, kitą miestą ar kitą šalį?</h4>
+            <div class="row">
+               <div class="col form-title">
+                   Vykstate į kitą gatvę, kitą miestą ar kitą šalį?
+               </div>
             </div>
             {{ form_start(form) }}
+            <div class="row">
+                <div class="col form-title">
             {{ form_row(form.travelerType, {attr: {class: 'form-check form-check-inline'}}) }}
+                </div>
+            </div>
             <div class="col-12">
                 <div class="col-6 col-inline-padding-right">
                     {{ form_row(form.departFrom, {attr: {class: '','placeholder': 'Įrašykite išvykimo adresą'}}) }}

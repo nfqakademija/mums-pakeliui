@@ -20,8 +20,8 @@
             <button type="submit" id="trip_search_filter" name="rezervuoti" class="btn-yellow btn" style="margin:25px 0">Rezervuoti</button>
         </div>
         <div class="col-9" style="float:left; text-align:left;  padding-top: 25px;">
-            <div class="heading" style="padding-left: 0; margin-bottom: 25px; border:none">
-                <h4 style="color:#000000; border:none"><span id="start">{{ trip.departFrom }}</span> <i class="fas fa-long-arrow-alt-right colorYellow"></i> <span id="end">{{ trip.destination }}</span></h4>
+            <div class="headingDarkNoBorder" style="padding-left: 0">
+                <h4><span id="start">{{ trip.departFrom }}</span> <i class="fas fa-long-arrow-alt-right colorYellow"></i> <span id="end">{{ trip.destination }}</span></h4>
             </div>
             <div class="departTime">Išvykimo data: <span class="font-weight:none;">{{ trip.departTime|date("Y-m-d") }}</span></div>
             <div class="departTime">Išvykimo laikas: <span class="font-weight:none;">{{ trip.departTime|date("H:i") }}</span></div>

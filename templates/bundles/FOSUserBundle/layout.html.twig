@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-
+    <div class="registration-form">
     {% if app.request.hasPreviousSession %}
         {% for type, messages in app.session.flashbag.all() %}
             {% for message in messages %}
@@ -12,7 +12,6 @@
         {% endfor %}
     {% endif %}
 
-    <div class="registration-form">
         {% block fos_user_content %}
         {% endblock fos_user_content %}
     </div>

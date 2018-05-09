@@ -5,7 +5,7 @@
 {% block content %}
 {% if (is_granted("IS_AUTHENTICATED_REMEMBERED")) %}
     <div class="row mt-3">
-        <h4>Kelionių sąrašas</h4>
+        <div class="col form-title">Kelionių sąrašas</div>
         <div class="col-12">
             {% for trip in trips %}
                 <div class="row adw-list-row">
@@ -42,7 +42,7 @@
 
         </div>
     </div>
-    <h4>Rezervacijų sąrašas </h4>
-    <h4>Pasiulimų rezervuoti sąrašas </h4>
+    <div class="form-title">Rezervacijų sąrašas </div>
+    <div class="form-title">Pasiūlymų rezervuoti sąrašas </div>
 {% endif %}
 {% endblock %}

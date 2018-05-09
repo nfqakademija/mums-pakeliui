@@ -26,11 +26,11 @@ class TripType extends AbstractType
             ->add(
                 'travelerType',
                 ChoiceType::class,
-                array(
-                    'choices' => array(
+                [
+                    'choices' => [
                         'Vairuotojas' => 0,
                         'Keleivis' => 1,
-                    ),
+                    ],
                     'choice_label' => function ($val, $key, $index) {
                         return false;
                     },
@@ -38,97 +38,97 @@ class TripType extends AbstractType
                     'multiple'=>false,
                     'expanded'=>true,
                     'label'=>false,
-                )
+                ]
             )
 
             ->add(
                 'departFrom',
                 TextType::class,
-                array(
+                [
                     'label'=> 'Išvykimo adresas',
-                    'attr' => array('class' => 'trip_departFrom'),
+                    'attr' => ['class' => 'trip_departFrom'],
                     'constraints' => [
                         new NotBlank(['message' => 'Trūksta išvykimo adreso.'])
                     ]
-                )
+                ]
             )
 
             ->add(
                 'destination',
                 TextType::class,
-                array(
+                [
                     'label'=> 'Atvykimo adresas',
                 'constraints' => [
                 new NotBlank(['message' => 'Trūksta atvykimo adreso.'])
-                ])
+                ]]
             )
 
             ->add(
                 'departTime',
                 DateTimeType::class,
-                array('label'=>'Išvykimo data ir laikas',
+                ['label'=>'Išvykimo data ir laikas',
                     'widget' => 'single_text',
                     'html5' => false
                     /*'years' => range(date('Y'), date('Y') + 2),
                     'months' => range(date('m'), date('m') + 11)*/
-                )
+                ]
             )
 
         ->add(
                 'phone',
                 TelType::class,
-                array(
+                [
                     'label'=> 'Tel. nr.',
                     'constraints' => [
                         new NotBlank(['message' => 'Trūksta telefono numerio.']),
                         new Regex([ 'pattern'   => '#^(\+?[0-9 .,()/-]{5,25})?$#',
                                     'message' => 'Neteisingai įvestas telefono numeris.'
                         ])
-                    ])
+                    ]]
             )
 
             ->add(
                 'seats',
                 IntegerType::class,
-                array(
+                [
                     'required' => false,
                     'empty_data' => '1',
-                    'attr'          => array(
+                    'attr'          => [
                         '_type'         => "number",
                         'min'           => 1,
-                        'step'          => 1),
-                    'label'=> 'Vietų skaičius')
+                        'step'          => 1],
+                    'label'=> 'Vietų skaičius']
             )
 
             ->add(
                 'smoke',
                 IconCheckboxType::class,
-                array(
+                [
                     'required' => false,
                     'label'=> false,
-                    'label_class' => 'fas fa-smoking')
+                    'label_class' => 'fas fa-smoking']
             )
 
             ->add(
                 'pets',
                 IconCheckboxType::class,
-                array(
+                [
                     'required' => false,
                     'label'=> false,
-                    'label_class' => 'fas fa-paw')
+                    'label_class' => 'fas fa-paw']
             )
 
             ->add(
                 'information',
                 TextareaType::class,
-                array('label'=>'Informacija',
-                    'required' => false)
+                ['label'=>'Informacija',
+                    'required' => false]
             )
 
             ->add(
                 'save',
                 SubmitType::class,
-                array('label' => 'Išsaugoti')
+                ['label' => 'Išsaugoti']
             );
     }
 
