@@ -110,10 +110,6 @@ header{
 .spoiler-body3{
     margin-top:20px;
 }
-a.add-trip:link{
-    color:#000000;
-    font-size: 25px;
-}
 
 .userLogin-menu{
     margin: 0;
@@ -165,14 +161,11 @@ a.add-trip:link{
     text-decoration: underline;
 }
 
-.form-check-input{
-    width:24px;
-    height:24px;
-    position:relative;
-    top:6px
-}
 .form-check-inline{
     font-size:36px;
+}
+.form-check{
+    padding-left:0px;
 }
 
 .icons {icon: auto}
@@ -184,12 +177,12 @@ a.add-trip:link{
 
 .col-inline-padding-left{
     float:left;
-    padding:0 0 0 5px;
+    padding:0 5px 0 10px;
     margin:0
 }
 .col-inline-padding-right{
     float:left;
-    padding:0 5px 0 0;
+    padding:0 10px 0 5px;
     margin:0
 }
 .clearBoth{
@@ -215,10 +208,6 @@ a.add-trip:link{
     -moz-border-radius: 15px 15px 15px 15px;
 }
 
-.filter .form-check-inline{
-    color:#ffffff;
-    font-size:30px;
-}
 .adw-list{
     padding: 15px;
 }

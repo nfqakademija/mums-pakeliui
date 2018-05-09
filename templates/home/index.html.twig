@@ -5,44 +5,55 @@
         <div class="col-1"></div>
         <div class="col-7 search-form">
             <div class="row">
-               <div class="col form-title">
-                   Vykstate į kitą gatvę, kitą miestą ar kitą šalį?
-               </div>
+                <div class="col form-title">
+                    Vykstate į kitą gatvę, kitą miestą ar kitą šalį?
+                </div>
             </div>
             {{ form_start(form) }}
             <div class="row">
-                <div class="col form-title">
-            {{ form_row(form.travelerType, {attr: {class: 'form-check form-check-inline'}}) }}
+                <div class="col">
+                    {{ form_row(form.travelerType, {attr: {class: 'form-check-inline'}}) }}
                 </div>
             </div>
-            <div class="col-12">
-                <div class="col-6 col-inline-padding-right">
+            <div class="row">
+                <div class="col-6 col-inline-padding-left">
                     {{ form_row(form.departFrom, {attr: {class: '','placeholder': 'Įrašykite išvykimo adresą'}}) }}
                 </div>
-                <div class="col-6 col-inline-padding-left">
+                <div class="col-6 col-inline-padding-right">
                     {{ form_row(form.destination, {attr: {class: '','placeholder': 'Įrašykite atvykimo adresą'}}) }}
                 </div>
                 <div class="clearBoth"></div>
             </div>
-            <div class="spoiler-title3 closed"><i class="fas fa-chevron-down colorYellow"></i> Detalioji paieška</div>
-            <div class="spoiler-body3">
-              <div class="col-12">
-                <div class="col-6 col-inline-padding-right">
-                   {{ form_row(form.departDate, {attr: {class: ''} }) }}
+            <div class="row">
+                <div class="col">
+                    <div class="spoiler-title3 closed"><i class="fas fa-chevron-down colorYellow"></i> Detalioji paieška</div>
+                    <div class="spoiler-body3">
+                        <div class="row">
+                            <div class="col-6 col-inline-padding-left">
+                                {{ form_row(form.departDate, {attr: {class: ''} }) }}
+                            </div>
+                            <div class="col-6 col-inline-padding-right">
+                                {{ form_row(form.departTime, {attr: {class: ''} }) }}
+                            </div>
+                            <div class="clearBoth"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-2 col-inline-padding-left">
+                            {{ form_row(form.smoke, {attr: {class: 'form-check form-check-inline'}}) }}
+                            </div>
+                            <div class="col-2 col-inline-padding-right">
+                            {{ form_row(form.pets, {attr: {class: 'form-check form-check-inline'}}) }}
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-6 col-inline-padding-right">
-                   {{ form_row(form.departTime, {attr: {class: ''} }) }}
+            </div>
+            <div class="row">
+                <div class="col btn-row">
+                    {{ form_widget(form.filter, {attr: {class: 'btn-yellow col-4'}}) }}
                 </div>
-                <div class="clearBoth"></div>
-              </div>
-                {{ form_row(form.smoke, {attr: {class: 'form-check form-check-inline'}}) }}
-                {{ form_row(form.pets, {attr: {class: 'form-check form-check-inline'}}) }}
             </div>
-
-            <div class="col-12 btn-row">
-                {{ form_widget(form.filter, {attr: {class: 'btn-yellow col-4'}}) }}
-            </div>
-                {{ form_end(form) }}
+            {{ form_end(form) }}
         </div>
     </div>
 

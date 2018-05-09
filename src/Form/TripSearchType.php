@@ -46,10 +46,10 @@ class TripSearchType extends AbstractType
                 'required' =>false
             ])
             ->add('departTime', TimeType::class, ['input'  => 'datetime',
-                    'required' => false,
-                    'label' =>'Išvykimo laikas',
-                    'widget' => 'single_text'
-                ])
+                'required' => false,
+                'label' =>'Išvykimo laikas',
+                'widget' => 'single_text'
+            ])
             ->add(
                 'smoke',
                 IconCheckboxType::class,
