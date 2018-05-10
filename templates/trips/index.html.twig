@@ -18,7 +18,7 @@
                         {% endif %}
                     </div>
                     <div class="col-5 info">
-                        <div class="destination">{{ trip.departFrom }} <i class="fas fa-long-arrow-alt-right colorYellow"></i> {{ trip.destination }}</div>
+                        <div class="itemData">{{ trip.departFrom }} <i class="fas fa-long-arrow-alt-right colorYellow"></i> {{ trip.destination }}</div>
                     </div>
                     <div class="col-2 info">
                         <div class="departTime">{{ trip.departTime|date("Y-m-d H:i") }}</div>
@@ -42,7 +42,7 @@
 
         </div>
     </div>
-    <div class="form-title">Rezervacijų sąrašas </div>
-    <div class="form-title">Pasiūlymų rezervuoti sąrašas </div>
+    <div class="form-title">Rezervacijų sąrašas</div>
+    <div class="form-title">Pasiūlymų rezervuoti sąrašas</div>
 {% endif %}
 {% endblock %}

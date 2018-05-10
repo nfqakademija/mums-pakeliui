@@ -84,8 +84,8 @@
                         {% endif %}
                     </div>
                     <div class="col-5 info">
-                        <div class="destination">{{ trip.departFrom }} <i class="fas fa-long-arrow-alt-right colorYellow"></i> {{ trip.destination }}</div>
-                        <div class="departTime">{{ trip.departTime|date("Y-m-d H:i") }}</div>
+                        <div class="itemData">{{ trip.departFrom }} <i class="fas fa-long-arrow-alt-right colorYellow"></i> {{ trip.destination }}</div>
+                        <div class="itemData">{{ trip.departTime|date("Y-m-d H:i") }}</div>
                     </div>
                     <div class="col-2 adw-col">
                         <a class="btn btn-outline-dark" href = "{{ path('show_trip', {'id': trip.id}) }}">Peržiūrėti</a>

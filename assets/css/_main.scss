@@ -240,13 +240,13 @@ header{
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px
 }
-.destination{
-    font-size:20px;
-    margin: 0 0 10px 0;
-}
-.departTime{
+.itemTitle{
     font-weight:bold;
     font-size:20px;
+}
+.itemData{
+  font-size:20px;
+  color:#1b1e21;
 }
 .editAdw{
     padding-top:7px;
@@ -289,4 +289,15 @@ header{
 }
 .footer-text{
     padding:25px 0 0 0;
+}
+.travellerIcon
+{
+  font-size: 40px;
+  border-radius: 15px 15px 15px 15px;
+  -webkit-border-radius: 15px 15px 15px 15px;
+  -moz-border-radius: 15px 15px 15px 15px;
+  background: #ffffff;
+  padding:10px;
+  margin: auto;
+  text-align: center;
 }
