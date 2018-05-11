@@ -76,7 +76,8 @@ class TripType extends AbstractType
 
         ->add(
             'phone',
-            TelType::class, [
+            TelType::class,
+            [
                     'label'=> 'Tel. nr.',
                     'constraints' => [
                         new NotBlank(['message' => 'Trūksta telefono numerio.']),
