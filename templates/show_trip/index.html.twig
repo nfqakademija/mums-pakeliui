@@ -16,8 +16,20 @@
             <div style="text-align: left; margin-top: 25px;"><i class="far fa-envelope"></i>  {{ trip.User.email }}<br>
                 <i class="fas fa-phone"></i>  {{ trip.phone }}
             </div>
+            {% if trip.travelerType == 1 %}
 
-            <button type="submit" id="trip_search_filter" name="rezervuoti" class="btn-yellow btn" style="margin:25px 0">Rezervuoti</button>
+            {% else %}
+                {{ form_start(form) }}
+                <div class="col-12" style="padding:0; margin-top:10px">
+                    <div class="col-5 col-inline-padding-left" style="padding:0; margin:0">
+                        {{ form_row(form.seats, {attr: {class: '', max:  trip.seats }}) }}
+                    </div>
+                    <div class="col-6 col-inline-padding-left" style="padding-top:25px">
+                        {{ form_widget(form.save, {attr: {class: 'btn-yellow'}}) }}
+                    </div>
+                </div>
+                {{ form_end(form) }}
+            {% endif %}
         </div>
         <div class="col-9" style="float:left; text-align:left;  padding-top: 25px;">
             <div class="headingDarkNoBorder" style="padding-left: 0">
@@ -25,10 +37,9 @@
             </div>
             <div class="departTime">Išvykimo data: <span class="font-weight:none;">{{ trip.departTime|date("Y-m-d") }}</span></div>
             <div class="departTime">Išvykimo laikas: <span class="font-weight:none;">{{ trip.departTime|date("H:i") }}</span></div>
+            <div class="col-12 departTime" style="margin: 25px 0; padding:0;">Vietų skaičius: {{ trip.seats }}</div>
             <div style="margin: 25px 0; padding:0;" class="col-12">
-
-                <div class="col-4 departTime" style="float:left; padding:0">Vietų skaičius: {{ trip.seats }}</div>
-                <div class="col-4 departTime" style="float:left">
+                <div class="col-4 departTime" style="float:left; padding:0;">
                 Rūkymas:   {% if trip.smoke==0 %}
                     <i class="material-icons">smoke_free</i>
                 {% endif %}
@@ -37,7 +48,7 @@
                     <i class="fas fa-smoking"></i>
                 {% endif %}
                 </div>
-                <div class="col-4 departTime" style="float:left">
+                <div class="col-4 departTime" style="float:left;">
                 Gyvūnai:  {% if trip.pets==0 %}
                     <img src="{{ asset('images/no-pets.png') }}"/>
                 {% endif %}

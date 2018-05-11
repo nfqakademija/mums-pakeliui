@@ -2,61 +2,98 @@
 
 namespace App\Controller;
 
+use App\Form\ReservationType;
+use App\Repository\ReservationRepository;
+use App\Repository\UserRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use App\Form\TripType;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Trip;
 use App\Repository\TripRepository;
-use App\Repository\UserRepository;
 
+/**
+ * @Route("/trip", name="trip_")
+ */
 class TripController extends Controller
 {
     /**
-     * @Route("/trip", name="show_trip")
+     * @Route("/show/{id}", name="show")
      */
-    public function index(Request $request)
+    public function showAction(Request $request, Trip $trip)
     {
-        $id = $request->query->get('id');
+        $form = $this->getReservationForm($request, $trip);
+        $show = $this->getDoctrine()
+                      ->getRepository(Trip::class)
+                      ->find($trip);
 
-        $trip = $this->getDoctrine()
-            ->getRepository(Trip::class)
-            ->find($id);
-
-        if (!$trip) {
+        if (!$show) {
             throw $this->createNotFoundException(
-                'No trip found for id ' . $id
+                'No trip found '
             );
         }
-
-        return $this->render('show_trip/index.html.twig', ['trip' => $trip]);
+        return $this->render('show_trip/index.html.twig', ['trip' => $show, 'form' => $form->createView()]);
     }
+
     /**
-     * @Route("/trip/add", name="add_edit_trip")
+     * @Route("/add", name="add")
      */
     public function addAction(Request $request)
     {
         return $this->processForm($request);
     }
+
     /**
      * @Route("/edit/{id}", name="edit")
      */
-    public function editAction(Request $request, Trip $trip, TripRepository $tripRepository)
+    public function editAction(Request $request, Trip $trip)
     {
-        $user = $this->getUser()->getId();
-        if ($user == $trip->getUser()->getId()) {
+        if ($trip->getUser()) {
             return $this->processForm($request, $trip);
-        } else {
-            return $this->redirectToRoute('my_trips');
         }
+            return $this->redirectToRoute('trip_my_trips');
     }
 
+    /**
+     * @Route("/delete/{id}", name="delete")
+     */
+    public function deleteAction(Trip $trip, EntityManagerInterface $entityManager)
+    {
+
+        $user = $this->getUser();
+        $owner = $entityManager->find(Trip::class, $trip)->getUser();
+
+        if ($user == $owner && $user->getId() == $owner->getId()) {
+            $entityManager->remove($entityManager->find(Trip::class, $trip));
+            $entityManager->flush();
+        }
+
+        return $this->redirect($this->generateUrl('trip_my_trips'));
+    }
+
+    /**
+     * @Route("/trips", name="my_trips")
+     */
+    public function myTripsAction(TripRepository $tripRepository, ReservationRepository $reservationRepository)
+    {
+        $user = $this->getUser();
+        $trips = $tripRepository->findByUser($user);
+        $reservations = $reservationRepository->findByUserJoinedTrip($user);
+
+        return $this->render(
+            'trips/index.html.twig',
+            [
+                'trips' => $trips,
+                'reservations' => $reservations
+            ]
+        );
+    }
     protected function processForm(Request $request, Trip $trip = null)
     {
         $form = $this->createForm(TripType::class, $trip);
         $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid())  {
             $trip = $form->getData();
             $user = $this->getUser();
             $trip->setUser($user);
@@ -64,7 +101,7 @@ class TripController extends Controller
             $entityManager->persist($trip);
             $entityManager->flush();
 
-            return $this->redirectToRoute('my_trips');
+            return $this->redirectToRoute('trip_my_trips');
         }
 
         return  $this->render(
@@ -74,35 +111,14 @@ class TripController extends Controller
             ]
         );
     }
-
-    /**
-     * @Route("/trip/delete/{id}", name="delete_trip")
-     */
-    public function deleteAction($id)
+    protected function getReservationForm(Request $request, Trip $trip)
     {
-
-        $entityManager = $this->getDoctrine()->getManager();
-        $user = $this->getUser()->getId();
-        $owner = $entityManager->find(Trip::class, $id)->getUser()->getId();
-
-        if ($user == $owner) {
-            $entityManager->remove($entityManager->find(Trip::class, $id));
-            $entityManager->flush();
-        }
-
-        return $this->redirect($this->generateUrl('my_trips'));
-    }
-    /**
-     * @Route("/trips", name="my_trips")
-     */
-    public function myTripsAction(TripRepository $tripRepository, UserRepository $userRepository)
-    {
-        $user = $this->getUser()->getId();
-        $trips = $tripRepository->findByUser($user);
-        return $this->render(
-            'trips/index.html.twig',
+        return $this->createForm(
+            ReservationType::class,
+            null,
             [
-                'trips' => $trips
+                'method' => 'POST',
+                'action' => $this->generateUrl('reservation_add', ['id'=>$trip->getId()])
             ]
         );
     }

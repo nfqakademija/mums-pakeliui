@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\User;
+use App\Entity\Reservation;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\TripRepository")
@@ -12,6 +13,7 @@ class Trip
 {
     /**
      * @ORM\Id()
+     * @ORM\OneToMany(targetEntity="Reservation", mappedBy="trip")
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
@@ -53,7 +55,7 @@ class Trip
     private $pets;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="text", nullable=true)
      */
     private $information;
     /**

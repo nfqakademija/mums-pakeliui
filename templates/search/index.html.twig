@@ -88,10 +88,10 @@
                         <div class="departTime">{{ trip.departTime|date("Y-m-d H:i") }}</div>
                     </div>
                     <div class="col-2 adw-col">
-                        <a class="btn btn-outline-dark" href = "{{ path('show_trip', {'id': trip.id}) }}">Peržiūrėti</a>
+                        <a class="btn btn-outline-dark" href = "{{ path('trip_show', {'id': trip.id}) }}">Peržiūrėti</a>
                         {% if (is_granted("IS_AUTHENTICATED_REMEMBERED") and (trip.User==app.user.username)) %}
                             <div class="editAdw">
-                                <a href="{{ path('edit', {'id': trip.id}) }}" title="Redaguoti" class="btn btn-outline-dark" alt="Redaguoti"><i class="fas fa-edit"></i></a>
+                                <a href="{{ path('trip_edit', {'id': trip.id}) }}" title="Redaguoti" class="btn btn-outline-dark" alt="Redaguoti"><i class="fas fa-edit"></i></a>
                             </div>
                         {% endif %}
                     </div>

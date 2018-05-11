@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Form\TripSearchType;
 use App\Repository\TripRepository;
-use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -25,17 +24,17 @@ class HomeController extends Controller
             ]
         );
     }
+
     /**
      * @Route("/search", name="search")
      */
-    public function searchAction(Request $request, TripRepository $tripRepository, UserRepository $userRepository)
+    public function searchAction(Request $request, TripRepository $tripRepository)
     {
         $form = $this->getSearchForm();
         $form->handleRequest($request);
 
         if ($form->isValid()) {
             $trips = $tripRepository->findBySomeField($form->getData());
-            //die(1);
             return $this->render(
                 'search/index.html.twig',
                 [

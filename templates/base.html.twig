@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>{% block title %}{{ "Mums pakeliui!" }}{% endblock %}</title>
     {% block stylesheets %}
-        <link href="https://fonts.googleapis.com/css?family=Lato:400,700&amp;subset=latin-ext" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
         <link rel="stylesheet" href="{{ asset('build/css/app.css') }}">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
@@ -26,7 +25,7 @@
                     <a href="{{ path('home') }}"><div class="logo"><img src="../images/logo-yellow.png" class="logo-img">Mums pakeliui!</div></a>
                 </div>
                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                    <div class="col-1"><a href = "{{ path('add_edit_trip') }}" class="btn btn-yellow" title="Kurti skelbimą"><i class="fas fa-plus colorYellow"></i></a></div>
+                    <div class="col-1"><a href = "{{ path('trip_add') }}" class="btn btn-yellow" title="Kurti skelbimą"><i class="fas fa-plus colorYellow"></i></a></div>
                     <div class="col-3 text-right">
                         <div class="userLogin-menu">
                             <button class="btn btn-link userLogin-btn">
@@ -34,7 +33,7 @@
                                 <i class="fas fa-sort-down colorYellow"></i>
                             </button>
                             <ul class="userLogin-submenu">
-                                <li><a href="{{ path('my_trips') }}">Mano kelionės</a></li>
+                                <li><a href="{{ path('trip_my_trips') }}">Mano kelionės</a></li>
                                 <li><a href="{{ path('fos_user_profile_show') }}">Mano profilis</a></li>
                                 <li><a href="{{ path('fos_user_profile_edit') }}">Redaguoti profilį</a></li>
                                 <li><a href="{{ path('fos_user_change_password') }}">Keisti slaptažodį</a></li>
@@ -94,22 +93,13 @@
     <script src="{{ asset('build/js/app.js') }}"></script>
     <script>
         function initLib(){
-            var input = document.getElementById('trip_search_departFrom', {
-                componentRestrictions: { country: 'lt' }
-            });
+            var input = document.getElementById('trip_search_departFrom');
             var autocomplete = new google.maps.places.Autocomplete(input);
-            var input2 = document.getElementById('trip_search_destination', {
-                componentRestrictions: { country: 'lt' }
-            });
+            var input2 = document.getElementById('trip_search_destination');
             var autocomplete2 = new google.maps.places.Autocomplete(input2);
-
-            var input3 = document.getElementById('trip_departFrom', {
-                componentRestrictions: { country: 'lt' }
-            });
+            var input3 = document.getElementById('trip_departFrom');
             var autocomplete3 = new google.maps.places.Autocomplete(input3);
-            var input4 = document.getElementById('trip_destination', {
-                componentRestrictions: { country: 'lt' }
-            });
+            var input4 = document.getElementById('trip_destination');
             var autocomplete4 = new google.maps.places.Autocomplete(input4);
 
         }
