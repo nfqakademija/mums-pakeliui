@@ -93,7 +93,7 @@ class TripController extends Controller
     {
         $form = $this->createForm(TripType::class, $trip);
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid())  {
+        if ($form->isSubmitted() && $form->isValid()) {
             $trip = $form->getData();
             $user = $this->getUser();
             $trip->setUser($user);

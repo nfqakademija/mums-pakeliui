@@ -27,7 +27,7 @@ class ReservationController extends Controller
         $user = $this->getUser();
         $form = $this->createForm(ReservationType::class, $reservation);
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid())  {
+        if ($form->isSubmitted() && $form->isValid()) {
             $reservation = new Reservation();
             $reservation ->setSeats($form["seats"]->getData()) ;
             $reservation->setTrip($trip);
@@ -51,11 +51,10 @@ class ReservationController extends Controller
         $owner = $entityManager->find(Trip::class, $trip->getId())->getUser();
 
         if ($user == $owner && $user->getId() == $owner->getId()) {
-           $reservation->setStatus(2);
-           $entityManager->flush();
+            $reservation->setStatus(2);
+            $entityManager->flush();
         }
 
         return $this->redirect($this->generateUrl('trip_my_trips'));
     }
-
 }

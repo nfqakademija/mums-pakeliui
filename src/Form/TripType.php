@@ -75,9 +75,8 @@ class TripType extends AbstractType
             )
 
         ->add(
-                'phone',
-                TelType::class,
-                [
+            'phone',
+            TelType::class, [
                     'label'=> 'Tel. nr.',
                     'constraints' => [
                         new NotBlank(['message' => 'Trūksta telefono numerio.']),
@@ -85,7 +84,7 @@ class TripType extends AbstractType
                                     'message' => 'Neteisingai įvestas telefono numeris.'
                         ])
                     ]]
-            )
+        )
 
             ->add(
                 'seats',
