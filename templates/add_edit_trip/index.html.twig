@@ -3,8 +3,7 @@
 {% block content %}
     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
         <div class="row">
-            <div class="col-3"></div>
-            <div class="col-6 search-form">
+            <div class="col-sm-12 col-md-9 mx-md-auto search-form">
                 <div class="row">
                     <div class="col form-title">
                         Skelbimas
@@ -12,66 +11,68 @@
                 </div>
                 {{ form_start(our_form) }}
                 <div class="row">
-                    <div class="col-1"></div>
-                    <div class="col-5 col-inline-padding-left">
+                    <div class="col-6 col-inline-padding-left">
                         {{ form_row(our_form.travelerType, {attr: {class: ''}}) }}
                     </div>
                     <div class="col-6 col-inline-padding-left">
                         {{ form_row(our_form.smoke, {attr: {class: ''}}) }}
                         {{ form_row(our_form.pets, {attr: {class: ''}}) }}
                     </div>
-                    <div class="clearBoth"></div>
                 </div>
                 <div class="row mb-3">
-                    <div class="col-6 col-inline-padding-left itemTitle">
+                    <div class="col-sm-12 col-md-6 col-inline-padding-left itemTitle">
                         {{ form_label(our_form.seats) }}
                     </div>
-                    <div class="col-6 col-inline-padding-right">
+                    <div class="col-sm-12 col-md-6 col-inline-padding-right">
                         {{ form_widget(our_form.seats) }}
                     </div>
-                    <div class="clearBoth"></div>
                 </div>
                 <div class="row mb-3">
-                    <div class="col-6 col-inline-padding-left itemTitle">
+                    <div class="col-sm-12 col-md-6 col-inline-padding-left itemTitle">
                         {{ form_label(our_form.phone) }}
                     </div>
-                    <div class="col-6 col-inline-padding-right">
+                    <div class="col-sm-12 col-md-6 col-inline-padding-right">
                         {{ form_widget(our_form.phone) }}
                     </div>
-                    <div class="clearBoth"></div>
                 </div>
                 <div class="row mb-3">
-                    <div class="col-6 col-inline-padding-left itemTitle">
+                    <div class="col-sm-12 col-md-6 col-inline-padding-left itemTitle">
                         {{ form_label(our_form.departFrom) }}
                     </div>
-                    <div class="col-6 col-inline-padding-right">
+                    <div class="col-sm-12 col-md-6 col-inline-padding-right">
                         {{ form_widget(our_form.departFrom, {attr: {'placeholder': 'Įrašykite išvykimo adresą'}}) }}
                     </div>
-                    <div class="clearBoth"></div>
                 </div>
                 <div class="row mb-3">
-                    <div class="col-6 col-inline-padding-left itemTitle">
+                    <div class="col-sm-12 col-md-6 col-inline-padding-left itemTitle">
                         {{ form_label(our_form.destination) }}
                     </div>
-                    <div class="col-6 col-inline-padding-right">
+                    <div class="col-sm-12 col-md-6 col-inline-padding-right">
                         {{ form_widget(our_form.destination, {attr: {class: '','placeholder': 'Įrašykite atvykimo adresą'}}) }}
                     </div>
-                    <div class="clearBoth"></div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-sm-12 col-md-6 col-inline-padding-left itemTitle">
+                        {{ form_label(our_form.departTime) }}
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-inline-padding-right">
+                        {{ form_widget(our_form.departTime) }}
+                    </div>
                 </div>
                 <div class="row">
-<div class="col-3"></div>
-                    <div class="col-4">{{ form_row(our_form.departTime, {attr: {class: 'form-group'} }) }}</div>
-                    <div class="col-3"></div>
+                    <div class="col itemTitle">
+                        {{ form_label(our_form.information) }}
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col">
-                    {{ form_row(our_form.information, {attr: {class: ''}}) }}
+                        {{ form_widget(our_form.information) }}
                     </div>
                 </div>
                 <div class="row">
-                <div class="col btn-row">
-                    {{ form_widget(our_form.save, {attr: {class: 'btn-yellow col-4'}}) }}
-                </div>
+                    <div class="col btn-row">
+                        {{ form_widget(our_form.save, {attr: {class: 'btn-yellow'}}) }}
+                    </div>
                 </div>
                 {{ form_end(our_form) }}
             </div>

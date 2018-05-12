@@ -15,13 +15,12 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-6 col-inline-padding-left">
+                <div class="col-sm-12 col-md-6 col-inline-padding-left">
                     {{ form_row(form.departFrom, {attr: {class: '','placeholder': 'Įrašykite išvykimo adresą'}}) }}
                 </div>
-                <div class="col-6 col-inline-padding-right">
+                <div class="col-sm-12 col-md-6 col-inline-padding-right">
                     {{ form_row(form.destination, {attr: {class: '','placeholder': 'Įrašykite atvykimo adresą'}}) }}
                 </div>
-                <div class="clearBoth"></div>
             </div>
             <div class="row">
                 <div class="col">
@@ -34,13 +33,12 @@
                             <div class="col-6 col-inline-padding-right">
                                 {{ form_row(form.departTime, {attr: {class: ''} }) }}
                             </div>
-                            <div class="clearBoth"></div>
                         </div>
                         <div class="row">
-                            <div class="col-2 col-inline-padding-left">
+                            <div class="col-xs-6 col-sm-6 col-md-3 col-inline-padding-left">
                             {{ form_row(form.smoke, {attr: {class: 'form-check form-check-inline'}}) }}
                             </div>
-                            <div class="col-2 col-inline-padding-right">
+                            <div class="col-xs-6 col-sm-6 col-md-3 col-inline-padding-right">
                             {{ form_row(form.pets, {attr: {class: 'form-check form-check-inline'}}) }}
                             </div>
                         </div>
@@ -49,7 +47,7 @@
             </div>
             <div class="row">
                 <div class="col btn-row">
-                    {{ form_widget(form.filter, {attr: {class: 'btn-yellow col-4'}}) }}
+                    {{ form_widget(form.filter, {attr: {class: 'btn-yellow'}}) }}
                 </div>
             </div>
             {{ form_end(form) }}

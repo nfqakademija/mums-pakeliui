@@ -11,8 +11,11 @@ body {
 a { color: #9ba8cd; }
 a:hover {
     text-decoration: none;
-    color: #5173a2;
 }
+.footer-look a:hover{
+  color: #5173a2;
+}
+
 .btn-yellow{
     border:1px solid #f8ed32;
     color: #eedc10;
@@ -44,27 +47,24 @@ a:hover {
     min-height: 100vh;
 }
 .navbar{
-    //line-height: 81px;
-    //height: 81px;
     background-color: rgba(88, 89, 91, 0.9);
     border-bottom:2px solid #f8ed32;
     -webkit-transition: all 0.4s ease;
     transition: all 0.4s ease;
-    //position: fixed;
-    //width: 100%;
-    //z-index: 99999;
 }
 .navbar-brand:hover, .navbar-brand:focus {
   text-decoration: none;
   color:#f8ed32;
 }
-//.navbar-brand{
-//  float: left;
-//}
-//.navbar-collapse.collapse.show {
-//  display: block;
-//  background-color: rgba(88, 89, 91, 0.9);
-//}
+
+.mobileMenu-item{
+  color: #f8ed32;
+  text-decoration: none;
+  margin: 2px 0 2px 0;
+}
+.mobileMenu-item:hover{
+  color:#ffffff;
+}
 .dropdown-menu {
   background-color: rgba(88, 89, 91, 0.9);
   border: 1px solid #f8ed32;
@@ -125,7 +125,6 @@ a:hover {
     -webkit-border-radius: 15px 15px 15px 15px;
     -moz-border-radius: 15px 15px 15px 15px;
     padding: 15px 15px 15px 15px;
-    width: 25%;
     font-weight: bold;
     color: rgba(88, 89, 91, 1);
 }
