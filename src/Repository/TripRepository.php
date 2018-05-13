@@ -105,13 +105,12 @@ class TripRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    public function  createTripQueryBuilder($value)
+    public function createTripQueryBuilder($value)
     {
-       return $this->createQueryBuilder('t')
+        return $this->createQueryBuilder('t')
                    ->Where('t.departTime >= :today')
                    ->andWhere('t.user = :user')
                    ->setParameter('today', new \DateTime())
                    ->setParameter('user', $value);
-
     }
 }

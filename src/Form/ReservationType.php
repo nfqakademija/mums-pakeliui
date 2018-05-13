@@ -33,7 +33,7 @@ class ReservationType extends AbstractType
             ->add(
                 'save',
                 SubmitType::class,
-                     ['label' => 'Rezervuoti']
+                ['label' => 'Rezervuoti']
             );
     }
 

@@ -36,7 +36,6 @@ class ReservationRepository extends ServiceEntityRepository
         return $reservations
            ->getQuery()
            ->getResult();
-
     }
 
 

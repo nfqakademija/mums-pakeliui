@@ -15,10 +15,11 @@ class OfferType extends AbstractType
     {
         $builder
             ->setMethod('POST')
-            ->add('offer',
-               IntegerType::class,
-                    ['required' => true, 'label'=> 'Siūlomos kelionės id']
-           )
+            ->add(
+                'offer',
+                IntegerType::class,
+                ['required' => true, 'label'=> 'Siūlomos kelionės id']
+            )
             ->add(
                 'save',
                 SubmitType::class,
