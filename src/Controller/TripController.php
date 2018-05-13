@@ -32,10 +32,12 @@ class TripController extends Controller
                 'No trip found '
             );
         }
-        return $this->render('show_trip/index.html.twig',
+        return $this->render(
+            'show_trip/index.html.twig',
             [
             'trip' => $show, 'form' => $form->createView(), 'form_offer' => $form_offer->createView()
-            ]);
+            ]
+        );
     }
 
     /**
