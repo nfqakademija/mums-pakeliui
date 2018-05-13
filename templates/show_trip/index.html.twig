@@ -31,26 +31,31 @@
                     <div class="row">
                         <div class="col-2"><i class="fas fa-phone"></i></div>
                         <div class="col-10">{{ trip.phone }}</div>
-                        {% if trip.travelerType == 1 %}
-
-                        {% else %}
-                            {{ form_start(form) }}
-                            <div class="col-12" style="padding:0; margin-top:10px">
-                                <div class="col-5 col-inline-padding-left" style="padding:0; margin:0">
-                                    {{ form_row(form.seats, {attr: {class: '', max:  trip.seats }}) }}
-                                </div>
-                                <div class="col-6 col-inline-padding-left" style="padding-top:25px">
-                                    {{ form_widget(form.save, {attr: {class: 'btn-yellow'}}) }}
-                                </div>
-                            </div>
-                            {{ form_end(form) }}
+                        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                            {% if trip.travelerType == 1 %}
+                                 {{ form_start(form_offer) }}
+                                 <div class="col-12" style="padding-top:20px; margin:auto">
+                                    {{ form_row(form_offer.offer, {attr: {class: '', min:  1 }}) }}
+                                 </div>
+                                 <div class="col-11" style="padding: 0px 0 10px 0; margin:auto">
+                                    {{ form_widget(form_offer.save, {attr: {class: 'btn-yellow'}}) }}
+                                 </div>
+                                 {{ form_end(form_offer) }}
+                            {% else %}
+                                {{ form_start(form) }}
+                                 <div class="col-12" style="padding:0; margin-top:10px">
+                                     <div class="col-5 col-inline-padding-left" style="padding:0; margin:0">
+                                        {{ form_row(form.seats, {attr: {class: '', max:  trip.seats }}) }}
+                                     </div>
+                                     <div class="col-6 col-inline-padding-left" style="padding-top:25px">
+                                        {{ form_widget(form.save, {attr: {class: 'btn-yellow'}}) }}
+                                     </div>
+                                 </div>
+                                 {{ form_end(form) }}
+                            {% endif %}
                         {% endif %}
                     </div>
-                    <div class="row">
-                        <div class="col btn-row">
-                            <button type="submit" id="trip_search_filter" name="rezervuoti" class="btn btn-yellow">Rezervuoti</button>
-                        </div>
-                    </div>
+
                 </div>
                 <div class="col-5" style="text-align:left">
                     <div class="row">

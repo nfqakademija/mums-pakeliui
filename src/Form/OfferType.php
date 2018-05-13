@@ -9,31 +9,21 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ReservationType extends AbstractType
+class OfferType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-
         $builder
             ->setMethod('POST')
             ->add(
-                'seats',
+                'offer',
                 IntegerType::class,
-                [
-                    'required' => false,
-                    'empty_data' => '1',
-                    'attr'          => [
-                        '_type'         => "number",
-                        'min'           => 1,
-                        'step'          => 1],
-                    'label'=> 'Vietų skaičius'
-                ]
+                ['required' => true, 'label'=> 'Siūlomos kelionės id']
             )
-
             ->add(
                 'save',
                 SubmitType::class,
-                ['label' => 'Rezervuoti']
+                ['label' => 'Pasiūlyti rezervuoti']
             );
     }
 

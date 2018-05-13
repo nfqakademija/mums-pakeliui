@@ -29,6 +29,8 @@ class TripRepository extends ServiceEntityRepository
     {
         $trips = $this->createQueryBuilder('t')
             ->leftJoin("App\Entity\User", "u", "WITH", "u.id = t.user")
+            ->Where('t.departTime >= :today')
+            ->setParameter('today', new \DateTime())
             ->orderBy('t.departTime', 'desc');
 
         if (isset($value['departFrom'])) {
@@ -101,5 +103,14 @@ class TripRepository extends ServiceEntityRepository
         return $trips
             ->getQuery()
             ->getResult();
+    }
+
+    public function createTripQueryBuilder($value)
+    {
+        return $this->createQueryBuilder('t')
+                   ->Where('t.departTime >= :today')
+                   ->andWhere('t.user = :user')
+                   ->setParameter('today', new \DateTime())
+                   ->setParameter('user', $value);
     }
 }

@@ -4,11 +4,17 @@
 
 {% block content %}
 {% if (is_granted("IS_AUTHENTICATED_REMEMBERED")) %}
-    <div class="row mt-3">
+    <div class="row mt-3 search-form adw-list-row">
         <div class="form-title">Kelionių sąrašas</div>
-        <div class="col-12">
+        <div class="col-12 row" style="background-color: rgba(255, 255, 255, 0.7); padding:15px 0; margin: 0 5px; border-bottom:1px solid #67676b;">
+                <div class="col-1 adw-col">Kelionės ID</div>
+                <div class="col-5">Maršrutas</div>
+                <div class="col-2">Data ir laikas</div>
+                <div class="col-2">Papildoma informacija</div>
+                <div class="col-2 adw-col"></div>
+        </div>
             {% for trip in trips %}
-                <div class="row adw-list-row">
+                <div class=" col-12 row" style="background-color: rgba(255, 255, 255, 0.7); padding:15px 0; margin: 0 5px; border-bottom:1px solid #67676b;">
                     <div class="col-1 adw-col"># {{ trip.id }}
                         {% if trip.travelerType == 0 %}
                             <i class="fa fa-car" style="font-size:30px"></i>
@@ -35,24 +41,14 @@
                     <div class="col-2 adw-col">
                         <a class="btn btn-outline-dark" href = "{{ path('trip_show', {'id': trip.id}) }}"><i class="fas fa-eye"></i></a>
                         <a href="{{ path('trip_edit', {'id': trip.id}) }}" title="Redaguoti" class="btn btn-outline-dark" alt="Redaguoti"><i class="fas fa-edit"></i></a>
-                        <a href="{{ path('trip_delete', {'id': trip.id}) }}" title="Redaguoti" class="btn btn-outline-dark" alt="Redaguoti"><i class="fas fa-trash-alt"></i></a>
+                        <a href="{{ path('trip_delete', {'id': trip.id}) }}" title="Ištrinti" class="btn btn-outline-dark" alt="Ištrinti"><i class="fas fa-trash-alt"></i></a>
                     </div>
                 </div>
             {% endfor %}
-
-        </div>
-    </div>
-
-    <div class="form-title">Rezervacijų sąrašas</div>
-    <div class="col-12" style="padding:0">
-
-        {% for reservation in reservations if reservation is defined %}
-            {% if reservation.type %}
-                {% set invitation %}
-
-                {% endset %}
-            {% else %}
-                <div class="row adw-list-row">
+     {% if reservations %}
+          <div class="form-title">Su jumis nori važiuoti</div>
+              {% for reservation in reservations if reservation.type == NULL %}
+                  <div class="col-12 row" style="background-color: rgba(255, 255, 255, 0.7); padding:15px 0; margin: 0 5px; border-bottom:1px solid #67676b;">
                     <div class="col-1 adw-col"># {{ reservation.Trip.id }}
                     </div>
                     <div class="col-5 info">
@@ -63,27 +59,83 @@
                         {{ reservation.User}}<br>  Vietų skaičius: {{ reservation.seats }}<br>{{ reservation.User.email }}
                     </div>
                     <div class="col-2 info">
-                        <b>Statusas: </b>
+                        {{ reservation.date|date("Y-m-d") }}
+                    </div>
+                    <div class="col-1 adw-col">
                         {% if reservation.status ==  2 %}
                         Atmesta
                     {% elseif reservation.status ==  1 %}
                         Patvirtinta
                     {% else %}
-                        Nauja
-                        {% endif %}<br>
-                        {{ reservation.date|date("Y-m-d") }}
-                    </div>
-                    <div class="col-1 adw-col">
-                        <a href="{{ path('trip_edit', {'id': reservation.Trip.id}) }}" title="Patvirtinti" class="btn btn-outline-dark" alt="Patvirtinti"><i class="fas fa-handshake"></i></a>
+                        <a href="{{ path('reservation_confirmed', {'id': reservation.id}) }}" title="Patvirtinti" class="btn btn-outline-dark" alt="Patvirtinti"><i class="fas fa-handshake"></i></a>
                         <a href="{{ path('reservation_reject', {'id': reservation.id}) }}" title="Atmesti" class="btn btn-outline-dark" alt="Atmesti"><i class="fas fa-times"></i></a>
+                    {% endif %}<br>
                     </div>
                 </div>
-            {% endif %}
-        {% endfor %}
+              {% else %}
+                  <div class="col-12 row" style="background-color: rgba(255, 255, 255, 0.7); padding:15px 0; margin: 0 5px; border-bottom:1px solid #67676b;">
+                      Nėra rezervacijų!
+                  </div>
+              {% endfor %}
+          <div class="form-title">Pasiūlymų rezervuoti sąrašas</div>
+                 {% for reservation in reservations if reservation.type %}
+                     <div class="col-12 row" style="background-color: rgba(255, 255, 255, 0.7); padding:15px 0; margin: 0 5px; border-bottom:1px solid #67676b;">
+                        <div class="col-1 adw-col"># {{ reservation.Trip.id }}</div>
+                        <div class="col-5 info">
+                            <div class="destination">{{ reservation.Trip.departFrom }} <i class="fas fa-long-arrow-alt-right colorYellow"></i> {{ reservation.Trip.destination }}</div>
+                            <div class="departTime">{{ reservation.Trip.departTime|date("Y-m-d H:i") }}</div>
+                        </div>
+                        <div class="col-3 info">{{ reservation.User}}<br>{{ reservation.User.email }}</div>
+                        <div class="col-2 info">{{ reservation.date|date("Y-m-d") }}</div>
+                        <div class="col-1 adw-col">
+                             {% if reservation.status ==  2 %}
+                            <b>Statusas: </b><span style="color:red">Atmesta</span>
+                             {% elseif reservation.status ==  1 %}
+                                 <b>Statusas: </b><span style="color:green">Patvirtinta</span>
+                             {% else %}
+                                 <a href="{{ path('trip_show', {'id': reservation.offer}) }}" title="Peržiūrėti pasiūlytą kelionę" class="btn btn-outline-dark" alt="Peržiūrėti pasiūlytą kelionę"><i class="fas fa-eye"></i></a>
+                                 <a href="{{ path('reservation_reject', {'id': reservation.id}) }}" title="Atmesti" class="btn btn-outline-dark" alt="Atmesti"><i class="fas fa-times"></i></a>
+                             {% endif %}<br>
+                        </div>
+                     </div>
+                 {% else %}
+                     <div class="col-12 row" style="background-color: rgba(255, 255, 255, 0.7); padding:15px 0; margin: 0 5px; border-bottom:1px solid #67676b;">
+                         Nėra pasiūlymų!
+                     </div>
+
+                 {% endfor %}
+
+     {% endif %}
+    <div class="form-title">Jus norite važiuoti kartu</div>
+    {% for yourReservation in yourReservations  if yourReservation is defined %}
+
+        <div class="row col-12" style="background-color: rgba(255, 255, 255, 0.7); padding:15px 0; margin: 0 5px; border-bottom:1px solid #67676b;">
+            <div class="col-5 info">
+                <div class="destination">{{ yourReservation.Trip.departFrom }} <i class="fas fa-long-arrow-alt-right colorYellow"></i> {{ yourReservation.Trip.destination }}</div>
+                <div class="departTime">{{ yourReservation.Trip.departTime|date("Y-m-d H:i") }}</div>
+            </div>
+            <div class="col-2 info">
+                Vietų skaičius: {{ yourReservation.seats }}
+            </div>
+            <div class="col-3 info">
+                {{ yourReservation.Trip.user }}<br>
+                {{ yourReservation.Trip.phone }}<br>
+                {{ yourReservation.Trip.User.email }}
+            </div>
+            <div class="col-1 adw-col">
+                {% if yourReservation.status ==  2 %}
+                <b>Statusas: </b>
+                <span style="color:red">Atmesta</span>
+            {% elseif yourReservation.status ==  1 %}
+                <b>Statusas: </b>
+                <span style="color:green">Patvirtinta</span>
+            {% else %}
+                <b>Statusas: </b>
+                  Nepatvirtinta
+             {% endif %}<br>
+            </div>
+        </div>
+    {% endfor %}
     </div>
-    <div class="form-title">Pasiūlymų rezervuoti sąrašas</div>
-    {% if invitation is defined %}
-        {{ invitation }}
-    {% endif %}
 {% endif %}
 {% endblock %}
