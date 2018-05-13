@@ -15,17 +15,17 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('images/favicon.ico')}}">
     {% block canonical_meta %}{% endblock %}
 </head>
-
+{#src="../images/logo-yellow.png"#}
 <body class="page-look">
 {% block header %}
     <nav class="navbar fixed-top navbar-expand-md">
         <div class="container">
             <a class="navbar-brand logo d-md-none" href="{{ path('home') }}">
-                <img src="../images/logo-yellow.png" class="logo-img">
+                <img class="logo-img" src="../images/logo-yellow.png">
                 Mums pakeliui!
             </a>
             <a class="navbar-brand logo logo-md d-none d-md-block" href="{{ path('home') }}">
-                <img src="../images/logo-yellow.png" class="logo-img logo-img-md">
+                <img class="logo-img logo-img-md" src="../images/logo-yellow.png">
                 Mums pakeliui!
             </a>
             <button class="navbar-toggler btn-yellow" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
