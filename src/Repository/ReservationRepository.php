@@ -18,23 +18,43 @@ class ReservationRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Reservation::class);
     }
-    /**
-     * @return Reservation[] Returns an array of Reservation objects
-     */
-    public function findByUserJoinedTrip($value)
+
+    public function findByOwnerJoinedTrip($value)
     {
         $reservations = $this->createQueryBuilder('r')
                              ->orderBy('r.trip', 'ASC')
                              ->leftJoin("App\Entity\User", "u", "WITH", "u.id = r.user")
                              ->leftJoin("App\Entity\Trip", "t", "WITH", "t.id = r.trip")
-                             ->Where('t.departTime >= :today')
+                             ->andWhere('r.status != :status')
+                             ->orWhere('r.status is NULL')
+                             ->andWhere('t.departTime >= :today')
                              ->andWhere('t.user = :user')
                              ->setParameter('today', new \DateTime())
                              ->setParameter('user', $value)
+                             ->setParameter('status', 2)
                              ;
-
         return $reservations
            ->getQuery()
            ->getResult();
+
+    }
+
+
+    public function findByUserJoinedTrip($value)
+    {
+        $yourReservations = $this->createQueryBuilder('r')
+            ->orderBy('r.trip', 'ASC')
+            ->leftJoin("App\Entity\Trip", "t", "WITH", "t.id = r.trip")
+            ->Where('t.departTime >= :today')
+            ->andWhere('r.user = :user')
+            ->andWhere('r.type is NULL')
+            ->setParameter('today', new \DateTime())
+            ->setParameter('user', $value)
+            ->orderBy('t.departTime', 'ASC')
+        ;
+
+        return $yourReservations
+            ->getQuery()
+            ->getResult();
     }
 }

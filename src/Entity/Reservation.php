@@ -40,7 +40,7 @@ class Reservation
     private $status;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $seats;
 
@@ -48,6 +48,11 @@ class Reservation
      * @ORM\Column(type="boolean", nullable=true)
      */
     private $type;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $offer;
 
     /**
      * @ORM\Column(type="datetime")
@@ -112,6 +117,18 @@ class Reservation
     public function setSeats(int $seats): self
     {
         $this->seats = $seats;
+
+        return $this;
+    }
+
+    public function getOffer(): ?int
+    {
+        return $this->offer;
+    }
+
+    public function setOffer(int $offer): self
+    {
+        $this->offer = $offer;
 
         return $this;
     }

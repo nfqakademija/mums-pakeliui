@@ -45,7 +45,7 @@
                                     <i class="fas fa-user"></i> {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}
                                 </button>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                                    <a class="dropdown-item" href="{{ path('trip_my_trips') }}">Mano kelionės</a>
+                                    <a class="dropdown-item" href="{{ path('my_trips') }}">Mano kelionės</a>
                                     <a class="dropdown-item" href="{{ path('fos_user_profile_show') }}">Mano profilis</a>
                                     <a class="dropdown-item" href="{{ path('fos_user_profile_edit') }}">Redaguoti profilį</a>
                                     <a class="dropdown-item" href="{{ path('fos_user_change_password') }}">Keisti slaptažodį</a>

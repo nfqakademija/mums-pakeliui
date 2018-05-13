@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Reservation;
 use App\Entity\Trip;
+use App\Form\OfferType;
 use App\Form\ReservationType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,6 +26,7 @@ class ReservationController extends Controller
         Reservation $reservation = null
     ) {
         $user = $this->getUser();
+
         $form = $this->createForm(ReservationType::class, $reservation);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -35,7 +37,21 @@ class ReservationController extends Controller
             $entityManager->persist($reservation);
             $entityManager->flush();
 
-            return $this->redirectToRoute('trip_my_trips');
+            return $this->redirectToRoute('my_trips');
+        }
+
+        $form = $this->createForm(OfferType::class, $reservation);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $reservation = new Reservation();
+            $reservation ->setOffer($form["offer"]->getData()) ;
+            $reservation ->setType(1);
+            $reservation->setTrip($trip);
+            $reservation->setUser($user);
+            $entityManager->persist($reservation);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('my_trips');
         }
 
         return $this->redirect($this->generateUrl('search'));
@@ -55,6 +71,23 @@ class ReservationController extends Controller
             $entityManager->flush();
         }
 
-        return $this->redirect($this->generateUrl('trip_my_trips'));
+        return $this->redirect($this->generateUrl('my_trips'));
+    }
+
+    /**
+     * @Route("/confirmed/{id}", name="confirmed")
+     */
+    public function confirmedAction(Reservation $reservation, EntityManagerInterface $entityManager)
+    {
+        $user = $this->getUser();
+        $trip = $reservation->getTrip();
+        $owner = $entityManager->find(Trip::class, $trip->getId())->getUser();
+
+        if ($user == $owner && $user->getId() == $owner->getId()) {
+            $reservation->setStatus(1);
+            $entityManager->flush();
+        }
+
+        return $this->redirect($this->generateUrl('my_trips'));
     }
 }

@@ -33,7 +33,7 @@ class HomeController extends Controller
         $form = $this->getSearchForm();
         $form->handleRequest($request);
 
-        if ($form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $trips = $tripRepository->findBySomeField($form->getData());
             return $this->render(
                 'search/index.html.twig',
