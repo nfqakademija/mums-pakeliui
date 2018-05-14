@@ -67,11 +67,6 @@
                     <div class="d-block d-md-none mb-2 separatingLine">
                         <div class="row">
                             <div class="col">
-                                Kelionės ID: {{ trip.id }}
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
                                 {% if trip.travelerType == 0 %}
                                     <i class="fa fa-car"></i>
                                 {% endif %}
@@ -82,8 +77,14 @@
                                     <i class="fas fa-smoking"></i>
                                 {% endif %}
                                 {% if trip.pets == 1 %}
-                                    &nbsp;<i class="fas fa-paw"></i>
+                                &nbsp;<i class="fas fa-paw"></i>
                                 {% endif %}
+                                <span style="font-size: smaller">Kelionės ID: {{ trip.id }}</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+
                             </div>
                         </div>
                         <div class="row">
@@ -116,11 +117,6 @@
                         <div class="d-block d-lg-none mb-2 separatingLine">
                             <div class="row">
                                 <div class="col">
-                                    Kelionės ID: {{ reservation.Trip.id }}
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col">
                                     {{ reservation.Trip.departFrom }} <i class="fas fa-long-arrow-alt-right"></i> {{ reservation.Trip.destination }}
                                 </div>
                             </div>
@@ -129,14 +125,19 @@
                                     {{ reservation.Trip.departTime|date("Y-m-d H:i") }}
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row mt-1">
                                 <div class="col">
-                                    {{ reservation.User}}<br>  Vietų skaičius: {{ reservation.seats }}<br>{{ reservation.User.email }}
+                                    <i class="fas fa-user"></i> {{ reservation.User}}<br>Vietų skaičius: {{ reservation.seats }}<br><i class="far fa-envelope"></i> {{ reservation.User.email }}
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col">
-                                    Rezervavo: {{ reservation.date|date("Y-m-d") }}
+                                <div class="col" style="font-size: smaller">
+                                    Rezervuota: {{ reservation.date|date("Y-m-d") }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col" style="font-size: smaller">
+                                    Kelionės ID: {{ reservation.Trip.id }}
                                 </div>
                             </div>
                             <div class="row">
@@ -179,16 +180,19 @@
                                 </div>
                             </div>
                         </div>
-                    {% else %}
-                        <div class="col-12 row ml-1" style="font-size: larger">
-                            Kol kas keleivių nėra.
-                        </div>
                     {% endfor %}
+                {% else %}
+                    <div class="col-12 row ml-1" style="font-size: larger">
+                        Kol kas keleivių nėra.
+                    </div>
+                    {% endif %}
+
 
                 <div class="row">
                     <div class="col form-title mt-3">Vairuotojų pasiūlymai
                     </div>
                 </div>
+                {% if reservations %}
                 {% for reservation in reservations if reservation.type %}
                     {#Desktop view.#}
                     <div class="d-none d-lg-block">
@@ -216,12 +220,7 @@
                     <div class="d-block d-lg-none mb-2 separatingLine">
                         <div class="row">
                             <div class="col">
-                                Kelionės ID: {{ reservation.Trip.id }}
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                {{ reservation.Trip.departFrom }} <i class="fas fa-long-arrow-alt-right colorYellow"></i> {{ reservation.Trip.destination }}
+                                {{ reservation.Trip.departFrom }} <i class="fas fa-long-arrow-alt-right"></i> {{ reservation.Trip.destination }}
                             </div>
                         </div>
                                 <div class="row">
@@ -229,21 +228,26 @@
                                 {{ reservation.Trip.departTime|date("Y-m-d H:i") }}
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row mt-1">
                             <div class="col">
-                                {{ reservation.User}}
+                                <i class="fas fa-user"></i> {{ reservation.User}}
                             </div>
                         </div>
                         <div class="row">
                             <div class="col">
-                                {{ reservation.User.email }}
+                                <i class="far fa-envelope"></i> {{ reservation.User.email }}
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col">
+                            <div class="col" style="font-size: smaller">
                                 Rezervuota: {{ reservation.date|date("Y-m-d") }}
                             </div>
                             </div>
+                        <div class="row">
+                            <div class="col" style="font-size: smaller">
+                                Kelionės ID: {{ reservation.Trip.id }}
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col">
                                 {% if reservation.status ==  2 %}
@@ -257,11 +261,11 @@
                             </div>
                         </div>
                         </div>
+                {% endfor %}
                 {% else %}
                     <div class="col-12 row ml-1" style="font-size: larger">
                         Vairuotojai dar nieko nepasiūlė.
                     </div>
-                {% endfor %}
                 {% endif %}
 
                 <div class="row">
@@ -302,27 +306,22 @@
                     <div class="d-block d-lg-none mb-2 separatingLine">
                         <div class="row">
                             <div class="col">
-                                {{ yourReservation.Trip.user }}
-                                </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                {{ yourReservation.Trip.phone }}
+                                <i class="fas fa-user"></i> {{ yourReservation.Trip.user }}
                             </div>
                         </div>
                         <div class="row">
                             <div class="col">
-                                {{ yourReservation.Trip.User.email }}
+                                <i class="fas fa-phone"></i> {{ yourReservation.Trip.phone }}
                             </div>
                         </div>
                         <div class="row">
                             <div class="col">
-                                Vietų skaičius: {{ yourReservation.seats }}
+                                <i class="far fa-envelope"></i> {{ yourReservation.Trip.User.email }}
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row mt-2">
                             <div class="col">
-                                {{ yourReservation.Trip.departFrom }} <i class="fas fa-long-arrow-alt-right colorYellow"></i> {{ yourReservation.Trip.destination }}
+                                {{ yourReservation.Trip.departFrom }} <i class="fas fa-long-arrow-alt-right"></i> {{ yourReservation.Trip.destination }}
                             </div>
                         </div>
                         <div class="row">
@@ -330,16 +329,21 @@
                                 {{ yourReservation.Trip.departTime|date("Y-m-d H:i") }}
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row mt-2">
+                            <div class="col">
+                                Vietų skaičius: {{ yourReservation.seats }}
+                            </div>
+                        </div>
+                        <div class="row mt-2">
                             <div class="col">
                                 {% if yourReservation.status ==  2 %}
-                                <b>Statusas: </b>
+                                <b>Būsena: </b>
                                 <span style="color:red">Atmesta</span>
                             {% elseif yourReservation.status ==  1 %}
-                                <b>Statusas: </b>
+                                <b>Būsena: </b>
                                 <span style="color:green">Patvirtinta</span>
                             {% else %}
-                                <b>Statusas: </b>
+                                <b>Būsena: </b>
                                 Nepatvirtinta
                                 {% endif %}<br>
                             </div>
