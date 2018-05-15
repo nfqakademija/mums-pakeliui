@@ -8,6 +8,9 @@ body {
     background-size: contain;
     position:relative;
 }
+.backgroundPicture{
+  background: url("/images/keliasbackground2.png") #eaedf4 no-repeat bottom right fixed;
+}
 a { color: #9ba8cd; }
 a:hover {
     text-decoration: none;
