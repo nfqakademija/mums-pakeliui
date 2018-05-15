@@ -38,6 +38,24 @@ class ReservationRepository extends ServiceEntityRepository
            ->getResult();
     }
 
+    public function findByOwnerTripJoinedTrip($value)
+    {
+        $reservations = $this->createQueryBuilder('r')
+            ->orderBy('r.trip', 'ASC')
+            ->leftJoin("App\Entity\User", "u", "WITH", "u.id = r.user")
+            ->leftJoin("App\Entity\Trip", "t", "WITH", "t.id = r.trip")
+            ->andWhere('r.status != :status')
+            ->orWhere('r.status is NULL')
+            ->andWhere('t.departTime >= :today')
+            ->andWhere('t.user = :user')
+            ->setParameter('today', new \DateTime())
+            ->setParameter('user', $value)
+            ->setParameter('status', 2)
+        ;
+        return $reservations
+            ->getQuery()
+            ->getResult();
+    }
 
     public function findByUserJoinedTrip($value)
     {
