@@ -40,6 +40,25 @@ a:hover {
     -webkit-box-shadow: inset 0 1px 0 0 #FFF6CE,inset 0 -1px 0 0 #E3C852,inset 0 0 0 1px #FCE88D;
     background-color: rgba(88, 89, 91, 0.9);
 }
+
+.btn-white{
+    border:1px solid #eeeeee;
+    color: #ffffff;
+    border-radius: 10px 10px 10px 10px;
+    -webkit-border-radius: 10px 10px 10px 10px;
+    -moz-border-radius: 10px 10px 10px 10px;
+    font-size: 24px;
+    background-color: rgba(88, 89, 91, 0.9);
+    box-shadow: inset 0 1px 0 0 #ffffff,inset 0 -1px 0 0 #ffffff,inset 0 0 0 1px #ffffff,0 2px 4px 0 #ffffff;
+    -moz-box-shadow: inset 0 1px 0 0 #ffffff,inset 0 -1px 0 0 #ffffff,inset 0 0 0 1px #ffffff,0 2px 4px 0 #ffffff;
+    -webkit-box-shadow: inset 0 1px 0 0 #ffffff,inset 0 -1px 0 0 #ffffff,inset 0 0 0 1px #ffffff,0 2px 4px 0 #ffffff;
+
+}
+.btn-white:hover, .btn-white:active{
+    border:1px solid #58595B;
+    color: #eeeeee;
+}
+
 .html-changeHeight {height: 100%}
 .page-look
 {
@@ -70,10 +89,10 @@ a:hover {
 }
 .dropdown-menu {
   background-color: rgba(88, 89, 91, 0.9);
-  border: 1px solid #f8ed32;
+  border: 1px solid #ffffff;
  }
 .dropdown-item {
-  color: #f8ed32;
+  color: #ffffff;
   line-height: 1.5em;
 }
 .logo{
@@ -249,7 +268,7 @@ a:hover {
 }
 
 .adw-list-row{
-    background-color: rgba(190, 191, 192, 0.5);
+   /* background-color: rgba(190, 191, 192, 0.5);*/
     border-bottom:1px solid #67676b;
     padding-top:15px;
     padding-bottom:15px;

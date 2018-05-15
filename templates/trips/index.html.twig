@@ -33,16 +33,20 @@
                                     <i class="fas fa-child" style="font-size:20px"></i>
                                 {% endif %}
                             </div>
-                            <div class="col-6 info">
+                            <div class="col-5 info">
                                 {{ trip.departFrom }} <i class="fas fa-long-arrow-alt-right colorYellow"></i> {{ trip.destination }}
                             </div>
                             <div class="col-2 info">
                                 {{ trip.departTime|date("Y-m-d H:i") }}
                             </div>
-                            <div class="col-3 adw-col">
+                            <div class="col-4 adw-col">
                                 <a class="btn btn-outline-dark" href = "{{ path('trip_show', {'id': trip.id}) }}"><i class="fas fa-eye"></i></a>
-                                <a href="{{ path('trip_edit', {'id': trip.id}) }}" title="Redaguoti" class="btn btn-outline-dark" Ėalt="Redaguoti"><i class="fas fa-edit"></i></a>
+                                <a href="{{ path('trip_edit', {'id': trip.id}) }}" title="Redaguoti" class="btn btn-outline-dark" alt="Redaguoti"><i class="fas fa-edit"></i></a>
                                 <a href="{{ path('trip_delete', {'id': trip.id}) }}" title="Ištrinti" class="btn btn-outline-dark" alt="Ištrinti"><i class="fas fa-trash-alt"></i></a>
+                                <button class="btn " type="button" data-toggle="collapse" data-target="#collapseExample{{ trip.id }}" aria-expanded="false" aria-controls="collapseExample{{ trip.id }}">
+                                   Rezervacijos
+                                </button>
+
                             </div>
                         </div>
                     </div>
@@ -62,7 +66,6 @@
                                 {% if trip.pets == 1 %}
                                 &nbsp;<i class="fas fa-paw"></i>
                                 {% endif %}
-                                <span style="font-size: smaller">Kelionės ID: {{ trip.id }}</span>
                             </div>
                         </div>
                         <div class="row">
@@ -85,10 +88,25 @@
                                 <a class="btn btn-outline-dark mb-1" href = "{{ path('trip_show', {'id': trip.id}) }}"><i class="fas fa-eye"></i></a>
                                 <a href="{{ path('trip_edit', {'id': trip.id}) }}" title="Redaguoti" class="btn btn-outline-dark mb-1" alt="Redaguoti"><i class="fas fa-edit"></i></a>
                                 <a href="{{ path('trip_delete', {'id': trip.id}) }}" title="Ištrinti" class="btn btn-outline-dark mb-1" alt="Ištrinti"><i class="fas fa-trash-alt"></i></a>
+                                <button class="btn " type="button" data-toggle="collapse" data-target="#collapseExample{{ trip.id }}" aria-expanded="false" aria-controls="collapseExample{{ trip.id }}">
+                                    Rezervacijos
+                                </button>
+
                             </div>
                         </div>
                     </div>
-//
+<div class="collapse" id="collapseExample{{ trip.id }}" style="margin-bottom: 20px;">
+    {% if trip.travelerType == 0 %}
+    <div class="row">
+        <div class="col form-title mt-3">Jūsų keleiviai
+        </div>
+    </div>
+    {% else %}
+    <div class="row">
+        <div class="col form-title mt-3">Vairuotojų pasiūlymai
+        </div>
+    </div>
+        {% endif %}
                 {% for reservation in reservations if reservation and reservation.Trip.id == trip.id %}
                     {#mobile view#}
                     <div class="d-block d-lg-none mb-2 separatingLine">
@@ -104,17 +122,16 @@
                         </div>
                         <div class="row mt-1">
                             <div class="col">
-                                <i class="fas fa-user"></i> {{ reservation.User}}<br>Vietų skaičius: {{ reservation.seats }}<br><i class="far fa-envelope"></i> {{ reservation.User.email }}
+                                <i class="fas fa-user"></i> {{ reservation.User}}<br>
+                                {% if reservation.type %}
+                                Vietų skaičius: {{ reservation.seats }}<br>
+                                {% endif %}
+                                <i class="far fa-envelope"></i> {{ reservation.User.email }}
                             </div>
                         </div>
                         <div class="row">
                             <div class="col" style="font-size: smaller">
                                 Rezervuota: {{ reservation.date|date("Y-m-d") }}
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col" style="font-size: smaller">
-                                Kelionės ID: {{ reservation.Trip.id }}
                             </div>
                         </div>
                         <div class="row">
@@ -133,17 +150,14 @@
                     {#desktop view#}
                     <div class="d-none d-lg-block">
                         <div class="row adw-list-row">
-                            <div class="col-1 adw-col"># {{ reservation.Trip.id }}
-                            </div>
-                            <div class="col-5 info">
+                            <div class="col-6 info">
                                 {{ reservation.Trip.departFrom }} <i class="fas fa-long-arrow-alt-right colorYellow"></i> {{ reservation.Trip.destination }}
+                            </div>
+                            <div class="col-2 info">
                                 {{ reservation.Trip.departTime|date("Y-m-d H:i") }}
                             </div>
                             <div class="col-3 info">
                                 {{ reservation.User}}<br>  Vietų skaičius: {{ reservation.seats }}<br>{{ reservation.User.email }}
-                            </div>
-                            <div class="col-2 info">
-                                {{ reservation.date|date("Y-m-d") }}
                             </div>
                             <div class="col-1 adw-col">
                                 {% if reservation.status ==  2 %}
@@ -158,6 +172,7 @@
                         </div>
                     </div>
                  {% endfor %}
+                </div>
                 {% endfor %}
 
                 <div class="row">
