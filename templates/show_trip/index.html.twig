@@ -38,7 +38,7 @@
                                     {{ form_row(form_offer.offer, {attr: {class: '', min:  1 }}) }}
                                  </div>
                                  <div class="col-11" style="padding: 0px 0 10px 0; margin:auto">
-                                    {{ form_widget(form_offer.save, {attr: {class: 'btn-yellow'}}) }}
+                                    {{ form_widget(form_offer.save, {attr: {class: 'btn-white'}}) }}
                                  </div>
                                  {{ form_end(form_offer) }}
                             {% else %}
@@ -48,7 +48,7 @@
                                         {{ form_row(form.seats, {attr: {class: '', max:  trip.seats }}) }}
                                      </div>
                                      <div class="col-6 col-inline-padding-left" style="padding-top:25px">
-                                        {{ form_widget(form.save, {attr: {class: 'btn-yellow'}}) }}
+                                        {{ form_widget(form.save, {attr: {class: 'btn-white'}}) }}
                                      </div>
                                  </div>
                                  {{ form_end(form) }}
@@ -60,7 +60,7 @@
                 <div class="col-sm-12 col-md-6 col-lg-5" style="text-align:left">
                     <div class="row">
                         <div class="col headingDarkNoBorder">
-                            <h4><span id="start">{{ trip.departFrom }}</span> <i class="fas fa-long-arrow-alt-right colorYellow"></i> <span id="end">{{ trip.destination }}</span></h4>
+                            <h4><span id="start">{{ trip.departFrom }}</span> <i class="fas fa-long-arrow-alt-right"></i> <span id="end">{{ trip.destination }}</span></h4>
                         </div>
                     </div>
                     <div class="row">
