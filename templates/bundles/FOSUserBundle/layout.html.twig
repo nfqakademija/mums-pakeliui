@@ -2,7 +2,7 @@
 
 {% block content %}
     <div class="row">
-    <div class="col-sm-12 col-md-3 mx-auto registration-form">
+    <div class="col-sm-12 col-md-4 col-lg-3 mx-auto registration-form">
     {% if app.request.hasPreviousSession %}
         {% for type, messages in app.session.flashbag.all() %}
             {% for message in messages %}

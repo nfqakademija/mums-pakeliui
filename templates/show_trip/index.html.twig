@@ -3,7 +3,7 @@
 {% block content %}
     <div class="row">
         <div class="col mb-4">
-            <a href="javascript:history.back()" class="itemData"><i class="fas fa-long-arrow-alt-left"></i> Į skelbimų sąrašą</a>
+            <a href="javascript:history.back()" class="itemData" style="color: blue"><i class="fas fa-long-arrow-alt-left"></i> Į skelbimų sąrašą</a>
         </div>
     </div>
     <div class="row">
@@ -38,7 +38,7 @@
                                     {{ form_row(form_offer.offer, {attr: {class: '', min:  1 }}) }}
                                  </div>
                                  <div class="col-11" style="padding: 0px 0 10px 0; margin:auto">
-                                    {{ form_widget(form_offer.save, {attr: {class: 'btn-white'}}) }}
+                                    {{ form_widget(form_offer.save, {attr: {class: 'btn btn-pink'}}) }}
                                  </div>
                                  {{ form_end(form_offer) }}
                             {% else %}
@@ -48,7 +48,7 @@
                                         {{ form_row(form.seats, {attr: {class: '', max:  trip.seats }}) }}
                                      </div>
                                      <div class="col-6 col-inline-padding-left" style="padding-top:25px">
-                                        {{ form_widget(form.save, {attr: {class: 'btn-white'}}) }}
+                                        {{ form_widget(form.save, {attr: {class: 'btn btn-pink'}}) }}
                                      </div>
                                  </div>
                                  {{ form_end(form) }}

@@ -5,21 +5,21 @@
 {% block content %}
     <div class="row">
         <div class="col mb-4">
-            <a href="javascript:history.back()" class="itemData"><i class="fas fa-long-arrow-alt-left"></i> Į skelbimų sąrašą</a>
+            <a href="javascript:history.back()" class="itemData" style="color: blue"><i class="fas fa-long-arrow-alt-left"></i> Į skelbimų sąrašą</a>
         </div>
     </div>
     {% if (is_granted("IS_AUTHENTICATED_REMEMBERED")) %}
-        <div class="row mt-3 search-form">
+        <div class="row mt-3 search-form mb-auto">
             <div class="col">
                 <div class="row">
                     <div class="col form-title">Jūsų skelbimai
                     </div>
                 </div>
-               {% if trips is not defined%}
-                   <div class="row ml-1" style="font-size: larger">
-                       Skelbimų nėra.
-                   </div>
-               {% endif %}
+                {% if not trips %}
+                    <div class="row ml-1" style="font-size: larger">
+                        Skelbimų nėra.
+                    </div>
+                {% endif %}
 
                 {% for trip in trips %}
                     {#desktop view#}
@@ -43,8 +43,8 @@
                                 <a class="btn btn-outline-dark" href = "{{ path('trip_show', {'id': trip.id}) }}"><i class="fas fa-eye"></i></a>
                                 <a href="{{ path('trip_edit', {'id': trip.id}) }}" title="Redaguoti" class="btn btn-outline-dark" alt="Redaguoti"><i class="fas fa-edit"></i></a>
                                 <a href="{{ path('trip_delete', {'id': trip.id}) }}" title="Ištrinti" class="btn btn-outline-dark" alt="Ištrinti"><i class="fas fa-trash-alt"></i></a>
-                                <button class="btn btn-outline-dark" type="button" data-toggle="collapse" data-target="#collapseExample{{ trip.id }}" aria-expanded="false" aria-controls="collapseExample{{ trip.id }}">
-                                   Rezervacijos
+                                <button class="btn btn-pink" style="font-size: 1rem" type="button" data-toggle="collapse" data-target="#collapseExample{{ trip.id }}" aria-expanded="false" aria-controls="collapseExample{{ trip.id }}">
+                                    Rezervacijos
                                 </button>
 
                             </div>
@@ -64,7 +64,7 @@
                                     <i class="fas fa-smoking"></i>
                                 {% endif %}
                                 {% if trip.pets == 1 %}
-                                &nbsp;<i class="fas fa-paw"></i>
+                                    &nbsp;<i class="fas fa-paw"></i>
                                 {% endif %}
                             </div>
                         </div>
@@ -88,100 +88,188 @@
                                 <a class="btn btn-outline-dark mb-1" href = "{{ path('trip_show', {'id': trip.id}) }}"><i class="fas fa-eye"></i></a>
                                 <a href="{{ path('trip_edit', {'id': trip.id}) }}" title="Redaguoti" class="btn btn-outline-dark mb-1" alt="Redaguoti"><i class="fas fa-edit"></i></a>
                                 <a href="{{ path('trip_delete', {'id': trip.id}) }}" title="Ištrinti" class="btn btn-outline-dark mb-1" alt="Ištrinti"><i class="fas fa-trash-alt"></i></a>
-                                <button class="btn " type="button" data-toggle="collapse" data-target="#collapseExample{{ trip.id }}" aria-expanded="false" aria-controls="collapseExample{{ trip.id }}">
+                                <button class="btn btn-pink" style="font-size: 1rem" type="button" data-toggle="collapse" data-target="#collapseExample{{ trip.id }}" aria-expanded="false" aria-controls="collapseExample{{ trip.id }}">
                                     Rezervacijos
                                 </button>
-
                             </div>
                         </div>
                     </div>
-<div class="collapse" id="collapseExample{{ trip.id }}" style="margin-bottom: 20px;">
-    {% if trip.travelerType == 0 %}
-    <div class="row">
-        <div class="col form-title mt-3">Jūsų keleiviai
-        </div>
-    </div>
-    {% else %}
-    <div class="row">
-        <div class="col form-title mt-3">Vairuotojų pasiūlymai
-        </div>
-    </div>
-        {% endif %}
-                {% for reservation in reservations if reservation and reservation.Trip.id == trip.id %}
+                    <div class="collapse" id="collapseExample{{ trip.id }}" style="margin-bottom: 20px;">
+                        {% if trip.travelerType == 0 %}
+                            <div class="row">
+                                <div class="col form-title mt-3">Jūsų keleiviai
+                                </div>
+                            </div>
+                        {% else %}
+                            <div class="row">
+                                <div class="col form-title mt-3">Vairuotojų pasiūlymai
+                                </div>
+                            </div>
+                        {% endif %}
+                        {% for reservation in reservations if reservation and reservation.Trip.id == trip.id %}
+                            {#mobile view#}
+                            <div class="d-block d-lg-none mb-2 separatingLine">
+                                <div class="row">
+                                    <div class="col">
+                                        {{ reservation.Trip.departFrom }} <i class="fas fa-long-arrow-alt-right"></i> {{ reservation.Trip.destination }}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        {{ reservation.Trip.departTime|date("Y-m-d H:i") }}
+                                    </div>
+                                </div>
+                                <div class="row mt-1">
+                                    <div class="col">
+                                        <i class="fas fa-user"></i> {{ reservation.User}}<br>
+                                        {% if reservation.type %}
+                                            Vietų skaičius: {{ reservation.seats }}<br>
+                                        {% endif %}
+                                        <i class="far fa-envelope"></i> {{ reservation.User.email }}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col" style="font-size: smaller">
+                                        Rezervuota: {{ reservation.date|date("Y-m-d") }}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        {% if reservation.status ==  2 %}
+                                        Atmesta
+                                    {% elseif reservation.status ==  1 %}
+                                        Patvirtinta
+                                    {% else %}
+                                        <a href="{{ path('reservation_confirmed', {'id': reservation.id}) }}" title="Patvirtinti" class="btn btn-outline-dark mb-1" alt="Patvirtinti"><i class="fas fa-handshake"></i></a>
+                                        <a href="{{ path('reservation_reject', {'id': reservation.id}) }}" title="Atmesti" class="btn btn-outline-dark mb-1" alt="Atmesti"><i class="fas fa-times"></i></a>
+                                        {% endif %}<br>
+                                    </div>
+                                </div>
+                            </div>
+                            {#desktop view#}
+                            <div class="d-none d-lg-block">
+                                <div class="row adw-list-row">
+                                    <div class="col-6 info">
+                                        {{ reservation.Trip.departFrom }} <i class="fas fa-long-arrow-alt-right"></i> {{ reservation.Trip.destination }}
+                                    </div>
+                                    <div class="col-2 info">
+                                        {{ reservation.Trip.departTime|date("Y-m-d H:i") }}
+                                    </div>
+                                    <div class="col-3 info">
+                                        {{ reservation.User}}<br>  Vietų skaičius: {{ reservation.seats }}<br>{{ reservation.User.email }}
+                                    </div>
+                                    <div class="col-1 adw-col">
+                                        {% if reservation.status ==  2 %}
+                                        Atmesta
+                                    {% elseif reservation.status ==  1 %}
+                                        Patvirtinta
+                                    {% else %}
+                                        <a href="{{ path('reservation_confirmed', {'id': reservation.id}) }}" title="Patvirtinti" class="btn btn-outline-dark" alt="Patvirtinti"><i class="fas fa-handshake"></i></a>
+                                        <a href="{{ path('reservation_reject', {'id': reservation.id}) }}" title="Atmesti" class="btn btn-outline-dark" alt="Atmesti"><i class="fas fa-times"></i></a>
+                                        {% endif %}<br>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+
+                {% for yourReservation in yourReservations if yourReservation is defined %}
+                    <div class="row ml-2 mt-4">
+                        <div class="col">
+                        <button class="btn btn-pink" style="font-size: 1rem" type="button" data-toggle="collapse" data-target="#collapseExample{{ yourReservation.id }}" aria-expanded="false" aria-controls="collapseExample{{ yourReservation.id }}">
+                            Jūsų pasirinkti vairuotojai
+                        </button>
+                        </div>
+                        {#<div class="col form-title mt-3">Jūsų pasirinkti vairuotojai#}
+                        {#</div>#}
+                    </div>
+                <div class="collapse" id="collapseExample{{ yourReservation.id }}" style="margin-bottom: 20px;">
+                    {#desktop view#}
+                    <div class="d-none d-lg-block">
+                        <div class="row adw-list-row">
+                            <div class="col-5 info">
+                                {{ yourReservation.Trip.departFrom }} <i class="fas fa-long-arrow-alt-right"></i> {{ yourReservation.Trip.destination }}
+                                {{ yourReservation.Trip.departTime|date("Y-m-d H:i") }}
+                            </div>
+                            <div class="col-2 info">
+                                Vietų skaičius: {{ yourReservation.seats }}
+                            </div>
+                            <div class="col-3 info">
+                                {{ yourReservation.Trip.user }}<br>
+                                {{ yourReservation.Trip.phone }}<br>
+                                {{ yourReservation.Trip.User.email }}
+                            </div>
+                            <div class="col-1 adw-col">
+                                {% if yourReservation.status ==  2 %}
+                                <b>Statusas: </b>
+                                <span style="color:red">Atmesta</span>
+                            {% elseif yourReservation.status ==  1 %}
+                                <b>Statusas: </b>
+                                <span style="color:green">Patvirtinta</span>
+                            {% else %}
+                                <b>Statusas: </b>
+                                Nepatvirtinta
+                                {% endif %}<br>
+                            </div>
+                        </div>
+                    </div>
                     {#mobile view#}
                     <div class="d-block d-lg-none mb-2 separatingLine">
                         <div class="row">
                             <div class="col">
-                                {{ reservation.Trip.departFrom }} <i class="fas fa-long-arrow-alt-right"></i> {{ reservation.Trip.destination }}
+                                <i class="fas fa-user"></i> {{ yourReservation.Trip.user }}
                             </div>
                         </div>
                         <div class="row">
                             <div class="col">
-                                {{ reservation.Trip.departTime|date("Y-m-d H:i") }}
-                            </div>
-                        </div>
-                        <div class="row mt-1">
-                            <div class="col">
-                                <i class="fas fa-user"></i> {{ reservation.User}}<br>
-                                {% if reservation.type %}
-                                Vietų skaičius: {{ reservation.seats }}<br>
-                                {% endif %}
-                                <i class="far fa-envelope"></i> {{ reservation.User.email }}
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col" style="font-size: smaller">
-                                Rezervuota: {{ reservation.date|date("Y-m-d") }}
+                                <i class="fas fa-phone"></i> {{ yourReservation.Trip.phone }}
                             </div>
                         </div>
                         <div class="row">
                             <div class="col">
-                                {% if reservation.status ==  2 %}
-                                Atmesta
-                            {% elseif reservation.status ==  1 %}
-                                Patvirtinta
+                                <i class="far fa-envelope"></i> {{ yourReservation.Trip.User.email }}
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col">
+                                {{ yourReservation.Trip.departFrom }} <i class="fas fa-long-arrow-alt-right"></i> {{ yourReservation.Trip.destination }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                {{ yourReservation.Trip.departTime|date("Y-m-d H:i") }}
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col">
+                                Vietų skaičius: {{ yourReservation.seats }}
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col">
+                                {% if yourReservation.status ==  2 %}
+                                <b>Būsena: </b>
+                                <span style="color:red">Atmesta</span>
+                            {% elseif yourReservation.status ==  1 %}
+                                <b>Būsena: </b>
+                                <span style="color:green">Patvirtinta</span>
                             {% else %}
-                                <a href="{{ path('reservation_confirmed', {'id': reservation.id}) }}" title="Patvirtinti" class="btn btn-outline-dark mb-1" alt="Patvirtinti"><i class="fas fa-handshake"></i></a>
-                                <a href="{{ path('reservation_reject', {'id': reservation.id}) }}" title="Atmesti" class="btn btn-outline-dark mb-1" alt="Atmesti"><i class="fas fa-times"></i></a>
+                                <b>Būsena: </b>
+                                Nepatvirtinta
                                 {% endif %}<br>
                             </div>
                         </div>
                     </div>
-                    {#desktop view#}
-                    <div class="d-none d-lg-block">
-                        <div class="row adw-list-row">
-                            <div class="col-6 info">
-                                {{ reservation.Trip.departFrom }} <i class="fas fa-long-arrow-alt-right"></i> {{ reservation.Trip.destination }}
-                            </div>
-                            <div class="col-2 info">
-                                {{ reservation.Trip.departTime|date("Y-m-d H:i") }}
-                            </div>
-                            <div class="col-3 info">
-                                {{ reservation.User}}<br>  Vietų skaičius: {{ reservation.seats }}<br>{{ reservation.User.email }}
-                            </div>
-                            <div class="col-1 adw-col">
-                                {% if reservation.status ==  2 %}
-                                Atmesta
-                            {% elseif reservation.status ==  1 %}
-                                Patvirtinta
-                            {% else %}
-                                <a href="{{ path('reservation_confirmed', {'id': reservation.id}) }}" title="Patvirtinti" class="btn btn-outline-dark" alt="Patvirtinti"><i class="fas fa-handshake"></i></a>
-                                <a href="{{ path('reservation_reject', {'id': reservation.id}) }}" title="Atmesti" class="btn btn-outline-dark" alt="Atmesti"><i class="fas fa-times"></i></a>
-                                {% endif %}<br>
-                            </div>
-                        </div>
+                {% else %}
+                    <div class="col-12 row ml-1" style="font-size: larger">
+                        Dar nepasirinkote vairuotojų.
                     </div>
-                 {% endfor %}
+                    {#{% endfor %}#}
                 </div>
-                {% endfor %}
-
-                <div class="row">
-                    <div class="col form-title mt-3">Jūsų pasirinkti vairuotojai
-                    </div>
-                </div>
-                {% for yourReservation in yourReservations if yourReservation is defined %}
+                    {#{% for yourReservation in yourReservations if yourReservation is defined %}#}
                     {#desktop view#}
-                    <div class="d-none d-lg-block">
+                    {#<div class="d-none d-lg-block">
                     <div class="row adw-list-row">
                         <div class="col-5 info">
                             {{ yourReservation.Trip.departFrom }} <i class="fas fa-long-arrow-alt-right"></i> {{ yourReservation.Trip.destination }}
@@ -209,7 +297,7 @@
                         </div>
                     </div>
                     </div>
-                    {#mobile view#}
+                    #}{#mobile view#}{#
                     <div class="d-block d-lg-none mb-2 separatingLine">
                         <div class="row">
                             <div class="col">
@@ -259,9 +347,9 @@
                     {% else %}
                         <div class="col-12 row ml-1" style="font-size: larger">
                             Dar nepasirinkote vairuotojų.
-                        </div>
+                        </div>#}
                 {% endfor %}
             </div>
         </div>
-   {% endif %}
+    {% endif %}
 {% endblock %}
