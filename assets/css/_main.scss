@@ -1,15 +1,17 @@
-//* {
-//    margin: 0;
-//    padding: 0;
-//}
+* {
+    margin: 0;
+    padding: 0;
+}
 html,
 body {
-    background: url("/images/keliasbackground.png") #eaedf4 no-repeat bottom right fixed;
-    background-size: contain;
+    //background: url("/images/keliasbackground.png") #eaedf4 no-repeat bottom right fixed;
+    background: url("/images/dog.png") no-repeat bottom right fixed;
+    background-size: cover;
     position:relative;
 }
 .backgroundPicture{
-  background: url("/images/keliasbackground2.png") #eaedf4 no-repeat bottom right fixed;
+  background: url("/images/dog.png") no-repeat bottom right fixed;
+    //background: url("/images/keliasbackground2.png") #eaedf4 no-repeat bottom right fixed;
 }
 a { color: #9ba8cd; }
 a:hover {

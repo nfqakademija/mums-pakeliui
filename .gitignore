@@ -39,3 +39,8 @@ npm-debug.log
 ###< Old symfony and common infrastructure ###
 /.idea
 .idea
+
+###> symfony/phpunit-bridge ###
+.phpunit
+/phpunit.xml
+###< symfony/phpunit-bridge ###
