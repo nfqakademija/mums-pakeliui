@@ -44,3 +44,7 @@ npm-debug.log
 .phpunit
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
+
+###> acceptance-tests (codeception dependencies) ###
+acceptance-tests/vendor
+###< acceptance-tests (codeception dependencies) ###
