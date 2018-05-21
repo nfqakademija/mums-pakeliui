@@ -1,6 +1,7 @@
 <?php
 class LoginCest 
 {
+    /*
     public function registration(AcceptanceTester $I)
     {
         $I->amOnPage('/');
@@ -31,6 +32,7 @@ class LoginCest
     /**
      * @depends registration
      */
+    /*
     public function loginSuccessfully(AcceptanceTester $I)
     {
         $I->amOnPage('/');
@@ -52,6 +54,7 @@ class LoginCest
     /**
      * @depends registration
      */
+    /*
     public function loginWithInvalidPassword(AcceptanceTester $I)
     {
         $I->amOnPage('/');
@@ -68,5 +71,6 @@ class LoginCest
         $I->wait(2);
         $I->see('Klaidingi duomenys.');
         $I->wait(2);
-    }       
+    }
+    */
 }
