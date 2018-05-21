@@ -1,57 +1,127 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-    <div class="row">
-        <div class="col-xs-12 col-md-6 mx-md-auto mt-3 search-form">
-            <div class="row">
-                <div class="col form-title">
-                    Vykstate į kitą gatvę, kitą miestą ar kitą šalį?
-                </div>
-            </div>
-            {{ form_start(form) }}
-            <div class="row">
-                <div class="col">
-                    {{ form_row(form.travelerType, {attr: {class: 'form-check-inline'}}) }}
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12 col-md-6 col-inline-padding-left">
-                    {{ form_row(form.departFrom, {attr: {class: '','placeholder': 'Įrašykite išvykimo adresą'}}) }}
-                </div>
-                <div class="col-sm-12 col-md-6 col-inline-padding-right">
-                    {{ form_row(form.destination, {attr: {class: '','placeholder': 'Įrašykite atvykimo adresą'}}) }}
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <div class="spoiler-title3 closed"><i class="fas fa-chevron-down"></i> Detalioji paieška</div>
-                    <div class="spoiler-body3">
+    <!-- SEARCH -->
+    {#<section class="slider d-flex align-items-center">#}
+        {#<div class="container margin_top">#}
+            <div class="row d-flex justify-content-center">
+                <div class="col-md-12">
+                    <div class="slider-title_box">
                         <div class="row">
-                            <div class="col-6 col-inline-padding-left">
-                                {{ form_row(form.departDate, {attr: {class: ''} }) }}
-                            </div>
-                            <div class="col-6 col-inline-padding-right">
-                                {{ form_row(form.departTime, {attr: {class: ''} }) }}
+                            <div class="col-md-12">
+                                <div class="slider-content_wrap">
+                                    <h1>Vykstate į kitą gatvę, miestą ar šalį?</h1>
+                                </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-xs-6 col-sm-6 col-md-3 col-inline-padding-left">
-                            {{ form_row(form.smoke, {attr: {class: 'form-check form-check-inline'}}) }}
+                        <div class="row d-flex justify-content-center">
+                            <div class="col-md-10">
+
                             </div>
-                            <div class="col-xs-6 col-sm-6 col-md-3 col-inline-padding-right">
-                            {{ form_row(form.pets, {attr: {class: 'form-check form-check-inline'}}) }}
+                            {{ form_start(form, {attr: {class: 'form-wrap mt-4'}}) }}
+
+                            <div class="btn-group" role="group" aria-label="home search">
+                                {{ form_row(form.travelerType, {attr: {class: 'form-check-inline'}}) }}
+                                {{ form_row(form.departFrom, {attr: {class: 'btn-group2','placeholder': 'Išvykimo adresas'}}) }}
+                                {{ form_row(form.destination, {attr: {class: 'btn-group2','placeholder': 'Atvykimo adresas'}}) }}
+
+                                {{ form_widget(form.filter, {attr: {class: 'btn-form'}}) }}
                             </div>
+                            {{ form_end(form) }}
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col btn-row">
-                    {{ form_widget(form.filter, {attr: {class: 'btn-pink'}}) }}
+        {#</div>#}
+    {#</section>#}
+    <!--//END HEADER -->
+
+    <!--============================= WHY US =============================-->
+    {#<section class="main-block colored">#}
+        {#<div class="container">#}
+            <div class="row justify-content-center">
+                <div class="col-md-5">
+                    <div class="styled-heading">
+                        <h3>Kodėl verta važiuoti kartu?</h3>
+                    </div>
                 </div>
             </div>
-            {{ form_end(form) }}
-        </div>
-    </div>
+            <div class="row">
+                <div class="one_quarter"><div class="icon"><img src="images/piggy-bank.png"></div>
+                    <h4 class="dark-color uppercase">Pigiau</h4>
+
+                </div>
+                <div class="one_quarter">
+                    <div class="icon"><img src="images/happy.png" ></div>
+                    <h4 class="dark-color uppercase">Linksmiau</h4>
+
+                </div>
+                <div class="one_quarter">
+                    <div class="icon"><img src="images/clock.png"></div>
+                    <h4 class="dark-color uppercase">Greiciau</h4>
+
+                </div>
+                <div class="one_quarter">
+                    <div class="icon"><img src="images/paw-print.png"></div>
+                    <h4 class="dark-color uppercase">Greiciau</h4>
+
+                </div>
+
+            </div>
+        {#</div>#}
+    {#</section>#}
+    <!--//END  -->
+    {#<div class="row">#}
+        {#<div class="col-xs-12 col-md-6 mx-md-auto mt-3 search-form">#}
+            {#<div class="row">#}
+                {#<div class="col form-title">#}
+                    {#Vykstate į kitą gatvę, kitą miestą ar kitą šalį?#}
+                {#</div>#}
+            {#</div>#}
+            {#{{ form_start(form) }}#}
+            {#<div class="row">#}
+                {#<div class="col">#}
+                    {#{{ form_row(form.travelerType, {attr: {class: 'form-check-inline'}}) }}#}
+                {#</div>#}
+            {#</div>#}
+            {#<div class="row">#}
+                {#<div class="col-sm-12 col-md-6 col-inline-padding-left">#}
+                    {#{{ form_row(form.departFrom, {attr: {class: '','placeholder': 'Įrašykite išvykimo adresą'}}) }}#}
+                {#</div>#}
+                {#<div class="col-sm-12 col-md-6 col-inline-padding-right">#}
+                    {#{{ form_row(form.destination, {attr: {class: '','placeholder': 'Įrašykite atvykimo adresą'}}) }}#}
+                {#</div>#}
+            {#</div>#}
+            {#<div class="row">#}
+                {#<div class="col">#}
+                    {#<div class="spoiler-title3 closed"><i class="fas fa-chevron-down"></i> Detalioji paieška</div>#}
+                    {#<div class="spoiler-body3">#}
+                        {#<div class="row">#}
+                            {#<div class="col-6 col-inline-padding-left">#}
+                                {#{{ form_row(form.departDate, {attr: {class: ''} }) }}#}
+                            {#</div>#}
+                            {#<div class="col-6 col-inline-padding-right">#}
+                                {#{{ form_row(form.departTime, {attr: {class: ''} }) }}#}
+                            {#</div>#}
+                        {#</div>#}
+                        {#<div class="row">#}
+                            {#<div class="col-xs-6 col-sm-6 col-md-3 col-inline-padding-left">#}
+                            {#{{ form_row(form.smoke, {attr: {class: 'form-check form-check-inline'}}) }}#}
+                            {#</div>#}
+                            {#<div class="col-xs-6 col-sm-6 col-md-3 col-inline-padding-right">#}
+                            {#{{ form_row(form.pets, {attr: {class: 'form-check form-check-inline'}}) }}#}
+                            {#</div>#}
+                        {#</div>#}
+                    {#</div>#}
+                {#</div>#}
+            {#</div>#}
+            {#<div class="row">#}
+                {#<div class="col btn-row">#}
+                    {#{{ form_widget(form.filter, {attr: {class: 'btn-pink'}}) }}#}
+                {#</div>#}
+            {#</div>#}
+            {#{{ form_end(form) }}#}
+        {#</div>#}
+    {#</div>#}
 
 {% endblock %}
