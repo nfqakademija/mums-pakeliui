@@ -28,8 +28,7 @@ before_install:
 install:
   - cd $TRAVIS_BUILD_DIR && composer install --no-interaction --prefer-dist
   - cd $TRAVIS_BUILD_DIR && yarn
-  - cd $TRAVIS_BUILD_DIR/acceptance-tests
-  - composer install
+  - cd $TRAVIS_BUILD_DIR/acceptance-tests && composer install
 #  - cd $TRAVIS_BUILD_DIR && composer install --no-interaction --prefer-dist
 #  - cd $TRAVIS_BUILD_DIR && yarn
 #  - cd $TRAVIS_BUILD_DIR/acceptance-tests && composer install
@@ -41,7 +40,7 @@ before_script:
   - (php -S 172.17.0.1:8000 -t public &> /dev/null) &
 
 script:
-  - cd $TRAVIS_BUILD_DIR && vendor/bin/phpcs -p --standard=PSR2 --extensions=php ./src
+  - cd $TRAVIS_BUILD_DIR && vendor/bin/phpcs -p --standard=PSR2 --extensions=php --ignore=Migrations ./src
   - cd $TRAVIS_BUILD_DIR && bin/phpunit
   - cd $TRAVIS_BUILD_DIR/acceptance-tests && vendor/bin/codecept run --debug --env=travis
 
