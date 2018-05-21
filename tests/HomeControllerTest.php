@@ -3,7 +3,7 @@
 namespace App\Tests;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use Goutte\Client;
+//use Goutte\Client;
 
 class HomeControllerTest extends WebTestCase
 {
