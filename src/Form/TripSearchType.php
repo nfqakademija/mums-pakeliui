@@ -38,7 +38,7 @@ class TripSearchType extends AbstractType
             )
             ->add('destination', TextType::class, ['label' => false, 'required' => false])
         ;
-        if ($_SERVER["REQUEST_URI"] != '/'){
+        if ($_SERVER["REQUEST_URI"] != '/') {
             $builder ->add(
                 'departTime',
                 DateType::class,
