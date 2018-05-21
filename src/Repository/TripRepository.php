@@ -21,9 +21,9 @@ class TripRepository extends ServiceEntityRepository
         parent::__construct($registry, Trip::class);
     }
 
-      /**
-       * @return Trip[] Returns an array of Trip objects
-        */
+    /**
+     * @return Trip[] Returns an array of Trip objects
+     */
 
     public function findBySomeField($value)
     {
@@ -48,12 +48,12 @@ class TripRepository extends ServiceEntityRepository
                 ->setParameter('travelerType', $value['travelerType']);
         }
 
-        if ($value['smoke']) {
+        if (isset($value['smoke'])) {
             $trips->andWhere('t.smoke = :smoke')
                 ->setParameter('smoke', $value['smoke']);
         }
 
-        if ($value['pets']) {
+        if (isset($value['pets'])) {
             $trips->andWhere('t.pets = :pets')
                 ->setParameter('pets', $value['pets']);
         }
@@ -64,7 +64,7 @@ class TripRepository extends ServiceEntityRepository
                 ->setParameter('departTime', $departDate.'%');
         }
 
-        if (!$value['departDate'] && isset($value['departTime'])) {
+        if (isset($value['departTime']) && !$value['departDate']) {
             $date = date("Y-m-d");
             $startDate = new \DateTime(sprintf('%s %s', $date, $value['departTime']->format('H:i')));
             $endDate = new \DateTime(sprintf('%s %s', $date, $value['departTime']->format('H:i')));
@@ -88,17 +88,56 @@ class TripRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    /**
+     * @return Trip[] Returns an array of Trip objects
+     */
+
+    public function findByDestinationField($value)
+    {
+        $trips = $this->createQueryBuilder('t')
+            ->leftJoin("App\Entity\User", "u", "WITH", "u.id = t.user")
+            ->Where('t.departTime >= :today')
+            ->setParameter('today', new \DateTime())
+            ->orderBy('t.departTime', 'desc');
+
+        if (isset($value['departFrom'])) {
+            $trips->andWhere('t.departFrom = :departFrom')
+                ->setParameter('departFrom', $value['departFrom']);
+        }
+
+        if (isset($value['destination'])) {
+            $trips->andWhere('t.destination = :destination')
+                ->setParameter('destination', $value['destination']);
+        }
+
+        if (isset($value['travelerType'])) {
+            $trips->andWhere('t.travelerType = :travelerType')
+                ->setParameter('travelerType', $value['travelerType']);
+        }
+
+        if (isset($value['departDate']) && !$value['departTime']) {
+            $departDate = $value['departDate']->format('Y-m-d');
+            $trips->andWhere('t.departTime LIKE :departTime')
+                ->setParameter('departTime', $departDate.'%');
+        }
+
+        return $trips
+            ->getQuery()
+            ->getResult();
+    }
+
     /**
      * @return Trip[]
      */
     public function findByUser($value)
     {
         $trips = $this->createQueryBuilder('t')
-                      ->Where('t.departTime >= :today')
-                      ->andWhere('t.user = :user')
-                      ->orderBy('t.id', 'ASC')
-                      ->setParameter('today', new \DateTime())
-                      ->setParameter('user', $value);
+            ->Where('t.departTime >= :today')
+            ->andWhere('t.user = :user')
+            ->orderBy('t.id', 'ASC')
+            ->setParameter('today', new \DateTime())
+            ->setParameter('user', $value);
 
         return $trips
             ->getQuery()
@@ -108,9 +147,9 @@ class TripRepository extends ServiceEntityRepository
     public function createTripQueryBuilder($value)
     {
         return $this->createQueryBuilder('t')
-                   ->Where('t.departTime >= :today')
-                   ->andWhere('t.user = :user')
-                   ->setParameter('today', new \DateTime())
-                   ->setParameter('user', $value);
+            ->Where('t.departTime >= :today')
+            ->andWhere('t.user = :user')
+            ->setParameter('today', new \DateTime())
+            ->setParameter('user', $value);
     }
 }
