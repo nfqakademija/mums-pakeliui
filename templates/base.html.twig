@@ -83,7 +83,7 @@
                     <div class="ml-auto d-none d-md-block">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="btn btn-white" title="Prisijungti su Facebook" href="{{ path('hwi_oauth_service_redirect', {'service': 'facebook'}) }}">
+                                <a id="LoginFB" class="btn btn-white" title="Prisijungti su Facebook" href="{{ path('hwi_oauth_service_redirect', {'service': 'facebook'}) }}">
                                     <i class="fab fa-facebook"></i>
                                 </a>
                             </li>
@@ -106,7 +106,7 @@
                     {#Visible only on mobile#}
                     <ul class="navbar-nav d-xs-block d-sm-block d-md-none">
                         <li class="nav-item">
-                            <a class="mobileMenu-item" href="{{ path('hwi_oauth_service_redirect', {'service': 'facebook'}) }}">
+                            <a id="LoginFB" class="mobileMenu-item" href="{{ path('hwi_oauth_service_redirect', {'service': 'facebook'}) }}">
                                 <i class="fab fa-facebook"></i> Prisijungti su Facebook
                             </a>
                         </li>
