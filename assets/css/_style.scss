@@ -1,5 +1,15 @@
 body {
-  font-family: 'Roboto', sans-serif; }
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.mainContent{
+  padding-top:100px;
+}
+.container {
+  max-width: 2560px;
+}
 
 h1 {
   font-family: 'Kaushan Script', cursive;
@@ -513,18 +523,14 @@ input[type=checkbox]:checked + label::after {
         padding: 0; } }
 
     .one_quarter{
-      display:inline-block;
-      float:left;
       text-align: center;
       margin:auto;
-      width:21.5%;
     }
 
     .one_quarter:hover .icon{
       border-color:inherit;
       color:#FFFFFF;
       background-color:#252a33;
-
     }
 
     .icon{
@@ -544,7 +550,7 @@ input[type=checkbox]:checked + label::after {
       text-transform: uppercase;
     }
     .blue-color{
-      color:  #ff5e00;
+      color: #ff5e00;
       font-family: 'Open Sans', sans-serif;
 
     }
@@ -642,10 +648,9 @@ input[type=checkbox]:checked + label::after {
     }
     @media (max-width: 768px) {
       .one_quarter {
-        display: block;
-        float: none;
+        text-align: center;
         width: auto;
-        margin: 0 0 30px 0;
+        margin: auto;
         padding: 0;
       }
     }
@@ -666,9 +671,15 @@ input[type=checkbox]:checked + label::after {
        FOOTER
        ************************************************************* */
     footer {
-      position: relative;}
+      //position: relative;
+    }
     .footer-block{
-      padding: 30px 0;
+      //padding: 30px 0;
+      background-color: #252a33;
+      height: 80px;
+      margin: auto auto 0 auto;
+      text-align: center;
+      width: 100%;
     }
     .copyright {
       text-align: center; }
@@ -676,7 +687,8 @@ input[type=checkbox]:checked + label::after {
       font-size: 18px;
       font-weight: 400;
       color: #ccc;
-      margin: 0; }
+      margin-bottom: 0;
+    }
     .copyright ul {
       margin: 25px 0 0;
       padding: 0; }

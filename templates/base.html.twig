@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="html-changeHeight">
+<html>
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}{{ "Mums pakeliui!" }}{% endblock %}</title>
@@ -90,13 +90,15 @@
     <!-- SEARCH -->
 {% endblock %}
 
+<div class="container mainContent">
 {% block content %}{% endblock %}
+</div>
 
 {% block footer %}
     <!--============================= FOOTER =============================-->
-    <footer class="footer-block dark-bg">
+    <footer class="footer-block">
         <div class="copyright">
-            <p>Su mumis keliauti smagiau. Padėsime vairuotojams ir keleiviams rasti vieniems kitus.</p>
+            <p class="mt-2">Su mumis keliauti smagiau. Padėsime vairuotojams ir keleiviams rasti vieniems kitus.</p>
             <p>© 2018 Mums pakeliui! </p>
 
         </div>
