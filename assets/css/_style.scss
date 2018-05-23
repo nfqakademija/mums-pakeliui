@@ -88,7 +88,12 @@ p {
 .navbar-brand {
   font-size:45px;
   font-family: 'Kaushan Script', cursive;
+}
 
+@media (max-width: 768px) {
+  .navbar-brand {
+    font-size:25px;
+  }
 }
 
 .navbar-light .navbar-brand {
@@ -317,7 +322,7 @@ fieldset{
     padding: 17px; } }
 .first-group {
   padding: 0;
-  margin-right: 15px;
+  //margin-left: 15px;
 }
 .choose{
   padding:0;
@@ -348,7 +353,9 @@ fieldset{
     height: 0.5em;
 }
 .second-group {
-  padding-top:6px
+  padding-top:6px;
+  //margin-left: 15px;
+  //margin-right: 15px;
 }
 .second-choose{
   padding-left:20px;
@@ -802,7 +809,7 @@ fieldset{
 
     .search-wrap {
       padding: 22px 0;
-      border-bottom:1px solid #e9e7ed;
+      //border-bottom:1px solid #e9e7ed;
       -webkit-box-shadow:inset 0 -25px 8px -24px rgba(0,0,0,.25)
 
     }

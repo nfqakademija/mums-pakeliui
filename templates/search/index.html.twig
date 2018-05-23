@@ -2,15 +2,13 @@
 
 {% block content %}
     <!--============================= DETAIL =============================-->
-    <section style="margin-top:100px;">
-        <div class="container-fluid">
+
             <!--================= SEARCH ====================-->
             <div class="row">
-                <div class="col-md-12 responsive-wrap search-wrap">
-
+                <div class="col search-wrap">
                     {{ form_start(form, {attr: {class: 'form-wrap'}}) }}
-                    <div class="row detail-checkbox-wrap col-lg-11">
-                        <div class="col-sm-12 col-md-1 first-group">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-2">
                             <div class="btn-group" role="group">
                                 {% for key, travelerTypeItem in form.travelerType %}
                                     {% if (app.request.get('travelerType') == 0) and (key == 0)%}
@@ -24,19 +22,19 @@
                                 {% endfor %}
                             </div>
                         </div>
-                        <div class="col-sm-12 col-md-2 second-group">
+                        <div class="col-sm-12 col-md-6 col-lg-2 second-group">
                             {{ form_row(form.departFrom, {attr: {class: 'autocomplite','placeholder': 'Išvykimo adresas'} }) }}
                         </div>
 
-                        <div class="col-sm-12 col-md-2 second-group">
+                        <div class="col-sm-12 col-md-6 col-lg-2 second-group">
                             {{ form_row(form.destination, {attr: {class: 'autocomplite','placeholder': 'Atvykimo adresas'} }) }}
                         </div>
 
                         <div class="col-sm-12 col-md-6 col-lg-2 second-group">
                             {{ form_widget(form.departDate) }}
                         </div>
-                        <div class="col-sm-12 col-md-6 col-lg-1">
-                            <div class='multi-range' data-lbound='0' data-ubound='24'>
+                        <div class="col-sm-12 col-md-6 col-lg-2">
+                            <div class="multi-range" data-lbound='0' data-ubound='24'>
                                 {{ form_widget(form.timeFrom, {attr: {class: 'range-style'}}) }}
                                 {{ form_widget(form.timeTo, {attr: {class: 'range-style'}}) }}
                                 <!--       <input type='range' name="timeFrom"
@@ -47,7 +45,7 @@
                                        oninput='this.parentNode.dataset.ubound=this.value+":00";' /> -->
                             </div>
                         </div>
-                        <div class="col-sm-12 col-md-2 choose">
+                        <div class="col-sm-12 col-md-3 col-lg-1 choose">
                             {% if app.request.get('smoke') == 1  %}
                                 {{ form_row(form.smoke, {attr: {class: 'form-check form-check-inline', 'checked': 'checked'} }) }}
                             {% else %}
@@ -59,8 +57,8 @@
                                 {{ form_row(form.pets, {attr: {class: 'form-check form-check-inline'} }) }}
                             {% endif %}
                         </div>
-                        <div class="col-sm-12 col-md-12 col-lg-1">
-                            {{ form_widget(form.filter, {attr: {class: 'btn-form2'}}) }}
+                        <div class="col-sm-12 col-md-3 col-lg-2">
+                            {{ form_widget(form.filter, {attr: {class: 'btn-form3'}}) }}
                         </div>
                     </div>
                     {{ form_end(form) }}
@@ -94,9 +92,9 @@
                     </div>
                 {% endfor %}
             </div>
-        </div>
-    </section>
+
 {% endblock %}
+
 {% block javascripts %}
     {{ parent() }}
     <script>
