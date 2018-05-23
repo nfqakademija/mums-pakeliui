@@ -5,10 +5,10 @@ body {
   min-height: 100vh;
 }
 .mainContent{
-  padding-top:95px;
+  padding-top:93.5px;
 }
 .container {
-  max-width: 2560px;
+  max-width: 10000px;
 }
 
 h1 {
@@ -557,13 +557,27 @@ fieldset{
     .icon img{
       width:120px;
     }
+  @media (max-width: 768px) {
+  .icon {
+    font-size:26px; }
+    .icon img{
+      width:60px;
+    }
+  }
+
     .uppercase{
       text-transform: uppercase;
+      font-size:30px;
     }
+  @media (max-width: 768px) {
+    .uppercase{
+      font-size:20px;
+    }
+}
+
     .blue-color{
       color: #ff5e00;
       font-family: 'Open Sans', sans-serif;
-
     }
 
     .featured-trip-wrap {
