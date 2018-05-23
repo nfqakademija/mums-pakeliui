@@ -5,7 +5,7 @@ body {
   min-height: 100vh;
 }
 .mainContent{
-  padding-top:100px;
+  padding-top:95px;
 }
 .container {
   max-width: 2560px;
@@ -263,7 +263,7 @@ p {
     margin: 0 !important; } }
 
 .btn-group {
-  width: 100%;
+  //width: 100%;
   background-color: #fff;
 }
   @media (max-width: 576px) {
@@ -387,20 +387,21 @@ fieldset{
   font-size: 13px;
   line-height: 26px;
 }
-input[type=checkbox] {
+.customizedCheckbox input[type=checkbox] {
   display: none;
 }
 /* Creating the psuedo-element to replace the radio inputs: */
-input[type=checkbox] + label::after {
+.customizedCheckbox input[type=checkbox] + label::after {
   content: '';
   display: inline-block;
   border: 1px solid #000;
   border-radius: 10%;
   margin: 0 0.5em;
   }
-input[type=checkbox]:checked + label::after {
+.customizedCheckbox input[type=checkbox]:checked + label::after {
   background-color: #ff5e00;
 }
+
 .left-padding {
   padding-left:10px;
 }
@@ -424,6 +425,16 @@ input[type=checkbox]:checked + label::after {
       border: none;
       border-top-right-radius: 3px;
       border-bottom-right-radius: 3px; }
+.btn-form3 {
+  font-weight: 400;
+  font-size: 18px;
+  padding: 17px;
+  //width: 100%;
+  background: #6ecb22;
+  color: #ffffff;
+  border: none;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px; }
     @media (max-width: 768px) {
       .btn-form, .btn-form2 {
         width: auto; } }
@@ -676,18 +687,17 @@ input[type=checkbox]:checked + label::after {
     .footer-block{
       //padding: 30px 0;
       background-color: #252a33;
-      height: 80px;
+      min-height: 80px;
       margin: auto auto 0 auto;
       text-align: center;
       width: 100%;
     }
     .copyright {
-      text-align: center; }
-    .copyright p {
-      font-size: 18px;
+      text-align: center;
+      font-size: 16px;
       font-weight: 400;
       color: #ccc;
-      margin-bottom: 0;
+      margin: 10px 0px 10px 0px;
     }
     .copyright ul {
       margin: 25px 0 0;
@@ -1118,4 +1128,15 @@ input[type=checkbox]:checked + label::after {
     #map {
       height: 100%;
       width: 100%; }
-
+/* **************************************************************
+       REGISTRATION FORMS
+       ************************************************************** */
+.registration-form{
+  background: #ffffff;
+  border-radius: 15px 15px 15px 15px;
+  -webkit-border-radius: 15px 15px 15px 15px;
+  -moz-border-radius: 15px 15px 15px 15px;
+  padding: 15px 15px 15px 15px;
+  font-weight: bold;
+  color: #000000;
+}
