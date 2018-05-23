@@ -34,13 +34,13 @@ class TripRepository extends ServiceEntityRepository
             ->orderBy('t.departTime', 'desc');
 
         if (isset($value['departFrom'])) {
-            $trips->andWhere('t.departFrom = :departFrom')
-                ->setParameter('departFrom', $value['departFrom']);
+            $trips->andWhere('t.departFrom LIKE :departFrom')
+                ->setParameter('departFrom', '%'.$value['departFrom'].'%');
         }
 
         if (isset($value['destination'])) {
-            $trips->andWhere('t.destination = :destination')
-                ->setParameter('destination', $value['destination']);
+            $trips->andWhere('t.destination LIKE :destination')
+                ->setParameter('destination', '%'.$value['destination'].'%');
         }
 
         if (isset($value['travelerType'])) {
@@ -57,71 +57,17 @@ class TripRepository extends ServiceEntityRepository
             $trips->andWhere('t.pets = :pets')
                 ->setParameter('pets', $value['pets']);
         }
+        if (isset($value['departDate'])) {
 
-        if (isset($value['departDate']) && !$value['departTime']) {
-            $departDate = $value['departDate']->format('Y-m-d');
-            $trips->andWhere('t.departTime LIKE :departTime')
-                ->setParameter('departTime', $departDate.'%');
-        }
-
-        if (isset($value['departTime']) && !$value['departDate']) {
-            $date = date("Y-m-d");
-            $startDate = new \DateTime(sprintf('%s %s', $date, $value['departTime']->format('H:i')));
-            $endDate = new \DateTime(sprintf('%s %s', $date, $value['departTime']->format('H:i')));
-            $endDate = $endDate->modify('+1 hour');
+            $departDate = $value['departDate']->format('Y-m-d H:i');
+            $start = new \DateTime(sprintf('%s', $departDate));
+            $end = new \DateTime(sprintf('%s', $departDate));
+            $timeFrom = $start->modify('+'.$value['timeFrom'].' hour');
+            $timeTo = $end->modify('+'.$value['timeTo'].' hour');
             $trips->andWhere('t.departTime BETWEEN :startDepartTime AND :endDepartTime')
-                ->setParameter('startDepartTime', $startDate)
-                ->setParameter('endDepartTime', $endDate);
+                ->setParameter('startDepartTime', $timeFrom)
+                ->setParameter('endDepartTime', $timeTo);
         }
-
-        if (isset($value['departDate']) && isset($value['departTime'])) {
-            $date =  $value['departDate']->format('Y-m-d');
-            $startDate = new \DateTime(sprintf('%s %s', $date, $value['departTime']->format('H:i')));
-            $endDate = new \DateTime(sprintf('%s %s', $date, $value['departTime']->format('H:i')));
-            $endDate = $endDate->modify('+1 hour');
-            $trips->andWhere('t.departTime BETWEEN :startDepartTime AND :endDepartTime')
-                ->setParameter('startDepartTime', $startDate)
-                ->setParameter('endDepartTime', $endDate);
-        }
-
-        return $trips
-            ->getQuery()
-            ->getResult();
-    }
-
-    /**
-     * @return Trip[] Returns an array of Trip objects
-     */
-
-    public function findByDestinationField($value)
-    {
-        $trips = $this->createQueryBuilder('t')
-            ->leftJoin("App\Entity\User", "u", "WITH", "u.id = t.user")
-            ->Where('t.departTime >= :today')
-            ->setParameter('today', new \DateTime())
-            ->orderBy('t.departTime', 'desc');
-
-        if (isset($value['departFrom'])) {
-            $trips->andWhere('t.departFrom = :departFrom')
-                ->setParameter('departFrom', $value['departFrom']);
-        }
-
-        if (isset($value['destination'])) {
-            $trips->andWhere('t.destination = :destination')
-                ->setParameter('destination', $value['destination']);
-        }
-
-        if (isset($value['travelerType'])) {
-            $trips->andWhere('t.travelerType = :travelerType')
-                ->setParameter('travelerType', $value['travelerType']);
-        }
-
-        if (isset($value['departDate']) && !$value['departTime']) {
-            $departDate = $value['departDate']->format('Y-m-d');
-            $trips->andWhere('t.departTime LIKE :departTime')
-                ->setParameter('departTime', $departDate.'%');
-        }
-
         return $trips
             ->getQuery()
             ->getResult();

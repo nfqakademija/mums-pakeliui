@@ -25,24 +25,26 @@
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-2 second-group">
-                            {{ form_row(form.departFrom, {attr: {class: '','placeholder': 'Išvykimo adresas'} }) }}
+                            {{ form_row(form.departFrom, {attr: {class: 'autocompile','placeholder': 'Išvykimo adresas'} }) }}
                         </div>
 
                         <div class="col-sm-12 col-md-2 second-group">
-                            {{ form_row(form.destination, {attr: {class: '','placeholder': 'Atvykimo adresas'} }) }}
+                            {{ form_row(form.destination, {attr: {class: 'autocompile','placeholder': 'Atvykimo adresas'} }) }}
                         </div>
 
                         <div class="col-sm-12 col-md-6 col-lg-2 second-group">
-                            {{ form_widget(form.departTime) }}
+                            {{ form_widget(form.departDate) }}
                         </div>
                         <div class="col-sm-12 col-md-6 col-lg-1">
-                            <div class='multi-range' data-lbound='0:00' data-ubound='24:00'>
-                                <input type='range' name="timeFrom"
+                            <div class='multi-range' data-lbound='0' data-ubound='24'>
+                                {{ form_widget(form.timeFrom, {attr: {class: 'range-style'}}) }}
+                                {{ form_widget(form.timeTo, {attr: {class: 'range-style'}}) }}
+                                <!--       <input type='range' name="timeFrom"
                                        min='0' max='24' step='1' value='0'
                                        oninput='this.parentNode.dataset.lbound=this.value+":00";' />
                                 <input type='range' name="timeTo"
                                        min='1' max='24' step='1' value='24'
-                                       oninput='this.parentNode.dataset.ubound=this.value+":00";' />
+                                       oninput='this.parentNode.dataset.ubound=this.value+":00";' /> -->
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-2 choose">
@@ -74,7 +76,6 @@
                                 <img src="images/{{ trip.travelerType }}.png" class="img-fluid" alt="#">
                                 <div class="featured-title-box">
                                     <h6><span class="fas fa-map-marker-alt"></span> {{ trip.departFrom }} <i class="fas fa-long-arrow-alt-right"></i> {{ trip.destination }}</h6>
-
                                     <div class="bottom-info">
                                         <span class="fas fa-clock"></span> {{ trip.departTime|date("Y-m-d H:i") }}
                                         <div class="info">Papildoma informacija</div>
@@ -102,8 +103,7 @@
         $(document).ready(function () {
             kendo.culture("lt-LT");
             // create DateTimePicker from input HTML element
-            $("#trip_search_departTime").kendoDateTimePicker({
-                value: new Date(),
+            $("#trip_search_departDate").kendoDatePicker({
                 //dateInput: true,
                 format: "yyyy-MM-dd"
             });

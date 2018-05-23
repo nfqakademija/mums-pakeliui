@@ -4,6 +4,7 @@ namespace App\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\RangeType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -27,6 +28,7 @@ class TripSearchType extends AbstractType
                     },
                     'multiple'=>false,
                     'expanded'=>true,
+                    'data' => 0
 
                 ]
             )
@@ -40,7 +42,7 @@ class TripSearchType extends AbstractType
         ;
         if ($_SERVER["REQUEST_URI"] != '/') {
             $builder ->add(
-                'departTime',
+                'departDate',
                 DateType::class,
                 [   'required' => false,
                     'label'=>'Išvykimo data ir laikas',
@@ -48,6 +50,29 @@ class TripSearchType extends AbstractType
                     'html5' => false
                 ]
             )
+                ->add(
+                    'timeFrom',
+                    RangeType::class,
+                    [  'attr' =>[
+                           'min' => 0,
+                           'max' =>24,
+                           'value' => 0,
+                           'oninput' => 'this.parentNode.dataset.lbound=this.value',
+                           'step' => 1
+                        ]
+                    ]
+                )
+                ->add(
+                    'timeTo',
+                    RangeType::class,
+                    [  'attr' =>[
+                            'min' => 1,
+                            'max' => 24,
+                            'value' => 24,
+                            'oninput' => 'this.parentNode.dataset.ubound=this.value',
+                            'step' => 1]
+                    ]
+                )
                 ->add(
                     'smoke',
                     IconCheckboxType::class,

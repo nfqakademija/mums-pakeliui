@@ -111,22 +111,20 @@
     <script type="text/javascript" src="https://kendo.cdn.telerik.com/2018.1.221/js/cultures/kendo.culture.lt-LT.min.js"></script>
     <script src="{{ asset('build/js/main.js') }}" ></script>
     <script src="{{ asset('build/js/app.js') }}"></script>
+    <script src="{{ asset('build/js/geocomplete.js') }}"></script>
     <script>
-        function initLib(){
-            var input = document.getElementById('trip_search_departFrom');
-            var autocomplete = new google.maps.places.Autocomplete(input);
-            var input2 = document.getElementById('trip_search_destination');
-            var autocomplete2 = new google.maps.places.Autocomplete(input2);
-            var input3 = document.getElementById('trip_departFrom');
-            var autocomplete3 = new google.maps.places.Autocomplete(input3);
-            var input4 = document.getElementById('trip_destination');
-            var autocomplete4 = new google.maps.places.Autocomplete(input4);
+        function initLib() {
+            $(".autocompile").geocomplete().bind("geocode");
+
+            $("#trip_search_filter").blur(function () {
+                $(".autocompile").trigger("geocode");
+            });
+            google.maps.event.addDomListener(window, 'load', init);
 
         }
-        google.maps.event.addDomListener(window, 'load', init);
     </script>
     <script async defer
-            src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyB8bciunVlIgmtF5BLbil6zPsfXJHO1WFY&callback=initLib">
+            src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places&key=AIzaSyB8bciunVlIgmtF5BLbil6zPsfXJHO1WFY&callback=initLib">
     </script>
 
 {% endblock %}

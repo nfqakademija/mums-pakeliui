@@ -23,10 +23,8 @@
 
                             <div class="btn-group" role="group" aria-label="home search">
                                 {{ form_widget(form.travelerType, {attr: {class: 'form-check-inline'}}) }}
-                                {{ form_row(form.departFrom, {attr: {class: 'btn-group2','placeholder': 'Išvykimo adresas'}}) }}
-                                {{ form_row(form.destination, {attr: {class: 'btn-group2','placeholder': 'Atvykimo adresas'}}) }}
-                                {{ form_row(form.destination, {attr: {class: 'btn-group2','placeholder': 'Atvykimo adresas'}}) }}
-
+                                {{ form_row(form.departFrom, {attr: {class: 'btn-group2 autocompile','placeholder': 'Išvykimo adresas'}}) }}
+                                {{ form_row(form.destination, {attr: {class: 'btn-group2 autocompile','placeholder': 'Atvykimo adresas'}}) }}
                                 {{ form_widget(form.filter, {attr: {class: 'btn-form'}}) }}
                             </div>
                             {{ form_end(form) }}
