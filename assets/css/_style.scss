@@ -1,5 +1,15 @@
 body {
-  font-family: 'Roboto', sans-serif; }
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.mainContent{
+  padding-top:94px;
+}
+.container {
+  max-width: 2560px;
+}
 
 h1 {
   font-family: 'Kaushan Script', cursive;
@@ -198,16 +208,16 @@ p {
       background: #ffffff; } }
 
 .dropdown-menu {
-  background: #030303; }
+  background: #ffffff; }
 
 .dropdown-item {
-  color: #aaaaaa;
+  color: #000000;
   -webkit-transition: 0.3s;
   -o-transition: 0.3s;
   transition: 0.3s; }
   .dropdown-item:hover {
-    color: #fff;
-    background: none; }
+    color: #ffffff;
+    background: #000000; }
 
 .ti-plus {
   font-size: 14px;
@@ -253,7 +263,7 @@ p {
     margin: 0 !important; } }
 
 .btn-group {
-  width: 100%;
+  //width: 100%;
   background-color: #fff;
 }
   @media (max-width: 576px) {
@@ -377,20 +387,21 @@ fieldset{
   font-size: 13px;
   line-height: 26px;
 }
-input[type=checkbox] {
+.customizedCheckbox input[type=checkbox] {
   display: none;
 }
 /* Creating the psuedo-element to replace the radio inputs: */
-input[type=checkbox] + label::after {
+.customizedCheckbox input[type=checkbox] + label::after {
   content: '';
   display: inline-block;
   border: 1px solid #000;
   border-radius: 10%;
   margin: 0 0.5em;
   }
-input[type=checkbox]:checked + label::after {
+.customizedCheckbox input[type=checkbox]:checked + label::after {
   background-color: #ff5e00;
 }
+
 .left-padding {
   padding-left:10px;
 }
@@ -414,6 +425,16 @@ input[type=checkbox]:checked + label::after {
       border: none;
       border-top-right-radius: 3px;
       border-bottom-right-radius: 3px; }
+.btn-form3 {
+  font-weight: 400;
+  font-size: 18px;
+  padding: 17px;
+  //width: 100%;
+  background: #6ecb22;
+  color: #ffffff;
+  border: none;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px; }
     @media (max-width: 768px) {
       .btn-form, .btn-form2 {
         width: auto; } }
@@ -513,18 +534,14 @@ input[type=checkbox]:checked + label::after {
         padding: 0; } }
 
     .one_quarter{
-      display:inline-block;
-      float:left;
       text-align: center;
       margin:auto;
-      width:21.5%;
     }
 
     .one_quarter:hover .icon{
       border-color:inherit;
       color:#FFFFFF;
       background-color:#252a33;
-
     }
 
     .icon{
@@ -544,7 +561,7 @@ input[type=checkbox]:checked + label::after {
       text-transform: uppercase;
     }
     .blue-color{
-      color:  #ff5e00;
+      color: #ff5e00;
       font-family: 'Open Sans', sans-serif;
 
     }
@@ -642,10 +659,9 @@ input[type=checkbox]:checked + label::after {
     }
     @media (max-width: 768px) {
       .one_quarter {
-        display: block;
-        float: none;
+        text-align: center;
         width: auto;
-        margin: 0 0 30px 0;
+        margin: auto;
         padding: 0;
       }
     }
@@ -666,17 +682,23 @@ input[type=checkbox]:checked + label::after {
        FOOTER
        ************************************************************* */
     footer {
-      position: relative;}
+      //position: relative;
+    }
     .footer-block{
-      padding: 30px 0;
+      //padding: 30px 0;
+      background-color: #252a33;
+      min-height: 80px;
+      margin: auto auto 0 auto;
+      text-align: center;
+      width: 100%;
     }
     .copyright {
-      text-align: center; }
-    .copyright p {
-      font-size: 18px;
+      text-align: center;
+      font-size: 16px;
       font-weight: 400;
       color: #ccc;
-      margin: 0; }
+      margin: 10px 0px 10px 0px;
+    }
     .copyright ul {
       margin: 25px 0 0;
       padding: 0; }
@@ -1106,4 +1128,15 @@ input[type=checkbox]:checked + label::after {
     #map {
       height: 100%;
       width: 100%; }
-
+/* **************************************************************
+       REGISTRATION FORMS
+       ************************************************************** */
+.registration-form{
+  background: #ffffff;
+  border-radius: 15px 15px 15px 15px;
+  -webkit-border-radius: 15px 15px 15px 15px;
+  -moz-border-radius: 15px 15px 15px 15px;
+  padding: 15px 15px 15px 15px;
+  font-weight: bold;
+  color: #000000;
+}

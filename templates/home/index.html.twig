@@ -3,42 +3,32 @@
 {% block content %}
 
     <!-- SEARCH -->
-    <section class="slider d-flex align-items-center">
-        <div class="container margin_top">
-            <div class="row d-flex justify-content-center">
+    <div class="row slider d-flex align-items-center">
+        <div class="col-md-12">
+            <div class="row slider-title_box">
                 <div class="col-md-12">
-                    <div class="slider-title_box">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="slider-content_wrap">
-                                    <h1>Vykstate į kitą gatvę, miestą ar šalį?</h1>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row d-flex justify-content-center">
-                            <div class="col-md-10">
-
-                            </div>
-                            {{ form_start(form, {attr: {class: 'form-wrap mt-4'}}) }}
-
-                            <div class="btn-group" role="group" aria-label="home search">
-                                {{ form_widget(form.travelerType, {attr: {class: 'form-check-inline'}}) }}
-                                {{ form_row(form.departFrom, {attr: {class: 'btn-group2 autocompile','placeholder': 'Išvykimo adresas'}}) }}
-                                {{ form_row(form.destination, {attr: {class: 'btn-group2 autocompile','placeholder': 'Atvykimo adresas'}}) }}
-                                {{ form_widget(form.filter, {attr: {class: 'btn-form'}}) }}
-                            </div>
-                            {{ form_end(form) }}
-                        </div>
+                    <h1>Vykstate į kitą gatvę, miestą ar šalį?</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col d-flex flex-row justify-content-center">
+                    {{ form_start(form, {attr: {class: 'form-wrap mt-4'}}) }}
+                    <div class="btn-group" role="group" aria-label="home search">
+                        {{ form_widget(form.travelerType, {attr: {class: 'form-check-inline'}}) }}
+                        {{ form_row(form.departFrom, {attr: {class: 'btn-group2 autocomplite','placeholder': 'Išvykimo adresas'}}) }}
+                        {{ form_row(form.destination, {attr: {class: 'btn-group2 autocomplite','placeholder': 'Atvykimo adresas'}}) }}
+                        {{ form_widget(form.filter, {attr: {class: 'btn-form'}}) }}
                     </div>
+                    {{ form_end(form) }}
                 </div>
             </div>
         </div>
-    </section>
+    </div>
     <!--//END HEADER -->
 
     <!--============================= WHY US =============================-->
-    <section class="main-block colored">
-        <div class="container">
+    <div class="row main-block colored">
+        <div class="col">
             <div class="row justify-content-center">
                 <div class="col-md-5">
                     <div class="styled-heading">
@@ -46,29 +36,29 @@
                     </div>
                 </div>
             </div>
+
             <div class="row">
-                <div class="one_quarter"><div class="icon"><img src="images/piggy-bank.png"></div>
-                    <h4 class="dark-color uppercase">Pigiau</h4>
+                <div class="col-xs-12 col-sm-6 col-md-3 one_quarter"><div class="icon"><img src="images/piggy-bank.png"></div>
+                    <div class="dark-color uppercase">Pigiau</div>
 
                 </div>
-                <div class="one_quarter">
+                <div class="col-xs-12 col-sm-6 col-md-3 one_quarter">
                     <div class="icon"><img src="images/happy.png" ></div>
-                    <h4 class="dark-color uppercase">Linksmiau</h4>
+                    <div class="dark-color uppercase">Linksmiau</div>
 
                 </div>
-                <div class="one_quarter">
+                <div class="col-xs-12 col-sm-6 col-md-3 one_quarter">
                     <div class="icon"><img src="images/clock.png"></div>
-                    <h4 class="dark-color uppercase">Greiciau</h4>
+                    <div class="dark-color uppercase">Greičiau</div>
 
                 </div>
-                <div class="one_quarter">
+                <div class="col-xs-12 col-sm-6 col-md-3 one_quarter">
                     <div class="icon"><img src="images/paw-print.png"></div>
-                    <h4 class="dark-color uppercase">Greiciau</h4>
+                    <div class="dark-color uppercase">Ir su augintiniu</div>
 
                 </div>
-
             </div>
         </div>
-    </section>
+    </div>
     <!--//END  -->
 {% endblock %}

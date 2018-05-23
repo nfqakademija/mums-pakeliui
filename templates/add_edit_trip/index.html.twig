@@ -40,7 +40,7 @@
                         {{ form_label(our_form.departFrom) }}
                     </div>
                     <div class="col-sm-12 col-md-6 col-inline-padding-right">
-                        {{ form_widget(our_form.departFrom, {attr: {'placeholder': 'Įrašykite išvykimo adresą'}}) }}
+                        {{ form_widget(our_form.departFrom, {attr: {class: 'autocomplite', 'placeholder': 'Įrašykite išvykimo adresą'}}) }}
                     </div>
                 </div>
                 <div class="row mb-3">
@@ -48,7 +48,7 @@
                         {{ form_label(our_form.destination) }}
                     </div>
                     <div class="col-sm-12 col-md-6 col-inline-padding-right">
-                        {{ form_widget(our_form.destination, {attr: {class: '','placeholder': 'Įrašykite atvykimo adresą'}}) }}
+                        {{ form_widget(our_form.destination, {attr: {class: 'autocomplite','placeholder': 'Įrašykite atvykimo adresą'}}) }}
                     </div>
                 </div>
                 <div class="row mb-3">
