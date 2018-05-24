@@ -2,8 +2,7 @@
 
 {% block content %}
     <!--============================= DETAIL =============================-->
-    <section style="margin-top:100px;">
-        <div class="container-fluid">
+    <section>
             <!--================= SEARCH ====================-->
             <div class="row">
                 <div class="col-md-12 responsive-wrap search-wrap">
@@ -39,12 +38,6 @@
                             <div class='multi-range' data-lbound='0' data-ubound='24'>
                                 {{ form_widget(form.timeFrom, {attr: {class: 'range-style'}}) }}
                                 {{ form_widget(form.timeTo, {attr: {class: 'range-style'}}) }}
-                                <!--       <input type='range' name="timeFrom"
-                                       min='0' max='24' step='1' value='0'
-                                       oninput='this.parentNode.dataset.lbound=this.value+":00";' />
-                                <input type='range' name="timeTo"
-                                       min='1' max='24' step='1' value='24'
-                                       oninput='this.parentNode.dataset.ubound=this.value+":00";' /> -->
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-2 choose">
@@ -94,7 +87,6 @@
                     </div>
                 {% endfor %}
             </div>
-        </div>
     </section>
 {% endblock %}
 {% block javascripts %}

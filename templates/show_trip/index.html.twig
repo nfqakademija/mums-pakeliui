@@ -1,118 +1,105 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-    <div class="row">
-        <div class="col mb-4">
-            <a href="javascript:history.back()" class="itemData" style="color: blue"><i class="fas fa-long-arrow-alt-left"></i> Į skelbimų sąrašą</a>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col search-form">
-            <div class="row">
-                <div class="col-sm-12 col-md-6 col-lg-3" style="text-align:left">
-                    <div class="row">
-                        <div class="col">
-                            <h4>{{ trip.User }}</h4>
-                        </div>
+    <!--============================= DETAIL =============================-->
+
+    <!--============================= RESERVE A SEAT =============================-->
+
+    <div class="row responsive-wrap search-wrap">
+        <div class="col-8" style="margin:auto">
+            <div class="col-lg-9" style="float:left">
+                <h5><span id="start">{{ trip.departFrom }}</span> <i class="fas fa-long-arrow-alt-right"></i> <span id="end">{{ trip.destination }}</span></h5>
+                    <div class="reserve-description"><span class="fas fa-clock" style=" color:#ff5f00;"></span> {{ trip.departTime|date("Y-m-d H:i") }}</div>
+                    <div class="reserve-description">
+                        {% for i in 1..trip.seats %}
+                        <i class="material-icons">airline_seat_recline_extra</i>
+                        {% endfor %}
                     </div>
-                    <div class="row">
-                        <div class="col-4 travellerIcon">
-                            {% if trip.travelerType == 1 %}
-                                <i class="fas fa-child"></i>
-                            {% else %}
-                                <i class="fas fa-car"></i>
-                            {% endif %}
-                        </div>
-                    </div>
-                    <div class="row mt-2">
-                        <div class="col-2"><i class="far fa-envelope"></i></div>
-                        <div class="col-10">{{ trip.User.email }}</div>
-                    </div>
-                    <div class="row">
-                        <div class="col-2"><i class="fas fa-phone"></i></div>
-                        <div class="col-10">{{ trip.phone }}</div>
+            </div>
+            <div class="col-lg-3" style="float:left;">
+                    <div class="reserve-seat-block">
                         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                             {% if trip.travelerType == 1 %}
-                                 {{ form_start(form_offer) }}
-                                 <div class="col-12" style="padding-top:20px; margin:auto">
-                                    {{ form_row(form_offer.offer, {attr: {class: '', min:  1 }}) }}
-                                 </div>
-                                 <div class="col-11" style="padding: 0 0 10px 0; margin:auto">
-                                    {{ form_widget(form_offer.save, {attr: {class: 'btn btn-pink'}}) }}
-                                 </div>
-                                 {{ form_end(form_offer) }}
+                                {{ form_start(form_offer) }}
+                                <div style="float:left">
+                                  {{ form_widget(form_offer.offer, {attr: {class: '', min:  1}}) }}
+                                </div>
+                                <div class="review-btn" style="float:right">
+                                    {{ form_widget(form_offer.save, {attr: {class: 'btn btn-outline-danger'}}) }}
+                                </div>
+                                {{ form_end(form_offer) }}
                             {% else %}
                                 {{ form_start(form) }}
-                                 <div class="col-12" style="padding:0; margin-top:10px">
-                                     <div class="col-5 col-inline-padding-left" style="padding:0; margin:0">
-                                        {{ form_row(form.seats, {attr: {class: '', max:  trip.seats }}) }}
-                                     </div>
-                                     <div class="col-6 col-inline-padding-left" style="padding-top:25px">
-                                        {{ form_widget(form.save, {attr: {class: 'btn btn-pink'}}) }}
-                                     </div>
-                                 </div>
-                                 {{ form_end(form) }}
+                                <div class="seats col-7">
+                                   {{ form_widget(form.seats, {attr: {class: '', max:  trip.seats,'placeholder': 'Vietų skaičius'  }}) }}
+                                </div>
+                                    <div class="review-btn col-5">
+                                        {{ form_widget(form.save, {attr: {class: 'btn-outline-danger'}}) }}
+                                    </div>
+
+                                {{ form_end(form) }}
                             {% endif %}
                         {% endif %}
                     </div>
-
-                </div>
-                <div class="col-sm-12 col-md-6 col-lg-5" style="text-align:left">
-                    <div class="row">
-                        <div class="col headingDarkNoBorder">
-                            <h4><span id="start">{{ trip.departFrom }}</span> <i class="fas fa-long-arrow-alt-right"></i> <span id="end">{{ trip.destination }}</span></h4>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6 itemTitle">Išvykimo data:</div>
-                        <div class="col-6 itemData">{{ trip.departTime|date("Y-m-d") }}</div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6 itemTitle">Išvykimo laikas:</div>
-                        <div class="col-6 itemData">{{ trip.departTime|date("H:i") }}</div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6 itemTitle">Vietų skaičius:</div>
-                        <div class="col-6 itemData">{{ trip.seats }}</div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6 itemTitle">Rūkymas:</div>
-                        <div class="col-6 itemData">
-                            {% if trip.smoke==0 %}
-                                <i class="material-icons">smoke_free</i>
-                            {% endif %}
-                            {% if trip.smoke==1 %}
-                                <i class="fas fa-smoking"></i>
-                            {% endif %}
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6 itemTitle">Gyvūnai:</div>
-                        <div class="col-6 itemData">
-                            {% if trip.pets==0 %}
-                                <img src="{{ asset('images/no-pets.png') }}"/>
-                            {% endif %}
-                            {% if trip.pets==1 %}
-                                <i class="fas fa-paw"></i>
-                            {% endif %}
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-12 col-lg-4" style="text-align:left">
-                    <div class="row">
-                        <div class="col" style="text-align: justify"> {{ trip.information }}</div>
-                    </div>
-                </div>
             </div>
-            <div class="row">
-                <div class="col">
-                    <div id="map"></div>
-                    <div id="warnings-panel"></div>
+        </div>
+    </div>
+
+    <!--//END RESERVE A SEAT -->
+        <div class="row responsive-wrap light-bg booking-details_wrap">
+            <div class="col-md-12">
+                <div class="booking-checkbox_wrap col-8">
+
+                    <div class="row">
+
+                        <div class="booking-checkbox col-4">
+                            <div class="col-md-12">
+                                <div class="styled-heading2">
+                                    <h5>{{ trip.User }}</h5>
+                                </div>
+                                <div class="paddingTop customer-img-block">
+                                    <img src="/images/avatar.png" class="customer-img">
+                                    <img src="https://www.googleapis.com/plus/v1/people/{{ trip.User.googleId }}" style='height: 100%; width: 100%; object-fit: contain; border-radius:50%; border:1px solid #e9e7ed;'>
+
+                                </div>
+                            </div>
+                            <div class="col-md-12 paddingTop">
+                                <i class="material-icons" style="font-size:20px">mail_outline</i><span style="font-size: 20px"> {{ trip.User.email }}</span><br>
+                                <i class="material-icons" style="font-size:20px">smartphone</i> <span  style="font-size:20px"> {{ trip.phone }}</span>
+                            </div>
+                            <div class="col-md-12 paddingTop">
+                                {% if trip.smoke==0 %}
+                                    <i class="material-icons blueBorder">smoke_free</i>
+                                {% endif %}
+                                {% if trip.smoke==1 %}
+                                    <i class="fas fa-smoking blueBorder"></i>
+                                {% endif %}
+                                {% if trip.pets==0 %}
+                                    <img src="{{ asset('images/no-pets.png') }}" class="blueBorder" style="position:relative; bottom:8px;"/>
+                                {% endif %}
+                                {% if trip.pets==1 %}
+                                    <i class="fas fa-paw blueBorder"></i>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-12 paddingTop" style="text-align: justify">
+                                {{ trip.information }}
+                            </div>
+                        </div>
+                        <div class="col-8">
+                            <div id="map"></div>
+                            <div id="warnings-panel"></div>
+
+
+                        </div>
+                    </div>
                 </div>
+
+
+
+
             </div>
         </div>
 
-    </div>
 {% endblock %}
 {% block javascripts %}
     <script src="{{ asset('build/js/app.js') }}"></script>
