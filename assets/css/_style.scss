@@ -594,13 +594,16 @@ fieldset{
       -o-transition: all 0.5s ease;
       transition: all 0.5s ease;
       position: relative;
+      border: solid 0px rgb(206, 205, 205);
     }
     .featured-trip-wrap:hover {
       -webkit-transform: translateY(-2px);
       -ms-transform: translateY(-2px);
       transform: translateY(-2px);
-      -webkit-box-shadow: 0px 3px 40px 0 rgba(206, 205, 205, 0.3);
-      box-shadow: 0px 3px 40px 0 rgba(206, 205, 205, 0.3); }
+      -webkit-box-shadow: 0px 3px 25px 0 rgb(206, 205, 205);
+      box-shadow: 0px 3px 25px 0 rgb(206, 205, 205);
+      border: solid 1px rgb(206, 205, 205);
+    }
     .featured-trip-wrap a {
       display: block;
       text-decoration: none;
@@ -614,19 +617,30 @@ fieldset{
     }
 
     @media (min-width: 1920px) {
-      .features-responsive{
+      .featured-responsive{
         max-width: 465px;
       }
 
     }
-    @media only screen and (max-width: 1200px) and (min-width: 824px) {
-      .col-sm-3.featured-responsive{
+    @media only screen and (max-width: 1200px) and (min-width: 992px) {
+      .featured-responsive{
         max-width:33.33%;
       }
     }
-    @media only screen and (max-width: 823px) and (min-width: 569px) {
-      .col-sm-3.featured-responsive{
-        min-width:50%;
+    @media only screen and (max-width: 992px) and (min-width: 768px) {
+      .featured-responsive{
+        min-width:100%;
+      }
+      .col {
+        padding-left: 0;
+      }
+    }
+    @media only screen and (max-width: 767px) and (min-width: 300px) {
+      .featured-responsive{
+        min-width:100%;
+      }
+      .col {
+        padding-left: 0;
       }
     }
     @media (max-width: 480px) {
@@ -711,7 +725,7 @@ fieldset{
       min-height: 80px;
       margin: auto auto 0 auto;
       text-align: center;
-      width: 100%;
+      width: 100vw;
     }
     .copyright {
       text-align: center;
@@ -719,6 +733,11 @@ fieldset{
       font-weight: 400;
       color: #ccc;
       margin: 10px 0px 10px 0px;
+    }
+    @media (max-width: 768px) {
+      .copyright {
+        font-size: 14px;
+      }
     }
     .copyright ul {
       margin: 25px 0 0;
@@ -815,7 +834,7 @@ fieldset{
     }
 
     .detail-options-wrap {
-      padding: 15px 0; }
+      padding: 15px; }
 
     @media (max-width: 992px) {
       .responsive-wrap {
