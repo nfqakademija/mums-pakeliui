@@ -1169,7 +1169,7 @@ fieldset{
       height: 100%;
       width: 100%; }
 /* **************************************************************
-       REGISTRATION FORMS
+       REGISTRATION AND ADD EDIT TRIP FORMS
        ************************************************************** */
 .registration-form{
   background: #ffffff;
@@ -1179,4 +1179,39 @@ fieldset{
   padding: 15px 15px 15px 15px;
   font-weight: bold;
   color: #000000;
+}
+
+.form-title{
+  margin-bottom:30px;
+  //padding-top: 10px;
+  padding-left: 10px;
+  color:#000000;
+  font-family: 'Kaushan Script', cursive;
+  font-size: 1.5em;
+}
+
+.col-inline-padding-left{
+  float:left;
+  padding:0 5px 0 10px;
+  margin:0
+}
+.col-inline-padding-right{
+  float:left;
+  padding:0 10px 0 5px;
+  margin:0
+}
+
+.itemTitle{
+  font-weight:bold;
+  font-size:20px;
+}
+@media (max-width: 768px) {
+  .itemTitle{
+    font-size:15px;
+  }
+}
+.btn-row{
+  text-align: left;
+  margin-top:15px;
+  margin-bottom:10px;
 }
