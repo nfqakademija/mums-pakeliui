@@ -34,9 +34,9 @@
                             {{ form_widget(form.departDate) }}
                         </div>
                         <div class="p-2">
-                            <div class="multi-range" data-lbound='0' data-ubound='24'>
-                                {{ form_widget(form.timeFrom, {attr: {class: 'range-style'}}) }}
-                                {{ form_widget(form.timeTo, {attr: {class: 'range-style'}}) }}
+                            <div class="" id="rangeSlider">
+                                {{ form_widget(form.timeFrom, {attr: {class: ''}}) }}
+                                {{ form_widget(form.timeTo, {attr: {class: ''}}) }}
                                 <!--       <input type='range' name="timeFrom"
                                        min='0' max='24' step='1' value='0'
                                        oninput='this.parentNode.dataset.lbound=this.value+":00";' />
@@ -107,4 +107,17 @@
             });
         });
     </script>
+<script>
+    $(document).ready(function() {
+        //kendo.culture("lt-LT");
+    $("#rangeSlider").kendoRangeSlider({
+        orientation: "horizontal",
+        min: 0,
+        max: 24,
+        leftDragHandleTitle: "laikas nuo",
+        rightDragHandleTitle: "laikas iki",
+        largeStep: 6
+    });
+    });
+ </script>
 {% endblock %}
