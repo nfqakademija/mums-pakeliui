@@ -99,6 +99,15 @@ p {
   }
 
 }
+@media (max-width: 500px) {
+  .navbar-brand {
+    font-size:23px;
+  }
+  .mainContent{
+    padding-top:70px;
+  }
+
+}
 
 .navbar-light .navbar-brand {
   color: #363636; }
