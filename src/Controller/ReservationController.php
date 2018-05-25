@@ -44,7 +44,7 @@ class ReservationController extends Controller
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $reservation = new Reservation();
-            $reservation ->setOffer($form["offer"]->getData()) ;
+            //$reservation ->setOffer($form["offer"]->getData()) ;
             $reservation ->setType(1);
             $reservation->setTrip($trip);
             $reservation->setUser($user);

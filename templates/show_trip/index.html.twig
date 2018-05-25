@@ -21,9 +21,6 @@
                         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                             {% if trip.travelerType == 1 %}
                                 {{ form_start(form_offer) }}
-                                <div style="float:left">
-                                  {{ form_widget(form_offer.offer, {attr: {class: '', min:  1}}) }}
-                                </div>
                                 <div class="review-btn" style="float:right">
                                     {{ form_widget(form_offer.save, {attr: {class: 'btn btn-outline-danger'}}) }}
                                 </div>
@@ -58,8 +55,11 @@
                                     <h5>{{ trip.User }}</h5>
                                 </div>
                                 <div class="paddingTop customer-img-block">
+                                    {% if trip.User.avatar is not null %}
+                                        <img src="{{ trip.User.avatar }}" class="customer-img">
+                                    {% else %}
                                     <img src="/images/avatar.png" class="customer-img">
-                                    <img src="https://www.googleapis.com/plus/v1/people/{{ trip.User.googleId }}" style='height: 100%; width: 100%; object-fit: contain; border-radius:50%; border:1px solid #e9e7ed;'>
+                                    {% endif %}
 
                                 </div>
                             </div>

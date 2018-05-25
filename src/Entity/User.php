@@ -36,6 +36,9 @@ class User extends BaseUser
     /** @ORM\Column(name="google_access_token", type="string", length=255, nullable=true) */
     protected $googleAccessToken;
 
+    /** @ORM\Column(name="avatar", type="string", length=255, nullable=true)*/
+    protected $avatar;
+
     public function setFacebookId($facebookID)
     {
         $this->facebookId = $facebookID;
@@ -67,6 +70,13 @@ class User extends BaseUser
         return $this;
     }
 
+    public function setAvatar($avatar)
+    {
+        $this->avatar = $avatar;
+
+        return $this;
+    }
+
     public function getGoogleId()
     {
         return $this->googleId;
@@ -82,5 +92,10 @@ class User extends BaseUser
     public function getGoogleAccessToken()
     {
         return $this->googleAccessToken;
+    }
+
+    public function getAvatar()
+    {
+        return $this->avatar;
     }
 }

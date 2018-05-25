@@ -17,6 +17,10 @@ hwi_oauth:
                 display: popup
                 auth_type: rerequest
                 csrf: true
+            infos_url:     "https://graph.facebook.com/me?fields=id,name,email,picture.type(square)"
+            path:
+                email: email
+                profilepicture: picture.data.url
         google:
             type:                google
             scope:               "email profile"

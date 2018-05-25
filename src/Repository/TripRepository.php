@@ -58,7 +58,6 @@ class TripRepository extends ServiceEntityRepository
                 ->setParameter('pets', $value['pets']);
         }
         if (isset($value['departDate'])) {
-
             $departDate = $value['departDate']->format('Y-m-d H:i');
             $start = new \DateTime(sprintf('%s', $departDate));
             $end = new \DateTime(sprintf('%s', $departDate));
