@@ -66,23 +66,26 @@
                             <a href="{{ path('trip_show', {'id': trip.id}) }}">
                                 <img src="images/{{ trip.travelerType }}.png" class="img-fluid" alt="#">
                                 <div class="featured-title-box">
-
-                                    <h6><span class="fas fa-map-marker-alt"></span> {{ trip.departFrom }} <br>
-                                        <span class="fas fa-long-arrow-alt-down" style="margin-left:3px; font-size:18px;"></span><br>
-                                        <span class="fas fa-map-marker-alt" style="color: #6ecb22;"></span> {{ trip.destination }}</h6>
-
+                                    <h6>
+                                        <span class="fas fa-map-marker-alt"></span> {{ trip.departFrom }} <br>
+                                        <span class="fas fa-long-arrow-alt-down arrow-marker"></span><br>
+                                        <span class="fas fa-map-marker-alt green-marker"></span> {{ trip.destination }}
+                                    </h6>
                                     <div class="bottom-info">
                                         <span class="fas fa-clock"></span> {{ trip.departTime|date("Y-m-d H:i") }}
                                         <div class="info">Papildoma informacija</div>
                                         <div class="icon-block">
                                             {% if trip.smoke==0 %}
-                                                <i class="material-icons blueBorder">smoke_free</i>
+                                            <span class="strikethrough" style="width:60px;"><i class="fas fa-smoking blueBorder"></i></span>
                                             {% endif %}
                                             {% if trip.smoke==1 %}
                                                 <i class="fas fa-smoking blueBorder"></i>
+
                                             {% endif %}
                                             {% if trip.pets==0 %}
-                                                <img src="{{ asset('images/no-pets.png') }}" class="blueBorder"/>
+                                                <span class="strikethrough" style="width:60px;">
+                                                  <i class="fas fa-paw blueBorder"></i>
+                                                </span>
                                             {% endif %}
                                             {% if trip.pets==1 %}
                                                 <i class="fas fa-paw blueBorder"></i>

@@ -40,13 +40,13 @@ h4 {
   font-size: 30px; }
 
 h5 {
-  font-size: 28px; }
+  font-size: 23px; }
   @media (max-width: 768px) {
     h5 {
-      font-size: 22px; } }
+      font-size: 19px; } }
 
 h6 {
-  font-size: 21px;
+  font-size: 19px;
   font-weight: 400; }
 
 p {
@@ -422,36 +422,38 @@ fieldset{
 .left-padding {
   padding-left:10px;
 }
-    .btn-form {
-      font-weight: 400;
-      font-size: 18px;
-      padding: 17px;
-      width: 27%;
-      background: #6ecb22;
-      color: #ffffff;
-      border: none;
-      border-top-right-radius: 3px;
-      border-bottom-right-radius: 3px; }
-    .btn-form2 {
-      font-weight: 400;
-      font-size: 18px;
-      padding: 17px;
-      width: 100%;
-      background: #6ecb22;
-      color: #ffffff;
-      border: none;
-      border-top-right-radius: 3px;
-      border-bottom-right-radius: 3px; }
-.btn-form3 {
+.btn-form {
   font-weight: 400;
   font-size: 18px;
   padding: 17px;
-  //width: 100%;
+  width: 27%;
   background: #6ecb22;
   color: #ffffff;
   border: none;
   border-top-right-radius: 3px;
-  border-bottom-right-radius: 3px; }
+  border-bottom-right-radius: 3px;
+}
+.btn-form2 {
+  font-weight: 400;
+  font-size: 18px;
+  padding: 17px;
+  width: 100%;
+  background: #6ecb22;
+  color: #ffffff;
+  border: none;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+.btn-form3 {
+  font-weight: 400;
+  font-size: 18px;
+  padding: 17px;
+  background: #6ecb22;
+  color: #ffffff;
+  border: none;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
     @media (max-width: 768px) {
       .btn-form, .btn-form2 {
         width: auto; } }
@@ -465,43 +467,43 @@ fieldset{
 
     }
 
-    .search-icon {
-      font-size: 15px;
-      padding-right: 10px; }
+.search-icon {
+  font-size: 15px;
+  padding-right: 10px; }
 
-    .slider-link {
-      color: #909090;
-      margin: 45px 0 0;
-      font-size: 19px;
-    }
+.slider-link {
+  color: #909090;
+  margin: 45px 0 0;
+  font-size: 19px;
+}
     @media (max-width: 480px) {
       .slider-link {
         margin: 18px 0 0; }
       .slider-link a,
       .slider-link span {
         display: block; } }
-    .slider-link a {
-      color: #909090;
-      text-decoration: underline;
-      -webkit-transition: 0.3s;
-      -o-transition: 0.3s;
-      transition: 0.3s; }
-    .slider-link a:hover {
-      color: #fff; }
-    .slider-link span {
-      padding: 0 18px; }
+.slider-link a {
+  color: #909090;
+  text-decoration: underline;
+  -webkit-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s; }
+.slider-link a:hover {
+  color: #fff; }
+.slider-link span {
+  padding: 0 18px; }
 
     /* **************************************************************
        FIND TRIP
        ************************************************************** */
-    .styled-heading {
-      text-align: center;
-      margin: 0 0 50px; }
-    .styled-heading2 {
-      text-align: left;
-      margin: 0 0 20px;
-      width:auto;
-    }
+.styled-heading {
+  text-align: center;
+  margin: 0 0 50px; }
+.styled-heading2 {
+  text-align: left;
+  margin: 0 0 20px;
+  width:auto;
+}
     @media (max-width: 768px) {
       .styled-heading {
         margin: 0 0 30px; }
@@ -510,70 +512,89 @@ fieldset{
 
       }
     }
-    .styled-heading h3 {
-      position: relative;
-      padding: 0 0 23px;
-      font-family: 'Open Sans', sans-serif;
-    }
-    .styled-heading h3:after {
-      position: absolute;
-      content: "";
-      width: 60px;
-      height: 3px;
-      background:  #6ecb22;
-      bottom: 0;
-      left: 50%;
-      -webkit-transform: translateX(-50%);
-      -ms-transform: translateX(-50%);
-      transform: translateX(-50%); }
-    .styled-heading2 h5 {
-      position: relative;
-      padding: 0 0 15px;
-      font-family: 'Open Sans', sans-serif;
-      display: inline;
-    }
-    .styled-heading2 h5:after {
-      position: absolute;
-      content: "";
-      width: 30px;
-      height: 3px;
-      background:  #6ecb22;
-      bottom: 0;
-      left: 50%;
-      -webkit-transform: translateX(-50%);
-      -ms-transform: translateX(-50%);
-      transform: translateX(-50%); }
+.styled-heading h3 {
+  position: relative;
+  padding: 0 0 23px;
+  font-family: 'Open Sans', sans-serif;
+}
+.styled-heading h3:after {
+  position: absolute;
+  content: "";
+  width: 60px;
+  height: 3px;
+  background:  #6ecb22;
+  bottom: 0;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%); }
+.styled-heading2 h5 {
+  position: relative;
+  padding: 0 0 15px;
+  font-family: 'Open Sans', sans-serif;
+  display: inline;
+}
+.styled-heading2 h5:after {
+  position: absolute;
+  content: "";
+  width: 30px;
+  height: 3px;
+  background:  #6ecb22;
+  bottom: 0;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%); }
 
-    .find-img-align {
-      padding: 0 0 15px; }
+.find-img-align {
+  padding: 0 0 15px; }
     @media (max-width: 768px) {
       .find-img-align {
         padding: 0; } }
 
-    .one_quarter{
-      text-align: center;
-      margin:auto;
-    }
+.one_quarter{
+  text-align: center;
+  margin:auto;
+}
 
-    .one_quarter:hover .icon{
-      border-color:inherit;
-      color:#FFFFFF;
-      background-color:#252a33;
-    }
+.one_quarter:hover .icon{
+  border-color:inherit;
+  color:#FFFFFF;
+  background-color:#252a33;
+}
+.icon{
+  display:inline-block;
+  position:relative;
+  margin-bottom:20px;
+  padding:20px;
+  border-radius:50%;
+  background-clip:padding-box;
+  text-align:center;
+  font-size:36px
+}
+.icon img{
+  width:120px;
+}
+.strikethrough {
+  position: relative;
+  display: inline-block;
+}
 
-    .icon{
-      display:inline-block;
-      position:relative;
-      margin-bottom:20px;
-      padding:20px;
-      border-radius:50%;
-      background-clip:padding-box;
-      text-align:center;
-      font-size:36px
-    }
-    .icon img{
-      width:120px;
-    }
+.strikethrough:before {
+  position: absolute;
+  content: "";
+  left: 4px;
+  width:100%;
+  top: 50%;
+  right: 0;
+  border-top: 2px solid #252a33;
+
+  -webkit-transform:rotate(-40deg);
+  -moz-transform:rotate(-40deg);
+  -ms-transform:rotate(-40deg);
+  -o-transform:rotate(-40deg);
+  transform:rotate(-40deg);
+}
   @media (max-width: 768px) {
   .icon {
     font-size:26px; }
@@ -582,10 +603,10 @@ fieldset{
     }
   }
 
-    .uppercase{
-      text-transform: uppercase;
-      font-size:30px;
-    }
+.uppercase{
+  text-transform: uppercase;
+  font-size:30px;
+}
   @media (max-width: 768px) {
     .uppercase{
       font-size:20px;

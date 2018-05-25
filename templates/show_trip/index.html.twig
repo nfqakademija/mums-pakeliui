@@ -1,15 +1,14 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-    <!--============================= DETAIL =============================-->
 
     <!--============================= RESERVE A SEAT =============================-->
 
-    <div class="row responsive-wrap search-wrap">
-        <div class="col-8" style="margin:auto">
+    <div class="row search-wrap">
+        <div class="col-xl-8 reserve-block">
             <div class="col-lg-9" style="float:left">
                 <h5><span id="start">{{ trip.departFrom }}</span> <i class="fas fa-long-arrow-alt-right"></i> <span id="end">{{ trip.destination }}</span></h5>
-                    <div class="reserve-description"><span class="fas fa-clock" style=" color:#ff5f00;"></span> {{ trip.departTime|date("Y-m-d H:i") }}</div>
+                    <div class="reserve-description"><span class="fas fa-clock"></span> {{ trip.departTime|date("Y-m-d H:i") }}</div>
                     <div class="reserve-description">
                         {% for i in 1..trip.seats %}
                         <i class="material-icons">airline_seat_recline_extra</i>
@@ -45,11 +44,11 @@
     <!--//END RESERVE A SEAT -->
         <div class="row responsive-wrap light-bg booking-details_wrap">
             <div class="col-md-12">
-                <div class="booking-checkbox_wrap col-8">
+                <div class="booking-checkbox_wrap col-xl-8">
 
                     <div class="row">
 
-                        <div class="booking-checkbox col-4">
+                        <div class="booking-checkbox col-sm-5">
                             <div class="col-md-12">
                                 <div class="styled-heading2">
                                     <h5>{{ trip.User }}</h5>
@@ -63,11 +62,11 @@
 
                                 </div>
                             </div>
-                            <div class="col-md-12 paddingTop">
-                                <i class="material-icons" style="font-size:20px">mail_outline</i><span style="font-size: 20px"> {{ trip.User.email }}</span><br>
-                                <i class="material-icons" style="font-size:20px">smartphone</i> <span  style="font-size:20px"> {{ trip.phone }}</span>
+                            <div class="col-md-12 paddingTop contacts-icon">
+                                <i class="material-icons">mail_outline</i><span> {{ trip.User.email }}</span><br>
+                                <i class="material-icons">smartphone</i> <span> {{ trip.phone }}</span>
                             </div>
-                            <div class="col-md-12 paddingTop">
+                            <div class="col-md-12 paddingTop icon-block">
                                 {% if trip.smoke==0 %}
                                     <i class="material-icons blueBorder">smoke_free</i>
                                 {% endif %}
@@ -75,21 +74,19 @@
                                     <i class="fas fa-smoking blueBorder"></i>
                                 {% endif %}
                                 {% if trip.pets==0 %}
-                                    <img src="{{ asset('images/no-pets.png') }}" class="blueBorder" style="position:relative; bottom:8px;"/>
+                                    <img src="{{ asset('images/no-pets.png') }}" class="blueBorder"/>
                                 {% endif %}
                                 {% if trip.pets==1 %}
                                     <i class="fas fa-paw blueBorder"></i>
                                 {% endif %}
                             </div>
-                            <div class="col-md-12 paddingTop" style="text-align: justify">
+                            <div class="col-md-12 info-block">
                                 {{ trip.information }}
                             </div>
                         </div>
-                        <div class="col-8">
+                        <div class="col-sm-7">
                             <div id="map"></div>
                             <div id="warnings-panel"></div>
-
-
                         </div>
                     </div>
                 </div>
@@ -108,7 +105,7 @@
         function initMap() {
             var directionsService = new google.maps.DirectionsService;
 
-            // Create a map and center it on Manhattan.
+            // Create a map and center it on Vilnius.
             var map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 13,
                 center: {lat: 54.7000898, lng: 25.1125084}
