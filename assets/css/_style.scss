@@ -575,26 +575,6 @@ fieldset{
 .icon img{
   width:120px;
 }
-.strikethrough {
-  position: relative;
-  display: inline-block;
-}
-
-.strikethrough:before {
-  position: absolute;
-  content: "";
-  left: 4px;
-  width:100%;
-  top: 50%;
-  right: 0;
-  border-top: 2px solid #252a33;
-
-  -webkit-transform:rotate(-40deg);
-  -moz-transform:rotate(-40deg);
-  -ms-transform:rotate(-40deg);
-  -o-transform:rotate(-40deg);
-  transform:rotate(-40deg);
-}
   @media (max-width: 768px) {
   .icon {
     font-size:26px; }
@@ -829,6 +809,14 @@ fieldset{
   color:#000000;
   font-family: 'Kaushan Script', cursive;
   font-size: 1.5em;
+}
+.form-margin{
+  margin: auto;
+}
+.btn-align{
+  text-align:right;
+  margin-top:20px;
+  padding-right: 5px;
 }
 
 .col-inline-padding-left{
