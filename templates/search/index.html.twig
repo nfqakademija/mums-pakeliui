@@ -67,6 +67,10 @@
                                 <img src="images/{{ trip.travelerType }}.png" class="img-fluid" alt="#">
                                 <div class="featured-title-box">
 
+                                    <h6><span class="fas fa-map-marker-alt"></span> {{ trip.departFrom }} <br>
+                                        <span class="fas fa-long-arrow-alt-down" style="margin-left:3px; font-size:18px;"></span><br>
+                                        <span class="fas fa-map-marker-alt" style="color: #6ecb22;"></span> {{ trip.destination }}</h6>
+
                                     <div class="bottom-info">
                                         <span class="fas fa-clock"></span> {{ trip.departTime|date("Y-m-d H:i") }}
                                         <div class="info">Papildoma informacija</div>
