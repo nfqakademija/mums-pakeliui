@@ -42,11 +42,11 @@
     </div>
 
     <!--//END RESERVE A SEAT -->
-    <div class="row responsive-wrap light-bg booking-details_wrap">
+    <div class="row light-bg booking-details_wrap px-sm-2 px-md-3">
         <div class="booking-checkbox_wrap col-md-12 col-xl-8">
             <div class="row">
-                <div class="booking-checkbox col-sm-5">
-                    <div class="col-md-12">
+                <div class="booking-checkbox col-sm-5 mb-2 mb-sm-0">
+                    <div class="">
                         <div class="styled-heading2">
                             <h5>{{ trip.User }}</h5>
                         </div>
@@ -58,11 +58,11 @@
                             {% endif %}
                         </div>
                     </div>
-                    <div class="col-md-12 paddingTop contacts-icon">
+                    <div class="paddingTop contacts-icon">
                         <i class="material-icons">mail_outline</i><span> {{ trip.User.email }}</span><br>
                         <i class="material-icons">smartphone</i> <span> {{ trip.phone }}</span>
                     </div>
-                    <div class="col-md-12 paddingTop icon-block">
+                    <div class="paddingTop icon-block">
                         {% if trip.smoke==0 %}
                             <i class="material-icons blueBorder">smoke_free</i>
                         {% endif %}
@@ -76,7 +76,7 @@
                             <i class="fas fa-paw blueBorder"></i>
                         {% endif %}
                     </div>
-                    <div class="col-md-12 info-block">
+                    <div class="info-block">
                         {{ trip.information }}
                     </div>
                 </div>

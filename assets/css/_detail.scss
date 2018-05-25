@@ -231,7 +231,7 @@
   font-size:20px;
 }
 @media (max-width: 992px) {
-   .booking-checkbox.col-4{
+   .booking-checkbox .col{
      width:100%;
    }
   .contacts-icon i, .contacts-icon span{
@@ -257,7 +257,7 @@
 #map {
   height: 100%;
   width: 100%; }
-@media (max-width: 500px) {
+@media (max-width: 575px) {
   #map {
     height: 250px;
     width: 100%; }

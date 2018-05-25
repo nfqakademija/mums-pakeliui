@@ -652,7 +652,7 @@ fieldset{
       .featured-responsive{
         max-width:50%;
       }
-      .col {
+      .featured-responsive .col {
         padding-left: 0;
       }
     }
@@ -661,7 +661,7 @@ fieldset{
         min-width:50%;
         max-width:100%;
       }
-      .col {
+      .featured-responsive .col {
         padding-left: 0;
       }
     }
