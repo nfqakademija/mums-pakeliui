@@ -1,80 +1,91 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
+    <!--============================= ADD TRIP =============================-->
     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-        <div class="row slider2 d-flex flex-row align-items-center">
-            <div class="col-sm-12 col-md-9 col-lg-6 col-xl-5 mx-md-auto mx-lg-auto mx-xl-auto registration-form">
-                <div class="row">
-                    <div class="col form-title">
-                        Skelbimas
+        <div class="row search-wrap">
+            <div class="col-xl-8 reserve-block">
+               <div class="col-lg-9">
+                  <h5>Jūsų kelionės detalės</h5>
+
+               </div>
+
+            </div>
+        </div>
+        <div class="row responsive-wrap light-bg booking-details_wrap">
+            <div class="col-md-12">
+                <div class="booking-checkbox_wrap col-xl-8">
+                    <div class="form-block col-md-11 form-margin">
+                        {{ form_start(our_form) }}
+                        <div class="row">
+                            <div class="col-4 col-inline-padding-left">
+                                {{ form_row(our_form.travelerType, {attr: {class: ''}}) }}
+                            </div>
+                            <div class="col-8 col-inline-padding-left">
+                                {{ form_row(our_form.smoke, {attr: {class: ''}}) }}
+                                {{ form_row(our_form.pets, {attr: {class: ''}}) }}
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-sm-12 col-md-4 col-inline-padding-left itemTitle">
+                                {{ form_label(our_form.seats) }}
+                            </div>
+                            <div class="col-sm-12 col-md-8 col-inline-padding-right">
+                                {{ form_widget(our_form.seats) }}
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-sm-12 col-md-4 col-inline-padding-left itemTitle">
+                                {{ form_label(our_form.phone) }}
+                            </div>
+                            <div class="col-sm-12 col-md-8 col-inline-padding-right">
+                                {{ form_widget(our_form.phone) }}
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-sm-12 col-md-4 col-inline-padding-left itemTitle">
+                                {{ form_label(our_form.departFrom) }}
+                            </div>
+                            <div class="col-sm-12 col-md-8 col-inline-padding-right">
+                                {{ form_widget(our_form.departFrom, {attr: {class: 'autocomplite', 'placeholder': 'Įrašykite išvykimo adresą'}}) }}
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-sm-12 col-md-4 col-inline-padding-left itemTitle">
+                                {{ form_label(our_form.destination) }}
+                            </div>
+                            <div class="col-sm-12 col-md-8 col-inline-padding-right">
+                                {{ form_widget(our_form.destination, {attr: {class: 'autocomplite','placeholder': 'Įrašykite atvykimo adresą'}}) }}
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-sm-12 col-md-4 col-inline-padding-left itemTitle">
+                                {{ form_label(our_form.departTime) }}
+                            </div>
+                            <div class="col-sm-12 col-md-8 col-lg-4 col-inline-padding-right">
+                                {{ form_widget(our_form.departTime) }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col itemTitle col-inline-padding-left">
+                                {{ form_label(our_form.information) }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-inline-padding-left pr-2">
+                                {{ form_widget(our_form.information) }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col btn-align">
+                                {{ form_widget(our_form.save, {attr: {class: 'btn btn-form3'}}) }}
+                            </div>
+                        </div>
+                        {{ form_end(our_form) }}
+
                     </div>
-                </div>
-                {{ form_start(our_form) }}
-                <div class="row">
-                    <div class="col-6 col-inline-padding-left">
-                        {{ form_row(our_form.travelerType, {attr: {class: ''}}) }}
-                    </div>
-                    <div class="col-6 col-inline-padding-left">
-                        {{ form_row(our_form.smoke, {attr: {class: ''}}) }}
-                        {{ form_row(our_form.pets, {attr: {class: ''}}) }}
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <div class="col-sm-12 col-md-6 col-inline-padding-left itemTitle">
-                        {{ form_label(our_form.seats) }}
-                    </div>
-                    <div class="col-sm-12 col-md-6 col-inline-padding-right">
-                        {{ form_widget(our_form.seats) }}
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <div class="col-sm-12 col-md-6 col-inline-padding-left itemTitle">
-                        {{ form_label(our_form.phone) }}
-                    </div>
-                    <div class="col-sm-12 col-md-6 col-inline-padding-right">
-                        {{ form_widget(our_form.phone) }}
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <div class="col-sm-12 col-md-6 col-inline-padding-left itemTitle">
-                        {{ form_label(our_form.departFrom) }}
-                    </div>
-                    <div class="col-sm-12 col-md-6 col-inline-padding-right">
-                        {{ form_widget(our_form.departFrom, {attr: {class: 'autocomplite', 'placeholder': 'Įrašykite išvykimo adresą'}}) }}
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <div class="col-sm-12 col-md-6 col-inline-padding-left itemTitle">
-                        {{ form_label(our_form.destination) }}
-                    </div>
-                    <div class="col-sm-12 col-md-6 col-inline-padding-right">
-                        {{ form_widget(our_form.destination, {attr: {class: 'autocomplite','placeholder': 'Įrašykite atvykimo adresą'}}) }}
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <div class="col-sm-12 col-md-6 col-inline-padding-left itemTitle">
-                        {{ form_label(our_form.departTime) }}
-                    </div>
-                    <div class="col-sm-12 col-md-6 col-lg-4 col-inline-padding-right">
-                        {{ form_widget(our_form.departTime) }}
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col itemTitle col-inline-padding-left">
-                        {{ form_label(our_form.information) }}
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col col-inline-padding-left pr-2">
-                        {{ form_widget(our_form.information) }}
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col btn-row col-inline-padding-left">
-                        {{ form_widget(our_form.save, {attr: {class: 'btn btn-form3'}}) }}
-                    </div>
-                </div>
-                {{ form_end(our_form) }}
+                 </div>
+
             </div>
         </div>
     {% endif %}

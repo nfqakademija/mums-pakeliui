@@ -76,19 +76,16 @@
                                         <div class="info">Papildoma informacija</div>
                                         <div class="icon-block">
                                             {% if trip.smoke==0 %}
-                                            <span style="width:60px;"><i class="material-icons blueBorder">smoke_free</i></span>
+                                                <i class="material-icons blueBorder">smoke_free</i>
                                             {% endif %}
                                             {% if trip.smoke==1 %}
-                                                <span style="width:60px;"><i class="fas fa-smoking blueBorder"></i></span>
-
+                                                <i class="fas fa-smoking blueBorder"></i>
                                             {% endif %}
                                             {% if trip.pets==0 %}
-                                                <span style="width:60px;">
-                                                  <img src="{{ asset('images/no-pets.png') }}" class="blueBorder"/>
-                                                </span>
+                                                <img src="{{ asset('images/no-pets.png') }}" class="blueBorder"/>
                                             {% endif %}
                                             {% if trip.pets==1 %}
-                                                <span style="width:60px;"><i class="fas fa-paw blueBorder"></i></span>
+                                                <i class="fas fa-paw blueBorder"></i>
                                             {% endif %}
                                         </div>
                                     </div>
