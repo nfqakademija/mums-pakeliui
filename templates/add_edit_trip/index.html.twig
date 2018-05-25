@@ -2,8 +2,8 @@
 
 {% block content %}
     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-        <div class="row">
-            <div class="col-sm-12 col-md-9 mx-md-auto search-form">
+        <div class="row slider2 d-flex flex-row align-items-center">
+            <div class="col-sm-12 col-md-9 col-lg-6 col-xl-5 mx-md-auto mx-lg-auto mx-xl-auto registration-form">
                 <div class="row">
                     <div class="col form-title">
                         Skelbimas
@@ -55,23 +55,23 @@
                     <div class="col-sm-12 col-md-6 col-inline-padding-left itemTitle">
                         {{ form_label(our_form.departTime) }}
                     </div>
-                    <div class="col-sm-12 col-md-6 col-inline-padding-right">
+                    <div class="col-sm-12 col-md-6 col-lg-4 col-inline-padding-right">
                         {{ form_widget(our_form.departTime) }}
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col itemTitle">
+                    <div class="col itemTitle col-inline-padding-left">
                         {{ form_label(our_form.information) }}
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col">
+                    <div class="col col-inline-padding-left pr-2">
                         {{ form_widget(our_form.information) }}
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col btn-row">
-                        {{ form_widget(our_form.save, {attr: {class: 'btn-pink'}}) }}
+                    <div class="col btn-row col-inline-padding-left">
+                        {{ form_widget(our_form.save, {attr: {class: 'btn btn-form3'}}) }}
                     </div>
                 </div>
                 {{ form_end(our_form) }}

@@ -3,6 +3,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  background: #e9e7ed;
 }
 .mainContent{
   padding-top:94px;
@@ -93,6 +94,10 @@ p {
   .navbar-brand {
     font-size:25px;
   }
+  .mainContent{
+    padding-top:70px;
+  }
+
 }
 
 .navbar-light .navbar-brand {
@@ -231,6 +236,12 @@ p {
   background: linear-gradient(transparent, rgba(0,0,0,0.6)), url(../images/slider.jpg) no-repeat bottom;
   background-size: cover;
   min-height: 800px; }
+.slider2 {
+  background: linear-gradient(transparent, rgba(0,0,0,0.6)), url(../images/slider2.png) no-repeat bottom;
+  background-size: cover;
+  min-height: 800px;
+  }
+
   @media (max-width: 992px) {
     .slider {
       min-height: 700px; } }
@@ -369,7 +380,7 @@ fieldset{
 .multi-range > input[type=range] {
   width: calc(100% - 16px);
   position: absolute;
-  top: 9px;
+  //top: 9px;
   left: 0;
 }
 .range-style.form-control{padding:0; padding:0;}
@@ -381,7 +392,7 @@ fieldset{
 .multi-range > input[type=range]::-ms-thumb { transform: translateY(-18px); }
 .multi-range > input[type=range]::-ms-track { -webkit-appearance: none; height: 0; }
 .multi-range::after {
-  content: attr(data-lbound) ':00 - ' attr(data-ubound) ':00';
+  content: attr(data-lbound) '' attr(data-ubound) '';
   position: absolute;
   top: 20px;
   left: 0;
@@ -581,39 +592,39 @@ fieldset{
     }
 }
 
-    .blue-color{
-      color: #ff5e00;
-      font-family: 'Open Sans', sans-serif;
-    }
+.orange-color{
+  color: #ff5e00;
+  font-family: 'Open Sans', sans-serif;
+}
 
-    .featured-trip-wrap {
-      background: #fff;
-      margin: 0 0 30px;
-      -webkit-transition: all 0.5s ease;
-      -o-transition: all 0.5s ease;
-      transition: all 0.5s ease;
-      position: relative;
-      border: solid 0px rgb(206, 205, 205);
-    }
-    .featured-trip-wrap:hover {
-      -webkit-transform: translateY(-2px);
-      -ms-transform: translateY(-2px);
-      transform: translateY(-2px);
-      -webkit-box-shadow: 0px 3px 25px 0 rgb(206, 205, 205);
-      box-shadow: 0px 3px 25px 0 rgb(206, 205, 205);
-      border: solid 1px rgb(206, 205, 205);
-    }
-    .featured-trip-wrap a {
-      display: block;
-      text-decoration: none;
-      color: #000; }
-    .featured-trip-wrap img {
-      width: 100%; }
-    .featured-title-box {
-      padding: 22px 5px; }
-    .featured-title-box .bottom-info{
-      padding: 10px 0px;
-    }
+.featured-trip-wrap {
+  background: #fff;
+  margin: 0 0 30px;
+  -webkit-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  position: relative;
+  border: solid 0px rgb(206, 205, 205);
+}
+.featured-trip-wrap:hover {
+  -webkit-transform: translateY(-2px);
+  -ms-transform: translateY(-2px);
+  transform: translateY(-2px);
+  -webkit-box-shadow: 0px 3px 25px 0 rgb(206, 205, 205);
+  box-shadow: 0px 3px 25px 0 rgb(206, 205, 205);
+  border: solid 1px rgb(206, 205, 205);
+}
+.featured-trip-wrap a {
+  display: block;
+  text-decoration: none;
+  color: #000; }
+.featured-trip-wrap img {
+  width: 100%; }
+.featured-title-box {
+  padding: 22px 5px; }
+.featured-title-box .bottom-info{
+  padding: 10px 0px;
+}
 
     @media (min-width: 1920px) {
       .featured-responsive{
@@ -623,12 +634,13 @@ fieldset{
     }
     @media only screen and (max-width: 1200px) and (min-width: 992px) {
       .featured-responsive{
-        max-width:33.33%;
+        min-width:33%;
+        max-width: 33.3%;
       }
     }
     @media only screen and (max-width: 992px) and (min-width: 768px) {
       .featured-responsive{
-        min-width:100%;
+        max-width:50%;
       }
       .col {
         padding-left: 0;
@@ -636,7 +648,8 @@ fieldset{
     }
     @media only screen and (max-width: 767px) and (min-width: 300px) {
       .featured-responsive{
-        min-width:100%;
+        min-width:50%;
+        max-width:100%;
       }
       .col {
         padding-left: 0;
@@ -653,12 +666,15 @@ fieldset{
     @media (max-width: 320px) {
       .featured-title-box p {
         font-size: 13px; } }
-    .featured-title-box p span {
-      color: #ffb006;
-      padding: 0; }
-    .featured-title-box span {
-      color: #9fa9b9;
-      padding: 0 10px; }
+.featured-title-box p span {
+  color: #ffb006;
+  padding: 0;
+}
+.featured-title-box span {
+  color: #9fa9b9;
+  padding: 0 10px;
+}
+
     @media (max-width: 320px) {
       .featured-title-box span {
         padding: 0 4px; } }
@@ -678,19 +694,28 @@ fieldset{
       .featured-title-box ul li span {
         font-size: 12px;
         padding: 0 2px 0 0; } }
-    .featured-title-box ul li p {
-      margin: 0; }
-    .info{
-      padding: 15px 10px;
-    }
-    .blueBorder {
-      border:2px solid #2a2c37;
-      padding: 10px;
-      font-size:20px;
-      border-radius: 5px;
-      -webkit-border-radius: 5px;
-      -moz-border-radius: 5px
-    }
+.featured-title-box ul li p {
+  margin: 0;
+}
+.info{
+  padding: 15px 10px;
+}
+.icon-block{
+  padding: 0 15px 10px 15px;
+}
+.icon-block img{
+  width:48px;
+  position:relative;
+  bottom:8px;
+}
+.blueBorder {
+  border:2px solid #2a2c37;
+  padding: 10px;
+  font-size:20px;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px
+}
     @media (max-width: 768px) {
       .one_quarter {
         text-align: center;
@@ -699,6 +724,13 @@ fieldset{
         padding: 0;
       }
     }
+.arrow-marker{
+  margin-left:3px;
+  font-size:18px;
+}
+.featured-title-box span.green-marker{
+  color: #6ecb22;
+}
     /* **************************************************************
        ADD TRIP
        ************************************************************** */
@@ -757,7 +789,7 @@ fieldset{
       text-decoration: none; }
 
 /* **************************************************************
-       REGISTRATION FORMS
+       REGISTRATION AND ADD EDIT TRIP FORMS
        ************************************************************** */
 .registration-form{
   background: #ffffff;
@@ -767,4 +799,39 @@ fieldset{
   padding: 15px 15px 15px 15px;
   font-weight: bold;
   color: #000000;
+}
+
+.form-title{
+  margin-bottom:30px;
+  //padding-top: 10px;
+  padding-left: 10px;
+  color:#000000;
+  font-family: 'Kaushan Script', cursive;
+  font-size: 1.5em;
+}
+
+.col-inline-padding-left{
+  float:left;
+  padding:0 5px 0 10px;
+  margin:0
+}
+.col-inline-padding-right{
+  float:left;
+  padding:0 10px 0 5px;
+  margin:0
+}
+
+.itemTitle{
+  font-weight:bold;
+  font-size:20px;
+}
+@media (max-width: 768px) {
+  .itemTitle{
+    font-size:15px;
+  }
+}
+.btn-row{
+  text-align: left;
+  margin-top:15px;
+  margin-bottom:10px;
 }
