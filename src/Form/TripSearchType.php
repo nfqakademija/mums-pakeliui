@@ -38,10 +38,14 @@ class TripSearchType extends AbstractType
                 ['label' => false, 'attr' => ['class' => 'trip_departFrom'],
                     'required' => false]
             )
-            ->add('destination', TextType::class, ['label' => false, 'required' => false])
+            ->add('destination',
+                TextType::class,
+                ['label' => false, 'required' => false]
+            )
         ;
         if ($_SERVER["REQUEST_URI"] != '/') {
-            $builder ->add(
+            $builder
+            ->add(
                 'departDate',
                 DateType::class,
                 [   'required' => false,
@@ -50,51 +54,52 @@ class TripSearchType extends AbstractType
                     'html5' => false
                 ]
             )
-                ->add(
-                    'timeFrom',
-                    RangeType::class,
-                    [  'attr' =>[
-                           'min' => 0,
-                           'max' =>24,
-                           'value' => 0,
-                           'oninput' => 'this.parentNode.dataset.lbound=this.value',
-                           'step' => 1
-                        ]
-                    ]
-                )
-                ->add(
-                    'timeTo',
-                    RangeType::class,
-                    [  'attr' =>[
-                            'min' => 1,
-                            'max' => 24,
-                            'value' => 24,
-                            'oninput' => 'this.parentNode.dataset.ubound=this.value',
-                            'step' => 1]
-                    ]
-                )
-                ->add(
-                    'smoke',
-                    IconCheckboxType::class,
-                    [
-                        'required' => false,
-                        'label'=> false,
-                        'label_class' => 'fas fa-smoking']
-                )
-                ->add(
-                    'pets',
-                    IconCheckboxType::class,
-                    [
-                        'required' => false,
-                        'label'=> false,
-                        'label_class' => 'fas fa-paw']
-                )
+            ->add(
+                'timeFrom',
+                RangeType::class,
+                [  'attr' =>[
+                    'min' => 0,
+                    'max' =>24,
+                    'value' => 0,
+                    'oninput' => 'this.parentNode.dataset.lbound=this.value',
+                    'step' => 1
+                ]
+                ]
+            )
+            ->add(
+                'timeTo',
+                RangeType::class,
+                [  'attr' =>[
+                    'min' => 1,
+                    'max' => 24,
+                    'value' => 24,
+                    'oninput' => 'this.parentNode.dataset.ubound=this.value',
+                    'step' => 1]
+                ]
+            )
+            ->add(
+                'smoke',
+                IconCheckboxType::class,
+                [
+                    'required' => false,
+                    'label'=> false,
+                    'label_class' => 'fas fa-smoking']
+            )
+            ->add(
+                'pets',
+                IconCheckboxType::class,
+                [
+                    'required' => false,
+                    'label'=> false,
+                    'label_class' => 'fas fa-paw']
+            )
             ;
         }
-        $builder ->add(
-            'filter',
-            SubmitType::class,
-            ['label' => 'Ieškoti']
-        );
+        $builder
+            ->add(
+                'filter',
+                SubmitType::class,
+                ['label' => 'Ieškoti']
+            );
     }
 }
