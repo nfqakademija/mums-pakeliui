@@ -43,25 +43,32 @@ class ReservationController extends Controller
             $entityManager->persist($reservation);
             $entityManager->flush();
 
-            return $this->redirectToRoute('my_trips');
+            $this->addFlash('success', 'Rezervacija sėkminga! Laukite iš vairuotojo rezervacijos patvirtinimą.');
+            return $this->redirect($request->server->get('HTTP_REFERER'));
         }
 
         $form = $this->createForm(OfferType::class, $reservation);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $offerTrip = $tripRepository->findTripByUserAndDate($user, $trip->getDepartTime());
-            $reservation = new Reservation();
-            $reservation ->setOffer($offerTrip[0]['id']);
-            $reservation ->setType(self::OFFER_TYPE);
-            $reservation->setTrip($trip);
-            $reservation->setUser($user);
-            $entityManager->persist($reservation);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('my_trips');
+            if(isset($offerTrip[0]['id'])) {
+                $reservation = new Reservation();
+                $reservation->setOffer($offerTrip[0]['id']);
+                $reservation->setType(self::OFFER_TYPE);
+                $reservation->setTrip($trip);
+                $reservation->setUser($user);
+                $entityManager->persist($reservation);
+                $entityManager->flush();
+                $this->addFlash('success', 'Sekmingai pasiūlėte kelionę!');
+                return $this->redirect($request->server->get('HTTP_REFERER'));
+            }
+            else{
+                $this->addFlash('danger', 'Neturite kelionės šiai dienai!');
+                return $this->redirect($request->server->get('HTTP_REFERER'));
+            }
         }
 
-        return $this->redirect($this->generateUrl('search'));
+        return $this->redirect($this->generateUrl('my_trips'));
     }
 
     /**

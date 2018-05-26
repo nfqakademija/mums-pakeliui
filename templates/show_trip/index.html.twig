@@ -17,13 +17,23 @@
             </div>
             <div class="col-lg-4 float-block-left">
                 <div class="reserve-seat-block">
-                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    {% if (is_granted("IS_AUTHENTICATED_REMEMBERED") and (trip.user!=app.user)) %}
                         {% if trip.travelerType == constant('TYPE_PASSENGER', trip) %}
                             {{ form_start(form_offer) }}
                             <div class="review-btn float-block-right">
                                 {{ form_widget(form_offer.save, {attr: {class: 'btn btn-outline-danger'}}) }}
                             </div>
                             {{ form_end(form_offer) }}
+                            {% for msg in app.session.flashBag.get('success') %}
+                                <div class="alert alert-success">
+                                    {{ msg }}
+                                </div>
+                            {% endfor %}
+                            {% for msg in app.session.flashBag.get('danger') %}
+                                <div class="alert alert-danger">
+                                    {{ msg }}
+                                </div>
+                            {% endfor %}
                         {% else %}
                             {{ form_start(form) }}
                             <div class="seats col-sm-7 col-xs-7">
@@ -34,6 +44,11 @@
                             </div>
 
                             {{ form_end(form) }}
+                            {% for msg in app.session.flashBag.get('success') %}
+                                <div class="alert alert-success">
+                                    {{ msg }}
+                                </div>
+                            {% endfor %}
                         {% endif %}
                     {% endif %}
                 </div>
