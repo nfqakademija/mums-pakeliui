@@ -5,18 +5,15 @@
     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
         <div class="row search-wrap">
             <div class="col-xl-8 reserve-block">
-               <div class="col-lg-9">
-                  <h5>Jūsų kelionės detalės</h5>
-
-               </div>
-
+                  <h5>Išsami jūsų kelionės informacija</h5>
             </div>
         </div>
-        <div class="col-md-12 col-xl-8 goBack">
-            <a href="javascript:history.back()" class="itemData"><i class="fas fa-long-arrow-alt-left"></i> Į skelbimų sąrašą</a>
+        <div class="row">
+            <div class="col-md-12 col-xl-8 goBack">
+                <a href="javascript:history.back()" class="itemData"><i class="fas fa-long-arrow-alt-left"></i> Atgal</a>
+            </div>
         </div>
         <div class="row light-bg booking-details_wrap">
-            <div class="col-md-12">
                 <div class="booking-checkbox_wrap col-xl-8">
                     <div class="form-block col-md-11 form-margin">
                         {{ form_start(our_form) }}
@@ -85,11 +82,8 @@
                             </div>
                         </div>
                         {{ form_end(our_form) }}
-
                     </div>
                  </div>
-
-            </div>
         </div>
     {% endif %}
 {% endblock %}
