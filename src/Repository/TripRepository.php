@@ -89,6 +89,21 @@ class TripRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function findTripByUserAndDate($user, $date){
+        $departDate = $date->format('Y-m-d');
+        $tripId = $this->createQueryBuilder("t")
+            ->select("t.id")
+            ->Where('t.departTime LIKE :departTime')
+            ->andWhere('t.user = :user')
+            ->setParameter('departTime', $departDate.'%')
+            ->setParameter('user', $user)
+            ->setMaxResults( 1);
+        ;
+     return $tripId
+              ->getQuery()
+              ->getResult();
+    }
+
     public function createTripQueryBuilder($value)
     {
         return $this->createQueryBuilder('t')
