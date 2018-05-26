@@ -19,23 +19,15 @@ class TripController extends Controller
     /**
      * @Route("/show/{id}", name="show")
      */
-    public function showAction(Request $request, Trip $trip)
+    public function showAction(Trip $trip)
     {
-        $form = $this->getReservationForm($request, $trip);
-        $form_offer = $this->getOfferForm($request, $trip);
-        $show = $this->getDoctrine()
-                      ->getRepository(Trip::class)
-                      ->find($trip);
+        $form = $this->getReservationForm($trip);
+        $formOffer = $this->getOfferForm($trip);
 
-        if (!$show) {
-            throw $this->createNotFoundException(
-                'No trip found '
-            );
-        }
         return $this->render(
             'show_trip/index.html.twig',
             [
-            'trip' => $show, 'form' => $form->createView(), 'form_offer' => $form_offer->createView()
+            'trip' => $trip, 'form' => $form->createView(), 'form_offer' => $formOffer->createView()
             ]
         );
     }
@@ -66,9 +58,9 @@ class TripController extends Controller
     {
 
         $user = $this->getUser();
-        $owner = $entityManager->find(Trip::class, $trip)->getUser();
+        $owner = $trip->getUser();
 
-        if ($user == $owner && $user->getId() == $owner->getId()) {
+        if ($user == $owner) {
             $entityManager->remove($entityManager->find(Trip::class, $trip));
             $entityManager->flush();
         }
@@ -99,7 +91,7 @@ class TripController extends Controller
         );
     }
 
-    protected function getReservationForm(Request $request, Trip $trip)
+    protected function getReservationForm(Trip $trip)
     {
         return $this->createForm(
             ReservationType::class,
@@ -111,7 +103,7 @@ class TripController extends Controller
         );
     }
 
-    protected function getOfferForm(Request $request, Trip $trip)
+    protected function getOfferForm(Trip $trip)
     {
         return $this->createForm(
             OfferType::class,

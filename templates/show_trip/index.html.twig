@@ -18,7 +18,7 @@
             <div class="col-lg-4 float-block-left">
                 <div class="reserve-seat-block">
                     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                        {% if trip.travelerType == 1 %}
+                        {% if trip.travelerType == constant('TYPE_PASSENGER', trip) %}
                             {{ form_start(form_offer) }}
                             <div class="review-btn float-block-right">
                                 {{ form_widget(form_offer.save, {attr: {class: 'btn btn-outline-danger'}}) }}
@@ -64,16 +64,16 @@
                             <i class="material-icons">smartphone</i> <span> {{ trip.phone }}</span>
                         </div>
                         <div class="paddingTop icon-block">
-                            {% if trip.smoke==0 %}
+                            {% if trip.smoke==constant('NOT_ACCEPT', trip) %}
                                 <i class="material-icons blueBorder">smoke_free</i>
                             {% endif %}
-                            {% if trip.smoke==1 %}
+                            {% if trip.smoke == constant('ACCEPT', trip) %}
                                 <i class="fas fa-smoking blueBorder"></i>
                             {% endif %}
-                            {% if trip.pets==0 %}
+                            {% if trip.pets == constant('NOT_ACCEPT', trip) %}
                                 <img src="{{ asset('images/no-pets.png') }}" class="blueBorder"/>
                             {% endif %}
-                            {% if trip.pets==1 %}
+                            {% if trip.pets == constant('ACCEPT', trip) %}
                                 <i class="fas fa-paw blueBorder"></i>
                             {% endif %}
                         </div>

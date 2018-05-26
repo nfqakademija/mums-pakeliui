@@ -71,9 +71,10 @@ class ReservationController extends Controller
     {
         $user = $this->getUser();
         $trip = $reservation->getTrip();
-        $owner = $entityManager->find(Trip::class, $trip->getId())->getUser();
+        //$owner = $entityManager->find(Trip::class, $trip->getId())->getUser();
+        $owner = $trip->getUser();
 
-        if ($user == $owner && $user->getId() == $owner->getId()) {
+        if ($user == $owner) {
             $reservation->setStatus(self::REJECTED);
             $entityManager->flush();
         }

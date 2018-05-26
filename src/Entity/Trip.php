@@ -11,6 +11,10 @@ use App\Entity\Reservation;
  */
 class Trip
 {
+    const TYPE_PASSENGER = 1;
+    const TYPE_DRIVER = 0;
+    const ACCEPT = 1;
+    const NOT_ACCEPT = 0;
     /**
      * @ORM\Id()
      * @ORM\OneToMany(targetEntity="Reservation", mappedBy="trip")

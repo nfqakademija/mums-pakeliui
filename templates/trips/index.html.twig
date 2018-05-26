@@ -26,7 +26,7 @@
                     <div class="d-none d-md-block">
                         <div class="row adw-list-row">
                             <div class="col-1 adw-col">
-                                {% if trip.travelerType == 0 %}
+                                {% if trip.travelerType == constant('TYPE_PASSENGER', trip) %}
                                     <i class="fa fa-car" style="font-size:20px"></i>
                                 {% endif %}
                                 {% if trip.travelerType == 1 %}
@@ -54,7 +54,7 @@
                     <div class="d-block d-md-none mb-2 separatingLine">
                         <div class="row">
                             <div class="col">
-                                {% if trip.travelerType == 0 %}
+                                {% if trip.travelerType == constant('NOT_ACCEPT', trip) %}
                                     <i class="fa fa-car"></i>
                                 {% endif %}
                                 {% if trip.travelerType == 1 %}

@@ -3,7 +3,6 @@
 namespace App\Repository;
 
 use App\Entity\Trip;
-use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 use Doctrine\ORM\Repository\UserRepository;
@@ -89,7 +88,8 @@ class TripRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    public function findTripByUserAndDate($user, $date){
+    public function findTripByUserAndDate($user, $date)
+    {
         $departDate = $date->format('Y-m-d');
         $tripId = $this->createQueryBuilder("t")
             ->select("t.id")
@@ -97,11 +97,11 @@ class TripRepository extends ServiceEntityRepository
             ->andWhere('t.user = :user')
             ->setParameter('departTime', $departDate.'%')
             ->setParameter('user', $user)
-            ->setMaxResults( 1);
-        ;
-     return $tripId
-              ->getQuery()
-              ->getResult();
+            ->setMaxResults(1);
+
+        return $tripId
+            ->getQuery()
+            ->getResult();
     }
 
     public function createTripQueryBuilder($value)

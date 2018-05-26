@@ -10,10 +10,10 @@
                         <div class="p-2">
                             <div class="btn-group" role="group">
                                 {% for key, travelerTypeItem in form.travelerType %}
-                                    {% if (app.request.get('travelerType') == 0) and (key == 0)%}
+                                    {% if (app.request.get('travelerType') == constant('App\\Entity\\Trip::TYPE_DRIVER')) and (key == constant('App\\Entity\\Trip::TYPE_DRIVER'))%}
                                         {{ form_widget(travelerTypeItem, {attr: {class: 'form-check form-check-inline', 'checked': 'checked'}}) }}
                                     {% endif %}
-                                    {% if (app.request.get('travelerType') == 1) and (key == 1)%}
+                                    {% if (app.request.get('travelerType') == constant('App\\Entity\\Trip::TYPE_PASSENGER')) and (key == constant('App\\Entity\\Trip::TYPE_PASSENGER'))%}
                                         {{ form_widget(travelerTypeItem, {attr: {class: 'form-check form-check-inline', 'checked': 'checked'}}) }}
                                     {% else %}
                                         {{ form_widget(travelerTypeItem, {attr: {class: 'form-check form-check-inline'}}) }}
@@ -39,12 +39,12 @@
                             </div>
                         </div>
                         <div class="p-2 choose">
-                            {% if app.request.get('smoke') == 1  %}
+                            {% if app.request.get('smoke') == constant('App\\Entity\\Trip::ACCEPT')  %}
                                 {{ form_row(form.smoke, {attr: {class: 'form-check form-check-inline', 'checked': 'checked'} }) }}
                             {% else %}
                                 {{ form_row(form.smoke, {attr: {class: 'form-check form-check-inline'} }) }}
                             {% endif %}
-                            {% if app.request.get('pets') == 1  %}
+                            {% if app.request.get('pets') == constant('App\\Entity\\Trip::ACCEPT')  %}
                                 {{ form_row(form.pets, {attr: {class: 'form-check form-check-inline', 'checked': 'checked'} }) }}
                             {% else %}
                                 {{ form_row(form.pets, {attr: {class: 'form-check form-check-inline'} }) }}
@@ -75,16 +75,16 @@
                                         <span class="fas fa-clock"></span> {{ trip.departTime|date("Y-m-d H:i") }}
                                         <div class="info">Papildoma informacija</div>
                                         <div class="icon-block">
-                                            {% if trip.smoke==0 %}
+                                            {% if trip.smoke == constant('NOT_ACCEPT', trip) %}
                                                 <i class="material-icons blueBorder">smoke_free</i>
                                             {% endif %}
-                                            {% if trip.smoke==1 %}
+                                            {% if trip.smoke == constant('ACCEPT', trip) %}
                                                 <i class="fas fa-smoking blueBorder"></i>
                                             {% endif %}
-                                            {% if trip.pets==0 %}
+                                            {% if trip.pets == constant('NOT_ACCEPT', trip) %}
                                                 <img src="{{ asset('images/no-pets.png') }}" class="blueBorder"/>
                                             {% endif %}
-                                            {% if trip.pets==1 %}
+                                            {% if trip.pets == constant('ACCEPT', trip) %}
                                                 <i class="fas fa-paw blueBorder"></i>
                                             {% endif %}
                                         </div>

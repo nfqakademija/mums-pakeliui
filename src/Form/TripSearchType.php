@@ -38,7 +38,8 @@ class TripSearchType extends AbstractType
                 ['label' => false, 'attr' => ['class' => 'trip_departFrom'],
                     'required' => false]
             )
-            ->add('destination',
+            ->add(
+                'destination',
                 TextType::class,
                 ['label' => false, 'required' => false]
             )
