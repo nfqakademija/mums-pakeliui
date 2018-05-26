@@ -30,7 +30,7 @@ class TripRepository extends ServiceEntityRepository
      * @return Paginator
      */
 
-    public function findBySomeField($page, $value, $maxPerPage=self::MAX_PER_PAGE)
+    public function findBySomeField($page, $value, $maxPerPage = self::MAX_PER_PAGE)
     {
         if (!is_numeric($page)) {
             throw new InvalidArgumentException(
@@ -88,7 +88,7 @@ class TripRepository extends ServiceEntityRepository
         $trips->setFirstResult($firstResultat)->setMaxResults($maxPerPage);
         $paginator = new Paginator($trips);
 
-        if ( ($paginator->count() <= $firstResultat) && $page != 1) {
+        if (($paginator->count() <= $firstResultat) && $page != 1) {
             throw new NotFoundHttpException('Puslapis neegzistuoja.'); // page 404
         }
 

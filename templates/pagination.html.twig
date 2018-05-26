@@ -17,7 +17,6 @@
                 </li>
         {% endif %}
 
-        {# Affichage de toutes les pages entre p-4 et p+4 sauf si < 1 ou > nbPages #}
         {% for p in range(max(pagination.page-4, 1), min(pagination.page+4, pagination.nbPages)) %}
             <li class="page-item {% if p == pagination.page %}active{% endif %}">
                 <a href="{{ path(pagination.nomRoute, pagination.paramsRoute|merge({'page': p})) }}" class="page-link">

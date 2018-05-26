@@ -62,7 +62,7 @@ class HomeController extends Controller
         );
     }
 
-    protected function getSearchForm($page=1)
+    protected function getSearchForm($page = 1)
     {
         return $this->createForm(
             TripSearchType::class,
