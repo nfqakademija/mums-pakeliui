@@ -8,9 +8,7 @@ body {
 .mainContent{
   padding-top:94px;
 }
-.container {
-  max-width: 10000px;
-}
+
 a{
   color:#6ecb22;
   font-size: 18px;
@@ -88,8 +86,8 @@ p {
   margin: 0 auto;
 }
 
-.nav-menu-2 {
-  position: inherit; }
+//.nav-menu-2 {
+//  position: inherit; }
 
 .navbar {
   padding: .5rem 0; }
@@ -388,40 +386,7 @@ fieldset{
 .second-choose{
   padding-left:20px;
 }
-.multi-range{
-  position:relative;
-  height:10px;
-  top:20px;
-  background: #00FF00;
 
-}
-.multi-range > input[type=range] {
-  width: calc(100% - 16px);
-  position: absolute;
-  //top: 9px;
-  left: 0;
-}
-.range-style.form-control{padding:0; padding:0;}
-.multi-range > input[type=range]:last-of-type { margin-left: 16px; }
-.multi-range > input[type=range]::-webkit-slider-thumb { transform: translateY(-18px); }
-.multi-range > input[type=range]::-webkit-slider-runnable-track { -webkit-appearance: none; height: 0;}
-.multi-range > input[type=range]::-moz-range-thumb { transform: translateY(-18px); }
-.multi-range > input[type=range]::-moz-range-track { -webkit-appearance: none; height: 0; }
-.multi-range > input[type=range]::-ms-thumb { transform: translateY(-18px); }
-.multi-range > input[type=range]::-ms-track { -webkit-appearance: none; height: 0; }
-.multi-range::after {
-  content: attr(data-lbound) '' attr(data-ubound) '';
-  position: absolute;
-  top: 20px;
-  left: 0;
-  white-space: nowrap;
-  display: block;
-  padding: 0px 4px;
-  margin: -1px 2px;
-  width: auto;
-  font-size: 13px;
-  line-height: 26px;
-}
 .customizedCheckbox input[type=checkbox] {
   display: none;
 }
@@ -754,15 +719,15 @@ fieldset{
     /* **************************************************************
        ADD TRIP
        ************************************************************** */
-    .add-listing-wrap {
-      text-align: center;
-      margin: 0 0 36px; }
-    .add-listing-wrap h2 {
-      font-weight: 300; }
-    .add-listing-wrap p {
-      font-size: 22px;
-      font-weight: 300;
-      color: #737882; }
+    //.add-listing-wrap {
+    //  text-align: center;
+    //  margin: 0 0 36px; }
+    //.add-listing-wrap h2 {
+    //  font-weight: 300; }
+    //.add-listing-wrap p {
+    //  font-size: 22px;
+    //  font-weight: 300;
+    //  color: #737882; }
 
     /* *************************************************************
        FOOTER
