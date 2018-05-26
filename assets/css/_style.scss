@@ -11,6 +11,15 @@ body {
 .container {
   max-width: 10000px;
 }
+a{
+  color:#6ecb22;
+  font-size: 18px;
+  font-weight:400;
+}
+a:hover{
+  color:#ff5e00;
+  text-decoration: none;
+}
 h1 {
   font-family: 'Kaushan Script', cursive;
   font-size: 72px;
@@ -711,12 +720,13 @@ fieldset{
   padding: 15px 10px;
 }
 .icon-block{
-  padding: 0 15px 10px 15px;
+  padding: 0 15px 10px 10px;
 }
+
 .icon-block img{
   width:48px;
   position:relative;
-  bottom:8px;
+  bottom:7px;
 }
 .blueBorder {
   border:2px solid #2a2c37;
