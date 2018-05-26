@@ -195,7 +195,7 @@
       BOOKING DETAILS
       ************************************************************** */
 .booking-details_wrap {
-  padding: 26px 0;
+  padding: 15px 0 26px 0;
 }
 .booking-checkbox_wrap {
   background: #fff;
@@ -213,11 +213,24 @@
 .booking-checkbox p {
   line-height: 1.8; }
 
+.float-block-left{
+  float:left;
+}
+.float-block-right{
+  float:right;
+}
+
+.goBack{
+  margin:auto;
+  padding-top:15px;
+}
+
 .customer-review_wrap {
   display: inline-block;
   width: 100%; }
 .customer-img-block{
   width:50%;
+  margin-top:20px;
 }
 .customer-img {
   height: 100%;
@@ -229,6 +242,9 @@
 }
 .contacts-icon i, .contacts-icon span{
   font-size:20px;
+}
+.booking-checkbox div.icon-block{
+  padding-left:0px;
 }
 @media (max-width: 992px) {
    .booking-checkbox .col{

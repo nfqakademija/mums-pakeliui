@@ -6,7 +6,7 @@
 
     <div class="row search-wrap">
         <div class="col-xl-8 reserve-block">
-            <div class="col-lg-8" style="float:left">
+            <div class="col-lg-8 float-block-left">
                 <h5><span id="start">{{ trip.departFrom }}</span> <i class="fas fa-long-arrow-alt-right"></i> <span id="end">{{ trip.destination }}</span></h5>
                 <div class="reserve-description"><span class="fas fa-clock"></span> {{ trip.departTime|date("Y-m-d H:i") }}</div>
                 <div class="reserve-description">
@@ -15,12 +15,12 @@
                     {% endfor %}
                 </div>
             </div>
-            <div class="col-lg-4" style="float:left;">
+            <div class="col-lg-4 float-block-left">
                 <div class="reserve-seat-block">
                     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                         {% if trip.travelerType == 1 %}
                             {{ form_start(form_offer) }}
-                            <div class="review-btn" style="float:right">
+                            <div class="review-btn float-block-right">
                                 {{ form_widget(form_offer.save, {attr: {class: 'btn btn-outline-danger'}}) }}
                             </div>
                             {{ form_end(form_offer) }}
@@ -42,40 +42,41 @@
     </div>
 
     <!--//END RESERVE A SEAT -->
+    <div class="col-md-12 col-xl-8 goBack">
+            <a href="javascript:history.back()" class="itemData"><i class="fas fa-long-arrow-alt-left"></i> Į skelbimų sąrašą</a>
+    </div>
     <div class="row light-bg booking-details_wrap px-sm-2 px-md-3">
         <div class="booking-checkbox_wrap col-md-12 col-xl-8">
             <div class="row">
                 <div class="booking-checkbox col-sm-5 mb-2 mb-sm-0">
-                    <div class="">
                         <div class="styled-heading2">
                             <h5>{{ trip.User }}</h5>
+                            <div class="paddingTop customer-img-block">
+                                {% if trip.User.avatar is not null %}
+                                    <img src="{{ trip.User.avatar }}" class="customer-img">
+                                {% else %}
+                                    <img src="/images/avatar.png" class="customer-img">
+                                {% endif %}
+                            </div>
                         </div>
-                        <div class="paddingTop customer-img-block">
-                            {% if trip.User.avatar is not null %}
-                                <img src="{{ trip.User.avatar }}" class="customer-img">
-                            {% else %}
-                                <img src="/images/avatar.png" class="customer-img">
+                        <div class="paddingTop contacts-icon">
+                            <i class="material-icons">mail_outline</i><span> {{ trip.User.email }}</span><br>
+                            <i class="material-icons">smartphone</i> <span> {{ trip.phone }}</span>
+                        </div>
+                        <div class="paddingTop icon-block">
+                            {% if trip.smoke==0 %}
+                                <i class="material-icons blueBorder">smoke_free</i>
+                            {% endif %}
+                            {% if trip.smoke==1 %}
+                                <i class="fas fa-smoking blueBorder"></i>
+                            {% endif %}
+                            {% if trip.pets==0 %}
+                                <img src="{{ asset('images/no-pets.png') }}" class="blueBorder"/>
+                            {% endif %}
+                            {% if trip.pets==1 %}
+                                <i class="fas fa-paw blueBorder"></i>
                             {% endif %}
                         </div>
-                    </div>
-                    <div class="paddingTop contacts-icon">
-                        <i class="material-icons">mail_outline</i><span> {{ trip.User.email }}</span><br>
-                        <i class="material-icons">smartphone</i> <span> {{ trip.phone }}</span>
-                    </div>
-                    <div class="paddingTop icon-block">
-                        {% if trip.smoke==0 %}
-                            <i class="material-icons blueBorder">smoke_free</i>
-                        {% endif %}
-                        {% if trip.smoke==1 %}
-                            <i class="fas fa-smoking blueBorder"></i>
-                        {% endif %}
-                        {% if trip.pets==0 %}
-                            <img src="{{ asset('images/no-pets.png') }}" class="blueBorder"/>
-                        {% endif %}
-                        {% if trip.pets==1 %}
-                            <i class="fas fa-paw blueBorder"></i>
-                        {% endif %}
-                    </div>
                     <div class="info-block">
                         {{ trip.information }}
                     </div>

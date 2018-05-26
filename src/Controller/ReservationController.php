@@ -6,6 +6,8 @@ use App\Entity\Reservation;
 use App\Entity\Trip;
 use App\Form\OfferType;
 use App\Form\ReservationType;
+use App\Repository\ReservationRepository;
+use App\Repository\TripRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -16,6 +18,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
  */
 class ReservationController extends Controller
 {
+    const REJECTED = 2;
+    const CONFIRMED = 1;
+    const OFFER_TYPE = 1;
     /**
      * @Route("/add/{id}", name="add")
      */
@@ -23,6 +28,7 @@ class ReservationController extends Controller
         Request $request,
         Trip $trip,
         EntityManagerInterface $entityManager,
+        TripRepository $tripRepository,
         Reservation $reservation = null
     ) {
         $user = $this->getUser();
@@ -43,9 +49,10 @@ class ReservationController extends Controller
         $form = $this->createForm(OfferType::class, $reservation);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            $offerTrip = $tripRepository->findTripByUserAndDate($user, $trip->getDepartTime());
             $reservation = new Reservation();
-            //$reservation ->setOffer($form["offer"]->getData()) ;
-            $reservation ->setType(1);
+            $reservation ->setOffer($offerTrip[0]['id']);
+            $reservation ->setType(self::OFFER_TYPE);
             $reservation->setTrip($trip);
             $reservation->setUser($user);
             $entityManager->persist($reservation);
@@ -67,7 +74,7 @@ class ReservationController extends Controller
         $owner = $entityManager->find(Trip::class, $trip->getId())->getUser();
 
         if ($user == $owner && $user->getId() == $owner->getId()) {
-            $reservation->setStatus(2);
+            $reservation->setStatus(self::REJECTED);
             $entityManager->flush();
         }
 
@@ -84,7 +91,7 @@ class ReservationController extends Controller
         $owner = $entityManager->find(Trip::class, $trip->getId())->getUser();
 
         if ($user == $owner && $user->getId() == $owner->getId()) {
-            $reservation->setStatus(1);
+            $reservation->setStatus(self::CONFIRMED);
             $entityManager->flush();
         }
 
