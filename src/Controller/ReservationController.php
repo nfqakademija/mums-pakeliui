@@ -51,7 +51,7 @@ class ReservationController extends Controller
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $offerTrip = $tripRepository->findTripByUserAndDate($user, $trip->getDepartTime());
-            if(isset($offerTrip[0]['id'])) {
+            if (isset($offerTrip[0]['id'])) {
                 $reservation = new Reservation();
                 $reservation->setOffer($offerTrip[0]['id']);
                 $reservation->setType(self::OFFER_TYPE);
@@ -61,8 +61,7 @@ class ReservationController extends Controller
                 $entityManager->flush();
                 $this->addFlash('success', 'Sekmingai pasiūlėte kelionę!');
                 return $this->redirect($request->server->get('HTTP_REFERER'));
-            }
-            else{
+            } else {
                 $this->addFlash('danger', 'Neturite kelionės šiai dienai!');
                 return $this->redirect($request->server->get('HTTP_REFERER'));
             }
