@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Form\TripSearchType;
 use App\Repository\TripRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -26,20 +27,29 @@ class HomeController extends Controller
     }
 
     /**
-     * @Route("/search", name="search")
+     * @Route("/search/{page}/", name="search", requirements={"page" ="\d+"})
+     * @Method("GET")
      */
-    public function searchAction(Request $request, TripRepository $tripRepository)
+    public function searchAction(Request $request, TripRepository $tripRepository, $page)
     {
         $form = $this->getSearchForm();
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $trips = $tripRepository->findBySomeField($form->getData());
+            $trips = $tripRepository->findBySomeField($page, $form->getData());
+
+            $pagination = [
+                'page' => $page,
+                'nbPages' => ceil(count($trips) / TripRepository::MAX_PER_PAGE),
+                'nomRoute' => 'search',
+                'paramsRoute' => $request->query->all()
+            ];
             return $this->render(
                 'search/index.html.twig',
                 [
                     'form' => $form->createView(),
-                    'trips' => $trips
+                    'trips' => $trips,
+                    'pagination' => $pagination
                 ]
             );
         }
@@ -52,14 +62,14 @@ class HomeController extends Controller
         );
     }
 
-    protected function getSearchForm()
+    protected function getSearchForm($page=1)
     {
         return $this->createForm(
             TripSearchType::class,
             null,
             [
                 'method' => 'GET',
-                'action' => $this->generateUrl('search')
+                'action' => $this->generateUrl('search', ['page' => $page])
             ]
         );
     }

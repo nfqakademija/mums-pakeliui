@@ -1,0 +1,48 @@
+{% if pagination.nbPages > 0 %}
+    <nav>
+        <ul class="pagination">
+            {% if pagination.page > 1 %}
+                <li class="page-item">
+                    <a class="page-link" href="{{ path(pagination.nomRoute, pagination.paramsRoute|merge({'page': 1})) }}" aria-label="pirmas">
+                        <span aria-hidden="true">&laquo;&laquo;</span>
+                        <span class="sr-only">Pirmas</span>
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="{{ path(pagination.nomRoute,
+                        pagination.paramsRoute|merge({'page': pagination.page-1})) }}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                </li>
+        {% endif %}
+
+        {# Affichage de toutes les pages entre p-4 et p+4 sauf si < 1 ou > nbPages #}
+        {% for p in range(max(pagination.page-4, 1), min(pagination.page+4, pagination.nbPages)) %}
+            <li class="page-item {% if p == pagination.page %}active{% endif %}">
+                <a href="{{ path(pagination.nomRoute, pagination.paramsRoute|merge({'page': p})) }}" class="page-link">
+                    {{ p }}
+                </a>
+            </li>
+        {% endfor %}
+
+        {% if pagination.page < pagination.nbPages %}
+            <li class="page-item">
+                <a class="page-link" href="{{ path(pagination.nomRoute,
+                    pagination.paramsRoute|merge({'page': pagination.page+1})) }}" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </li>
+            <li class="page-item">
+
+                <a class="page-link" href="{{ path(pagination.nomRoute,
+                    pagination.paramsRoute|merge({'page': pagination.nbPages})) }}" aria-label="last">
+                    <span aria-hidden="true">&raquo;&raquo;</span>
+                    <span class="sr-only">Last</span>
+                </a>
+            </li>
+        {% endif %}
+    </ul>
+    </nav>
+{% endif %}

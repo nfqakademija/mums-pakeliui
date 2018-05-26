@@ -4,8 +4,11 @@ namespace App\Repository;
 
 use App\Entity\Trip;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Tools\Pagination\Paginator;
+use InvalidArgumentException;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 use Doctrine\ORM\Repository\UserRepository;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * @method Trip|null find($id, $lockMode = null, $lockVersion = null)
@@ -15,17 +18,30 @@ use Doctrine\ORM\Repository\UserRepository;
  */
 class TripRepository extends ServiceEntityRepository
 {
+    const MAX_PER_PAGE = 16;
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Trip::class);
     }
-
     /**
-     * @return Trip[] Returns an array of Trip objects
+     * @param int $page
+     * @param int $maxPerPage
+     * @throws NotFoundHttpException
+     * @return Paginator
      */
 
-    public function findBySomeField($value)
+    public function findBySomeField($page, $value, $maxPerPage=self::MAX_PER_PAGE)
     {
+        if (!is_numeric($page)) {
+            throw new InvalidArgumentException(
+                'Turi būti skaičius: ' . $page . '.'
+            );
+        }
+
+        if ($page < 1) {
+            throw new NotFoundHttpException('Puslapis neegzistuoja');
+        }
+
         $trips = $this->createQueryBuilder('t')
             ->leftJoin("App\Entity\User", "u", "WITH", "u.id = t.user")
             ->Where('t.departTime >= :today')
@@ -66,9 +82,17 @@ class TripRepository extends ServiceEntityRepository
                 ->setParameter('startDepartTime', $timeFrom)
                 ->setParameter('endDepartTime', $timeTo);
         }
-        return $trips
-            ->getQuery()
-            ->getResult();
+        $trips
+            ->getQuery();
+        $firstResultat = ($page - 1) * $maxPerPage;
+        $trips->setFirstResult($firstResultat)->setMaxResults($maxPerPage);
+        $paginator = new Paginator($trips);
+
+        if ( ($paginator->count() <= $firstResultat) && $page != 1) {
+            throw new NotFoundHttpException('Puslapis neegzistuoja.'); // page 404
+        }
+
+        return $paginator;
     }
 
     /**
