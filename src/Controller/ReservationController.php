@@ -43,7 +43,7 @@ class ReservationController extends Controller
             $entityManager->persist($reservation);
             $entityManager->flush();
 
-            $this->addFlash('success', 'Rezervacija sėkminga! Laukite iš vairuotojo rezervacijos patvirtinimą.');
+            $this->addFlash('success', 'Pavyko rezervuoti! Laukite vairuotojo rezervacijos patvirtinimo.');
             return $this->redirect($request->server->get('HTTP_REFERER'));
         }
 
@@ -59,7 +59,7 @@ class ReservationController extends Controller
                 $reservation->setUser($user);
                 $entityManager->persist($reservation);
                 $entityManager->flush();
-                $this->addFlash('success', 'Sekmingai pasiūlėte kelionę!');
+                $this->addFlash('success', 'Sėkmingai pasiūlėte kelionę!');
                 return $this->redirect($request->server->get('HTTP_REFERER'));
             } else {
                 $this->addFlash('danger', 'Neturite kelionės šiai dienai!');

@@ -5,22 +5,24 @@
     <!--============================= RESERVE A SEAT =============================-->
 
     <div class="row search-wrap">
-        <div class="col-xl-8 reserve-block">
-            <div class="col-lg-8 float-block-left">
-                <h5><span id="start">{{ trip.departFrom }}</span> <i class="fas fa-long-arrow-alt-right"></i> <span id="end">{{ trip.destination }}</span></h5>
-                <div class="reserve-description"><span class="fas fa-clock"></span> {{ trip.departTime|date("Y-m-d H:i") }}</div>
-                <div class="reserve-description">
-                    {% for i in 1..trip.seats %}
-                        <i class="material-icons">airline_seat_recline_extra</i>
-                    {% endfor %}
+        <div class="col-xl-8 mx-auto">
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <h5><span id="start">{{ trip.departFrom }}</span> <i class="fas fa-long-arrow-alt-right"></i> <span
+                                id="end">{{ trip.destination }}</span></h5>
+                    <div class="reserve-description"><span
+                                class="fas fa-clock"></span> {{ trip.departTime|date("Y-m-d H:i") }}</div>
+                    <div class="reserve-description">
+                        {% for i in 1..trip.seats %}
+                            <i class="material-icons">airline_seat_recline_extra</i>
+                        {% endfor %}
+                    </div>
                 </div>
-            </div>
-            <div class="col-lg-4 float-block-left">
-                <div class="reserve-seat-block">
+                <div class="col-md-6 col-sm-12">
                     {% if (is_granted("IS_AUTHENTICATED_REMEMBERED") and (trip.user!=app.user)) %}
                         {% if trip.travelerType == constant('TYPE_PASSENGER', trip) %}
                             {{ form_start(form_offer) }}
-                            <div class="review-btn float-block-right">
+                            <div class="review-btn">
                                 {{ form_widget(form_offer.save, {attr: {class: 'btn btn-outline-danger'}}) }}
                             </div>
                             {{ form_end(form_offer) }}
@@ -36,16 +38,16 @@
                             {% endfor %}
                         {% else %}
                             {{ form_start(form) }}
-                            <div class="seats col-sm-7 col-xs-7">
+                            <div class="seats col-sm-6 col-xs-6">
                                 {{ form_widget(form.seats, {attr: {class: '', max:  trip.seats,'placeholder': 'Vietų skaičius'  }}) }}
                             </div>
-                            <div class="review-btn col-sm-5 col-xs-7">
+                            <div class="review-btn col-sm-6 col-xs-6">
                                 {{ form_widget(form.save, {attr: {class: 'btn-outline-danger'}}) }}
                             </div>
-
                             {{ form_end(form) }}
+
                             {% for msg in app.session.flashBag.get('success') %}
-                                <div class="alert alert-success">
+                                <div class="col alert alert-success">
                                     {{ msg }}
                                 </div>
                             {% endfor %}
@@ -57,48 +59,57 @@
     </div>
 
     <!--//END RESERVE A SEAT -->
-    <div class="col-md-12 col-xl-8 goBack">
-            <a href="javascript:history.back()" class="itemData"><i class="fas fa-long-arrow-alt-left"></i> Į skelbimų sąrašą</a>
-    </div>
+
     <div class="row light-bg booking-details_wrap px-sm-2 px-md-3">
-        <div class="booking-checkbox_wrap col-md-12 col-xl-8">
+        <div class="col">
             <div class="row">
-                <div class="booking-checkbox col-sm-5 mb-2 mb-sm-0">
-                        <div class="styled-heading2">
-                            <h5>{{ trip.User }}</h5>
-                            <div class="paddingTop customer-img-block">
-                                {% if trip.User.avatar is not null %}
-                                    <img src="{{ trip.User.avatar }}" class="customer-img">
-                                {% else %}
-                                    <img src="/images/avatar.png" class="customer-img">
+                <div class="col-md-12 col-xl-8 pt-0 pb-3 goBack">
+                    <a href="javascript:history.back()" class="itemData"><i class="fas fa-long-arrow-alt-left"></i> Į
+                        skelbimų
+                        sąrašą</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="booking-checkbox_wrap col-md-12 col-xl-8">
+                    <div class="row">
+                        <div class="booking-checkbox col-sm-5 mb-2 mb-sm-0">
+                            <div class="styled-heading2">
+                                <h5>{{ trip.User }}</h5>
+                                <div class="paddingTop mx-auto customer-img-block">
+                                    {% if trip.User.avatar is not null %}
+                                        <img src="{{ trip.User.avatar }}" class="customer-img">
+                                    {% else %}
+                                        <img src="/images/avatar.png" class="customer-img">
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="paddingTop contacts-icon">
+                                <div><i class="material-icons align-middle">mail_outline</i> {{ trip.User.email }}</div>
+                                <div><i class="material-icons align-middle">smartphone</i> {{ trip.phone }}</div>
+                            </div>
+                            <div class="paddingTop d-flex flex-row align-middle">
+                                {% if trip.smoke==constant('NOT_ACCEPT', trip) %}
+                                    <i class="material-icons blueBorder mr-2">smoke_free</i>
+                                {% endif %}
+                                {% if trip.smoke == constant('ACCEPT', trip) %}
+                                    <i class="fas fa-smoking blueBorder2 mr-2"></i>
+                                {% endif %}
+                                {% if trip.pets == constant('NOT_ACCEPT', trip) %}
+                                    <img src="{{ asset('images/no-pets.png') }}" class="blueBorder"/>
+                                {% endif %}
+                                {% if trip.pets == constant('ACCEPT', trip) %}
+                                    <i class="fas fa-paw blueBorder2"></i>
                                 {% endif %}
                             </div>
+                            <div class="info-block">
+                                {{ trip.information }}
+                            </div>
                         </div>
-                        <div class="paddingTop contacts-icon">
-                            <i class="material-icons">mail_outline</i><span> {{ trip.User.email }}</span><br>
-                            <i class="material-icons">smartphone</i> <span> {{ trip.phone }}</span>
+                        <div class="col-sm-7">
+                            <div id="map"></div>
+                            <div id="warnings-panel"></div>
                         </div>
-                        <div class="paddingTop icon-block">
-                            {% if trip.smoke==constant('NOT_ACCEPT', trip) %}
-                                <i class="material-icons blueBorder">smoke_free</i>
-                            {% endif %}
-                            {% if trip.smoke == constant('ACCEPT', trip) %}
-                                <i class="fas fa-smoking blueBorder"></i>
-                            {% endif %}
-                            {% if trip.pets == constant('NOT_ACCEPT', trip) %}
-                                <img src="{{ asset('images/no-pets.png') }}" class="blueBorder"/>
-                            {% endif %}
-                            {% if trip.pets == constant('ACCEPT', trip) %}
-                                <i class="fas fa-paw blueBorder"></i>
-                            {% endif %}
-                        </div>
-                    <div class="info-block">
-                        {{ trip.information }}
                     </div>
-                </div>
-                <div class="col-sm-7">
-                    <div id="map"></div>
-                    <div id="warnings-panel"></div>
                 </div>
             </div>
         </div>
@@ -131,7 +142,7 @@
                 origin: document.getElementById('start').textContent,
                 destination: document.getElementById('end').textContent,
                 travelMode: 'DRIVING'
-            }, function(response, status) {
+            }, function (response, status) {
                 // Route the directions and pass the response to a function to create
                 // markers for each step.
                 if (status === 'OK') {

@@ -2,102 +2,105 @@
 
 {% block content %}
 
-            <!--================= SEARCH ====================-->
-            <div class="row search-wrap">
-
-                    {{ form_start(form, {attr: {class: 'form-wrap'}}) }}
-                <div class="col d-flex flex-row flex-wrap">
-                        <div class="p-2">
-                            <div class="btn-group" role="group">
-                                {% for key, travelerTypeItem in form.travelerType %}
-                                    {% if (app.request.get('travelerType') == constant('App\\Entity\\Trip::TYPE_DRIVER')) and (key == constant('App\\Entity\\Trip::TYPE_DRIVER'))%}
-                                        {{ form_widget(travelerTypeItem, {attr: {class: 'form-check form-check-inline', 'checked': 'checked'}}) }}
-                                    {% endif %}
-                                    {% if (app.request.get('travelerType') == constant('App\\Entity\\Trip::TYPE_PASSENGER')) and (key == constant('App\\Entity\\Trip::TYPE_PASSENGER'))%}
-                                        {{ form_widget(travelerTypeItem, {attr: {class: 'form-check form-check-inline', 'checked': 'checked'}}) }}
-                                    {% else %}
-                                        {{ form_widget(travelerTypeItem, {attr: {class: 'form-check form-check-inline'}}) }}
-                                    {% endif %}
-                                {% endfor %}
-                            </div>
-                        </div>
-                        <div class="p-2 second-group">
-                            {{ form_row(form.departFrom, {attr: {class: 'autocomplite','placeholder': 'Išvykimo adresas'} }) }}
-                        </div>
-
-                        <div class="p-2 second-group">
-                            {{ form_row(form.destination, {attr: {class: 'autocomplite','placeholder': 'Atvykimo adresas'} }) }}
-                        </div>
-
-                        <div class="p-2 second-group">
-                            {{ form_widget(form.departDate) }}
-                        </div>
-                        <div class="p-2">
-                            <div class="" id="rangeSlider">
-                                {{ form_widget(form.timeFrom, {attr: {class: ''}}) }}
-                                {{ form_widget(form.timeTo, {attr: {class: ''}}) }}
-                            </div>
-                        </div>
-                        <div class="p-2 choose">
-                            {% if app.request.get('smoke') == constant('App\\Entity\\Trip::ACCEPT')  %}
-                                {{ form_row(form.smoke, {attr: {class: 'form-check form-check-inline', 'checked': 'checked'} }) }}
-                            {% else %}
-                                {{ form_row(form.smoke, {attr: {class: 'form-check form-check-inline'} }) }}
-                            {% endif %}
-                            {% if app.request.get('pets') == constant('App\\Entity\\Trip::ACCEPT')  %}
-                                {{ form_row(form.pets, {attr: {class: 'form-check form-check-inline', 'checked': 'checked'} }) }}
-                            {% else %}
-                                {{ form_row(form.pets, {attr: {class: 'form-check form-check-inline'} }) }}
-                            {% endif %}
-                        </div>
-                        <div class="p-2">
-                            {{ form_widget(form.filter, {attr: {class: 'btn-form3'}}) }}
-                        </div>
+    <!--================= SEARCH ====================-->
+    <div class="row search-wrap">
+        {{ form_start(form, {attr: {class: 'form-wrap'}}) }}
+        <div class="col d-flex flex-row flex-wrap">
+            <div class="p-2">
+                <div class="btn-group" role="group">
+                    {% for key, travelerTypeItem in form.travelerType %}
+                        {% if (app.request.get('travelerType') == constant('App\\Entity\\Trip::TYPE_DRIVER')) and (key == constant('App\\Entity\\Trip::TYPE_DRIVER')) %}
+                            {{ form_widget(travelerTypeItem, {attr: {class: 'form-check form-check-inline', 'checked': 'checked'}}) }}
+                        {% endif %}
+                        {% if (app.request.get('travelerType') == constant('App\\Entity\\Trip::TYPE_PASSENGER')) and (key == constant('App\\Entity\\Trip::TYPE_PASSENGER')) %}
+                            {{ form_widget(travelerTypeItem, {attr: {class: 'form-check form-check-inline', 'checked': 'checked'}}) }}
+                        {% else %}
+                            {{ form_widget(travelerTypeItem, {attr: {class: 'form-check form-check-inline'}}) }}
+                        {% endif %}
+                    {% endfor %}
                 </div>
-                    {{ form_end(form) }}
-                    <!--end-->
-
             </div>
-            <!--= END SEARCH=-->
-            <div class="row light-bg detail-options-wrap" style="min-height: 67vh; min-width: 100vw">
-                {% for trip in trips %}
-                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-3 featured-responsive">
-                        <div class="featured-trip-wrap">
-                            <a href="{{ path('trip_show', {'id': trip.id}) }}">
-                                <img src="../../images/{{ trip.travelerType }}.png" class="img-fluid" alt="#">
-                                <div class="featured-title-box">
-                                    <h6>
-                                        <span class="fas fa-map-marker-alt"></span> {{ trip.departFrom }} <br>
-                                        <span class="fas fa-long-arrow-alt-down arrow-marker"></span><br>
-                                        <span class="fas fa-map-marker-alt green-marker"></span> {{ trip.destination }}
-                                    </h6>
-                                    <div class="bottom-info">
-                                        <span class="fas fa-clock"></span> {{ trip.departTime|date("Y-m-d H:i") }}
-                                        <div class="info">Papildoma informacija</div>
-                                        <div class="icon-block">
-                                            {% if trip.smoke == constant('NOT_ACCEPT', trip) %}
-                                                <i class="material-icons blueBorder">smoke_free</i>
-                                            {% endif %}
-                                            {% if trip.smoke == constant('ACCEPT', trip) %}
-                                                <i class="fas fa-smoking blueBorder"></i>
-                                            {% endif %}
-                                            {% if trip.pets == constant('NOT_ACCEPT', trip) %}
-                                                <img src="{{ asset('images/no-pets.png') }}" class="blueBorder"/>
-                                            {% endif %}
-                                            {% if trip.pets == constant('ACCEPT', trip) %}
-                                                <i class="fas fa-paw blueBorder"></i>
-                                            {% endif %}
-                                        </div>
-                                    </div>
+            <div class="p-2 second-group">
+                {{ form_row(form.departFrom, {attr: {class: 'autocomplite','placeholder': 'Išvykimo adresas'} }) }}
+            </div>
+
+            <div class="p-2 second-group">
+                {{ form_row(form.destination, {attr: {class: 'autocomplite','placeholder': 'Atvykimo adresas'} }) }}
+            </div>
+
+            <div class="p-2 second-group">
+                {{ form_widget(form.departDate) }}
+            </div>
+            <div class="p-2">
+                <div class="" id="rangeSlider">
+                    {{ form_widget(form.timeFrom, {attr: {class: ''}}) }}
+                    {{ form_widget(form.timeTo, {attr: {class: ''}}) }}
+                </div>
+            </div>
+            <div class="p-2 choose">
+                {% if app.request.get('smoke') == constant('App\\Entity\\Trip::ACCEPT') %}
+                    {{ form_row(form.smoke, {attr: {class: 'form-check form-check-inline', 'checked': 'checked'} }) }}
+                {% else %}
+                    {{ form_row(form.smoke, {attr: {class: 'form-check form-check-inline'} }) }}
+                {% endif %}
+                {% if app.request.get('pets') == constant('App\\Entity\\Trip::ACCEPT') %}
+                    {{ form_row(form.pets, {attr: {class: 'form-check form-check-inline', 'checked': 'checked'} }) }}
+                {% else %}
+                    {{ form_row(form.pets, {attr: {class: 'form-check form-check-inline'} }) }}
+                {% endif %}
+            </div>
+            <div class="p-2">
+                {{ form_widget(form.filter, {attr: {class: 'btn-form3'}}) }}
+            </div>
+        </div>
+        {{ form_end(form) }}
+    </div>
+    <!--= END SEARCH=-->
+    <div class="row light-bg detail-options-wrap" style="min-height: 67vh; min-width: 100vw">
+        <div class="col">
+            <div class="row">
+        {% for trip in trips %}
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-3 featured-responsive">
+                <div class="featured-trip-wrap">
+                    <a href="{{ path('trip_show', {'id': trip.id}) }}">
+                        <img src="../../images/{{ trip.travelerType }}.png" class="img-fluid" alt="#">
+                        <div class="featured-title-box">
+                            <h6>
+                                <span class="fas fa-map-marker-alt"></span> {{ trip.departFrom }} <br>
+                                <span class="fas fa-long-arrow-alt-down arrow-marker"></span><br>
+                                <span class="fas fa-map-marker-alt green-marker"></span> {{ trip.destination }}
+                            </h6>
+                            <div class="bottom-info">
+                                <span class="fas fa-clock"></span> {{ trip.departTime|date("Y-m-d H:i") }}
+                                <div class="info">Papildoma informacija</div>
+                                <div class="d-flex flex-row align-middle ml-2">
+                                    {% if trip.smoke == constant('NOT_ACCEPT', trip) %}
+                                        <i class="material-icons blueBorder mr-2">smoke_free</i>
+                                    {% endif %}
+                                    {% if trip.smoke == constant('ACCEPT', trip) %}
+                                        <i class="fas fa-smoking blueBorder2 mr-2"></i>
+                                    {% endif %}
+                                    {% if trip.pets == constant('NOT_ACCEPT', trip) %}
+                                        <div class="blueBorder icon-img"><img src="{{ asset('images/no-pets.png') }}"/></div>
+                                    {% endif %}
+                                    {% if trip.pets == constant('ACCEPT', trip) %}
+                                        <i class="fas fa-paw blueBorder2"></i>
+                                    {% endif %}
                                 </div>
-                            </a>
+                            </div>
                         </div>
-                    </div>
-                {% endfor %}
-                <div class="row col-xl-12" style="padding-left:30px;">
-                    {% include 'pagination.html.twig' %}
+                    </a>
                 </div>
             </div>
+        {% endfor %}
+            </div>
+        <div class="row">
+            <div class="col-xl-12">
+            {% include 'pagination.html.twig' %}
+            </div>
+        </div>
+        </div>
+    </div>
 
 {% endblock %}
 
@@ -111,19 +114,26 @@
                 //dateInput: true,
                 format: "yyyy-MM-dd"
             });
+            $("#rangeSlider").kendoRangeSlider({
+                orientation: "horizontal",
+                min: 0,
+                max: 24,
+                leftDragHandleTitle: "laikas nuo",
+                rightDragHandleTitle: "laikas iki",
+                largeStep: 6
+            });
         });
     </script>
-<script>
-    $(document).ready(function() {
-        //kendo.culture("lt-LT");
-    $("#rangeSlider").kendoRangeSlider({
-        orientation: "horizontal",
-        min: 0,
-        max: 24,
-        leftDragHandleTitle: "laikas nuo",
-        rightDragHandleTitle: "laikas iki",
-        largeStep: 6
-    });
-    });
- </script>
+    {#<script>#}
+        {#$(document).ready(function () {#}
+            {#$("#rangeSlider").kendoRangeSlider({#}
+                {#orientation: "horizontal",#}
+                {#min: 0,#}
+                {#max: 24,#}
+                {#leftDragHandleTitle: "laikas nuo",#}
+                {#rightDragHandleTitle: "laikas iki",#}
+                {#largeStep: 6#}
+            {#});#}
+        {#});#}
+    {#</script>#}
 {% endblock %}

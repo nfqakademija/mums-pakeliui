@@ -18,7 +18,8 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
  */
 class TripRepository extends ServiceEntityRepository
 {
-    const MAX_PER_PAGE = 16;
+    //changed from 16 to 1
+    const MAX_PER_PAGE = 1;
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Trip::class);

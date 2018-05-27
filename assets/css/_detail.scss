@@ -207,18 +207,11 @@
   font-weight: 300; }
 
 .booking-checkbox {
-  color: #737882;
+  color: #000000;
   font-size: 15px;
 }
 .booking-checkbox p {
   line-height: 1.8; }
-
-.float-block-left{
-  float:left;
-}
-.float-block-right{
-  float:right;
-}
 
 .goBack{
   margin:auto;
@@ -240,23 +233,22 @@
   border:1px solid #e9e7ed;
 
 }
-.contacts-icon i, .contacts-icon span{
+.contacts-icon{
   font-size:20px;
 }
-.booking-checkbox div.icon-block{
-  padding-left:0px;
-}
+
 @media (max-width: 992px) {
    .booking-checkbox .col{
      width:100%;
    }
-  .contacts-icon i, .contacts-icon span{
+  .contacts-icon{
     font-size:14px;
   }
 
 }
 .info-block {
   text-align: justify;
+  margin-top: 10px;
 }
 
 .round-icon-blank {
@@ -278,3 +270,10 @@
     height: 250px;
     width: 100%; }
   }
+.float-block-left{
+  float:left;
+}
+.float-block-right{
+  float:right;
+}
+

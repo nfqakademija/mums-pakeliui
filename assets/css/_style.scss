@@ -515,7 +515,7 @@ fieldset{
   position: relative;
   padding: 0 0 15px;
   font-family: 'Open Sans', sans-serif;
-  display: inline;
+  //display: inline;
 }
 .styled-heading2 h5:after {
   position: absolute;
@@ -588,14 +588,14 @@ fieldset{
   -o-transition: all 0.5s ease;
   transition: all 0.5s ease;
   position: relative;
-  border: solid 0px rgb(206, 205, 205);
+  border: solid 1px #e9e9ed;
 }
 .featured-trip-wrap:hover {
   -webkit-transform: translateY(-2px);
   -ms-transform: translateY(-2px);
   transform: translateY(-2px);
-  -webkit-box-shadow: 0px 3px 25px 0 rgb(206, 205, 205);
-  box-shadow: 0px 3px 25px 0 rgb(206, 205, 205);
+  -webkit-box-shadow: 0px 4px 25px 0 rgb(206, 205, 205);
+  box-shadow: 0px 4px 25px 0 rgb(206, 205, 205);
   border: solid 1px rgb(206, 205, 205);
 }
 .featured-trip-wrap a {
@@ -684,19 +684,27 @@ fieldset{
 .info{
   padding: 15px 10px;
 }
-.icon-block{
-  padding: 0 15px 10px 10px;
-}
+//.icon-block{
+//  padding: 0 15px 10px 10px;
+//}
 
-.icon-block img{
+.icon-img{
   width:48px;
   position:relative;
-  bottom:7px;
+  //bottom:7px;
 }
 .blueBorder {
   border:2px solid #2a2c37;
   padding: 10px;
   font-size:20px;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px
+}
+.blueBorder2 {
+  border:2px solid #2a2c37;
+  padding: 10px 10px 15px 10px;
+  font-size:22px;
   border-radius: 5px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px
@@ -714,6 +722,16 @@ fieldset{
   font-size:18px;
 }
 .featured-title-box span.green-marker{
+  color: #6ecb22;
+}
+
+.page-item.active .page-link {
+  z-index: 1;
+  color: #fff;
+  background-color: #6ecb22;
+  border-color: #6ecb22;
+}
+.page-link{
   color: #6ecb22;
 }
     /* **************************************************************
