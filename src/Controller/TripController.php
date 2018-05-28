@@ -45,7 +45,9 @@ class TripController extends Controller
      */
     public function editAction(Request $request, Trip $trip)
     {
-        if ($trip->getUser()) {
+        $user = $this->getUser();
+        $owner = $trip->getUser();
+        if ($user == $owner) {
             return $this->processForm($request, $trip);
         }
             return $this->redirectToRoute('my_trips');

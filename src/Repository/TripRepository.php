@@ -19,7 +19,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 class TripRepository extends ServiceEntityRepository
 {
     //changed from 16 to 1
-    const MAX_PER_PAGE = 1;
+    const MAX_PER_PAGE = 16;
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Trip::class);
@@ -104,7 +104,7 @@ class TripRepository extends ServiceEntityRepository
         $trips = $this->createQueryBuilder('t')
             ->Where('t.departTime >= :today')
             ->andWhere('t.user = :user')
-            ->orderBy('t.id', 'ASC')
+            ->orderBy('t.departTime', 'ASC')
             ->setParameter('today', new \DateTime())
             ->setParameter('user', $value);
 
