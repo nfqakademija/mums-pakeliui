@@ -20,12 +20,11 @@
                 </div>
 
                <div class="col-md-6 col-sm-12">
-                   <div class="reserve-seat-block">
                        {% if (is_granted("IS_AUTHENTICATED_REMEMBERED") and (trip.user != app.user)) %}
                            {% if trip.travelerType == constant('TYPE_PASSENGER', trip) %}
                                {{ form_start(form_offer) }}
-                               <div class="review-btn">
-                                   {{ form_widget(form_offer.save, {attr: {class: 'btn btn-outline-danger'}}) }}
+                               <div class="d-flex flex-row justify-content-end review-btn">
+                                   {{ form_widget(form_offer.save, {attr: {class: 'btn btn-outline-success'}}) }}
                                </div>
                                {{ form_end(form_offer) }}
                                {% for msg in app.session.flashBag.get('success') %}
@@ -40,11 +39,11 @@
                                {% endfor %}
                            {% else %}
                                {{ form_start(form) }}
-                               <div class="seats col-sm-6 col-xs-6">
+                               <div class="seats pr-auto col-sm-6 col-xs-6 pb-2">
                                   {{ form_widget(form.seats, {attr: {class: '', max:  trip.seats,'placeholder': 'Vietų skaičius'  }}) }}
                                </div>
-                               <div class="review-btn col-sm-6 col-xs-6">
-                                  {{ form_widget(form.save, {attr: {class: 'btn-outline-danger'}}) }}
+                               <div class="col-sm-6 col-xs-6 review-btn">
+                                  {{ form_widget(form.save, {attr: {class: 'btn btn-outline-success'}}) }}
                                </div>
                                {{ form_end(form) }}
 
@@ -55,7 +54,6 @@
                                {% endfor %}
                            {% endif %}
                        {% endif %}
-                   </div>
                </div>
             </div>
         </div>

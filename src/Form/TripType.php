@@ -20,9 +20,7 @@ class TripType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-
         $builder
-
             ->add(
                 'travelerType',
                 ChoiceType::class,
@@ -34,102 +32,93 @@ class TripType extends AbstractType
                     'choice_label' => function ($val, $key, $index) {
                         return false;
                     },
-                    'empty_data'=>'1',
-                    'multiple'=>false,
-                    'expanded'=>true,
-                    'label'=>false,
+                    'empty_data' => '1',
+                    'multiple' => false,
+                    'expanded' => true,
+                    'label' => false,
                 ]
             )
-
             ->add(
                 'departFrom',
                 TextType::class,
                 [
-                    'label'=> 'Išvykimo adresas',
+                    'label' => 'Išvykimo adresas',
                     'attr' => ['class' => 'trip_departFrom'],
                     'constraints' => [
                         new NotBlank(['message' => 'Trūksta išvykimo adreso.']),
-                        new Regex([ 'pattern'   => '#^(\+?[a-zA-Z0-9 .,()/-]{5,255})?$#',
-                                    'message' => 'Neteisingai įvestas adresas.'
+                        new Regex(['pattern' => '#^(\+?[a-zA-Z0-9 .,()/-]{5,255})?$#',
+                            'message' => 'Neteisingai įvestas adresas.'
                         ])
                     ]
                 ]
             )
-
             ->add(
                 'destination',
                 TextType::class,
                 [
-                    'label'=> 'Atvykimo adresas',
+                    'label' => 'Atvykimo adresas',
                     'constraints' => [
                         new NotBlank(['message' => 'Trūksta atvykimo adreso.']),
-                        new Regex([ 'pattern'   => '#^(\+?[a-zA-Z0-9 .,()/-]{5,255})?$#',
-                                    'message' => 'Neteisingai įvestas adresas.'
+                        new Regex(['pattern' => '#^(\+?[a-zA-Z0-9 .,()/-]{5,255})?$#',
+                            'message' => 'Neteisingai įvestas adresas.'
                         ])
-                ]]
+                    ]]
             )
-
             ->add(
                 'departTime',
                 DateTimeType::class,
-                ['label'=>'Išvykimo data ir laikas',
-                 'widget' => 'single_text',
-                 'html5' => false
+                ['label' => 'Išvykimo data ir laikas',
+                    'widget' => 'single_text',
+                    'html5' => false
                 ]
 
             )
-
-        ->add(
-            'phone',
-            TelType::class,
-            [
-                    'label'=> 'Tel. nr.',
+            ->add(
+                'phone',
+                TelType::class,
+                [
+                    'label' => 'Tel. nr.',
                     'constraints' => [
                         new NotBlank(['message' => 'Trūksta telefono numerio.']),
-                        new Regex([ 'pattern'   => '#^(\+?[0-9 .,()/-]{5,25})?$#',
-                                    'message' => 'Neteisingai įvestas telefono numeris.'
+                        new Regex(['pattern' => '#^(\+?[0-9 .,()/-]{5,25})?$#',
+                            'message' => 'Neteisingai įvestas telefono numeris.'
                         ])
                     ]]
-        )
-
+            )
             ->add(
                 'seats',
                 IntegerType::class,
                 [
                     'required' => false,
                     'empty_data' => '1',
-                    'attr'          => [
-                        '_type'         => "number",
-                        'min'           => 1,
-                        'step'          => 1],
-                    'label'=> 'Vietų skaičius']
+                    'attr' => [
+                        '_type' => "number",
+                        'min' => 1,
+                        'step' => 1],
+                    'label' => 'Vietų skaičius']
             )
-
             ->add(
                 'smoke',
                 IconCheckboxType::class,
                 [
                     'required' => false,
-                    'label'=> false,
+                    'label' => false,
                     'label_class' => 'fas fa-smoking']
             )
-
             ->add(
                 'pets',
                 IconCheckboxType::class,
                 [
                     'required' => false,
-                    'label'=> false,
+                    'label' => false,
                     'label_class' => 'fas fa-paw']
             )
-
             ->add(
                 'information',
                 TextareaType::class,
-                ['label'=>'Informacija',
+                ['label' => 'Informacija',
                     'required' => false]
             )
-
             ->add(
                 'save',
                 SubmitType::class,
