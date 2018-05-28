@@ -29,12 +29,12 @@
                                </div>
                                {{ form_end(form_offer) }}
                                {% for msg in app.session.flashBag.get('success') %}
-                                   <div class="alert alert-success">
+                                   <div class="alert alert-success pb-5">
                                       {{ msg }}
                                    </div>
                                {% endfor %}
                                {% for msg in app.session.flashBag.get('danger') %}
-                                   <div class="alert alert-danger">
+                                   <div class="alert alert-danger pb-5">
                                       {{ msg }}
                                    </div>
                                {% endfor %}
@@ -49,7 +49,7 @@
                                {{ form_end(form) }}
 
                                {% for msg in app.session.flashBag.get('success') %}
-                                  <div class="col alert alert-success">
+                                  <div class="col alert alert-success pb-5">
                                      {{ msg }}
                                   </div>
                                {% endfor %}
