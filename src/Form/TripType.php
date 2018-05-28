@@ -48,7 +48,10 @@ class TripType extends AbstractType
                     'label'=> 'Išvykimo adresas',
                     'attr' => ['class' => 'trip_departFrom'],
                     'constraints' => [
-                        new NotBlank(['message' => 'Trūksta išvykimo adreso.'])
+                        new NotBlank(['message' => 'Trūksta išvykimo adreso.']),
+                        new Regex([ 'pattern'   => '#^(\+?[a-zA-Z0-9 .,()/-]{5,255})?$#',
+                                    'message' => 'Neteisingai įvestas adresas.'
+                        ])
                     ]
                 ]
             )
@@ -58,8 +61,11 @@ class TripType extends AbstractType
                 TextType::class,
                 [
                     'label'=> 'Atvykimo adresas',
-                'constraints' => [
-                new NotBlank(['message' => 'Trūksta atvykimo adreso.'])
+                    'constraints' => [
+                        new NotBlank(['message' => 'Trūksta atvykimo adreso.']),
+                        new Regex([ 'pattern'   => '#^(\+?[a-zA-Z0-9 .,()/-]{5,255})?$#',
+                                    'message' => 'Neteisingai įvestas adresas.'
+                        ])
                 ]]
             )
 
@@ -67,11 +73,10 @@ class TripType extends AbstractType
                 'departTime',
                 DateTimeType::class,
                 ['label'=>'Išvykimo data ir laikas',
-                    'widget' => 'single_text',
-                    'html5' => false
-                    /*'years' => range(date('Y'), date('Y') + 2),
-                    'months' => range(date('m'), date('m') + 11)*/
+                 'widget' => 'single_text',
+                 'html5' => false
                 ]
+
             )
 
         ->add(
