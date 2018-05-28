@@ -6,10 +6,9 @@
   background: #ffffff;
   -webkit-box-shadow:inset 0 -25px 8px -24px rgba(0,0,0,.25)
 }
-
 .detail-options-wrap {
-  padding: 15px 0; }
-
+  padding: 15px 0;
+}
 /* **************************************************************
    RESERVE A SEAT
    ************************************************************** */
@@ -20,18 +19,17 @@
   color: #3e434b;
   font-weight: 400;
   display: inline-block;
-  margin: 0; }
-
+  margin: 0;
+}
 .reserve-description {
   font-size: 15px !important;
   font-weight: 400 !important;
   padding: 0 !important;
-  margin: 0 !important; }
-
+  margin: 0 !important;
+}
 .reserve-description span{
   color:#ff5f00;
 }
-
 .seats{
   float:left;
   margin:0;
@@ -47,11 +45,12 @@
 }
 .review-btn .btn-outline-success {
   color: #6ecb22;
-  border-color: #6ecb22; }
+  border-color: #6ecb22;
+}
 .review-btn .btn-outline-success:hover {
   color: #fff;
-  background: #6ecb22; }
-
+  background: #6ecb22;
+}
 /* **************************************************************
       BOOKING DETAILS
       ************************************************************** */
@@ -61,27 +60,21 @@
 .booking-checkbox_wrap {
   background: #fff;
   padding: 30px;
-  margin:auto; }
+  margin:auto;
+}
 .booking-checkbox_wrap h5 {
   color: #3e434b;
   text-align: center;
-  font-weight: 300; }
-
+  font-weight: 300;
+}
 .booking-checkbox {
   color: #000000;
   font-size: 15px;
 }
-.booking-checkbox p {
-  line-height: 1.8; }
-
 .goBack{
   margin:auto;
   padding-top:15px;
 }
-
-.customer-review_wrap {
-  display: inline-block;
-  width: 100%; }
 .customer-img-block{
   width:50%;
   margin-top:20px;
@@ -92,12 +85,10 @@
   object-fit: contain;
   border-radius:50%;
   border:1px solid #e9e7ed;
-
 }
 .contacts-icon{
   font-size:20px;
 }
-
 @media (max-width: 992px) {
    .booking-checkbox .col{
      width:100%;
@@ -105,30 +96,18 @@
   .contacts-icon{
     font-size:14px;
   }
-
 }
 .info-block {
   text-align: justify;
   margin-top: 10px;
 }
-
-.round-icon-blank {
-  background: #d9dce7 !important; }
-
-
-.round-icon-orange {
-  background: #ffbb27 !important; }
-
-.map-wrap {
-  padding: 0; }
-
-
 #map {
   height: 100%;
-  width: 100%; }
+  width: 100%;
+}
 @media (max-width: 575px) {
   #map {
     height: 250px;
     width: 100%; }
-  }
+}
 
