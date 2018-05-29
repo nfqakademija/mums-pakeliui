@@ -46,7 +46,7 @@ class TripType extends AbstractType
                     'attr' => ['class' => 'trip_departFrom'],
                     'constraints' => [
                         new NotBlank(['message' => 'Trūksta išvykimo adreso.']),
-                        new Regex(['pattern' => '#^(\+?[a-zA-Z0-9 .,()/-]{5,255})?$#',
+                        new Regex([ 'pattern'   => '#^(\+?[a-zA-Z0-9 .,()/-]{5,255})?$#',
                             'message' => 'Neteisingai įvestas adresas.'
                         ])
                     ]
@@ -59,10 +59,11 @@ class TripType extends AbstractType
                     'label' => 'Atvykimo adresas',
                     'constraints' => [
                         new NotBlank(['message' => 'Trūksta atvykimo adreso.']),
-                        new Regex(['pattern' => '#^(\+?[a-zA-Z0-9 .,()/-]{5,255})?$#',
+                        new Regex([ 'pattern'   => '#^(\+?[a-zA-Z0-9 .,()/-]{5,255})?$#',
                             'message' => 'Neteisingai įvestas adresas.'
                         ])
-                    ]]
+                    ]
+                ]
             )
             ->add(
                 'departTime',
@@ -83,7 +84,8 @@ class TripType extends AbstractType
                         new Regex(['pattern' => '#^(\+?[0-9 .,()/-]{5,25})?$#',
                             'message' => 'Neteisingai įvestas telefono numeris.'
                         ])
-                    ]]
+                    ]
+                ]
             )
             ->add(
                 'seats',

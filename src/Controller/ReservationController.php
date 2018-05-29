@@ -18,9 +18,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
  */
 class ReservationController extends Controller
 {
-    const REJECTED = 2;
-    const CONFIRMED = 1;
-    const OFFER_TYPE = 1;
+    const STATUS_REJECTED = 2;
+    const STATUS_CONFIRMED = 1;
+    const RESERVATION_TYPE_OFFER = 1;
     /**
      * @Route("/add/{id}", name="add")
      */
@@ -54,7 +54,7 @@ class ReservationController extends Controller
             if (isset($offerTrip[0]['id'])) {
                 $reservation = new Reservation();
                 $reservation->setOffer($offerTrip[0]['id']);
-                $reservation->setType(self::OFFER_TYPE);
+                $reservation->setType(self::RESERVATION_TYPE_OFFER);
                 $reservation->setTrip($trip);
                 $reservation->setUser($user);
                 $entityManager->persist($reservation);
@@ -77,11 +77,10 @@ class ReservationController extends Controller
     {
         $user = $this->getUser();
         $trip = $reservation->getTrip();
-        //$owner = $entityManager->find(Trip::class, $trip->getId())->getUser();
         $owner = $trip->getUser();
 
         if ($user == $owner) {
-            $reservation->setStatus(self::REJECTED);
+            $reservation->setStatus(self::STATUS_REJECTED);
             $entityManager->flush();
         }
 
@@ -98,7 +97,7 @@ class ReservationController extends Controller
         $owner = $entityManager->find(Trip::class, $trip->getId())->getUser();
 
         if ($user == $owner && $user->getId() == $owner->getId()) {
-            $reservation->setStatus(self::CONFIRMED);
+            $reservation->setStatus(self::STATUS_CONFIRMED);
             $entityManager->flush();
         }
 

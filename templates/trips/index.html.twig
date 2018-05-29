@@ -54,7 +54,7 @@
                                     </div>
                                     <div class="col-xs-6 info">
                                         {% set seats = trip.seats %}
-                                        {% for reservation in reservations if reservation.trip == trip and reservation.status == constant('App\\Controller\\ReservationController::CONFIRMED') and reservation.type is null %}
+                                        {% for reservation in reservations if reservation.trip == trip and reservation.status == constant('App\\Controller\\ReservationController::STATUS_CONFIRMED') and reservation.type is null %}
                                             {% set seats = seats - reservation.seats %}
                                             {% for i in 1..reservation.seats %}
                                                 {% if reservation.User.avatar is not null %}
@@ -153,9 +153,9 @@
                                         {{ yourReservation.Trip.User.email }}
                                     </div>
                                     <div class="col-xs-12 mr-0 info">
-                                        {% if yourReservation.status ==  constant('App\\Controller\\ReservationController::REJECTED') %}
+                                        {% if yourReservation.status ==  constant('App\\Controller\\ReservationController::STATUS_REJECTED') %}
                                             <b>Statusas: </b><span style="color:red">Atmesta</span>
-                                        {% elseif yourReservation.status ==  constant('App\\Controller\\ReservationController::CONFIRMED') %}
+                                        {% elseif yourReservation.status ==  constant('App\\Controller\\ReservationController::STATUS_CONFIRMED') %}
                                             <b>Statusas: </b><span style="color:green">Patvirtinta</span>
                                         {% else %}
                                             <b>Statusas: </b>Nepatvirtinta
@@ -169,7 +169,7 @@
                             {% endfor %}
                         </div>
                         <div role="tabpanel" class="tab-pane" id="offers">
-                            {% for reservation in reservations if reservation and reservation.type == constant('App\\Controller\\ReservationController::OFFER_TYPE') %}
+                            {% for reservation in reservations if reservation and reservation.type == constant('App\\Controller\\ReservationController::RESERVATION_TYPE_OFFER') %}
                                 <div class="row tab-list-row">
                                     <div class="col-xs-12 ml-0 info">
                                         <span class="fas fa-map-marker-alt"></span> {{ reservation.Trip.departFrom }}
@@ -184,7 +184,6 @@
                                         <div class="reserve-description"><span
                                                     class="fas fa-clock"></span> {{ reservation.Trip.departTime|date("H:i") }}
                                         </div>
-
                                     </div>
                                     <div class="col-xs-12 mx-auto info">
                                         {{ reservation.User }}<br>{{ reservation.User.email }}<br>
