@@ -81,12 +81,12 @@ class TripType extends AbstractType
                     'label' => 'Tel. nr.',
                     'constraints' => [
                         new NotBlank(['message' => 'Trūksta telefono numerio.']),
-                        new Regex(['pattern' => '#^(\+?[0-9 .,()/-]{5,25})?$#',
+                        new Regex([ 'pattern'   => '#^(\+?[0-9 .,()/-]{5,25})?$#',
                             'message' => 'Neteisingai įvestas telefono numeris.'
                         ])
                     ]
-                ]
-            )
+            ]
+        )
             ->add(
                 'seats',
                 IntegerType::class,

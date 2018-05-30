@@ -21,6 +21,7 @@ class ReservationController extends Controller
     const STATUS_CONFIRMED = 1;
     const RESERVATION_TYPE_OFFER = 1;
     const RESERVATION_TYPE_RESERVATION = 0;
+
     /**
      * @Route("/add/{id}", name="add")
      */
@@ -44,9 +45,11 @@ class ReservationController extends Controller
         $form = $this->createForm(OfferType::class, $reservation);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $offerTrip = $tripRepository->findOneByUserAndDate($user, $trip->getDepartTime());at
+
+            $offerTrip = $tripRepository->findOneByUserAndDate($user, $trip->getDepartTime());
             if (isset($offerTrip['id'])) {
                 $this->reservationAddAction($user, $trip, self::RESERVATION_TYPE_OFFER, $offerTrip['id'], $entityManager);
+
                 $this->addFlash('success', 'Sėkmingai pasiūlėte kelionę!');
                 return $this->redirect($request->server->get('HTTP_REFERER'));
             }
