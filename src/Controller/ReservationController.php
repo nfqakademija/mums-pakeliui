@@ -37,7 +37,13 @@ class ReservationController extends Controller
         $form = $this->createForm(ReservationType::class, $reservation);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->reservationAddAction($user, $trip, self::RESERVATION_TYPE_RESERVATION, $form["seats"]->getData(), $entityManager);
+            $this->reservationAddAction(
+                $user,
+                $trip,
+                self::RESERVATION_TYPE_RESERVATION,
+                $form["seats"]->getData(),
+                $entityManager
+            );
             $this->addFlash('success', 'Pavyko rezervuoti! Laukite vairuotojo rezervacijos patvirtinimo.');
             return $this->redirect($request->server->get('HTTP_REFERER'));
         }
@@ -45,10 +51,14 @@ class ReservationController extends Controller
         $form = $this->createForm(OfferType::class, $reservation);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-
             $offerTrip = $tripRepository->findOneByUserAndDate($user, $trip->getDepartTime());
             if (isset($offerTrip['id'])) {
-                $this->reservationAddAction($user, $trip, self::RESERVATION_TYPE_OFFER, $offerTrip['id'], $entityManager);
+                $this->reservationAddAction(
+                    $user,
+                    $trip,
+                    self::RESERVATION_TYPE_OFFER, $offerTrip['id'],
+                    $entityManager
+                );
 
                 $this->addFlash('success', 'Sėkmingai pasiūlėte kelionę!');
                 return $this->redirect($request->server->get('HTTP_REFERER'));
@@ -94,17 +104,17 @@ class ReservationController extends Controller
         return $this->redirect($this->generateUrl('my_trips'));
     }
 
-     private function reservationAddAction($user, $trip, $type, $reservationInfo, EntityManagerInterface $entityManager){
-          $reservation = new Reservation();
-          if ($type == self::RESERVATION_TYPE_OFFER){
-              $reservation->setOffer($reservationInfo);
-          } else{
-              $reservation ->setSeats($reservationInfo);
-          }
-          $reservation->setType($type);
-          $reservation->setTrip($trip);
-          $reservation->setUser($user);
-          $entityManager->persist($reservation);
-          $entityManager->flush();
-     }
+    private function reservationAddAction($user, $trip, $type, $reservationInfo, EntityManagerInterface $entityManager){
+        $reservation = new Reservation();
+        if ($type == self::RESERVATION_TYPE_OFFER) {
+            $reservation->setOffer($reservationInfo);
+        } else {
+            $reservation ->setSeats($reservationInfo);
+        }
+        $reservation->setType($type);
+        $reservation->setTrip($trip);
+        $reservation->setUser($user);
+        $entityManager->persist($reservation);
+        $entityManager->flush();
+    }
 }

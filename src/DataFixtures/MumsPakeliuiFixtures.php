@@ -19,11 +19,41 @@ class MumsPakeliuiFixtures extends Fixture
             $user->setEnabled(true);
             $manager->persist($user);
         }
-        $cityFromTo1=[['Vilnius', 'Kaunas'], ['Vilnius', 'Palanga'], ['Vilnius', 'Zarasai'], ['Klaipėda', 'Šiauliai'], ['Zapyškis', 'Baisiogala']];
-        $cityFromTo2=[['Klaipėda', 'Kaunas'], ['Klaipėda', 'Palanga'], ['Klaipėda', 'Zarasai'], ['Vilnius', 'Šiauliai'], ['Kaunas', 'Baisiogala']];
-        $cityFromTo3=[['Baisiogala', 'Kaunas'], ['Baisiogala', 'Palanga'], ['Klaipėda', 'Zarasai'], ['Baisiogala', 'Šiauliai'], ['Vilnius', 'Baisiogala']];
-        $cityFromTo4=[['Palanga', 'Kaunas'], ['Mažeikiai', 'Palanga'], ['Palanga', 'Zarasai'], ['Pasvalys', 'Šiauliai'], ['Vilnius', 'Trakai']];
-        $cityFromTo5=[['Garliava', 'Kaunas'], ['Mažeikiai', 'Biržai'], ['Palanga', 'Alytus'], ['Alytus', 'Šiauliai'], ['Kaunas', 'Trakai']];
+        $cityFromTo1=[
+            ['Vilnius', 'Kaunas'],
+            ['Vilnius', 'Palanga'],
+            ['Vilnius', 'Zarasai'],
+            ['Klaipėda', 'Šiauliai'],
+            ['Zapyškis', 'Baisiogala']
+        ];
+        $cityFromTo2=[
+            ['Klaipėda', 'Kaunas'],
+            ['Klaipėda', 'Palanga'],
+            ['Klaipėda', 'Zarasai'],
+            ['Vilnius', 'Šiauliai'],
+            ['Kaunas', 'Baisiogala']
+        ];
+        $cityFromTo3=[
+            ['Baisiogala', 'Kaunas'],
+            ['Baisiogala', 'Palanga'],
+            ['Klaipėda', 'Zarasai'],
+            ['Baisiogala', 'Šiauliai'],
+            ['Vilnius', 'Baisiogala']
+        ];
+        $cityFromTo4=[
+            ['Palanga', 'Kaunas'],
+            ['Mažeikiai', 'Palanga'],
+            ['Palanga', 'Zarasai'],
+            ['Pasvalys', 'Šiauliai'],
+            ['Vilnius', 'Trakai']
+        ];
+        $cityFromTo5=[
+            ['Garliava', 'Kaunas'],
+            ['Mažeikiai', 'Biržai'],
+            ['Palanga', 'Alytus'],
+            ['Alytus', 'Šiauliai'],
+            ['Kaunas', 'Trakai']
+        ];
         $c=0;
         $tt=0;
         $day=1;
@@ -38,23 +68,19 @@ class MumsPakeliuiFixtures extends Fixture
             $trip->setDepartFrom($location[$c][0]);
             $trip->setDestination($location[$c][1]);
             $c++;
-            if ($c==5)
-            {
+            if ($c==5) {
                 $c=0;
             }
             $trip->setDepartTime('2018-07-0'.$day);
-            if ($i==5||$i==25||$i==45||$i==65||$i==85)
-            {
+            if ($i==5||$i==25||$i==45||$i==65||$i==85) {
                 $tt=1;
             }
-            if ($i==20||$i==40||$i==60||$i==80)
-            {
+            if ($i==20||$i==40||$i==60||$i==80) {
                 $tt=0;
                 $day++;
             }
             $trip->setSeats($seat);
-            if ($i==20||$i==40||$i==60||$i==80)
-            {
+            if ($i==20||$i==40||$i==60||$i==80) {
                 $seat++;
             }
             $trip->setPets($pets);

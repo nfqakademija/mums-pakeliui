@@ -139,7 +139,7 @@ class TripRepository extends ServiceEntityRepository
             ->setParameter('departTime', $departDate.'%')
             ->setParameter('user', $user);
 
-       return $tripId->getQuery()->getOneOrNullResult();
+        return $tripId->getQuery()->getOneOrNullResult();
     }
 
     public function createTripQueryBuilder($value)

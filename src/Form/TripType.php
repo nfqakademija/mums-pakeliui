@@ -72,7 +72,6 @@ class TripType extends AbstractType
                     'widget' => 'single_text',
                     'html5' => false
                 ]
-
             )
             ->add(
                 'phone',
@@ -85,8 +84,8 @@ class TripType extends AbstractType
                             'message' => 'Neteisingai įvestas telefono numeris.'
                         ])
                     ]
-            ]
-        )
+                ]
+            )
             ->add(
                 'seats',
                 IntegerType::class,
