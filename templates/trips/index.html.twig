@@ -30,7 +30,7 @@
                         <div role="tabpanel" class="tab-pane active" id="trips">
                             {% for trip in trips if trips is defined %}
                                 <div class="row tab-list-row">
-                                    <div class="col-xs-1 ml-0 info" style="margin:auto;">
+                                    <div class="col-xs-1 ml-0 mr-2 info">
                                         {% if trip.travelerType == constant('TYPE_DRIVER', trip) %}
                                             <i class="fa fa-car tabs-icon"></i>
                                         {% endif %}
@@ -38,13 +38,13 @@
                                             <i class="fas fa-child tabs-icon"></i>
                                         {% endif %}
                                     </div>
-                                    <div class="col-xs-12 mx-auto info">
+                                    <div class="col-xs-12 col-sm-6 col-md-4 ml-0 info">
                                         <span class="fas fa-map-marker-alt"></span> {{ trip.departFrom }}
                                         <div class="arrow-down"><span class="fas fa-long-arrow-alt-down"></span>
                                         </div>
                                         <span class="fas fa-map-marker-alt green-marker"></span> {{ trip.destination }}
                                     </div>
-                                    <div class="col-xs-6 info">
+                                    <div class="col-xs-6 col-sm-3 col-md-2 mx-0 info">
                                         <div class="reserve-description"><span
                                                     class="far fa-calendar-alt"></span> {{ trip.departTime|date("Y-m-d") }}
                                         </div>
@@ -52,7 +52,7 @@
                                                     class="fas fa-clock"></span> {{ trip.departTime|date("H:i") }}
                                         </div>
                                     </div>
-                                    <div class="col-xs-6 info">
+                                    <div class="col-xs-6 col-sm-6 col-md-3 ml-0 mr-auto info">
                                         {% set seats = trip.seats %}
                                         {% for reservation in reservations if reservation.trip == trip and reservation.status == constant('App\\Controller\\ReservationController::CONFIRMED') and reservation.type is null %}
                                             {% set seats = seats - reservation.seats %}
@@ -72,7 +72,7 @@
                                             <i class="material-icons img-reservation-free">airline_seat_recline_extra</i>
                                         {% endfor %}
                                     </div>
-                                    <div class="col-xs-6 info">
+                                    <div class="col-xs-6 col-sm-6 col-md-2 mx-0 info">
                                         <a class="btn btn-outline-dark"
                                            href="{{ path('trip_show', {'id': trip.id}) }}" title="Peržiūrėti"><i
                                                     class="fas fa-eye"></i></a>
@@ -130,13 +130,13 @@
                         <div role="tabpanel" class="tab-pane" id="yourReservation">
                             {% for yourReservation in yourReservations if yourReservation is defined %}
                                 <div class="row tab-list-row">
-                                    <div class="col-xs-12 mr-0 info">
+                                    <div class="col-xs-12 col-sm-3 mr-0 info">
                                         <span class="fas fa-map-marker-alt"></span> {{ yourReservation.Trip.departFrom }}
                                         <div class="arrow-down"><span class="fas fa-long-arrow-alt-down"></span>
                                         </div>
                                         <span class="fas fa-map-marker-alt green-marker"></span> {{ yourReservation.Trip.destination }}
                                     </div>
-                                    <div class="col-xs-6 mx-auto info">
+                                    <div class="col-xs-6 col-sm-3 mx-auto info">
                                         <div class="reserve-description"><span
                                                     class="far fa-calendar-alt"></span> {{ yourReservation.Trip.departTime|date("Y-m-d") }}
                                         </div>
@@ -144,15 +144,15 @@
                                                     class="fas fa-clock"></span> {{ yourReservation.Trip.departTime|date("H:i") }}
                                         </div>
                                     </div>
-                                    <div class="col-xs-6 mx-auto info">
+                                    <div class="col-xs-1 mx-auto info">
                                         <i class="material-icons">airline_seat_recline_extra</i> {{ yourReservation.seats }}
                                     </div>
-                                    <div class="col-xs-12 mx-auto info">
+                                    <div class="col-xs-12 col-sm-3 mx-auto info">
                                         {{ yourReservation.Trip.user }}<br>
                                         {{ yourReservation.Trip.phone }}<br>
                                         {{ yourReservation.Trip.User.email }}
                                     </div>
-                                    <div class="col-xs-12 mr-0 info">
+                                    <div class="col-xs-12 col-sm-2 mr-0 info">
                                         {% if yourReservation.status ==  constant('App\\Controller\\ReservationController::REJECTED') %}
                                             <b>Statusas: </b><span style="color:red">Atmesta</span>
                                         {% elseif yourReservation.status ==  constant('App\\Controller\\ReservationController::CONFIRMED') %}
