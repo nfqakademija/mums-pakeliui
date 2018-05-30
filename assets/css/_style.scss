@@ -5,7 +5,7 @@ body {
   min-height: 100vh;
   background: #e9e7ed;
 }
-.mainContent{
+.page-main-content{
   padding-top:94px;
 }
 a{
@@ -96,7 +96,7 @@ p {
   .navbar-brand {
     font-size:25px;
   }
-  .mainContent{
+  .page-main-content{
     padding-top:70px;
   }
 }
@@ -104,7 +104,7 @@ p {
   .navbar-brand {
     font-size:23px;
   }
-  .mainContent{
+  .page-main-content{
     padding-top:70px;
   }
 }
@@ -517,7 +517,7 @@ p {
   width:48px;
   position:relative;
 }
-.blueBorder {
+.blue-border {
   border:2px solid #2a2c37;
   padding: 10px;
   font-size:20px;
@@ -525,7 +525,7 @@ p {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px
 }
-.blueBorder2 {
+.blue-border2 {
   border:2px solid #2a2c37;
   padding: 10px 10px 15px 10px;
   font-size:22px;

@@ -19,6 +19,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 class TripRepository extends ServiceEntityRepository
 {
     const MAX_PER_PAGE = 16;
+
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Trip::class);
@@ -126,6 +127,19 @@ class TripRepository extends ServiceEntityRepository
         return $tripId
             ->getQuery()
             ->getResult();
+    }
+
+    public function findOneByUserAndDate($user, $date)
+    {
+        $departDate = $date->format('Y-m-d');
+        $tripId = $this->createQueryBuilder("t")
+            ->select("t.id")
+            ->Where('t.departTime LIKE :departTime')
+            ->andWhere('t.user = :user')
+            ->setParameter('departTime', $departDate.'%')
+            ->setParameter('user', $user);
+
+       return $tripId->getQuery()->getOneOrNullResult();
     }
 
     public function createTripQueryBuilder($value)

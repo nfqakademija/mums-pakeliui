@@ -6,7 +6,6 @@ use App\Entity\Reservation;
 use App\Entity\Trip;
 use App\Form\OfferType;
 use App\Form\ReservationType;
-use App\Repository\ReservationRepository;
 use App\Repository\TripRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,14 +20,15 @@ class ReservationController extends Controller
     const STATUS_REJECTED = 2;
     const STATUS_CONFIRMED = 1;
     const RESERVATION_TYPE_OFFER = 1;
+    const RESERVATION_TYPE_RESERVATION = 0;
     /**
      * @Route("/add/{id}", name="add")
      */
     public function reservationAction(
         Request $request,
         Trip $trip,
-        EntityManagerInterface $entityManager,
         TripRepository $tripRepository,
+        EntityManagerInterface $entityManager,
         Reservation $reservation = null
     ) {
         $user = $this->getUser();
@@ -36,13 +36,7 @@ class ReservationController extends Controller
         $form = $this->createForm(ReservationType::class, $reservation);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $reservation = new Reservation();
-            $reservation ->setSeats($form["seats"]->getData()) ;
-            $reservation->setTrip($trip);
-            $reservation->setUser($user);
-            $entityManager->persist($reservation);
-            $entityManager->flush();
-
+            $this->reservationAddAction($user, $trip, self::RESERVATION_TYPE_RESERVATION, $form["seats"]->getData(), $entityManager);
             $this->addFlash('success', 'Pavyko rezervuoti! Laukite vairuotojo rezervacijos patvirtinimo.');
             return $this->redirect($request->server->get('HTTP_REFERER'));
         }
@@ -50,21 +44,14 @@ class ReservationController extends Controller
         $form = $this->createForm(OfferType::class, $reservation);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $offerTrip = $tripRepository->findTripByUserAndDate($user, $trip->getDepartTime());
-            if (isset($offerTrip[0]['id'])) {
-                $reservation = new Reservation();
-                $reservation->setOffer($offerTrip[0]['id']);
-                $reservation->setType(self::RESERVATION_TYPE_OFFER);
-                $reservation->setTrip($trip);
-                $reservation->setUser($user);
-                $entityManager->persist($reservation);
-                $entityManager->flush();
+            $offerTrip = $tripRepository->findOneByUserAndDate($user, $trip->getDepartTime());at
+            if (isset($offerTrip['id'])) {
+                $this->reservationAddAction($user, $trip, self::RESERVATION_TYPE_OFFER, $offerTrip['id'], $entityManager);
                 $this->addFlash('success', 'Sėkmingai pasiūlėte kelionę!');
                 return $this->redirect($request->server->get('HTTP_REFERER'));
-            } else {
+            }
                 $this->addFlash('danger', 'Neturite kelionės šiai dienai!');
                 return $this->redirect($request->server->get('HTTP_REFERER'));
-            }
         }
 
         return $this->redirect($this->generateUrl('my_trips'));
@@ -103,4 +90,18 @@ class ReservationController extends Controller
 
         return $this->redirect($this->generateUrl('my_trips'));
     }
+
+     private function reservationAddAction($user, $trip, $type, $reservationInfo, EntityManagerInterface $entityManager){
+          $reservation = new Reservation();
+          if ($type == self::RESERVATION_TYPE_OFFER){
+              $reservation->setOffer($reservationInfo);
+          } else{
+              $reservation ->setSeats($reservationInfo);
+          }
+          $reservation->setType($type);
+          $reservation->setTrip($trip);
+          $reservation->setUser($user);
+          $entityManager->persist($reservation);
+          $entityManager->flush();
+     }
 }
