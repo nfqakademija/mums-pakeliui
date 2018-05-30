@@ -63,7 +63,7 @@
     <div class="row light-bg booking-details_wrap px-sm-2 px-md-3">
         <div class="col">
             <div class="row">
-                <div class="col-md-12 col-xl-8 pt-0 pb-3 goBack">
+                <div class="col-md-12 col-xl-8 pt-0 pb-3 go-back">
                     <a href="javascript:history.back()" class="itemData"><i class="fas fa-long-arrow-alt-left"></i> Į
                         skelbimų
                         sąrašą</a>
@@ -75,7 +75,7 @@
                         <div class="booking-checkbox col-sm-5 mb-2 mb-sm-0">
                             <div class="styled-heading2">
                                 <h5>{{ trip.User }}</h5>
-                                <div class="paddingTop mx-auto customer-img-block">
+                                <div class="pt-1 mx-auto customer-img-block">
                                     {% if trip.User.avatar is not null %}
                                         <img src="{{ trip.User.avatar }}" class="customer-img">
                                     {% else %}
@@ -83,22 +83,22 @@
                                     {% endif %}
                                 </div>
                             </div>
-                            <div class="paddingTop contacts-icon">
+                            <div class="pt-1 contacts-icon">
                                 <div><i class="material-icons align-middle">mail_outline</i> {{ trip.User.email }}</div>
                                 <div><i class="material-icons align-middle">smartphone</i> {{ trip.phone }}</div>
                             </div>
-                            <div class="paddingTop d-flex flex-row align-middle">
+                            <div class="pt-3 d-flex flex-row align-middle">
                                 {% if trip.smoke==constant('NOT_ACCEPT', trip) %}
-                                    <i class="material-icons blueBorder mr-2">smoke_free</i>
+                                    <i class="material-icons blue-border mr-2">smoke_free</i>
                                 {% endif %}
                                 {% if trip.smoke == constant('ACCEPT', trip) %}
-                                    <i class="fas fa-smoking blueBorder2 mr-2"></i>
+                                    <i class="fas fa-smoking blue-border2 mr-2"></i>
                                 {% endif %}
                                 {% if trip.pets == constant('NOT_ACCEPT', trip) %}
-                                    <img src="{{ asset('images/no-pets.png') }}" class="blueBorder"/>
+                                    <img src="{{ asset('images/no-pets.png') }}" class="blue-border"/>
                                 {% endif %}
                                 {% if trip.pets == constant('ACCEPT', trip) %}
-                                    <i class="fas fa-paw blueBorder2"></i>
+                                    <i class="fas fa-paw blue-border2"></i>
                                 {% endif %}
                             </div>
                             <div class="info-block">

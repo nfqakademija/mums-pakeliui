@@ -75,16 +75,16 @@
                                 <div class="info">Papildoma informacija</div>
                                 <div class="d-flex flex-row align-middle ml-2">
                                     {% if trip.smoke == constant('NOT_ACCEPT', trip) %}
-                                        <i class="material-icons blueBorder mr-2">smoke_free</i>
+                                        <i class="material-icons blue-border mr-2">smoke_free</i>
                                     {% endif %}
                                     {% if trip.smoke == constant('ACCEPT', trip) %}
-                                        <i class="fas fa-smoking blueBorder2 mr-2"></i>
+                                        <i class="fas fa-smoking blue-border2 mr-2"></i>
                                     {% endif %}
                                     {% if trip.pets == constant('NOT_ACCEPT', trip) %}
-                                        <div class="blueBorder icon-img"><img src="{{ asset('images/no-pets.png') }}"/></div>
+                                        <div class="blue-border icon-img"><img src="{{ asset('images/no-pets.png') }}"/></div>
                                     {% endif %}
                                     {% if trip.pets == constant('ACCEPT', trip) %}
-                                        <i class="fas fa-paw blueBorder2"></i>
+                                        <i class="fas fa-paw blue-border2"></i>
                                     {% endif %}
                                 </div>
                             </div>
