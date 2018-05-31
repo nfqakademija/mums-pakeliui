@@ -11,10 +11,21 @@ class MumsPakeliuiFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
+        $names=['Matas','Lukas','Dominykas','Jokūbas','Kajus','Jonas','Nojus','Domas','Benas','Joris',
+            'Emilija','Kamilė','Sofija','Lėja','Amelija','Gabija','Austėja','Ema','Viltė','Liepa',
+            'Darius','Mantas','Tomas','Karolis','Rokas','Paulius','Deividas','Marius','Martynas','Dovydas',
+    'Gabrielė','Karolina','Greta','Giedrė','Viktorija','Ieva','Monika','Nijolė','Evelina','Laura',
+    'Ignas','Arnas','Justas','Danielius','Emilis','Augustas','Domantas','Gabrielius','Kristupas','Gustas',
+    'Ugnė','Urtė','Viltė','Rugilė','Miglė','Goda','Augustė','Deimantė','Saulė','Paulina',
+            'Titas','Edvinas','Laurynas','Eimantas','Adomas','Vilius','Armandas','Erikas','Pijus','Tadas',
+    'Aistė','Kotryna','Karina','Gustė','Agnė','Smiltė','Akvilė','Patricija','Eva','Rusnė',
+            'Nedas','Ernestas','Ugnius','Nikita','Simonas','Gytis','Viktoras','Aivaras','Eligijus','Nerijus',
+    'Marija','Samanta','Erika','Eglė','Simona','Kornelija','Milda','Gintarė','Svetlana','Tamara'];
+
         for ($i = 1; $i <= 100; $i++) {
             $user = new User();
-            $user->setUsername('Vartotojas'.$i);
-            $user->setEmail('vardas'.$i.'@pavyzdys.lt');
+            $user->setUsername($names[$i-1]);
+            $user->setEmail(strtolower($names[$i-1]).'@mail.com');
             $user->setPassword('baravykas'.$i);
             $user->setEnabled(true);
             $manager->persist($user);
