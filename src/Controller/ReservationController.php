@@ -111,8 +111,8 @@ class ReservationController extends Controller
         $type,
         $reservationInfo,
         EntityManagerInterface $entityManager,
-        $seats = 0)
-    {
+        $seats = 0
+    ) {
         $reservation = new Reservation();
         if ($type == self::RESERVATION_TYPE_OFFER) {
             $reservation->setOffer($reservationInfo);
