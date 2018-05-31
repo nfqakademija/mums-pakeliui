@@ -17,7 +17,6 @@ class TripsController extends Controller
         $user = $this->getUser();
         $trips = $tripRepository->findByUser($user);
         $reservations = $reservationRepository->findByOwnerJoinedTrip($user);
-
         $yourReservations = $reservationRepository->findByUserJoinedTrip($user);
 
         return $this->render(
