@@ -15,9 +15,10 @@ class MumsPakeliuiFixtures extends Fixture
             'Emilija', 'Kamilė', 'Sofija', 'Lėja', 'Amelija', 'Gabija', 'Austėja', 'Ema', 'Viltė', 'Liepa',
             'Darius', 'Mantas', 'Tomas', 'Karolis', 'Rokas', 'Paulius', 'Deividas', 'Marius', 'Martynas', 'Dovydas',
             'Gabrielė', 'Karolina', 'Greta', 'Giedrė', 'Viktorija', 'Ieva', 'Monika', 'Nijolė', 'Evelina', 'Laura',
-            'Ignas', 'Arnas', 'Justas', 'Danielius', 'Emilis', 'Augustas', 'Domantas', 'Gabrielius', 'Kristupas', 'Gustas',
-            'Ugnė', 'Urtė', 'Vilma', 'Rugilė', 'Miglė', 'Goda', 'Augustė', 'Deimantė', 'Saulė', 'Paulina',
-            'Titas', 'Edvinas', 'Laurynas', 'Eimantas', 'Adomas', 'Vilius', 'Armandas', 'Erikas', 'Pijus', 'Tadas',
+            'Ignas', 'Arnas', 'Justas', 'Danielius', 'Emilis', 'Augustas', 'Domantas',
+            'Gabrielius', 'Kristupas', 'Gustas', 'Ugnė', 'Urtė', 'Vilma', 'Rugilė',
+            'Miglė', 'Goda', 'Augustė', 'Deimantė', 'Saulė', 'Paulina', 'Titas',
+            'Edvinas', 'Laurynas', 'Eimantas', 'Adomas', 'Vilius', 'Armandas', 'Erikas', 'Pijus', 'Tadas',
             'Aistė', 'Kotryna', 'Karina', 'Gustė', 'Agnė', 'Smiltė', 'Akvilė', 'Patricija', 'Eva', 'Rusnė',
             'Nedas', 'Ernestas', 'Ugnius', 'Nikita', 'Simonas', 'Gytis', 'Viktoras', 'Aivaras', 'Eligijus', 'Nerijus',
             'Marija', 'Samanta', 'Erika', 'Eglė', 'Simona', 'Kornelija', 'Milda', 'Gintarė', 'Svetlana', 'Tamara'];
@@ -208,11 +209,28 @@ class MumsPakeliuiFixtures extends Fixture
             }
             $trip->setPets($pets);
             $trip->setSmoke($smoke);
-            if ($i == 5 || $i == 15 || $i == 25 || $i == 35 || $i == 45 || $i == 55 || $i == 65 || $i == 75 || $i == 85 || $i == 95) {
+            if ($i == 5 ||
+                $i == 15 ||
+                $i == 25 ||
+                $i == 35 ||
+                $i == 45 ||
+                $i == 55 ||
+                $i == 65 ||
+                $i == 75 ||
+                $i == 85 ||
+                $i == 95) {
                 $pets = 1;
                 $smoke = 1;
             }
-            if ($i == 10 || $i == 20 || $i == 30 || $i == 40 || $i == 50 || $i == 60 || $i == 70 || $i == 80 || $i == 90) {
+            if ($i == 10 ||
+                $i == 20 ||
+                $i == 30 ||
+                $i == 40 ||
+                $i == 50 ||
+                $i == 60 ||
+                $i == 70 ||
+                $i == 80 ||
+                $i == 90) {
                 $pets = 0;
                 $smoke = 0;
             }
