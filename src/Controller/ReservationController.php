@@ -105,14 +105,13 @@ class ReservationController extends Controller
         return $this->redirect($this->generateUrl('my_trips'));
     }
 
-    private function reservationAddAction($user, $trip, $type, $reservationInfo, EntityManagerInterface $entityManager)
+    private function reservationAddAction($user, $trip, $type, $reservationInfo, EntityManagerInterface $entityManager, $seats = 0)
     {
         $reservation = new Reservation();
         if ($type == self::RESERVATION_TYPE_OFFER) {
             $reservation->setOffer($reservationInfo);
-        } else {
-            $reservation ->setSeats($reservationInfo);
         }
+        $reservation ->setSeats($seats);
         $reservation->setType($type);
         $reservation->setTrip($trip);
         $reservation->setUser($user);

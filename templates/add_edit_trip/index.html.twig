@@ -16,7 +16,7 @@
         <div class="row light-bg booking-details_wrap">
                 <div class="booking-checkbox_wrap col-xl-8">
                     <div class="form-block col-md-11 form-margin">
-                        {{ form_start(our_form) }}
+                        {{ form_start(our_form, {attr: {class: 'add-form'}}) }}
                         <div class="row">
                             <div class="col-4 col-inline-padding-left">
                                 {{ form_row(our_form.travelerType, {attr: {class: ''}}) }}
