@@ -21,7 +21,7 @@
                 <div class="tabs">
                     <ul class="nav nav-tabs">
                         <li class="active"><a href="#trips" data-toggle="tab">Mano skelbimai</a></li>
-                        <li><a href="?reservation" data-toggle="tab">Mano rezervacijos</a></li>
+                        <li><a href="#reservation" data-toggle="tab">Mano rezervacijos</a></li>
                         <li><a href="#yourReservation" data-toggle="tab">Kelionių užklausos</a></li>
                         <li><a href="#offers" data-toggle="tab">Pasiūlymai rezervuoti</a></li>
                     </ul>
@@ -93,13 +93,13 @@
                         <div role="tabpanel" class="tab-pane" id="reservation">
                             {% for reservation in reservations if reservation and reservation.status is null and reservation.type is null %}
                                 <div class="row tab-list-row">
-                                    <div class="col-4 info">
+                                    <div class="col-xs-12 col-sm-4 col-lg-4 info">
                                         <span class="fas fa-map-marker-alt"></span> {{ reservation.Trip.departFrom }}
                                         <div class="arrow-down"><span class="fas fa-long-arrow-alt-down"></span>
                                         </div>
                                         <span class="fas fa-map-marker-alt green-marker"></span> {{ reservation.Trip.destination }}
                                     </div>
-                                    <div class="col-2 info">
+                                    <div class="col-xs-12 col-sm-2 col-lg-2 info">
                                         <div class="reserve-description"><span
                                                     class="far fa-calendar-alt"></span> {{ reservation.Trip.departTime|date("Y-m-d") }}
                                         </div>
@@ -107,12 +107,12 @@
                                                     class="fas fa-clock"></span> {{ reservation.Trip.departTime|date("H:i") }}
                                         </div>
                                     </div>
-                                    <div class="col-4 info">
+                                    <div class="col-xs-12 col-sm-4 col-lg-4 info">
                                         {{ reservation.User }}<br> <i
                                                 class="material-icons">airline_seat_recline_extra</i> {{ reservation.seats }}
                                         <br>{{ reservation.User.email }}
                                     </div>
-                                    <div class="col-2 info">
+                                    <div class="col-xs-12 col-sm-2 col-lg-2 info">
                                         <a href="{{ path('reservation_confirmed', {'id': reservation.id}) }}"
                                            title="Patvirtinti" class="btn btn-outline-dark" alt="Patvirtinti"><i
                                                     class="fas fa-handshake"></i></a>
@@ -143,11 +143,9 @@
                                         <div class="reserve-description"><span
                                                     class="fas fa-clock"></span> {{ yourReservation.Trip.departTime|date("H:i") }}
                                         </div>
-                                    </div>
-                                    <div class="col-xs-1 mx-auto info">
                                         <i class="material-icons">airline_seat_recline_extra</i> {{ yourReservation.seats }}
                                     </div>
-                                    <div class="col-xs-12 col-sm-3 mx-auto info">
+                                    <div class="col-xs-12 col-sm-4 mx-auto info">
                                         {{ yourReservation.Trip.user }}<br>
                                         {{ yourReservation.Trip.phone }}<br>
                                         {{ yourReservation.Trip.User.email }}
