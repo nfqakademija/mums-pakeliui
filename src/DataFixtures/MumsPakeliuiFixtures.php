@@ -6,11 +6,14 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use App\Entity\User;
 use App\Entity\Trip;
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Validator\Constraints\DateTime;
 
 class MumsPakeliuiFixtures extends Fixture
 {
-    const names = ['Matas', 'Lukas', 'Dominykas', 'Jokūbas', 'Kajus', 'Jonas', 'Nojus', 'Domas', 'Benas', 'Joris',
+    const NAMES = ['Matas', 'Lukas', 'Dominykas', 'Jokūbas', 'Kajus', 'Jonas', 'Nojus', 'Domas', 'Benas', 'Joris',
             'Emilija', 'Kamilė', 'Sofija', 'Lėja', 'Amelija', 'Gabija', 'Austėja', 'Ema', 'Viltė', 'Liepa',
             'Darius', 'Mantas', 'Tomas', 'Karolis', 'Rokas', 'Paulius', 'Deividas', 'Marius', 'Martynas', 'Dovydas',
             'Gabrielė', 'Karolina', 'Greta', 'Giedrė', 'Viktorija', 'Ieva', 'Monika', 'Nijolė', 'Evelina', 'Laura',
@@ -21,7 +24,7 @@ class MumsPakeliuiFixtures extends Fixture
             'Nedas', 'Ernestas', 'Ugnius', 'Nikita', 'Simonas', 'Gytis', 'Viktoras', 'Aivaras', 'Eligijus', 'Nerijus',
             'Marija', 'Samanta', 'Erika', 'Eglė', 'Simona', 'Kornelija', 'Milda', 'Gintarė', 'Svetlana', 'Tamara'];
 
-    const cityFromTo1 = ['Vilnius', 'Kaunas',
+    const CITY_FROM_TO_1 = ['Vilnius', 'Kaunas',
             'Vilnius', 'Palanga',
             'Vilnius', 'Zarasai',
             'Klaipėda', 'Šiauliai',
@@ -151,6 +154,12 @@ class MumsPakeliuiFixtures extends Fixture
             'Alytus', 'Šiauliai',
             'Kaunas', 'Trakai'
         ];
+    private $encoder;
+
+    public function __construct(UserPasswordEncoderInterface $encoder)
+    {
+        $this->encoder = $encoder;
+    }
 
     public function load(ObjectManager $manager)
     {
@@ -161,18 +170,20 @@ class MumsPakeliuiFixtures extends Fixture
 
         for ($i = 1; $i <= 100; $i++) {
             $user = new User();
-            $user->setUsername(self::names[$i - 1]);
-            $user->setEmail(strtolower(self::names[$i - 1]) . '@mail.com');
-            $user->setPassword('baravykas' . $i);
+            $username = self::NAMES[$i - 1];
+            $user->setUsername($username);
+            $password = $this->encoder->encodePassword($user, 'baravykas' . $i);
+            $user->setEmail(strtolower(self::NAMES[$i - 1]) . '@mail.com');
+            $user->setPassword($password);
             $user->setEnabled(true);
             $manager->persist($user);
 
             $trip = new Trip();
             $trip->setUser($user);
             $trip->setTravelerType($travellertype);
-            $trip->setDepartFrom(self::cityFromTo1[$c]);
+            $trip->setDepartFrom(self::CITY_FROM_TO_1[$c]);
             $c++;
-            $trip->setDestination(self::cityFromTo1[$c]);
+            $trip->setDestination(self::CITY_FROM_TO_1[$c]);
             $c++;
             $trip->setDepartTime($day);
             if ($i % 20 == 5) {
@@ -182,10 +193,11 @@ class MumsPakeliuiFixtures extends Fixture
                 $travellertype = 0;
                 $day = clone $day->modify('1days');
             }
+
             $trip->setSeats(rand(1, 7));
-            $trip->setPets($i % 2 == 0);
-            $trip->setSmoke($i % 2 != 0);
-            $trip->setPhone('370' . rand(10000, 99999));
+            $trip->setPets(rand(1, 0));
+            $trip->setSmoke(rand(1, 0));
+            $trip->setPhone('+ 370' . rand(10000, 99999));
             $manager->persist($trip);
         }
         $manager->flush();
