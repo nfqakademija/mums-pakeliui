@@ -218,7 +218,6 @@ class MumsPakeliuiFixtures extends Fixture
                 $this->addTrip($user, $travellertype, $count, $day2, $manager);
                 $count = $count + 2;
                 $day2 = clone $day2->modify('3hour');
-
             }
         }
         $manager->flush();
