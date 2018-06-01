@@ -85,8 +85,10 @@
                                     </div>
                                 </div>
                             {% else %}
-                                <div class="row ml-1 tabs-text">
+                                <div class="row">
+                                    <div class="col ml-1 tabs-text">
                                     Skelbimų nėra.
+                                    </div>
                                 </div>
                             {% endfor %}
                         </div>
@@ -122,8 +124,10 @@
                                     </div>
                                 </div>
                             {% else %}
-                                <div class="row ml-1 tabs-text">
-                                    Šiuo metu jūs neturite naujų rezervacijų
+                                <div class="row">
+                                    <div class="col ml-1 tabs-text">
+                                    Šiuo metu neturite naujų rezervacijų.
+                                    </div>
                                 </div>
                             {% endfor %}
                         </div>
@@ -162,8 +166,10 @@
                                     </div>
                                 </div>
                             {% else %}
-                                <div class="col-12 row ml-1 tabs-text">
+                                <div class="row">
+                                    <div class="col ml-1 tabs-text">
                                     Dar nepasirinkote vairuotojų.
+                                    </div>
                                 </div>
                             {% endfor %}
                         </div>
@@ -193,6 +199,12 @@
                                         <a href="{{ path('reservation_reject', {'id': reservation.id}) }}"
                                            title="Atmesti" class="btn btn-outline-dark" alt="Atmesti"><i
                                                     class="fas fa-times"></i></a>
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div class="row">
+                                    <div class="col ml-1 tabs-text">
+                                    Pasiūlymų nėra.
                                     </div>
                                 </div>
                             {% endfor %}
