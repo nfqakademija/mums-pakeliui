@@ -89,16 +89,16 @@
                             </div>
                             <div class="pt-3 d-flex flex-row align-middle">
                                 {% if trip.smoke==constant('NOT_ACCEPT', trip) %}
-                                    <i class="material-icons blue-border mr-2">smoke_free</i>
+                                    <i class="material-icons icon-border-smaller-font mr-2">smoke_free</i>
                                 {% endif %}
                                 {% if trip.smoke == constant('ACCEPT', trip) %}
-                                    <i class="fas fa-smoking blue-border2 mr-2"></i>
+                                    <i class="fas fa-smoking icon-border-bigger-font mr-2"></i>
                                 {% endif %}
                                 {% if trip.pets == constant('NOT_ACCEPT', trip) %}
-                                    <img src="{{ asset('images/no-pets.png') }}" class="blue-border"/>
+                                    <img src="{{ asset('images/no-pets.png') }}" class="icon-border-smaller-font"/>
                                 {% endif %}
                                 {% if trip.pets == constant('ACCEPT', trip) %}
-                                    <i class="fas fa-paw blue-border2"></i>
+                                    <i class="fas fa-paw icon-border-bigger-font"></i>
                                 {% endif %}
                             </div>
                             <div class="info-block">

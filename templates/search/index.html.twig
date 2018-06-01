@@ -20,15 +20,15 @@
                     {% endfor %}
                 </div>
             </div>
-            <div class="p-2 second-group">
+            <div class="p-2 choices-group">
                 {{ form_row(form.departFrom, {attr: {class: 'autocomplite','placeholder': 'Išvykimo adresas'} }) }}
             </div>
 
-            <div class="p-2 second-group">
+            <div class="p-2 choices-group">
                 {{ form_row(form.destination, {attr: {class: 'autocomplite','placeholder': 'Atvykimo adresas'} }) }}
             </div>
 
-            <div class="p-2 second-group">
+            <div class="p-2 choices-group">
                 {{ form_widget(form.departDate) }}
             </div>
             <div class="p-2">
@@ -75,16 +75,16 @@
                                 <div class="info">Papildoma informacija</div>
                                 <div class="d-flex flex-row align-middle ml-2">
                                     {% if trip.smoke == constant('NOT_ACCEPT', trip) %}
-                                        <i class="material-icons blue-border mr-2">smoke_free</i>
+                                        <i class="material-icons icon-border-smaller-font mr-2">smoke_free</i>
                                     {% endif %}
                                     {% if trip.smoke == constant('ACCEPT', trip) %}
-                                        <i class="fas fa-smoking blue-border2 mr-2"></i>
+                                        <i class="fas fa-smoking icon-border-bigger-font mr-2"></i>
                                     {% endif %}
                                     {% if trip.pets == constant('NOT_ACCEPT', trip) %}
-                                        <div class="blue-border icon-img"><img src="{{ asset('images/no-pets.png') }}"/></div>
+                                        <div class="icon-border-smaller-font icon-img"><img src="{{ asset('images/no-pets.png') }}"/></div>
                                     {% endif %}
                                     {% if trip.pets == constant('ACCEPT', trip) %}
-                                        <i class="fas fa-paw blue-border2"></i>
+                                        <i class="fas fa-paw icon-border-bigger-font"></i>
                                     {% endif %}
                                 </div>
                             </div>
