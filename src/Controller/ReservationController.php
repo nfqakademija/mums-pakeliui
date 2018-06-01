@@ -38,11 +38,11 @@ class ReservationController extends Controller
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $this->reservationAddAction(
+                $entityManager,
                 $user,
                 $trip,
                 self::RESERVATION_TYPE_RESERVATION,
-                $form["seats"]->getData(),
-                $entityManager
+                $form["seats"]->getData()
             );
             $this->addFlash('success', 'Pavyko rezervuoti! Laukite vairuotojo rezervacijos patvirtinimo.');
             return $this->redirect($request->server->get('HTTP_REFERER'));
@@ -51,14 +51,15 @@ class ReservationController extends Controller
         $form = $this->createForm(OfferType::class, $reservation);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $offerTrip = $tripRepository->findOneByUserAndDate($user, $trip->getDepartTime());
-            if (isset($offerTrip['id'])) {
+            $driverTrip = $tripRepository->findOneByUserAndDate($user, $trip->getDepartTime());
+            if (isset($driverTrip['id'])) {
                 $this->reservationAddAction(
+                    $entityManager,
                     $user,
                     $trip,
                     self::RESERVATION_TYPE_OFFER,
-                    $offerTrip['id'],
-                    $entityManager
+                    $seats = 0,
+                    $driverTrip['id']
                 );
 
                 $this->addFlash('success', 'Sėkmingai pasiūlėte kelionę!');
@@ -105,14 +106,19 @@ class ReservationController extends Controller
         return $this->redirect($this->generateUrl('my_trips'));
     }
 
-    private function reservationAddAction($user, $trip, $type, $reservationInfo, EntityManagerInterface $entityManager)
-    {
+    private function reservationAddAction(
+        EntityManagerInterface $entityManager,
+        $user,
+        $trip,
+        $type,
+        $seats,
+        $driverTrip = 0
+    ) {
         $reservation = new Reservation();
         if ($type == self::RESERVATION_TYPE_OFFER) {
-            $reservation->setOffer($reservationInfo);
-        } else {
-            $reservation ->setSeats($reservationInfo);
+            $reservation->setOffer($driverTrip);
         }
+        $reservation ->setSeats($seats);
         $reservation->setType($type);
         $reservation->setTrip($trip);
         $reservation->setUser($user);

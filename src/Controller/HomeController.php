@@ -18,6 +18,7 @@ class HomeController extends Controller
     public function indexAction()
     {
         $form = $this->getSearchForm();
+
         return $this->render(
             'home/index.html.twig',
             [
@@ -32,7 +33,7 @@ class HomeController extends Controller
      */
     public function searchAction(Request $request, TripRepository $tripRepository, $page)
     {
-        $form = $this->getSearchForm();
+        $form = $this->getSearchForm($page, true);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -42,8 +43,9 @@ class HomeController extends Controller
                 'page' => $page,
                 'nbPages' => ceil(count($trips) / TripRepository::MAX_PER_PAGE),
                 'nomRoute' => 'search',
-                'paramsRoute' => $request->query->all()
+                'paramsRoute' => $request->query->all(),
             ];
+
             return $this->render(
                 'search/index.html.twig',
                 [
@@ -62,14 +64,15 @@ class HomeController extends Controller
         );
     }
 
-    protected function getSearchForm($page = 1)
+    protected function getSearchForm($page = 1, $addFilterFields = false)
     {
         return $this->createForm(
             TripSearchType::class,
             null,
             [
                 'method' => 'GET',
-                'action' => $this->generateUrl('search', ['page' => $page])
+                'action' => $this->generateUrl('search', ['page' => $page]),
+                'add_filter_fields' => $addFilterFields,
             ]
         );
     }

@@ -3,25 +3,25 @@
 namespace App\Tests;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-//use Goutte\Client;
 
 class HomeControllerTest extends WebTestCase
 {
-
-    public function testHomePageSubmitSearchFormButton()
+    public function testSearchForm()
     {
-        //$client = static::createClient();
-        //$crawler1 = $client->request('GET', '/');
-//        $this->assertSame(200, $client->getResponse()->getStatusCode());
-        //$this->assertSame(1, $crawler1->filter('.form-wrap')->count());
-//        $form = $crawler1->selectButton('trip_search_filter')->form();
-//        $client->submit($form, array('trip_search[travelerType]' => '0'));
-//
-//
-//        $redirectPage = $client->getCrawler();
-//        echo $redirectPage->getUri();
-//        $this->assertSame(1, $redirectPage->filter('#trip_search_departDate')->count());
+        $client = static::createClient();
+        $crawler = $client->request('GET', '/');
 
+        $this->assertSame(200, $client->getResponse()->getStatusCode());
+        $form = $crawler->filter('.form-wrap ')->selectButton("Ieškoti")->form();
+        $form['trip_search[travelerType]'] = '0';
+        $form['trip_search[departFrom]'] = 'Vilnius';
+
+        $client->followRedirects(true);
+        $client->submit($form);
+        $this->assertContains("trip_search[departDate]", $client->getResponse()->getContent());
+        $this->assertContains("trip_search[timeFrom]", $client->getResponse()->getContent());
+        $this->assertContains("trip_search[timeTo]", $client->getResponse()->getContent());
+        $this->assertContains("trip_search[smoke]", $client->getResponse()->getContent());
+        $this->assertContains("trip_search[pets]", $client->getResponse()->getContent());
     }
-
 }
