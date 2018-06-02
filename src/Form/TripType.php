@@ -45,10 +45,7 @@ class TripType extends AbstractType
                     'label' => 'Išvykimo adresas',
                     'attr' => ['class' => 'trip_departFrom'],
                     'constraints' => [
-                        new NotBlank(['message' => 'Trūksta išvykimo adreso.']),
-                        new Regex([ 'pattern'   => '#^(\+?[a-zA-Z0-9 .,()/-]{5,255})?$#',
-                            'message' => 'Neteisingai įvestas adresas.'
-                        ])
+                        new NotBlank(['message' => 'Trūksta išvykimo adreso.'])
                     ]
                 ]
             )
@@ -58,10 +55,7 @@ class TripType extends AbstractType
                 [
                     'label' => 'Atvykimo adresas',
                     'constraints' => [
-                        new NotBlank(['message' => 'Trūksta atvykimo adreso.']),
-                        new Regex([ 'pattern'   => '#^(\+?[a-zA-Z0-9 .,()/-]{5,255})?$#',
-                            'message' => 'Neteisingai įvestas adresas.'
-                        ])
+                        new NotBlank(['message' => 'Trūksta atvykimo adreso.'])
                     ]
                 ]
             )

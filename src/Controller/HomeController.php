@@ -64,14 +64,14 @@ class HomeController extends Controller
         );
     }
 
-    protected function getSearchForm($page = 1, $addFilterFields = false)
+    protected function getSearchForm($addFilterFields = false)
     {
         return $this->createForm(
             TripSearchType::class,
             null,
             [
                 'method' => 'GET',
-                'action' => $this->generateUrl('search', ['page' => $page]),
+                'action' => $this->generateUrl('search', ['page' => 1]),
                 'add_filter_fields' => $addFilterFields,
             ]
         );
