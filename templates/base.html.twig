@@ -121,6 +121,9 @@
             $("#trip_search_filter").blur(function () {
                 $(".autocomplite").trigger("geocode");
             });
+            $("#trip_search_filter").click(function () {
+                $(".autocomplite").trigger("geocode");
+            });
             google.maps.event.addDomListener(window, 'load', init);
 
         }

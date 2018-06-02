@@ -35,7 +35,7 @@
     location: false,
     types: ['geocode'],
     blur: true,
-    geocodeAfterResult: false,
+    geocodeAfterResult: true,
     restoreValueAfterBlur: false
   };
 
@@ -100,13 +100,18 @@
         this.options.mapOptions
       );
 
+        // add click event listener on the map
+        google.maps.event.addListener(
+            this.map,
+            'blur',
+            $.proxy(this.mapBlured, this)
+        );
       // add click event listener on the map
       google.maps.event.addListener(
-        this.map,
-        'blur',
-        $.proxy(this.mapClicked, this)
+         this.map,
+         'click',
+         $.proxy(this.mapClicked, this)
       );
-
       // add dragend even listener on the map
       google.maps.event.addListener(
         this.map,
@@ -151,7 +156,7 @@
     initGeocoder: function(){
 
       // Indicates is user did select a result from the dropdown.
-      var selected = false;
+      var selected = true;
 
       var options = {
         types: this.options.types,
@@ -485,9 +490,11 @@
     },
 
     mapClicked: function(event) {
-        this.trigger("geocode:blur", event.latLng);
+        this.trigger("geocode:click", event.latLng);
     },
-
+      mapBlured: function(event) {
+          this.trigger("geocode:blur", event.latLng);
+      },
     // Fire the "geocode:mapdragged" event and pass the current position of the map center.
     mapDragged: function(event) {
       this.trigger("geocode:mapdragged", this.map.getCenter());
