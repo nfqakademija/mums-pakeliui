@@ -21,7 +21,7 @@
                 <div class="tabs">
                     <ul class="nav nav-tabs">
                         <li class="active"><a href="#trips" data-toggle="tab">Mano skelbimai</a></li>
-                        <li><a href="#reservation" data-toggle="tab">Nauji keleiviai</a></li>
+                        <li><a href="#reservation" data-toggle="tab">Mano keleiviai</a></li>
                         <li><a href="#yourReservation" data-toggle="tab">Užklausos vairuotojams</a></li>
                         <li><a href="#offers" data-toggle="tab">Vairuotojų pasiūlymai</a></li>
                     </ul>
@@ -54,7 +54,7 @@
                                     </div>
                                     <div class="col-xs-6 col-sm-6 col-md-3 ml-0 mr-auto info">
                                         {% set seats = trip.seats %}
-                                        {% for reservation in reservations if reservation.trip == trip and reservation.status == constant('App\\Controller\\ReservationController::STATUS_CONFIRMED') and reservation.type ==0 %}
+                                        {% for reservation in reservations if reservation.trip == trip and reservation.status == constant('App\\Controller\\ReservationController::STATUS_CONFIRMED') and reservation.type == constant('App\\Controller\\ReservationController::RESERVATION_TYPE_RESERVATION')  %}
                                             {% set seats = seats - reservation.seats %}
                                             {% for i in 1..reservation.seats %}
                                                 {% if reservation.User.avatar is not null %}
@@ -93,7 +93,7 @@
                             {% endfor %}
                         </div>
                         <div role="tabpanel" class="tab-pane" id="reservation">
-                            {% for reservation in reservations if reservation and reservation.status is null and reservation.type ==0 %}
+                            {% for reservation in reservations if reservation and reservation.type ==  constant('App\\Controller\\ReservationController::RESERVATION_TYPE_RESERVATION') and reservation.status is null %}
                                 <div class="row tab-list-row">
                                     <div class="col-xs-12 col-sm-4 col-lg-4 info">
                                         <span class="fas fa-map-marker-alt"></span> {{ reservation.Trip.departFrom }}

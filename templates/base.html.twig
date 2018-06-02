@@ -121,12 +121,15 @@
             $("#trip_search_filter").blur(function () {
                 $(".autocomplite").trigger("geocode");
             });
+            $("#trip_search_filter").click(function () {
+                $(".autocomplite").trigger("geocode");
+            });
             google.maps.event.addDomListener(window, 'load', init);
 
         }
     </script>
     <script async defer
-            src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places&key=AIzaSyB8bciunVlIgmtF5BLbil6zPsfXJHO1WFY&callback=initLib">
+            src="https://maps.googleapis.com/maps/api/js?sensor=false&region=lt&libraries=places&key=AIzaSyB8bciunVlIgmtF5BLbil6zPsfXJHO1WFY&callback=initLib">
     </script>
 
 {% endblock %}
