@@ -236,7 +236,7 @@ class MumsPakeliuiFixtures extends Fixture
         $trip->setSeats(rand(1, 7));
         $trip->setPets(rand(1, 0));
         $trip->setSmoke(rand(1, 0));
-        $trip->setPhone('+370' . rand(10000, 99999));
+        $trip->setPhone('+370' . rand(10000000, 99999999));
         $manager->persist($trip);
     }
 }

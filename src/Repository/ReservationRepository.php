@@ -64,7 +64,7 @@ class ReservationRepository extends ServiceEntityRepository
             ->leftJoin("App\Entity\Trip", "t", "WITH", "t.id = r.trip")
             ->Where('t.departTime >= :today')
             ->andWhere('r.user = :user')
-            ->andWhere('r.type is NULL')
+            ->andWhere('r.type =0')
             ->setParameter('today', new \DateTime())
             ->setParameter('user', $value)
             ->orderBy('t.departTime', 'ASC')
