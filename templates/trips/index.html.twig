@@ -20,7 +20,7 @@
                 <!-- Nav tabs -->
                 <div class="tabs">
                     <ul class="nav nav-tabs">
-                        <li class="active"><a href="#trips" data-toggle="tab">Mano skelbimai</a></li>
+                        <li class="active"><a href="#trips" data-toggle="tab" class="first-tab">Mano skelbimai</a></li>
                         <li><a href="#reservation" data-toggle="tab">Mano keleiviai</a></li>
                         <li><a href="#yourReservation" data-toggle="tab">Užklausos vairuotojams</a></li>
                         <li><a href="#offers" data-toggle="tab">Vairuotojų pasiūlymai</a></li>
@@ -62,8 +62,7 @@
                                                          title="{{ reservation.user }}  {{ reservation.User.email }}"
                                                          class="customer-img-reservation">
                                                 {% else %}
-                                                    <img src="/images/avatar.png"
-                                                         title="{{ reservation.user }}  {{ reservation.User.email }}"
+                                                    <img src="/images/avatar.png" title="{{ reservation.user }}  {{ reservation.User.email }}"
                                                          class="customer-img-reservation">
                                                 {% endif %}
                                             {% endfor %}
@@ -73,14 +72,11 @@
                                         {% endfor %}
                                     </div>
                                     <div class="col-xs-6 col-sm-6 col-md-2 mx-0 info">
-                                        <a class="btn btn-outline-dark"
-                                           href="{{ path('trip_show', {'id': trip.id}) }}" title="Peržiūrėti"><i
-                                                    class="fas fa-eye"></i></a>
-                                        <a href="{{ path('trip_edit', {'id': trip.id}) }}" title="Redaguoti"
-                                           class="btn btn-outline-dark" alt="Redaguoti"><i
-                                                    class="fas fa-edit"></i></a>
-                                        <a href="{{ path('trip_delete', {'id': trip.id}) }}" title="Ištrinti"
-                                           class="btn btn-outline-dark" alt="Ištrinti"><i
+                                        <a class="btn btn-outline-dark" href="{{ path('trip_show', {'id': trip.id}) }}" title="Peržiūrėti"><i class="fas fa-eye"></i></a>
+                                        {{ form_start(edit_form, {'action': path('trip_edit', {'id': trip.id}), 'method': 'POST'}) }}
+                                            <button title="Redaguoti" class="btn btn-outline-dark edit-btn" alt="Redaguoti"><i class="fas fa-edit"></i></button>
+                                        {{ form_end(edit_form) }}
+                                        <a href="{{ path('trip_delete', {'id': trip.id}) }}" class='btn btn-outline-dark delete-btn'><i
                                                     class="fas fa-trash-alt"></i></a>
                                     </div>
                                 </div>
@@ -115,11 +111,9 @@
                                         <br>{{ reservation.User.email }}
                                     </div>
                                     <div class="col-xs-12 col-sm-2 col-lg-2 info">
-                                        <a href="{{ path('reservation_confirmed', {'id': reservation.id}) }}"
-                                           title="Patvirtinti" class="btn btn-outline-dark" alt="Patvirtinti"><i
+                                        <a href="{{path('reservation_confirmed', { 'id': reservation.id}) }}" class='btn btn-outline-dark confirm-reject-btn'><i
                                                     class="fas fa-handshake"></i></a>
-                                        <a href="{{ path('reservation_reject', {'id': reservation.id}) }}"
-                                           title="Atmesti" class="btn btn-outline-dark" alt="Atmesti"><i
+                                        <a href="{{path('reservation_reject', { 'id': reservation.id}) }}" class='btn btn-outline-dark confirm-reject-btn'><i
                                                     class="fas fa-times"></i></a>
                                     </div>
                                 </div>
@@ -196,8 +190,7 @@
                                     <div class="col-xs-12 mr-0 info">
                                         <a href="{{ path('trip_show', {'id': reservation.offer}) }}"
                                            title="Rezervuoti" class="btn btn-outline-dark">Rezervuoti</a>
-                                        <a href="{{ path('reservation_reject', {'id': reservation.id}) }}"
-                                           title="Atmesti" class="btn btn-outline-dark" alt="Atmesti"><i
+                                        <a href="{{path('reservation_reject', { 'id': reservation.id}) }}" class='btn btn-outline-dark offer-reject-btn'><i
                                                     class="fas fa-times"></i></a>
                                     </div>
                                 </div>
@@ -221,6 +214,43 @@
     <script src="{{ asset('build/js/app.js') }}"></script>
     <script>
         $('.nav-tabs > li:first-child > a')[0].click();
+        $(document).on('click', 'a.confirm-reject-btn', function(e) {
+            e.preventDefault();
+            $.ajax({
+                url: $(this).attr('href'),
+                type:  'PUT',
+                dataType: 'JSON',
+                success: function() {
+                    $('#reservation').load(document.URL + ' #reservation');
+                }
+            });
+        });
+        $(document).on('click', 'a.offer-reject-btn', function(e) {
+            e.preventDefault();
+            $.ajax({
+                url: $(this).attr('href'),
+                type:  'PUT',
+                dataType: 'JSON',
+                success: function() {
+                    $('#offers').load(document.URL + ' #offers');
+                }
+            });
+        });
+        $(document).on('click', 'a.delete-btn', function(e) {
+            e.preventDefault();
+            $.ajax({
+                url: $(this).attr('href'),
+                type:  'DELETE',
+                data: {_method: 'delete'},
+                dataType: 'JSON',
+                success: function() {
+                    window.location.reload();
+                }
+            });
+        });
+        $(document).on('click', 'a.first-tab', function(e) {
+            window.location.reload();
+        });
     </script>
 {% endblock %}
 

@@ -49,7 +49,7 @@
                                                 <a class="dropdown-item" href="{{ path('fos_user_security_logout') }}">Atsijungti</a>
                                             </div>
                                         </li>
-                                        <li><a href="{{ path('trip_add') }}" class="btn btn-outline-dark top-btn"><i class="fas fa-plus"></i> Pridėti kelionę</a></li>
+                                        <li><a href="{{ path('trip_add') }}" data-method="POST" class="btn btn-outline-dark top-btn"><i class="fas fa-plus"></i> Pridėti kelionę</a></li>
                                     {% else %}
 
                                         <li>
@@ -127,6 +127,7 @@
             google.maps.event.addDomListener(window, 'load', init);
 
         }
+
     </script>
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?sensor=false&region=lt&libraries=places&key=AIzaSyB8bciunVlIgmtF5BLbil6zPsfXJHO1WFY&callback=initLib">

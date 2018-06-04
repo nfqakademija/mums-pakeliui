@@ -47,7 +47,7 @@ class TripRepository extends ServiceEntityRepository
             ->leftJoin("App\Entity\User", "u", "WITH", "u.id = t.user")
             ->Where('t.departTime >= :today')
             ->setParameter('today', new \DateTime())
-            ->orderBy('t.departTime', 'desc');
+            ->orderBy('t.departTime', 'asc');
 
         if (isset($value['departFrom'])) {
             $trips->andWhere('t.departFrom LIKE :departFrom')

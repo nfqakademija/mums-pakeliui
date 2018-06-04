@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Form\OfferType;
 use App\Form\ReservationType;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use App\Form\TripType;
@@ -17,7 +18,7 @@ use App\Entity\Trip;
 class TripController extends Controller
 {
     /**
-     * @Route("/show/{id}", name="show")
+     * @Route("/show/{id}", name="show", methods={"GET", "HEAD"})
      */
     public function showAction(Trip $trip)
     {
@@ -41,7 +42,7 @@ class TripController extends Controller
     }
 
     /**
-     * @Route("/edit/{id}", name="edit")
+     * @Route("/edit/{id}", name="edit", methods={"POST"})
      */
     public function editAction(Request $request, Trip $trip)
     {
@@ -54,7 +55,7 @@ class TripController extends Controller
     }
 
     /**
-     * @Route("/delete/{id}", name="delete")
+     * @Route("/delete/{id}", name="delete", methods={"DELETE"})
      */
     public function deleteAction(Trip $trip, EntityManagerInterface $entityManager)
     {
@@ -67,7 +68,10 @@ class TripController extends Controller
             $entityManager->flush();
         }
 
-        return $this->redirect($this->generateUrl('my_trips'));
+        $response = new JsonResponse();
+        return $response->setData(array(
+            'reponse'=>'OK',
+        ));
     }
 
     protected function processForm(Request $request, Trip $trip = null)

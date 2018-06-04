@@ -22,3 +22,5 @@ facebook_login:
 
 google_login:
     path: /connect/login_google
+
+

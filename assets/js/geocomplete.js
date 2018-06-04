@@ -40,7 +40,6 @@
     var defaults = {
         bounds: true,
         componentRestrictions: {'region':  'es'},
-        minChars: 4,
         map: false,
         details: false,
         detailsAttribute: "name",
@@ -61,7 +60,7 @@
         types: ['geocode'],
         blur: true,
         geocodeAfterResult: true,
-        restoreValueAfterBlur: false
+        restoreValueAfterBlur: true
     };
 
     // See: [Geocoding Types](https://developers.google.com/maps/documentation/geocoding/#Types)
@@ -234,19 +233,16 @@
             // not explicitly selected a result.
             // (Useful for typing partial location and tabbing to the next field
             // or clicking somewhere else.)
-            if (this.options.blur === true) {
+            if (this.options.blur === true){
                 this.$input.on('blur.' + this._name, $.proxy(function(){
+                    if (this.options.geocodeAfterResult === true && this.selected) { return; }
 
-                    if (this.selected === true) { return; }
-                    else {
+                    if (this.options.restoreValueAfterBlur === true && this.selected === true) {
+                        setTimeout($.proxy(this.restoreLastValue, this), 0);
+                    } else {
                         this.find();
                     }
-
-
-
                 }, this));
-
-
             }
         },
 

@@ -8,6 +8,7 @@ use App\Form\OfferType;
 use App\Form\ReservationType;
 use App\Repository\TripRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -23,7 +24,7 @@ class ReservationController extends Controller
     const RESERVATION_TYPE_RESERVATION = 0;
 
     /**
-     * @Route("/add/{id}", name="add")
+     * @Route("/add/{id}", name="add", methods={"POST"})
      */
     public function reservationAction(
         Request $request,
@@ -73,7 +74,7 @@ class ReservationController extends Controller
     }
 
     /**
-     * @Route("/reject/{id}", name="reject")
+     * @Route("/reject/{id}", name="reject", methods={"PUT"})
      */
     public function rejectAction(Reservation $reservation, EntityManagerInterface $entityManager)
     {
@@ -85,12 +86,14 @@ class ReservationController extends Controller
             $reservation->setStatus(self::STATUS_REJECTED);
             $entityManager->flush();
         }
-
-        return $this->redirect($this->generateUrl('my_trips'));
+        $response = new JsonResponse();
+        return $response->setData(array(
+            'reponse'=>'OK',
+        ));
     }
 
     /**
-     * @Route("/confirmed/{id}", name="confirmed")
+     * @Route("/confirmed/{id}", name="confirmed", methods={"PUT"})
      */
     public function confirmedAction(Reservation $reservation, EntityManagerInterface $entityManager)
     {
@@ -102,8 +105,10 @@ class ReservationController extends Controller
             $reservation->setStatus(self::STATUS_CONFIRMED);
             $entityManager->flush();
         }
-
-        return $this->redirect($this->generateUrl('my_trips'));
+        $response = new JsonResponse();
+        return $response->setData(array(
+            'reponse'=>'OK',
+        ));
     }
 
     private function reservationAddAction(
