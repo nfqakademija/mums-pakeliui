@@ -58,8 +58,8 @@
 
         maxZoom: 16,
         types: ['geocode'],
-        blur: true,
-        geocodeAfterResult: true,
+        blur: false,
+        geocodeAfterResult: false,
         restoreValueAfterBlur: true
     };
 
