@@ -53,14 +53,14 @@ class ReservationController extends Controller
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $driverTrip = $tripRepository->findOneByUserAndDate($user, $trip->getDepartTime());
-            if (isset($driverTrip['id'])) {
+            if (isset($driverTrip)) {
                 $this->reservationAddAction(
                     $entityManager,
                     $user,
                     $trip,
                     self::RESERVATION_TYPE_OFFER,
                     $seats = 0,
-                    $driverTrip['id']
+                    $driverTrip
                 );
 
                 $this->addFlash('success', 'Sėkmingai pasiūlėte kelionę!');
@@ -117,7 +117,7 @@ class ReservationController extends Controller
         $trip,
         $type,
         $seats,
-        $driverTrip = 0
+        $driverTrip = null
     ) {
         $reservation = new Reservation();
         if ($type == self::RESERVATION_TYPE_OFFER) {

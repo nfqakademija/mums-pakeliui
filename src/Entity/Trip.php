@@ -18,6 +18,7 @@ class Trip
     /**
      * @ORM\Id()
      * @ORM\OneToMany(targetEntity="Reservation", mappedBy="trip")
+     * @ORM\OneToMany(targetEntity="Reservation", mappedBy="offer")
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */

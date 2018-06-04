@@ -129,11 +129,13 @@ class TripRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    /**
+     * @method Trip|null findOneBy(array $criteria, array $orderBy = null)
+     */
     public function findOneByUserAndDate($user, $date)
     {
         $departDate = $date->format('Y-m-d');
         $tripId = $this->createQueryBuilder("t")
-            ->select("t.id")
             ->Where('t.departTime LIKE :departTime')
             ->andWhere('t.user = :user')
             ->setParameter('departTime', $departDate.'%')

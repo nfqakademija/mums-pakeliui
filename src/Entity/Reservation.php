@@ -50,7 +50,8 @@ class Reservation
     private $type;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="Trip")
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $offer;
 
@@ -121,16 +122,20 @@ class Reservation
         return $this;
     }
 
-    public function getOffer(): ?int
+    /**
+     * @return Trip
+     */
+    public function getOffer()
     {
         return $this->offer;
     }
 
-    public function setOffer(int $offer): self
+    /**
+     * @param Trip $trip
+     */
+    public function setOffer(Trip $trip)
     {
-        $this->offer = $offer;
-
-        return $this;
+        $this->offer = $trip;
     }
 
     public function getType(): ?bool

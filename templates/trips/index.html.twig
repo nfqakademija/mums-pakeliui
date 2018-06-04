@@ -186,7 +186,7 @@
                                         {{ reservation.User }}<br>{{ reservation.User.email }}<br>
                                     </div>
                                     <div class="col-xs-12 mr-0 info">
-                                        <a href="{{ path('trips_show', {'id': reservation.offer}) }}"
+                                        <a href="{{ path('trips_show', {'id': reservation.offer.id }) }}"
                                            title="Rezervuoti" class="btn btn-outline-dark">Rezervuoti</a>
                                         <a href="{{path('reservation_reject', { 'id': reservation.id}) }}" class='btn btn-outline-dark offer-reject-btn'><i
                                                     class="fas fa-times"></i></a>
