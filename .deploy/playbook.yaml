@@ -60,7 +60,7 @@
         args:
             chdir: "{{ deploy_helper.new_release_path }}"
 
-      - name: Add DataFixtures
+      - name: Add Fixtures
         shell: bin/console doctrine:fixtures:load --no-interaction --env=prod --no-debug
         args:
             chdir: "{{ deploy_helper.new_release_path }}"
