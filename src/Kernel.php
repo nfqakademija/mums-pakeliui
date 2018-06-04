@@ -37,11 +37,11 @@ class Kernel extends BaseKernel
             }
         }
 
-        $bundles = array(
+        $bundles[] = [
             new HttplugBundle(),
             new HWIOAuthBundle(),
             new DoctrineFixturesBundle()
-        );
+        ];
     }
 
     protected function configureContainer(ContainerBuilder $container, LoaderInterface $loader)
