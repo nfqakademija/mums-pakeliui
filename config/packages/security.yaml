@@ -10,9 +10,6 @@ security:
         FOS\UserBundle\Model\UserInterface: bcrypt
 
     firewalls:
-        #dev:
-        #    pattern: ^/(_(profiler|wdt)|css|images|js)/
-        #    security: false
         main:
             pattern: ^/
             form_login:
@@ -20,8 +17,6 @@ security:
                 csrf_token_generator: security.csrf.token_manager
 
             logout:       true
-            #anonymous:    true
-        #secured_area:
             anonymous: ~
             oauth:
               resource_owners:
