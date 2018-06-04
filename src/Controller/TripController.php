@@ -22,8 +22,11 @@ class TripController extends Controller
     /**
      * @Route("/", name="my", methods={"GET", "HEAD"})
      */
-    public function myTripsAction(Request $request, TripRepository $tripRepository, ReservationRepository $reservationRepository)
-    {
+    public function myTripsAction(
+        Request $request,
+        TripRepository $tripRepository,
+        ReservationRepository $reservationRepository
+    ) {
         $user = $this->getUser();
         $trips = $tripRepository->findByUser($user);
         $reservations = $reservationRepository->findByOwnerJoinedTrip($user);
