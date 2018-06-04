@@ -99,4 +99,4 @@ Sveiki!
 #### Programuotojos:
 
 * Eglė Burneikė
-* Svetlana Mur
+* Svetlana Muraveckaja-Odincova
