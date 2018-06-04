@@ -40,7 +40,7 @@ class Kernel extends BaseKernel
         $bundles[] = [
             new HttplugBundle(),
             new HWIOAuthBundle(),
-            new DoctrineFixturesBundle(),
+            new DoctrineFixturesBundle()
         ];
     }
 
