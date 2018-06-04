@@ -10,6 +10,7 @@ use Symfony\Component\HttpKernel\Kernel as BaseKernel;
 use Symfony\Component\Routing\RouteCollectionBuilder;
 use Http\HttplugBundle\HttplugBundle;
 use HWI\Bundle\OAuthBundle\HWIOAuthBundle;
+use Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle;
 
 class Kernel extends BaseKernel
 {
@@ -38,7 +39,8 @@ class Kernel extends BaseKernel
 
         $bundles = array(
             new HttplugBundle(),
-            new HWIOAuthBundle()
+            new HWIOAuthBundle(),
+            new DoctrineFixturesBundle()
         );
     }
 
