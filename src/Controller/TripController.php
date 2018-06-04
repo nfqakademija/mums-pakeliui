@@ -20,10 +20,9 @@ use App\Entity\Trip;
 class TripController extends Controller
 {
     /**
-     * @Route("/", name="my", methods={"GET", "HEAD"})
+     * @Route("/", name="my", methods={"GET"})
      */
     public function myTripsAction(
-        Request $request,
         TripRepository $tripRepository,
         ReservationRepository $reservationRepository
     ) {
@@ -31,9 +30,6 @@ class TripController extends Controller
         $trips = $tripRepository->findByUser($user);
         $reservations = $reservationRepository->findByOwnerJoinedTrip($user);
         $yourReservations = $reservationRepository->findByUserJoinedTrip($user);
-        $trip = new Trip();
-        $form = $this->createFormBuilder($trip)
-            ->setMethod("POST")->getForm();
 
         return $this->render(
             'trips/index.html.twig',
@@ -41,7 +37,6 @@ class TripController extends Controller
                 'trips' => $trips,
                 'reservations' => $reservations,
                 'yourReservations' =>  $yourReservations,
-                'edit_form' => $form->createView(),
             ]
         );
     }
@@ -70,7 +65,7 @@ class TripController extends Controller
     }
 
     /**
-     * @Route("/edit/{id}", name="edit", methods={"POST"})
+     * @Route("/edit/{id}", name="edit", methods={"GET", "POST"})
      */
     public function editAction(Request $request, Trip $trip)
     {
@@ -79,7 +74,7 @@ class TripController extends Controller
         if ($user == $owner) {
             return $this->processForm($request, $trip);
         }
-            return $this->redirectToRoute('trips_my');
+        return $this->redirectToRoute('trips_my');
     }
 
     /**
