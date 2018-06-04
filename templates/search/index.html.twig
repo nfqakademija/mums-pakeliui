@@ -62,7 +62,7 @@
         {% for trip in trips %}
             <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-3">
                 <div class="featured-trip-wrap">
-                    <a href="{{ path('trip_show', {'id': trip.id}) }}">
+                    <a href="{{ path('trips_show', {'id': trip.id}) }}">
                         <img src="../../images/{{ trip.travelerType }}.png" class="img-fluid" alt="#">
                         <div class="featured-title-box">
                             <h6>

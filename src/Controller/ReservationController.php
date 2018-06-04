@@ -70,7 +70,7 @@ class ReservationController extends Controller
                 return $this->redirect($request->server->get('HTTP_REFERER'));
         }
 
-        return $this->redirect($this->generateUrl('my_trips'));
+        return $this->redirect($this->generateUrl('trips_my'));
     }
 
     /**

@@ -42,14 +42,14 @@
                                                 <span class="fas fa-angle-down"></span>
                                             </a>
                                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                                <a class="dropdown-item" href="{{ path('my_trips') }}">Mano kelionės</a>
+                                                <a class="dropdown-item" href="{{ path('trips_my') }}">Mano kelionės</a>
                                                 <a class="dropdown-item" href="{{ path('fos_user_profile_show') }}">Mano profilis</a>
                                                 <a class="dropdown-item" href="{{ path('fos_user_profile_edit') }}">Redaguoti profilį</a>
                                                 <a class="dropdown-item" href="{{ path('fos_user_change_password') }}">Keisti slaptažodį</a>
                                                 <a class="dropdown-item" href="{{ path('fos_user_security_logout') }}">Atsijungti</a>
                                             </div>
                                         </li>
-                                        <li><a href="{{ path('trip_add') }}" data-method="POST" class="btn btn-outline-dark top-btn"><i class="fas fa-plus"></i> Pridėti kelionę</a></li>
+                                        <li><a href="{{ path('trips_add') }}" data-method="POST" class="btn btn-outline-dark top-btn"><i class="fas fa-plus"></i> Pridėti kelionę</a></li>
                                     {% else %}
 
                                         <li>

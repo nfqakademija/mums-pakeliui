@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Form\OfferType;
 use App\Form\ReservationType;
+use App\Repository\ReservationRepository;
+use App\Repository\TripRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
@@ -13,10 +15,33 @@ use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Trip;
 
 /**
- * @Route("/trip", name="trip_")
+ * @Route("/trips", name="trips_")
  */
 class TripController extends Controller
 {
+    /**
+     * @Route("/", name="my", methods={"GET", "HEAD"})
+     */
+    public function myTripsAction(Request $request, TripRepository $tripRepository, ReservationRepository $reservationRepository)
+    {
+        $user = $this->getUser();
+        $trips = $tripRepository->findByUser($user);
+        $reservations = $reservationRepository->findByOwnerJoinedTrip($user);
+        $yourReservations = $reservationRepository->findByUserJoinedTrip($user);
+        $trip = new Trip();
+        $form = $this->createFormBuilder($trip)
+            ->setMethod("POST")->getForm();
+
+        return $this->render(
+            'trips/index.html.twig',
+            [
+                'trips' => $trips,
+                'reservations' => $reservations,
+                'yourReservations' =>  $yourReservations,
+                'edit_form' => $form->createView(),
+            ]
+        );
+    }
     /**
      * @Route("/show/{id}", name="show", methods={"GET", "HEAD"})
      */
@@ -51,7 +76,7 @@ class TripController extends Controller
         if ($user == $owner) {
             return $this->processForm($request, $trip);
         }
-            return $this->redirectToRoute('my_trips');
+            return $this->redirectToRoute('trips_my');
     }
 
     /**
@@ -86,7 +111,7 @@ class TripController extends Controller
             $entityManager->persist($trip);
             $entityManager->flush();
 
-            return $this->redirectToRoute('my_trips');
+            return $this->redirectToRoute('trips_my');
         }
 
         return  $this->render(
