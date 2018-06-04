@@ -61,9 +61,9 @@
             chdir: "{{ deploy_helper.new_release_path }}"
 
       - name: Run Data Fixtures
-              shell: bin/console doctrine:fixtures:load --env=prod --append
-              args:
-                  chdir: "{{ deploy_helper.new_release_path }}"
+        shell: bin/console doctrine:fixtures:load --env=prod --append
+        args:
+            chdir: "{{ deploy_helper.new_release_path }}"
 
       - name: Warm up application cache
         shell: bin/console cache:warmup --env=prod --no-debug
